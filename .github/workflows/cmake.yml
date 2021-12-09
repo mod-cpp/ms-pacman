@@ -20,12 +20,10 @@ jobs:
       fail-fast: false
       matrix:
         configurations:
-          - name: Ubuntu 18.04
-            os: ubuntu-18.04
           - name: Ubuntu 20.04
             os: ubuntu-20.04
-          - name: Windows 2019
-            os: windows-2019
+          - name: Windows 2022
+            os: windows-20122
           - name: MacOS 10.15
             os: macos-10.15
         cmake-build-type: [Debug, Release]
