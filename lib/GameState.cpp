@@ -18,18 +18,30 @@ void GameState::step(std::chrono::milliseconds delta) {
   if (!pacMan.hasDirection())
     return;
 
-  blinky.setTarget(pacMan.position());
-  blinky.update(delta);
-  pinky.setTarget(pacMan.positionInGrid(), pacMan.currentDirection());
-  pinky.update(delta);
-  inky.setTarget(pacMan.positionInGrid(), pacMan.currentDirection(), blinky.positionInGrid());
-  inky.update(delta);
+  std::apply(
+    [ this, &delta ]<typename... Ghost>(Ghost & ... ghost) {
+      ([&]<typename T>(T & ghost) {
+        ghost.update(delta);
+        if constexpr (std::is_same_v<T, Blinky>) {
+          ghost.setTarget(pacMan.position());
+        }
+        if constexpr (std::is_same_v<T, Pinky>) {
+          ghost.setTarget(pacMan.positionInGrid(), pacMan.currentDirection());
+        }
+        if constexpr (std::is_same_v<T, Inky>) {
+          ghost.setTarget(pacMan.positionInGrid(), pacMan.currentDirection(), std::get<Blinky>(ghosts).positionInGrid());
+        }
+      }(ghost),
+       ...);
+    },
+    ghosts);
 
   fruit.update(delta, score.eatenPellets);
 
-  checkCollision(blinky);
-  checkCollision(pinky);
-  checkCollision(inky);
+  std::apply([this](auto &... ghost) {
+    (checkCollision(ghost), ...);
+  },
+             ghosts);
 
   eatPellets();
   eatFruit();
@@ -55,9 +67,11 @@ void GameState::handleDeathAnimation(std::chrono::milliseconds delta) {
   timeSinceDeath += delta;
 
   if (timeSinceDeath.count() > 1000) {
-    blinky.reset();
-    pinky.reset();
-    inky.reset();
+    std::apply([this](auto &... ghost) {
+      (ghost.reset(), ...);
+    },
+               ghosts);
+
     pacMan.reset();
     pacManAI.reset();
     timeSinceDeath = std::chrono::milliseconds(0);
@@ -75,9 +89,10 @@ void GameState::eatPellets() {
     score.eatenPellets++;
     score.points += POWER_PELLET_POINTS;
 
-    blinky.frighten();
-    pinky.frighten();
-    inky.frighten();
+    std::apply([this](auto &... ghost) {
+      (ghost.frighten(), ...);
+    },
+               ghosts);
   }
 }
 

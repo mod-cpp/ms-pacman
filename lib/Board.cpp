@@ -53,7 +53,7 @@ constexpr std::array<std::array<int, COLUMNS>, ROWS> board = {{
 }};
 // clang-format on
 
-static Cell cellAtPosition(GridPosition point) {
+constexpr static Cell cellAtPosition(GridPosition point) {
   if (point.x >= COLUMNS || point.y >= ROWS)
     return Cell::wall;
   return Cell(board[point.y][point.x]);

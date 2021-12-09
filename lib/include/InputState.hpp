@@ -13,7 +13,7 @@ public:
   bool right = false;
   bool enableAI = false;
 
-  Direction direction() const {
+  constexpr Direction direction() const {
     if (up)
       return Direction::UP;
     if (down)

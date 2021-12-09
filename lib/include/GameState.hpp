@@ -1,8 +1,9 @@
 #pragma once
 
+#include <tuple>
+
 #include "Blinky.hpp"
 #include "Fruits.hpp"
-#include "Ghost.hpp"
 #include "Inky.hpp"
 #include "InputState.hpp"
 #include "PacMan.hpp"
@@ -17,9 +18,7 @@ namespace pacman {
 struct GameState {
   void step(std::chrono::milliseconds delta);
 
-  Blinky blinky;
-  Pinky pinky;
-  Inky inky;
+  std::tuple<Blinky, Pinky, Inky> ghosts;
 
   PacMan pacMan;
   PacManAI pacManAI;
