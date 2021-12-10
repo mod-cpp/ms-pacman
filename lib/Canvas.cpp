@@ -24,8 +24,8 @@ Canvas::Canvas()
   const auto height = (viewDimensions().height / 2.2) * scale;
   window.setSize(sf::Vector2u(unsigned(width), unsigned(height)));
 
-  maze_texture = loadTexture("maze.png");
-  sprites_texture = loadTexture("sprites32.png");
+  maze_texture = loadTexture("maze1.png");
+  sprites_texture = loadTexture("sprites-ms-32.png");
   game_font = loadFont("retro_font.ttf");
 }
 
@@ -176,7 +176,7 @@ void Canvas::renderSprite(Sprite sprite, Position pos) {
   window.draw(sprite);
 }
 
-static void exitFailure(const std::string & message) {
+static void exitFailure(std::string_view message) {
   fmt::print("{}\n", message);
   exit(1);
 }
