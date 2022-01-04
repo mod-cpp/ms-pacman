@@ -14,6 +14,6 @@ constexpr std::array levels = {
   Level{ "maze4.png", "maze4_data.png" }
 };
 
-constexpr Level getLevel(int n){
+constexpr Level getLevel(std::size_t n){
     return levels[n];
 }
