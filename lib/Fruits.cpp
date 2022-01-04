@@ -1,4 +1,5 @@
 #include "Fruits.hpp"
+#include "Atlas.hpp"
 
 namespace ms_pacman {
 
@@ -17,7 +18,7 @@ void Fruits::update(std::chrono::milliseconds time_delta, int eatenPellets) {
 
 GridPosition Fruits::currentSprite() const {
   // That's the cherry
-  return { 3, 8 };
+  return Atlas::fruit_cherry;
 }
 
 Position Fruits::position() const {

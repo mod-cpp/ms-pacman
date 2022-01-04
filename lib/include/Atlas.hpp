@@ -28,23 +28,25 @@ constexpr GridPosition pacman_down_wide = { 4, 0 };
 constexpr GridPosition pacman_down_narrow = { 3, 0 };
 constexpr GridPosition pacman_down_closed = { 5, 0 };
 
-constexpr GridPosition ghost_blue_frightened = { 0, 7 };
-constexpr GridPosition ghost_blue_frightened2 = { 1, 7 };
-constexpr GridPosition ghost_white_frightened = { 2, 7 };
-constexpr GridPosition ghost_white_frightened2 = { 3, 7 };
+constexpr GridPosition ghost_blue_frightened = { 4, 1 };
+constexpr GridPosition ghost_blue_frightened2 = { 5, 1 };
+constexpr GridPosition ghost_white_frightened = { 6, 1 };
+constexpr GridPosition ghost_white_frightened2 = { 7, 1 };
+
+constexpr GridPosition fruit_cherry = { 0, 6 };
 
 constexpr GridPosition eyeSprite(Direction direction) {
   switch (direction) {
     case Direction::RIGHT:
-      return { 0, 6 };
+      return { 7, 7 };
     case Direction::DOWN:
-      return { 2, 6 };
+      return { 5, 7 };
     case Direction::LEFT:
-      return { 4, 6 };
+      return { 6, 7 };
     case Direction::UP:
-      return { 6, 6 };
+      return { 4, 7 };
     default:
-      return { 0, 6 };
+      return { 7, 7 };
   }
 }
 
