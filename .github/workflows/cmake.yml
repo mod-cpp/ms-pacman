@@ -23,7 +23,7 @@ jobs:
           - name: Ubuntu 20.04
             os: ubuntu-20.04
           - name: Windows 2022
-            os: windows-20122
+            os: windows-2022
           - name: MacOS 10.15
             os: macos-10.15
         cmake-build-type: [Debug, Release]
