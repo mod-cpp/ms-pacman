@@ -6,8 +6,8 @@ TEST_CASE("Fruit default initialization", "[fruits]") {
   ms_pacman::Fruits fruit;
   REQUIRE_FALSE(fruit.isVisible());
   REQUIRE(fruit.value() == 100);
-  REQUIRE(fruit.currentSprite().x == 3);
-  REQUIRE(fruit.currentSprite().y == 8);
+  REQUIRE(fruit.currentSprite().x == 0);
+  REQUIRE(fruit.currentSprite().y == 6);
   REQUIRE(fruit.position().x == Approx(13.5));
   REQUIRE(fruit.position().y == Approx(17));
 }
