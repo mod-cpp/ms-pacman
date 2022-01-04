@@ -7,7 +7,6 @@
 #include "Inky.hpp"
 #include "InputState.hpp"
 #include "PacMan.hpp"
-#include "PacManAI.hpp"
 #include "Pellets.hpp"
 #include "Pinky.hpp"
 #include "Score.hpp"
@@ -21,7 +20,6 @@ struct GameState {
   std::tuple<Blinky, Pinky, Inky> ghosts;
 
   PacMan pacMan;
-  PacManAI pacManAI;
   InputState inputState;
   Pellets pellets;
   SuperPellets superPellets;
