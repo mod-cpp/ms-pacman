@@ -26,7 +26,7 @@ jobs:
         path: |
           ${{runner.workspace}}/build/vcpkg_installed
           ${{runner.workspace}}/build/_deps
-        key: ubuntu-20.04-Release-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
+        key: ubuntu-20.04-Debug-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
 
     - name: Fix Path
       run: echo "/home/runner/.local/bin" >> $GITHUB_PATH
@@ -39,7 +39,7 @@ jobs:
 
     - name: Configure CMake
       working-directory: build
-      run: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+      run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
 
     - name: Run clang-tidy
       working-directory: build
