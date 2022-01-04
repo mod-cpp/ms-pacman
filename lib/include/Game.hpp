@@ -14,6 +14,7 @@ private:
   Canvas canvas;
   GameState gameState;
 
+  void loadLevel();
   void processEvents(InputState & inputState);
 };
 

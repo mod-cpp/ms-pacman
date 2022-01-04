@@ -6,6 +6,8 @@
 namespace pacman {
 
 void Game::run() {
+  loadLevel();
+
   const std::chrono::milliseconds delta_time(1000 / 60);
   std::chrono::milliseconds accumulator(0);
   auto current_time = std::chrono::system_clock::now();
@@ -28,6 +30,11 @@ void Game::run() {
 
     canvas.render(gameState);
   }
+}
+
+void Game::loadLevel() {
+    const Level & level = gameState.level;
+    canvas.loadMaze(level.background);
 }
 
 void Game::processEvents(InputState & inputState) {

@@ -24,9 +24,12 @@ Canvas::Canvas()
   const auto height = (viewDimensions().height / 2.2) * scale;
   window.setSize(sf::Vector2u(unsigned(width), unsigned(height)));
 
-  maze_texture = loadTexture("maze1.png");
   sprites_texture = loadTexture("sprites-ms-32.png");
   game_font = loadFont("retro_font.ttf");
+}
+
+void Canvas::loadMaze(std::string_view path) {
+    maze_texture = loadTexture(path);
 }
 
 void Canvas::render(const GameState & gameState) {

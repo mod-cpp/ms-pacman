@@ -11,6 +11,7 @@
 #include "Pinky.hpp"
 #include "Score.hpp"
 #include "SuperPellets.hpp"
+#include "Level.hpp"
 
 namespace pacman {
 
@@ -24,7 +25,7 @@ struct GameState {
   Pellets pellets;
   SuperPellets superPellets;
   Fruits fruit;
-
+  Level  level = getLevel(0);
   Score score;
   std::chrono::milliseconds timeSinceDeath{};
 

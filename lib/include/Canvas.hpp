@@ -14,6 +14,7 @@ using Sprite = sf::Sprite;
 class Canvas {
 public:
   Canvas();
+  void loadMaze(std::string_view path);
   void render(const GameState & gameState);
   std::optional<sf::Event> pollEvent();
 
@@ -29,6 +30,7 @@ private:
   static constexpr uint16_t SCORE_WIDTH = 200 * 2;
   static constexpr uint16_t SPRITE_WIDTH = 32;
   static constexpr uint16_t SPRITE_HEIGHT = 32;
+
 
   void clear();
   void render();
