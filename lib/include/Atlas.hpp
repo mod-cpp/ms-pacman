@@ -15,15 +15,18 @@ enum class Ghost : unsigned int {
   clyde = 5,
 };
 
-constexpr GridPosition pacman_right_wide = { 0, 0 };
-constexpr GridPosition pacman_right_narrow = { 1, 0 };
-constexpr GridPosition pacman_closed = { 2, 0 };
-constexpr GridPosition pacman_left_narrow = { 3, 0 };
-constexpr GridPosition pacman_left_wide = { 4, 0 };
-constexpr GridPosition pacman_up_wide = { 5, 0 };
-constexpr GridPosition pacman_up_narrow = { 6, 0 };
-constexpr GridPosition pacman_down_wide = { 7, 0 };
-constexpr GridPosition pacman_down_narrow = { 8, 0 };
+constexpr GridPosition pacman_right_wide = { 2, 1 };
+constexpr GridPosition pacman_right_narrow = { 1, 1 };
+constexpr GridPosition pacman_right_closed = { 3, 1 };
+constexpr GridPosition pacman_left_narrow = { 6,0 };
+constexpr GridPosition pacman_left_wide = { 7,0};
+constexpr GridPosition pacman_left_closed = { 0, 1 };
+constexpr GridPosition pacman_up_wide = { 1, 0 };
+constexpr GridPosition pacman_up_narrow = { 0, 0 };
+constexpr GridPosition pacman_up_closed = { 2, 0 };
+constexpr GridPosition pacman_down_wide = { 4, 0 };
+constexpr GridPosition pacman_down_narrow = { 3, 0 };
+constexpr GridPosition pacman_down_closed = { 5, 0 };
 
 constexpr GridPosition ghost_blue_frightened = { 0, 7 };
 constexpr GridPosition ghost_blue_frightened2 = { 1, 7 };

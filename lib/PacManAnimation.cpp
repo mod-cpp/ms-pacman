@@ -2,10 +2,10 @@
 
 namespace ms_pacman {
 
-constexpr std::array<GridPosition,4> down_animation { Atlas::pacman_down_wide, Atlas::pacman_down_narrow, Atlas::pacman_closed, Atlas::pacman_down_narrow };
-constexpr std::array<GridPosition,4> left_animation{ Atlas::pacman_left_wide, Atlas::pacman_left_narrow, Atlas::pacman_closed, Atlas::pacman_left_narrow };
-constexpr std::array<GridPosition,4> right_animation{ Atlas::pacman_right_wide, Atlas::pacman_right_narrow, Atlas::pacman_closed, Atlas::pacman_right_narrow };
-constexpr std::array<GridPosition,4> up_animation{ Atlas::pacman_up_wide, Atlas::pacman_up_narrow, Atlas::pacman_closed, Atlas::pacman_up_narrow };
+constexpr std::array<GridPosition,4> down_animation { Atlas::pacman_down_wide, Atlas::pacman_down_narrow, Atlas::pacman_down_closed, Atlas::pacman_down_narrow };
+constexpr std::array<GridPosition,4> left_animation{ Atlas::pacman_left_wide, Atlas::pacman_left_narrow, Atlas::pacman_left_closed, Atlas::pacman_left_narrow };
+constexpr std::array<GridPosition,4> right_animation{ Atlas::pacman_right_wide, Atlas::pacman_right_narrow, Atlas::pacman_right_closed, Atlas::pacman_right_narrow };
+constexpr std::array<GridPosition,4> up_animation{ Atlas::pacman_up_wide, Atlas::pacman_up_narrow, Atlas::pacman_up_closed, Atlas::pacman_up_narrow };
 
 GridPosition PacManAnimation::animationFrame(Direction direction) const {
   switch (direction) {
@@ -19,7 +19,7 @@ GridPosition PacManAnimation::animationFrame(Direction direction) const {
       return down_animation[animation_position];
     case Direction::NONE:
     default:
-      return Atlas::pacman_closed;
+      return Atlas::pacman_left_narrow;
   }
 }
 
