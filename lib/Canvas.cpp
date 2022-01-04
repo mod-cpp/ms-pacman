@@ -8,7 +8,7 @@ namespace ms_pacman {
 
 Canvas::Canvas()
   : window(sf::VideoMode(std::uint32_t(viewDimensions().width / 2), std::uint32_t(viewDimensions().height / 2)),
-           "Pacman",
+           "MsPacMan",
            sf::Style::Titlebar | sf::Style::Close),
     view(sf::FloatRect(0, 0, float(viewDimensions().width), float(viewDimensions().height))) {
 
