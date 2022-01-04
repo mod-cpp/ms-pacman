@@ -1,5 +1,5 @@
 #pragma once
-namespace pacman {
+namespace ms_pacman {
 
 constexpr int DEFAULT_LIVES = 3;
 

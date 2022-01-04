@@ -1,6 +1,6 @@
 #include "Pinky.hpp"
 
-namespace pacman {
+namespace ms_pacman {
 
 Pinky::Pinky()
   : Ghost(Atlas::Ghost::pinky) {

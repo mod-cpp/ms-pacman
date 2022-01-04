@@ -6,7 +6,7 @@
 
 #include <array>
 
-namespace pacman::Atlas {
+namespace ms_pacman::Atlas {
 
 enum class Ghost : unsigned int {
   blinky = 2,

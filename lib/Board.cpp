@@ -1,6 +1,6 @@
 #include "Board.hpp"
 
-namespace pacman {
+namespace ms_pacman {
 
 const std::size_t ROWS = 31;
 const std::size_t COLUMNS = 28;

@@ -4,7 +4,7 @@
 #include "InputState.hpp"
 #include "Canvas.hpp"
 
-namespace pacman {
+namespace ms_pacman {
 
 class Game {
 public:

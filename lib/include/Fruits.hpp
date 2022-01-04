@@ -2,7 +2,7 @@
 #include "Position.hpp"
 #include <chrono>
 
-namespace pacman {
+namespace ms_pacman {
 
 struct GameState;
 

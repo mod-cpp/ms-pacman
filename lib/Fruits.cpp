@@ -1,6 +1,6 @@
 #include "Fruits.hpp"
 
-namespace pacman {
+namespace ms_pacman {
 
 void Fruits::update(std::chrono::milliseconds time_delta, int eatenPellets) {
   if (visible) {

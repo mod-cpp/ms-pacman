@@ -1,6 +1,6 @@
 #include "PacManAnimation.hpp"
 
-namespace pacman {
+namespace ms_pacman {
 
 constexpr std::array<GridPosition,4> down_animation { Atlas::pacman_down_wide, Atlas::pacman_down_narrow, Atlas::pacman_closed, Atlas::pacman_down_narrow };
 constexpr std::array<GridPosition,4> left_animation{ Atlas::pacman_left_wide, Atlas::pacman_left_narrow, Atlas::pacman_closed, Atlas::pacman_left_narrow };

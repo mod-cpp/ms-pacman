@@ -4,7 +4,7 @@
 #include <cmath>
 #include <limits>
 
-namespace pacman {
+namespace ms_pacman {
 
 struct Position {
   double x = 0.0;

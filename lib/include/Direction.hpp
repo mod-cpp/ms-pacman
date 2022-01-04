@@ -1,6 +1,6 @@
 #pragma once
 
-namespace pacman {
+namespace ms_pacman {
 
 enum class Direction {
   NONE,

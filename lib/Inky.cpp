@@ -1,6 +1,6 @@
 #include "Inky.hpp"
 
-namespace pacman {
+namespace ms_pacman {
 
 Inky::Inky()
   : Ghost(Atlas::Ghost::inky) {

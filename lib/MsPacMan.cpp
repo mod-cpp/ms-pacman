@@ -1,35 +1,35 @@
-#include "PacMan.hpp"
+#include "MsPacMan.hpp"
 #include <cmath>
 
-namespace pacman {
+namespace ms_pacman {
 
-GridPosition PacMan::currentSprite() const {
+GridPosition MsPacMan::currentSprite() const {
   return dead ? pacManAnimation.deathAnimationFrame() : pacManAnimation.animationFrame(direction);
 }
 
-Position PacMan::position() const {
+Position MsPacMan::position() const {
   return pos;
 }
 
-GridPosition PacMan::positionInGrid() const {
+GridPosition MsPacMan::positionInGrid() const {
   return positionToGridPosition(pos);
 }
 
-void PacMan::die() {
+void MsPacMan::die() {
   if (dead)
     return;
 
   dead = true;
 }
 
-void PacMan::reset() {
+void MsPacMan::reset() {
   dead = false;
   direction = Direction::NONE;
   desired_direction = Direction::NONE;
   pos = initialPacManPosition();
 }
 
-void PacMan::update(std::chrono::milliseconds time_delta, Direction input_direction) {
+void MsPacMan::update(std::chrono::milliseconds time_delta, Direction input_direction) {
   if (dead) {
     updateAnimationPosition(time_delta, false);
     return;
@@ -44,7 +44,7 @@ void PacMan::update(std::chrono::milliseconds time_delta, Direction input_direct
   updateAnimationPosition(time_delta, paused);
 }
 
-void PacMan::updateAnimationPosition(std::chrono::milliseconds time_delta, bool paused) {
+void MsPacMan::updateAnimationPosition(std::chrono::milliseconds time_delta, bool paused) {
   if (paused) {
     pacManAnimation.pause();
   } else {
@@ -52,7 +52,7 @@ void PacMan::updateAnimationPosition(std::chrono::milliseconds time_delta, bool 
   }
 }
 
-void PacMan::updateMazePosition(std::chrono::milliseconds time_delta) {
+void MsPacMan::updateMazePosition(std::chrono::milliseconds time_delta) {
   if (isPortal(positionInGrid(), direction)) {
     pos = gridPositionToPosition(teleport(positionInGrid()));
     return;

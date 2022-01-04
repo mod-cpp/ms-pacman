@@ -6,21 +6,21 @@
 #include "Fruits.hpp"
 #include "Inky.hpp"
 #include "InputState.hpp"
-#include "PacMan.hpp"
+#include "MsPacMan.hpp"
 #include "Pellets.hpp"
 #include "Pinky.hpp"
 #include "Score.hpp"
 #include "SuperPellets.hpp"
 #include "Level.hpp"
 
-namespace pacman {
+namespace ms_pacman {
 
 struct GameState {
   void step(std::chrono::milliseconds delta);
 
   std::tuple<Blinky, Pinky, Inky> ghosts;
 
-  PacMan pacMan;
+  MsPacMan pacMan;
   InputState inputState;
   Pellets pellets;
   SuperPellets superPellets;

@@ -7,7 +7,7 @@
 
 #include <chrono>
 
-namespace pacman {
+namespace ms_pacman {
 
 class PacManAnimation {
 public:

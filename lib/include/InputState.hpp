@@ -2,7 +2,7 @@
 #include "Direction.hpp"
 
 
-namespace pacman {
+namespace ms_pacman {
 
 class InputState {
 public:

@@ -6,7 +6,7 @@
 #include "Board.hpp"
 #include "Position.hpp"
 
-namespace pacman {
+namespace ms_pacman {
 
 struct GameState;
 

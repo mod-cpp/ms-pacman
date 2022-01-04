@@ -1,7 +1,7 @@
 #include "Pellets.hpp"
 #include <algorithm>
 
-namespace pacman {
+namespace ms_pacman {
 
 Pellets::Pellets()
   : positions(initialPelletPositions()) {}

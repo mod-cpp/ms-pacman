@@ -3,7 +3,7 @@
 
 #include <chrono>
 
-namespace pacman {
+namespace ms_pacman {
 
 void Game::run() {
   loadLevel();

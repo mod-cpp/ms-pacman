@@ -5,10 +5,10 @@
 
 template<typename T>
 static void ghostInitTest(const T & ghost, double x, double y) {
-  const pacman::Position pos{ x, y };
+  const ms_pacman::Position pos{ x, y };
   REQUIRE(ghost.position() == pos);
 
-  const pacman::GridPosition gridPos = pacman::positionToGridPosition(pos);
+  const ms_pacman::GridPosition gridPos = ms_pacman::positionToGridPosition(pos);
   REQUIRE(ghost.positionInGrid() == gridPos);
 
   REQUIRE_FALSE(ghost.isEyes());
@@ -16,13 +16,13 @@ static void ghostInitTest(const T & ghost, double x, double y) {
 }
 
 TEST_CASE("Ghosts start in the correct position", "[ghosts]") {
-  pacman::Blinky blinky;
+  ms_pacman::Blinky blinky;
   ghostInitTest(blinky, 13.5, 11);
 
-  pacman::Inky inky;
+  ms_pacman::Inky inky;
   ghostInitTest(inky, 13.5, 14);
 
-  pacman::Pinky pinky;
+  ms_pacman::Pinky pinky;
   ghostInitTest(pinky, 11.5, 14);
 }
 
@@ -36,13 +36,13 @@ static void ghostFrightenTest(T & ghost) {
 }
 
 TEST_CASE("Ghosts are frighten", "[ghosts]") {
-  pacman::Blinky blinky;
+  ms_pacman::Blinky blinky;
   ghostFrightenTest(blinky);
 
-  pacman::Inky inky;
+  ms_pacman::Inky inky;
   ghostFrightenTest(inky);
 
-  pacman::Pinky pinky;
+  ms_pacman::Pinky pinky;
   ghostFrightenTest(pinky);
 }
 
@@ -56,12 +56,12 @@ static void ghostDeadTest(T & ghost) {
 }
 
 TEST_CASE("Ghosts can die", "[ghosts]") {
-  pacman::Blinky blinky;
+  ms_pacman::Blinky blinky;
   ghostDeadTest(blinky);
 
-  pacman::Inky inky;
+  ms_pacman::Inky inky;
   ghostDeadTest(inky);
 
-  pacman::Pinky pinky;
+  ms_pacman::Pinky pinky;
   ghostDeadTest(pinky);
 }

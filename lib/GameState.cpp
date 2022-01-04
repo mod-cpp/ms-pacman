@@ -1,6 +1,6 @@
 #include "GameState.hpp"
 
-namespace pacman {
+namespace ms_pacman {
 
 constexpr int GHOST_POINTS = 200;
 constexpr int NORMAL_PELLET_POINTS = 10;

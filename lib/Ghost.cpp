@@ -4,7 +4,7 @@
 #include <cmath>
 #include <numeric>
 
-namespace pacman {
+namespace ms_pacman {
 
 Ghost::Ghost(Atlas::Ghost spriteSet)
   : spriteSet(spriteSet) {
@@ -94,7 +94,7 @@ void Ghost::update(std::chrono::milliseconds time_delta) {
 }
 
 bool Ghost::isInPen() const {
-  return pacman::isInPen(positionInGrid());
+  return ms_pacman::isInPen(positionInGrid());
 }
 
 void Ghost::updatePosition(std::chrono::milliseconds time_delta) {

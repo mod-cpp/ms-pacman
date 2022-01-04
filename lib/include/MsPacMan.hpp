@@ -6,9 +6,9 @@
 
 #include <chrono>
 
-namespace pacman {
+namespace ms_pacman {
 
-class PacMan {
+class MsPacMan {
 public:
   GridPosition currentSprite() const;
   Position position() const;

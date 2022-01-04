@@ -3,7 +3,7 @@
 #include "Board.hpp"
 #include "Position.hpp"
 
-namespace pacman {
+namespace ms_pacman {
 
 class SuperPellets {
 public:

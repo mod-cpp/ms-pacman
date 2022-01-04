@@ -1,6 +1,6 @@
 #include "Blinky.hpp"
 
-namespace pacman {
+namespace ms_pacman {
 
 Blinky::Blinky()
   : Ghost(Atlas::Ghost::blinky) {

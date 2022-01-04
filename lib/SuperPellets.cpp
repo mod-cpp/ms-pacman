@@ -1,7 +1,7 @@
 #include "SuperPellets.hpp"
 #include <algorithm>
 
-namespace pacman {
+namespace ms_pacman {
 
 SuperPellets::SuperPellets()
   : positions(initialSuperPelletPositions()) {}

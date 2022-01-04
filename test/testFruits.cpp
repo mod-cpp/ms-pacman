@@ -3,7 +3,7 @@
 #include <catch2/catch.hpp>
 
 TEST_CASE("Fruit default initialization", "[fruits]") {
-  pacman::Fruits fruit;
+  ms_pacman::Fruits fruit;
   REQUIRE_FALSE(fruit.isVisible());
   REQUIRE(fruit.value() == 100);
   REQUIRE(fruit.currentSprite().x == 3);
@@ -13,7 +13,7 @@ TEST_CASE("Fruit default initialization", "[fruits]") {
 }
 
 TEST_CASE("Fruit Visibility", "[fruits]") {
-  pacman::GameState gameState;
+  ms_pacman::GameState gameState;
   REQUIRE_FALSE(gameState.fruit.isVisible());
 
   SECTION("9 seconds but no pellets eaten") {

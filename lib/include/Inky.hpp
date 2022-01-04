@@ -2,7 +2,7 @@
 
 #include "Ghost.hpp"
 
-namespace pacman {
+namespace ms_pacman {
 
 class Inky final : public Ghost {
 public:

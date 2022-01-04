@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace pacman {
+namespace ms_pacman {
 
 Canvas::Canvas()
   : window(sf::VideoMode(std::uint32_t(viewDimensions().width / 2), std::uint32_t(viewDimensions().height / 2)),
@@ -98,7 +98,7 @@ void Canvas::renderSuperPellets(const SuperPellets & superPellets) {
   }
 }
 
-void Canvas::renderPacMan(const PacMan & pac_man) {
+void Canvas::renderPacMan(const MsPacMan & pac_man) {
   Sprite pacmanSprite = getSprite(pac_man.currentSprite());
   const auto & pos = pac_man.position();
   renderSprite(pacmanSprite, pos);

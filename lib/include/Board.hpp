@@ -6,7 +6,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace pacman {
+namespace ms_pacman {
 
 bool isWalkableForPacMan(GridPosition point);
 bool isWalkableForGhost(GridPosition target_position, GridPosition current_position, bool isEyes);

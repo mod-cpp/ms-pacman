@@ -6,7 +6,7 @@
 #include "Position.hpp"
 #include <optional>
 
-namespace pacman {
+namespace ms_pacman {
 
 using Rect = sf::Rect<int>;
 using Sprite = sf::Sprite;
@@ -35,7 +35,7 @@ private:
   void clear();
   void render();
   void renderMaze();
-  void renderPacMan(const PacMan & pac_man);
+  void renderPacMan(const MsPacMan & pac_man);
   void renderGhost(const Ghost & ghost);
   void renderPellets(const Pellets & pellets);
   void renderSuperPellets(const SuperPellets & superPellets);
