@@ -24,8 +24,8 @@ jobs:
         cache-name: vcpkg-modules
       with:
         path: |
-          build/vcpkg_installed
-          build/_deps
+          ${{runner.workspace}}/build/vcpkg_installed
+          ${{runner.workspace}}/build/_deps
         key: ubuntu-20.04-Release-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
 
     - name: Fix Path
