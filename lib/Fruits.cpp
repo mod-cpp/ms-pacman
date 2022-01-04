@@ -1,5 +1,4 @@
 #include "Fruits.hpp"
-#include "GameState.hpp"
 
 namespace pacman {
 

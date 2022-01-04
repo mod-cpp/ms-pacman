@@ -67,7 +67,7 @@ void GameState::handleDeathAnimation(std::chrono::milliseconds delta) {
   timeSinceDeath += delta;
 
   if (timeSinceDeath.count() > 1000) {
-    std::apply([this](auto &... ghost) {
+    std::apply([](auto &... ghost) {
       (ghost.reset(), ...);
     },
                ghosts);
@@ -89,7 +89,7 @@ void GameState::eatPellets() {
     score.eatenPellets++;
     score.points += POWER_PELLET_POINTS;
 
-    std::apply([this](auto &... ghost) {
+    std::apply([](auto &... ghost) {
       (ghost.frighten(), ...);
     },
                ghosts);

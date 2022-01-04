@@ -1,7 +1,6 @@
 #include "PacManAI.hpp"
 
 #include "Board.hpp"
-#include <fmt/format.h>
 
 namespace pacman {
 
