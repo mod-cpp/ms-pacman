@@ -66,10 +66,6 @@ GridPosition Ghost::positionInGrid() const {
   return positionToGridPosition(pos);
 }
 
-Direction Ghost::currentDirection() const {
-  return direction;
-}
-
 void Ghost::update(std::chrono::milliseconds time_delta) {
   if (state == State::Eyes && isInPen())
     state = State::Scatter;

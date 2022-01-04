@@ -79,26 +79,6 @@ bool isPortal(GridPosition point, Direction direction) {
          (cellAtPosition(point) == Cell::right_portal && direction == Direction::RIGHT);
 }
 
-bool isIntersection(GridPosition point) {
-  if (!isWalkableForPacMan(point) || cellAtPosition(point) == Cell::left_portal || cellAtPosition(point) == Cell::right_portal) {
-    return false;
-  }
-
-  const GridPosition right{ point.x + 1, point.y };
-  const bool rightWalkable = isWalkableForPacMan(right);
-
-  const GridPosition left{ point.x - 1, point.y };
-  const bool leftWalkable = isWalkableForPacMan(left);
-
-  const GridPosition top{ point.x, point.y - 1 };
-  const bool topWalkable = isWalkableForPacMan(top);
-
-  const GridPosition bottom{ point.x, point.y + 1 };
-  const bool bottomWalkable = isWalkableForPacMan(bottom);
-
-  return (topWalkable && rightWalkable) || (rightWalkable && bottomWalkable) || (bottomWalkable && leftWalkable) || (leftWalkable && topWalkable);
-}
-
 GridPosition teleport(GridPosition point) {
   size_t right = COLUMNS - 1;
   size_t left = 0;

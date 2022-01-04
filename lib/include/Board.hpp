@@ -12,7 +12,6 @@ bool isWalkableForPacMan(GridPosition point);
 bool isWalkableForGhost(GridPosition target_position, GridPosition current_position, bool isEyes);
 bool isInPen(GridPosition point);
 bool isPortal(GridPosition point, Direction direction);
-bool isIntersection(GridPosition point);
 
 GridPosition teleport(GridPosition point);
 

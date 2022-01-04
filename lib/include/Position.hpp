@@ -36,13 +36,6 @@ constexpr bool operator!=(const GridPosition & a, const GridPosition & b) {
   return !(a == b);
 }
 
-template<typename T>
-inline double positionDistance(const T & a, const T & b) {
-  const double first = double(a.x) - double(b.x);
-  const double second = double(a.y) - double(b.y);
-  return std::sqrt((first * first) + (second * second));
-}
-
 inline bool operator==(const Position & a, const Position & b) {
   // This is ok as a test unless x and y become very large.
   constexpr double epsilon = std::numeric_limits<double>::epsilon();
