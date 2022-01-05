@@ -1,3 +1,3 @@
-# Mod(C++) Fundamentals
+# Mod(C++) Intermediate
 
-* [Build and run](exercises/11/build_and_run/README.md)
+[![CMake](https://github.com/mod-cpp/ms-pacman/actions/workflows/cmake.yml/badge.svg)](https://github.com/mod-cpp/ms-pacman/actions/workflows/cmake.yml)
