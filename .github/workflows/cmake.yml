@@ -22,10 +22,15 @@ jobs:
         configurations:
           - name: Ubuntu 20.04
             os: ubuntu-20.04
+            cmake_env:
+              CC: clang-12
+              CXX: clang++-12
           - name: Windows 2022
             os: windows-2022
-          - name: MacOS 10.15
-            os: macos-10.15
+            cmake_env: {}
+          - name: MacOS 11
+            os: macos-11
+            cmake_env: {}
         cmake-build-type: [Debug, Release]
 
     steps:
@@ -47,12 +52,12 @@ jobs:
         key: ${{ matrix.configurations.os }}-${{ matrix.cmake-build-type }}-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
 
     - name: Fix Path on Ubuntu
-      if: matrix.configurations.os == 'ubuntu-20.04' || matrix.configurations.os == 'ubuntu-18.04'
+      if: matrix.configurations.os == 'ubuntu-20.04'
       run: echo "/home/runner/.local/bin" >> $GITHUB_PATH
 
     - name: Install Linux dependencies
-      if: matrix.configurations.os == 'ubuntu-20.04' || matrix.configurations.os == 'ubuntu-18.04'
-      run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev make ninja-build cmake
+      if: matrix.configurations.os == 'ubuntu-20.04'
+      run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev clang-12 make ninja-build cmake
 
     - name: Create Build Environment
       # Some projects don't allow in-source building, so create a separate build directory
@@ -65,12 +70,14 @@ jobs:
       # access regardless of the host operating system
       shell: bash
       run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=${{ matrix.cmake-build-type }}
+      env: ${{ matrix.configurations.cmake_env }}
 
     - name: Build
       working-directory: ${{runner.workspace}}/build
       shell: bash
       # Execute the build.  You can specify a specific target with "--target <NAME>"
       run: cmake --build . --config ${{ matrix.cmake-build-type }}
+      env: ${{ matrix.configurations.cmake_env }}
 
     - name: Test
       working-directory: ${{runner.workspace}}/build
