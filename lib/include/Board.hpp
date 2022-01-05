@@ -2,6 +2,7 @@
 
 #include "Direction.hpp"
 #include "Position.hpp"
+#include "Mazes.hpp"
 #include <array>
 #include <cstdint>
 #include <vector>
