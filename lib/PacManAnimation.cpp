@@ -33,7 +33,7 @@ void PacManAnimation::updateAnimationPosition(std::chrono::milliseconds time_del
   if (dead && animation_position >= 11)
     return;
 
-  animation_position_delta += (0.02) * double(time_delta.count());
+  animation_position_delta += (0.01) * double(time_delta.count());
   animation_position += size_t(animation_position_delta);
   animation_position = animation_position % 4;
 
