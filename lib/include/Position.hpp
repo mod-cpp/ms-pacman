@@ -23,7 +23,6 @@ struct BasicPosition {
 using Position = BasicPosition<double>;
 using GridPosition = BasicPosition<std::size_t>;
 
-
 inline GridPosition positionToGridPosition(Position pos) {
   assert(pos.x >= 0 && pos.y >= 0 && "Position should have positive values");
   return { size_t(std::round(pos.x)), size_t(std::round(pos.y)) };
