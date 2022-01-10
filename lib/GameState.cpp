@@ -35,7 +35,7 @@ void GameState::step(std::chrono::milliseconds delta) {
     },
     ghosts);
 
-  fruit.update(delta, score.eatenPellets);
+  currentFruit.update(delta, score.eatenPellets);
 
   std::apply([this](auto &... ghost) {
     (checkCollision(ghost), ...);
@@ -96,12 +96,12 @@ void GameState::eatPellets() {
 
 void GameState::eatFruit() {
   const auto pos = pacMan.positionInGrid();
-  const auto fruitpos = positionToGridPosition(fruit.position());
+  const auto fruitpos = positionToGridPosition(currentFruit.position());
 
   // TODO: hitboxes based collision
-  if (fruit.isVisible() && pos == fruitpos) {
-    score.points += fruit.eat();
-    score.eatenFruits++;
+  if (currentFruit.isVisible() && pos == fruitpos) {
+    score.points += currentFruit.eat();
+    score.eatenFruits.emplace_back(currentFruit);
   }
 }
 

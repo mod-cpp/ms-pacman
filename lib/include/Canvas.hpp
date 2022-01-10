@@ -5,6 +5,7 @@
 #include "GameState.hpp"
 #include "Position.hpp"
 #include <optional>
+#include <span>
 
 namespace ms_pacman {
 
@@ -39,7 +40,35 @@ private:
   void renderGhost(const Ghost & ghost);
   void renderPellets(const Pellets & pellets);
   void renderSuperPellets(const SuperPellets & superPellets);
-  void renderFruits(const Fruits& fruit, int eatenFruits);
+
+  template<FruitType Type>
+  void renderFruits(const Fruit<Type> & fruit, std::span<const GenericFruit> eatenFruits) {
+    Sprite sprite = getSprite(fruit.currentSprite());
+    if (fruit.isVisible()) {
+      const auto & pos = fruit.position();
+      renderSprite(sprite, pos);
+    }
+
+    const auto x = static_cast<size_t>(LEFT_MARGIN + TARGET_MAZE_WIDTH + LEFT_MARGIN);
+    const auto y = static_cast<size_t>((TARGET_MAZE_HEIGHT / 3.0) * 2);
+
+    auto render_fruit = [this](int position, Sprite fruit_sprite){
+      const auto sprite_position = float(position) * SPRITE_WIDTH * 1.5f;
+      const sf::Vector2f pos{ x + sprite_position, y };
+      fruit_sprite.setPosition(pos.x, pos.y);
+      window.draw(fruit_sprite);
+    };
+
+    int position = 0;
+    for (const auto & eatenFruit: eatenFruits) {
+      GridPosition current_sprite = std::visit([](auto && fruit){ return fruit.currentSprite(); }, eatenFruit);
+      Sprite eaten_sprite = getSprite(current_sprite);
+      render_fruit(position, eaten_sprite);
+      position++;
+    }
+
+    render_fruit(position, sprite);
+  }
 
   void renderScore(int score);
   void renderLives(int lives);

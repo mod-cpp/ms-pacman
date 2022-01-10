@@ -3,7 +3,7 @@
 #include <tuple>
 
 #include "Blinky.hpp"
-#include "Fruits.hpp"
+#include "Fruit.hpp"
 #include "Inky.hpp"
 #include "InputState.hpp"
 #include "MsPacMan.hpp"
@@ -24,7 +24,7 @@ struct GameState {
   InputState inputState;
   Pellets pellets;
   SuperPellets superPellets;
-  Fruits fruit;
+  Fruit<FruitType::Cherry> currentFruit;
   Level  level = getLevel(0);
   Score score;
   std::chrono::milliseconds timeSinceDeath{};
