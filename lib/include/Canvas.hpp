@@ -41,11 +41,10 @@ private:
   void renderPellets(const Pellets & pellets);
   void renderSuperPellets(const SuperPellets & superPellets);
 
-  template<FruitType Type>
-  void renderFruits(const Fruit<Type> & fruit, std::span<const GenericFruit> eatenFruits) {
+  void renderFruits(const GenericFruit & fruit, std::span<const GenericFruit> eatenFruits) {
     Sprite sprite = getSprite(fruit.currentSprite());
-    if (fruit.isVisible()) {
-      const auto & pos = fruit.position();
+    if (getFruitVisibility(fruit)) {
+      const auto & pos = getFruitPosition(fruit);
       renderSprite(sprite, pos);
     }
 

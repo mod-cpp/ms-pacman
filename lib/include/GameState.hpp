@@ -24,7 +24,7 @@ struct GameState {
   InputState inputState;
   Pellets pellets;
   SuperPellets superPellets;
-  Fruit<FruitType::Cherry> currentFruit;
+  GenericFruit currentFruit;
   Level  level = getLevel(0);
   Score score;
   std::chrono::milliseconds timeSinceDeath{};

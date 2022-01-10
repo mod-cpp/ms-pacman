@@ -14,51 +14,51 @@ TEST_CASE("Fruit default initialization", "[fruits]") {
 
 TEST_CASE("Fruit Visibility", "[fruits]") {
   ms_pacman::GameState gameState;
-  REQUIRE_FALSE(gameState.currentFruit.isVisible());
+  REQUIRE_FALSE(getFruitVisibility(gameState.currentFruit));
 
   SECTION("9 seconds but no pellets eaten") {
     gameState.currentFruit.update(std::chrono::milliseconds(9001), gameState.score.eatenPellets);
-    REQUIRE_FALSE(gameState.currentFruit.isVisible());
+    REQUIRE_FALSE(getFruitVisibility(gameState.currentFruit));
   }
 
   SECTION("9 seconds and 70 pellets eaten") {
     // "Eat 70 pellets", do an update and check the state
     gameState.score.eatenPellets = 70;
     gameState.currentFruit.update(std::chrono::milliseconds(1), gameState.score.eatenPellets);
-    REQUIRE(gameState.currentFruit.isVisible());
+    REQUIRE(getFruitVisibility(gameState.currentFruit));
 
     // Wait more than 9 seconds and then check the state again
     gameState.currentFruit.update(std::chrono::milliseconds(9001), gameState.score.eatenPellets);
-    REQUIRE_FALSE(gameState.currentFruit.isVisible());
+    REQUIRE_FALSE(getFruitVisibility(gameState.currentFruit));
   }
 
   SECTION("70 and 170 pellets eaten") {
     // "Eat 70 pellets", do an update and check the state
     gameState.score.eatenPellets = 70;
     gameState.currentFruit.update(std::chrono::milliseconds(1), gameState.score.eatenPellets);
-    REQUIRE(gameState.currentFruit.isVisible());
+    REQUIRE(getFruitVisibility(gameState.currentFruit));
 
     // Wait more than 9 seconds and then check the state again
     gameState.currentFruit.update(std::chrono::milliseconds(9001), gameState.score.eatenPellets);
-    REQUIRE_FALSE(gameState.currentFruit.isVisible());
+    REQUIRE_FALSE(getFruitVisibility(gameState.currentFruit));
 
     // "Eat 170 pellets", do an update and check the state
     gameState.score.eatenPellets = 170;
     gameState.currentFruit.update(std::chrono::milliseconds(1), gameState.score.eatenPellets);
-    REQUIRE(gameState.currentFruit.isVisible());
+    REQUIRE(getFruitVisibility(gameState.currentFruit));
 
     // Wait more than 9 seconds and then check the state again
     gameState.currentFruit.update(std::chrono::milliseconds(9001), gameState.score.eatenPellets);
-    REQUIRE_FALSE(gameState.currentFruit.isVisible());
+    REQUIRE_FALSE(getFruitVisibility(gameState.currentFruit));
 
     // We should never get a visible state again, since we only show 2 fruits
     gameState.score.eatenPellets = 1000;
     gameState.currentFruit.update(std::chrono::milliseconds(1), gameState.score.eatenPellets);
-    REQUIRE_FALSE(gameState.currentFruit.isVisible());
+    REQUIRE_FALSE(getFruitVisibility(gameState.currentFruit));
 
     // Wait more than 9 seconds and then check the state again
     gameState.currentFruit.update(std::chrono::milliseconds(9001), gameState.score.eatenPellets);
-    REQUIRE_FALSE(gameState.currentFruit.isVisible());
+    REQUIRE_FALSE(getFruitVisibility(gameState.currentFruit));
   }
 
   SECTION("Eating a fruit") {
@@ -66,12 +66,12 @@ TEST_CASE("Fruit Visibility", "[fruits]") {
 
     gameState.score.eatenPellets = 70;
     gameState.currentFruit.update(std::chrono::milliseconds(1), gameState.score.eatenPellets);
-    REQUIRE(gameState.currentFruit.isVisible());
+    REQUIRE(getFruitVisibility(gameState.currentFruit));
     REQUIRE(gameState.currentFruit.eat() == gameState.currentFruit.value());
 
     // Wait more than 9 seconds and then check the state again
     gameState.currentFruit.update(std::chrono::milliseconds(9001), gameState.score.eatenPellets);
-    REQUIRE_FALSE(gameState.currentFruit.isVisible());
+    REQUIRE_FALSE(getFruitVisibility(gameState.currentFruit));
     REQUIRE(gameState.currentFruit.eat() == 0);
   }
 }

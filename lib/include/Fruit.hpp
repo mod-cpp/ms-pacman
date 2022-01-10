@@ -77,4 +77,20 @@ private:
 
 using GenericFruit = std::variant<Fruit<FruitType::Cherry>, Fruit<FruitType::Strawberry>>;
 
+constexpr Position getFruitPosition(const GenericFruit & currentFruit) {
+  return std::visit([](auto && fruit) { return fruit.position(); }, currentFruit);
+}
+
+constexpr GridPosition getFruitGridPosition(const GenericFruit & currentFruit) {
+  return std::visit([](auto && fruit) { return positionToGridPosition(fruit.position()); }, currentFruit);
+}
+
+constexpr bool getFruitVisibility(const GenericFruit & currentFruit) {
+  return std::visit([](auto && fruit) { return fruit.isVisible(); }, currentFruit);
+}
+
+constexpr int eatFruits(GenericFruit & currentFruit) {
+  return std::visit([](auto && fruit) { return fruit.eat(); }, currentFruit);
+}
+
 } // namespace pacman
