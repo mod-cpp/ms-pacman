@@ -35,6 +35,7 @@ public:
     }
   }
 
+  // TODO: for C++20 use consteval
   constexpr GridPosition sprite() const {
     constexpr auto ret = []() {
       switch (Type) {
@@ -59,6 +60,7 @@ public:
     return visible;
   }
 
+  // TODO: for C++20 use consteval
   constexpr int value() const {
     constexpr auto ret = []() {
       switch (Type) {
