@@ -226,4 +226,4 @@ Ghost::State Ghost::defaultStateAtDuration(std::chrono::seconds seconds) {
   return count % 2 == 0 ? State::Scatter : State::Chase;
 }
 
-} // namespace pacman
+} // namespace ms_pacman

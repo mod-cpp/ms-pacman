@@ -6,12 +6,13 @@
 
 namespace ms_pacman {
 
-sf::ContextSettings settings {0, 0, 8};
+sf::ContextSettings settings{ 0, 0, 8 };
 
 Canvas::Canvas()
   : window(sf::VideoMode(std::uint32_t(viewDimensions().width / 2), std::uint32_t(viewDimensions().height / 2)),
            "MsPacMan",
-           sf::Style::Titlebar | sf::Style::Close, settings),
+           sf::Style::Titlebar | sf::Style::Close,
+           settings),
     view(sf::FloatRect(0, 0, float(viewDimensions().width), float(viewDimensions().height))) {
 
   window.setView(view);
@@ -31,7 +32,7 @@ Canvas::Canvas()
 }
 
 void Canvas::loadMaze(std::string_view path) {
-    maze_texture = loadTexture(path);
+  maze_texture = loadTexture(path);
 }
 
 void Canvas::render(const GameState & gameState) {
@@ -83,45 +84,45 @@ void Canvas::renderMaze() {
   window.draw(maze);
 }
 
-void Canvas::renderCells(const DefaultBoard &board) {
-    for (std::size_t x = 0; x < COLUMNS; x++) {
-        for (std::size_t y = 0; y < ROWS; y++) {
-            const BoardCell & cell = board[y][x];
+void Canvas::renderCells(const DefaultBoard & board) {
+  for (std::size_t x = 0; x < COLUMNS; x++) {
+    for (std::size_t y = 0; y < ROWS; y++) {
+      const BoardCell & cell = board[y][x];
 
-            std::visit(overloaded {
-              [&](const Pellet&)  {
-                sf::CircleShape shape(4);
-                shape.setFillColor(sf::Color(230, 230, 230));
-                shape.setOrigin(shape.getRadius(), shape.getRadius());
-                renderObject(shape, {double(x),double(y)});
-              },
-              [&](const SuperPellet&) {
-                sf::CircleShape shape(8);
-                shape.setFillColor(sf::Color(250, 250, 250));
-                shape.setOrigin(shape.getRadius(), shape.getRadius());
-                renderObject(shape, {double(x),double(y)});
-              },
-              [&](const auto&) {}
-            }, cell);
-      }
+      std::visit(overloaded{
+                   [&](const Pellet &) {
+                     sf::CircleShape shape(4);
+                     shape.setFillColor(sf::Color(230, 230, 230));
+                     shape.setOrigin(shape.getRadius(), shape.getRadius());
+                     renderObject(shape, { double(x), double(y) });
+                   },
+                   [&](const SuperPellet &) {
+                     sf::CircleShape shape(8);
+                     shape.setFillColor(sf::Color(250, 250, 250));
+                     shape.setOrigin(shape.getRadius(), shape.getRadius());
+                     renderObject(shape, { double(x), double(y) });
+                   },
+                   [&](const auto &) {} },
+                 cell);
     }
+  }
 }
 
-//void Canvas::renderPellets(const Pellets & pellets) {
-//  Sprite pellet = getSprite(pellets.currentSprite());
-//  std::vector<GridPosition> pelletPositions = pellets.allPellets();
-//  for (const auto & pos : pelletPositions) {
-//    renderSprite(pellet, gridPositionToPosition(pos));
-//  }
-//}
+// void Canvas::renderPellets(const Pellets & pellets) {
+//   Sprite pellet = getSprite(pellets.currentSprite());
+//   std::vector<GridPosition> pelletPositions = pellets.allPellets();
+//   for (const auto & pos : pelletPositions) {
+//     renderSprite(pellet, gridPositionToPosition(pos));
+//   }
+// }
 
-//void Canvas::renderSuperPellets(const SuperPellets & superPellets) {
-//  Sprite pellet = getSprite(superPellets.currentSprite());
-//  std::vector<GridPosition> superPelletPositions = superPellets.allPellets();
-//  for (const auto & pos : superPelletPositions) {
-//    renderSprite(pellet, gridPositionToPosition(pos));
-//  }
-//}
+// void Canvas::renderSuperPellets(const SuperPellets & superPellets) {
+//   Sprite pellet = getSprite(superPellets.currentSprite());
+//   std::vector<GridPosition> superPelletPositions = superPellets.allPellets();
+//   for (const auto & pos : superPelletPositions) {
+//     renderSprite(pellet, gridPositionToPosition(pos));
+//   }
+// }
 
 void Canvas::renderPacMan(const MsPacMan & pac_man) {
   Sprite pacmanSprite = getSprite(pac_man.currentSprite());
@@ -199,4 +200,4 @@ sf::Font Canvas::loadFont(std::string_view path) {
   return font;
 }
 
-} // namespace pacman
+} // namespace ms_pacman

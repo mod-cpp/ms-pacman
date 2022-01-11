@@ -2,12 +2,11 @@
 
 namespace ms_pacman {
 
-constexpr std::array<GridPosition,4> down_animation { Atlas::pacman_down_wide, Atlas::pacman_down_narrow, Atlas::pacman_down_closed, Atlas::pacman_down_narrow };
-constexpr std::array<GridPosition,4> left_animation{ Atlas::pacman_left_wide, Atlas::pacman_left_narrow, Atlas::pacman_left_closed, Atlas::pacman_left_narrow };
-constexpr std::array<GridPosition,4> right_animation{ Atlas::pacman_right_wide, Atlas::pacman_right_narrow, Atlas::pacman_right_closed, Atlas::pacman_right_narrow };
-constexpr std::array<GridPosition,4> up_animation{ Atlas::pacman_up_wide, Atlas::pacman_up_narrow, Atlas::pacman_up_closed, Atlas::pacman_up_narrow };
-constexpr std::array<GridPosition,4> death_animation{ Atlas::pacman_left_narrow, Atlas::pacman_up_narrow, Atlas::pacman_right_narrow, Atlas::pacman_down_narrow };
-
+constexpr std::array<GridPosition, 4> down_animation{ Atlas::pacman_down_wide, Atlas::pacman_down_narrow, Atlas::pacman_down_closed, Atlas::pacman_down_narrow };
+constexpr std::array<GridPosition, 4> left_animation{ Atlas::pacman_left_wide, Atlas::pacman_left_narrow, Atlas::pacman_left_closed, Atlas::pacman_left_narrow };
+constexpr std::array<GridPosition, 4> right_animation{ Atlas::pacman_right_wide, Atlas::pacman_right_narrow, Atlas::pacman_right_closed, Atlas::pacman_right_narrow };
+constexpr std::array<GridPosition, 4> up_animation{ Atlas::pacman_up_wide, Atlas::pacman_up_narrow, Atlas::pacman_up_closed, Atlas::pacman_up_narrow };
+constexpr std::array<GridPosition, 4> death_animation{ Atlas::pacman_left_narrow, Atlas::pacman_up_narrow, Atlas::pacman_right_narrow, Atlas::pacman_down_narrow };
 
 GridPosition PacManAnimation::animationFrame(Direction direction) const {
   switch (direction) {
@@ -37,8 +36,8 @@ void PacManAnimation::updateAnimationPosition(std::chrono::milliseconds time_del
   animation_position += size_t(animation_position_delta);
   animation_position = animation_position % 4;
 
-  if(animation_position_delta > 1)
-      animation_position_delta = animation_position_delta - 1;
+  if (animation_position_delta > 1)
+    animation_position_delta = animation_position_delta - 1;
 }
 
 void PacManAnimation::pause() {
@@ -47,4 +46,4 @@ void PacManAnimation::pause() {
   animation_position_delta = 0;
 }
 
-} // namespace pacman
+} // namespace ms_pacman

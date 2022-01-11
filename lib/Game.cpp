@@ -33,9 +33,9 @@ void Game::run() {
 }
 
 void Game::loadLevel() {
-    const Level & level = gameState.level;
-    canvas.loadMaze(level.background);
-    gameState.board = level.create_board();
+  const Level & level = gameState.level;
+  canvas.loadMaze(level.background);
+  gameState.board = level.create_board();
 }
 
 void Game::processEvents(InputState & inputState) {
@@ -67,4 +67,4 @@ void Game::processEvents(InputState & inputState) {
   inputState.right = isKeyPressed(sf::Keyboard::Key::Right);
 }
 
-} // namespace pacman
+} // namespace ms_pacman

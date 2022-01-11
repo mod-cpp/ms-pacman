@@ -15,7 +15,7 @@ double Inky::speed() const {
   return 0.75;
 }
 
-void Inky::setTarget(const DefaultBoard& board, GridPosition pacManPos, Direction pacManDir, GridPosition blinkyPos) {
+void Inky::setTarget(const DefaultBoard & board, GridPosition pacManPos, Direction pacManDir, GridPosition blinkyPos) {
   if (state == State::Eyes) {
     target = initialPosition();
     return;
@@ -71,4 +71,4 @@ Position Inky::scatterTarget() const {
   return { 27, 30 };
 }
 
-} // namespace pacman
+} // namespace ms_pacman

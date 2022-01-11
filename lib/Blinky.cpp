@@ -15,7 +15,7 @@ double Blinky::speed() const {
   return 0.75;
 }
 
-void Blinky::setTarget(const DefaultBoard& board, Position pacManPos) {
+void Blinky::setTarget(const DefaultBoard & board, Position pacManPos) {
   if (state == State::Eyes) {
     target = initialPosition();
     return;
@@ -24,7 +24,7 @@ void Blinky::setTarget(const DefaultBoard& board, Position pacManPos) {
   if (isInPen(board)) {
     target = penDoorPosition();
     return;
-   }
+  }
 
   target = state == State::Chase ? pacManPos : scatterTarget();
 }
@@ -37,4 +37,4 @@ Position Blinky::scatterTarget() const {
   return { 25, -3 };
 }
 
-} // namespace pacman
+} // namespace ms_pacman

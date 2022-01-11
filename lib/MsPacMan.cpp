@@ -112,4 +112,4 @@ void MsPacMan::updateMazePosition(std::chrono::milliseconds time_delta, const De
   }
 }
 
-} // namespace pacman
+} // namespace ms_pacman

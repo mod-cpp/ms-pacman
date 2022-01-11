@@ -35,7 +35,7 @@ void GameState::step(std::chrono::milliseconds delta) {
     },
     ghosts);
 
-  std::visit([&](auto && fruit){ fruit.update(delta, score.eatenPellets); }, currentFruit);
+  std::visit([&](auto && fruit) { fruit.update(delta, score.eatenPellets); }, currentFruit);
 
   std::apply([this](auto &... ghost) {
     (checkCollision(ghost), ...);
@@ -77,27 +77,28 @@ void GameState::handleDeathAnimation(std::chrono::milliseconds delta) {
 }
 
 void GameState::eatPellets() {
-    const auto pos = pacMan.positionInGrid();
-    const auto & cell = cellAtPosition(board, pos);
-    bool eaten = std::visit(overloaded{
-       [&](const Pellet &) {
-            score.eatenPellets++;
-            score.points += NORMAL_PELLET_POINTS;
-            return true;
-       },
-       [&](const SuperPellet &) {
-            score.eatenPellets++;
-            score.points += POWER_PELLET_POINTS;
-            std::apply([](auto &... ghost) { (ghost.frighten(), ...); },
-                                    ghosts);
-           return true;
-       },
-       [](const auto &) {
-           return false;
-       },
-    }, cell);
-    if(eaten)
-        board[pos.y][pos.x] = Walkable{};
+  const auto pos = pacMan.positionInGrid();
+  const auto & cell = cellAtPosition(board, pos);
+  bool eaten = std::visit(overloaded{
+                            [&](const Pellet &) {
+                              score.eatenPellets++;
+                              score.points += NORMAL_PELLET_POINTS;
+                              return true;
+                            },
+                            [&](const SuperPellet &) {
+                              score.eatenPellets++;
+                              score.points += POWER_PELLET_POINTS;
+                              std::apply([](auto &... ghost) { (ghost.frighten(), ...); },
+                                         ghosts);
+                              return true;
+                            },
+                            [](const auto &) {
+                              return false;
+                            },
+                          },
+                          cell);
+  if (eaten)
+    board[pos.y][pos.x] = Walkable{};
 }
 
 void GameState::eatFruit() {
@@ -121,4 +122,4 @@ bool GameState::isPacManDying() const {
   return timeSinceDeath.count() != 0;
 }
 
-} // namespace pacman
+} // namespace ms_pacman

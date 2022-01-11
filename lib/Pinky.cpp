@@ -15,7 +15,7 @@ double Pinky::speed() const {
   return 0.75;
 }
 
-void Pinky::setTarget(const DefaultBoard& board, GridPosition pacManPos, Direction pacManDir) {
+void Pinky::setTarget(const DefaultBoard & board, GridPosition pacManPos, Direction pacManDir) {
   if (state == State::Eyes) {
     target = initialPosition();
     return;
@@ -63,4 +63,4 @@ Position Pinky::scatterTarget() const {
   return { 3, -2 };
 }
 
-} // namespace pacman
+} // namespace ms_pacman
