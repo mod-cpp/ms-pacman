@@ -9,19 +9,24 @@ namespace ms_pacman {
 
 enum class FruitType {
   Cherry,
-  Strawberry
+  Strawberry,
+  Orange,
+  Pretzel,
+  Apple,
+  Pear,
+  Banana
 };
 
 struct GameState;
 
-template <FruitType Type>
+template<FruitType Type>
 class Fruit {
 public:
   void update(std::chrono::milliseconds time_delta, int eatenPellets) {
     if (visible) {
       time_visible += time_delta;
     }
-    
+
     if (time_visible > std::chrono::seconds(9)) {
       hide();
     } else if ((index == 0 && eatenPellets >= 70) || (index == 1 && eatenPellets >= 170)) {
@@ -31,12 +36,16 @@ public:
   }
 
   constexpr GridPosition currentSprite() const {
-    constexpr auto ret = [](){
+    constexpr auto ret = []() {
       switch (Type) {
         case FruitType::Cherry: return Atlas::fruit_cherry;
         case FruitType::Strawberry: return Atlas::fruit_strawberry;
+        case FruitType::Orange: return Atlas::fruit_orange;
+        case FruitType::Pretzel: return Atlas::fruit_pretzel;
+        case FruitType::Apple: return Atlas::fruit_apple;
+        case FruitType::Pear: return Atlas::fruit_pear;
+        case FruitType::Banana: return Atlas::fruit_banana;
       }
-      return GridPosition{};
     }();
     return ret;
   }
@@ -51,8 +60,18 @@ public:
   }
 
   constexpr int value() const {
-    // The cherry is worth 100
-    return 100;
+    constexpr auto ret = []() {
+      switch (Type) {
+        case FruitType::Cherry: return 100;
+        case FruitType::Strawberry: return 200;
+        case FruitType::Orange: return 500;
+        case FruitType::Pretzel: return 700;
+        case FruitType::Apple: return 1000;
+        case FruitType::Pear: return 2000;
+        case FruitType::Banana: return 5000;
+      }
+    }();
+    return ret;
   }
 
   int eat() {
@@ -73,7 +92,8 @@ private:
     index++;
     time_visible = std::chrono::seconds{ 0 };
     visible = false;
-  }};
+  }
+};
 
 using GenericFruit = std::variant<Fruit<FruitType::Cherry>, Fruit<FruitType::Strawberry>>;
 
@@ -101,6 +121,6 @@ constexpr bool isVisible(const GenericFruit & currentFruit) {
 constexpr int eat(GenericFruit & currentFruit) {
   return std::visit([](auto && fruit) { return fruit.eat(); }, currentFruit);
 }
-}
+} // namespace Fruits
 
-} // namespace pacman
+} // namespace ms_pacman

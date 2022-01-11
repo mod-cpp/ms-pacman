@@ -35,6 +35,12 @@ constexpr GridPosition ghost_white_frightened2 = { 7, 1 };
 
 constexpr GridPosition fruit_cherry = { 0, 6 };
 constexpr GridPosition fruit_strawberry = { 1, 6 };
+constexpr GridPosition fruit_orange = { 2, 6 };
+constexpr GridPosition fruit_pretzel = { 3, 6 };
+constexpr GridPosition fruit_apple = { 4, 6 };
+constexpr GridPosition fruit_pear = { 5, 6 };
+constexpr GridPosition fruit_banana = { 6, 6 };
+
 
 constexpr GridPosition eyeSprite(Direction direction) {
   switch (direction) {
