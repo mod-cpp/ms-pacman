@@ -95,7 +95,14 @@ private:
   }
 };
 
-using GenericFruit = std::variant<Fruit<FruitType::Cherry>, Fruit<FruitType::Strawberry>>;
+using GenericFruit = std::variant<
+  Fruit<FruitType::Cherry>,
+  Fruit<FruitType::Strawberry>,
+  Fruit<FruitType::Orange>,
+  Fruit<FruitType::Pretzel>,
+  Fruit<FruitType::Apple>,
+  Fruit<FruitType::Pear>,
+  Fruit<FruitType::Banana>>;
 
 namespace Fruits {
 constexpr void update(GenericFruit & currentFruit, std::chrono::milliseconds time_delta, int eatenPellets) {
