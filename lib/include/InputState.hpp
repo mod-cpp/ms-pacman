@@ -26,4 +26,4 @@ public:
   }
 };
 
-} // namespace pacman
+} // namespace ms_pacman

@@ -11,4 +11,4 @@ struct Score {
   std::vector<GenericFruit> eatenFruits;
 };
 
-} // namespace pacman
+} // namespace ms_pacman

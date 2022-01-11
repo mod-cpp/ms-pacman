@@ -22,4 +22,4 @@ private:
   double animation_position_delta = 0.0;
 };
 
-} // namespace pacman
+} // namespace ms_pacman

@@ -26,4 +26,4 @@ inline Direction oppositeDirection(Direction d) {
   return d;
 }
 
-} // namespace pacman
+} // namespace ms_pacman

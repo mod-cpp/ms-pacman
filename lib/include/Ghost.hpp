@@ -58,4 +58,4 @@ protected:
   bool isInPen(const DefaultBoard & board) const;
 };
 
-} // namespace pacman
+} // namespace ms_pacman

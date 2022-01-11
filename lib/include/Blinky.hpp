@@ -7,7 +7,7 @@ namespace ms_pacman {
 class Blinky final : public Ghost {
 public:
   Blinky();
-  void setTarget(const DefaultBoard& board, Position pacManPos);
+  void setTarget(const DefaultBoard & board, Position pacManPos);
 
 protected:
   double speed() const override;
@@ -17,4 +17,4 @@ private:
   Position scatterTarget() const;
 };
 
-} // namespace pacman
+} // namespace ms_pacman

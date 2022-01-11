@@ -7,7 +7,7 @@ namespace ms_pacman {
 class Pinky final : public Ghost {
 public:
   Pinky();
-  void setTarget(const DefaultBoard& board, GridPosition pacManPos, Direction pacManDir);
+  void setTarget(const DefaultBoard & board, GridPosition pacManPos, Direction pacManDir);
 
 protected:
   double speed() const override;
@@ -17,4 +17,4 @@ private:
   Position scatterTarget() const;
 };
 
-} // namespace pacman
+} // namespace ms_pacman

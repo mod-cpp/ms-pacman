@@ -1,8 +1,8 @@
 #pragma once
 
+#include "Canvas.hpp"
 #include "GameState.hpp"
 #include "InputState.hpp"
-#include "Canvas.hpp"
 
 namespace ms_pacman {
 
@@ -18,4 +18,4 @@ private:
   void processEvents(InputState & inputState);
 };
 
-} // namespace pacman
+} // namespace ms_pacman

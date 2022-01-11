@@ -6,10 +6,10 @@
 #include "Fruit.hpp"
 #include "Inky.hpp"
 #include "InputState.hpp"
+#include "Level.hpp"
 #include "MsPacMan.hpp"
 #include "Pinky.hpp"
 #include "Score.hpp"
-#include "Level.hpp"
 
 namespace ms_pacman {
 
@@ -35,4 +35,4 @@ struct GameState {
   bool isPacManDying() const;
 };
 
-} // namespace pacman
+} // namespace ms_pacman

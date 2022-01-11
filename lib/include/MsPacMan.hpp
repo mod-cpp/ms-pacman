@@ -37,4 +37,4 @@ private:
   void updateMazePosition(std::chrono::milliseconds time_delta, const DefaultBoard & board);
 };
 
-} // namespace pacman
+} // namespace ms_pacman

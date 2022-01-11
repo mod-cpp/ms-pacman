@@ -7,10 +7,10 @@
 
 namespace ms_pacman {
 
-template <typename T>
+template<typename T>
 concept number = std::is_integral_v<T> || std::is_floating_point_v<T>;
 
-template <number T>
+template<number T>
 struct BasicPosition {
   T x = {};
   T y = {};
@@ -49,4 +49,4 @@ inline bool operator==(const Position & a, const Position & b) {
   return std::abs(a.x - b.x) <= epsilon && std::abs(a.y - b.y) <= epsilon;
 }
 
-} // namespace pacman
+} // namespace ms_pacman

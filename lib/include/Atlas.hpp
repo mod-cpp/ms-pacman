@@ -18,8 +18,8 @@ enum class Ghost : unsigned int {
 constexpr GridPosition pacman_right_wide = { 2, 1 };
 constexpr GridPosition pacman_right_narrow = { 1, 1 };
 constexpr GridPosition pacman_right_closed = { 3, 1 };
-constexpr GridPosition pacman_left_narrow = { 6,0 };
-constexpr GridPosition pacman_left_wide = { 7,0};
+constexpr GridPosition pacman_left_narrow = { 6, 0 };
+constexpr GridPosition pacman_left_wide = { 7, 0 };
 constexpr GridPosition pacman_left_closed = { 0, 1 };
 constexpr GridPosition pacman_up_wide = { 1, 0 };
 constexpr GridPosition pacman_up_narrow = { 0, 0 };
@@ -40,7 +40,6 @@ constexpr GridPosition fruit_pretzel = { 3, 6 };
 constexpr GridPosition fruit_apple = { 4, 6 };
 constexpr GridPosition fruit_pear = { 5, 6 };
 constexpr GridPosition fruit_banana = { 6, 6 };
-
 
 constexpr GridPosition eyeSprite(Direction direction) {
   switch (direction) {
@@ -94,4 +93,4 @@ constexpr GridPosition endingFrightened(std::size_t animationIndex) {
                                             Atlas::ghost_white_frightened2 };
   return positions[animationIndex];
 }
-} // namespace pacman::Atlas
+} // namespace ms_pacman::Atlas
