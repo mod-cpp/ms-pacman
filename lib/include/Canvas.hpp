@@ -42,7 +42,7 @@ private:
   void renderSuperPellets(const SuperPellets & superPellets);
 
   void renderFruits(const GenericFruit & fruit, std::span<const GenericFruit> eatenFruits) {
-    Sprite sprite = getSprite(Fruits::currentSprite(fruit));
+    Sprite sprite = getSprite(Fruits::sprite(fruit));
     if (Fruits::isVisible(fruit)) {
       const auto & pos = Fruits::position(fruit);
       renderSprite(sprite, pos);
@@ -60,7 +60,7 @@ private:
 
     int position = 0;
     for (const auto & eatenFruit: eatenFruits) {
-      GridPosition current_sprite = std::visit([](auto && fruit){ return fruit.currentSprite(); }, eatenFruit);
+      GridPosition current_sprite = std::visit([](auto && fruit){ return fruit.sprite(); }, eatenFruit);
       Sprite eaten_sprite = getSprite(current_sprite);
       render_fruit(position, eaten_sprite);
       position++;

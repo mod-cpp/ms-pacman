@@ -35,7 +35,7 @@ public:
     }
   }
 
-  constexpr GridPosition currentSprite() const {
+  constexpr GridPosition sprite() const {
     constexpr auto ret = []() {
       switch (Type) {
         case FruitType::Cherry: return Atlas::fruit_cherry;
@@ -109,8 +109,8 @@ constexpr void update(GenericFruit & currentFruit, std::chrono::milliseconds tim
   std::visit([&](auto && fruit) { fruit.update(time_delta, eatenPellets); }, currentFruit);
 }
 
-constexpr GridPosition currentSprite(const GenericFruit & currentFruit) {
-  return std::visit([](auto && fruit) { return fruit.currentSprite(); }, currentFruit);
+constexpr GridPosition sprite(const GenericFruit & currentFruit) {
+  return std::visit([](auto && fruit) { return fruit.sprite(); }, currentFruit);
 }
 
 constexpr int value(const GenericFruit & currentFruit) {
