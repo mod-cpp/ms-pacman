@@ -14,7 +14,7 @@ public:
   Position position() const;
   GridPosition positionInGrid() const;
 
-  void update(std::chrono::milliseconds time_delta, Direction input_direction);
+  void update(std::chrono::milliseconds time_delta, Direction input_direction, const DefaultBoard & board);
 
   void die();
   void reset();
@@ -34,7 +34,7 @@ private:
   bool dead = false;
 
   void updateAnimationPosition(std::chrono::milliseconds time_delta, bool paused);
-  void updateMazePosition(std::chrono::milliseconds time_delta);
+  void updateMazePosition(std::chrono::milliseconds time_delta, const DefaultBoard & board);
 };
 
 } // namespace pacman

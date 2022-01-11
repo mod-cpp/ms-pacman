@@ -15,13 +15,13 @@ double Pinky::speed() const {
   return 0.75;
 }
 
-void Pinky::setTarget(GridPosition pacManPos, Direction pacManDir) {
+void Pinky::setTarget(const DefaultBoard& board, GridPosition pacManPos, Direction pacManDir) {
   if (state == State::Eyes) {
     target = initialPosition();
     return;
   }
 
-  if (isInPen()) {
+  if (isInPen(board)) {
     target = penDoorPosition();
     return;
   }

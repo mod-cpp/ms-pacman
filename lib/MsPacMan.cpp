@@ -29,7 +29,7 @@ void MsPacMan::reset() {
   pos = initialPacManPosition();
 }
 
-void MsPacMan::update(std::chrono::milliseconds time_delta, Direction input_direction) {
+void MsPacMan::update(std::chrono::milliseconds time_delta, Direction input_direction, const DefaultBoard & board) {
   if (dead) {
     updateAnimationPosition(time_delta, false);
     return;
@@ -39,7 +39,7 @@ void MsPacMan::update(std::chrono::milliseconds time_delta, Direction input_dire
     desired_direction = input_direction;
 
   const auto old = pos;
-  updateMazePosition(time_delta);
+  updateMazePosition(time_delta, board);
   const bool paused = pos == old;
   updateAnimationPosition(time_delta, paused);
 }
@@ -52,8 +52,8 @@ void MsPacMan::updateAnimationPosition(std::chrono::milliseconds time_delta, boo
   }
 }
 
-void MsPacMan::updateMazePosition(std::chrono::milliseconds time_delta) {
-  if (isPortal(positionInGrid(), direction)) {
+void MsPacMan::updateMazePosition(std::chrono::milliseconds time_delta, const DefaultBoard & board) {
+  if (isPortal(board, positionInGrid(), direction)) {
     pos = gridPositionToPosition(teleport(positionInGrid()));
     return;
   }
@@ -77,8 +77,8 @@ void MsPacMan::updateMazePosition(std::chrono::milliseconds time_delta) {
     }
   };
 
-  auto canGo = [&moveToPosition, this](Direction move_direction) {
-    return isWalkableForPacMan(moveToPosition(pos, move_direction));
+  auto canGo = [&moveToPosition, &board, this](Direction move_direction) {
+    return isWalkableForPacMan(board, moveToPosition(pos, move_direction));
   };
 
   if (desired_direction != direction && canGo(desired_direction)) {

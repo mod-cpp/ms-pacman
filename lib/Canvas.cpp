@@ -6,10 +6,12 @@
 
 namespace ms_pacman {
 
+sf::ContextSettings settings {0, 0, 8};
+
 Canvas::Canvas()
   : window(sf::VideoMode(std::uint32_t(viewDimensions().width / 2), std::uint32_t(viewDimensions().height / 2)),
            "MsPacMan",
-           sf::Style::Titlebar | sf::Style::Close),
+           sf::Style::Titlebar | sf::Style::Close, settings),
     view(sf::FloatRect(0, 0, float(viewDimensions().width), float(viewDimensions().height))) {
 
   window.setView(view);
@@ -21,7 +23,7 @@ Canvas::Canvas()
   // scaling factor of the window to adjust the resolution
   const auto scale = scaling_factor_for_window(window.getSystemHandle());
   const auto width = (viewDimensions().width / 2.0) * scale;
-  const auto height = (viewDimensions().height / 2.2) * scale;
+  const auto height = (viewDimensions().height / 2.0) * scale;
   window.setSize(sf::Vector2u(unsigned(width), unsigned(height)));
 
   sprites_texture = loadTexture("sprites-ms-32.png");
@@ -36,8 +38,7 @@ void Canvas::render(const GameState & gameState) {
   clear();
 
   renderMaze();
-  renderPellets(gameState.pellets);
-  renderSuperPellets(gameState.superPellets);
+  renderCells(gameState.board);
 
   std::apply([this](auto &... ghost) {
     (renderGhost(ghost), ...);
@@ -82,32 +83,56 @@ void Canvas::renderMaze() {
   window.draw(maze);
 }
 
-void Canvas::renderPellets(const Pellets & pellets) {
-  Sprite pellet = getSprite(pellets.currentSprite());
-  std::vector<GridPosition> pelletPositions = pellets.allPellets();
-  for (const auto & pos : pelletPositions) {
-    renderSprite(pellet, gridPositionToPosition(pos));
-  }
+void Canvas::renderCells(const DefaultBoard &board) {
+    for (std::size_t x = 0; x < COLUMNS; x++) {
+        for (std::size_t y = 0; y < ROWS; y++) {
+            const BoardCell & cell = board[y][x];
+
+            std::visit(overloaded {
+              [&](const Pellet&)  {
+                sf::CircleShape shape(4);
+                shape.setFillColor(sf::Color(230, 230, 230));
+                shape.setOrigin(shape.getRadius(), shape.getRadius());
+                renderObject(shape, {double(x),double(y)});
+              },
+              [&](const SuperPellet&) {
+                sf::CircleShape shape(8);
+                shape.setFillColor(sf::Color(250, 250, 250));
+                shape.setOrigin(shape.getRadius(), shape.getRadius());
+                renderObject(shape, {double(x),double(y)});
+              },
+              [&](const auto&) {}
+            }, cell);
+      }
+    }
 }
 
-void Canvas::renderSuperPellets(const SuperPellets & superPellets) {
-  Sprite pellet = getSprite(superPellets.currentSprite());
-  std::vector<GridPosition> superPelletPositions = superPellets.allPellets();
-  for (const auto & pos : superPelletPositions) {
-    renderSprite(pellet, gridPositionToPosition(pos));
-  }
-}
+//void Canvas::renderPellets(const Pellets & pellets) {
+//  Sprite pellet = getSprite(pellets.currentSprite());
+//  std::vector<GridPosition> pelletPositions = pellets.allPellets();
+//  for (const auto & pos : pelletPositions) {
+//    renderSprite(pellet, gridPositionToPosition(pos));
+//  }
+//}
+
+//void Canvas::renderSuperPellets(const SuperPellets & superPellets) {
+//  Sprite pellet = getSprite(superPellets.currentSprite());
+//  std::vector<GridPosition> superPelletPositions = superPellets.allPellets();
+//  for (const auto & pos : superPelletPositions) {
+//    renderSprite(pellet, gridPositionToPosition(pos));
+//  }
+//}
 
 void Canvas::renderPacMan(const MsPacMan & pac_man) {
   Sprite pacmanSprite = getSprite(pac_man.currentSprite());
   const auto & pos = pac_man.position();
-  renderSprite(pacmanSprite, pos);
+  renderObject(pacmanSprite, pos);
 }
 
 void Canvas::renderGhost(const Ghost & ghost) {
   Sprite sprite = getSprite(ghost.currentSprite());
   const auto & pos = ghost.position();
-  renderSprite(sprite, pos);
+  renderObject(sprite, pos);
 }
 
 void Canvas::renderScore(int score) {
@@ -151,13 +176,6 @@ Sprite Canvas::getSprite(GridPosition coordinate) const {
                                      SPRITE_WIDTH,
                                      SPRITE_HEIGHT });
   return sprite;
-}
-
-void Canvas::renderSprite(Sprite sprite, Position pos) {
-  pos.x = LEFT_MARGIN + (pos.x * SPRITE_WIDTH);
-  pos.y = TOP_MARGIN + (pos.y * SPRITE_HEIGHT);
-  sprite.setPosition(float(pos.x), float(pos.y));
-  window.draw(sprite);
 }
 
 static void exitFailure(std::string_view message) {

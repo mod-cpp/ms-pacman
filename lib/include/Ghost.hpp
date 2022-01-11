@@ -26,7 +26,7 @@ public:
   Position position() const;
   GridPosition positionInGrid() const;
 
-  void update(std::chrono::milliseconds time_delta);
+  void update(std::chrono::milliseconds time_delta, const DefaultBoard & board);
   void frighten();
   void die();
   bool isFrightened() const;
@@ -35,8 +35,8 @@ public:
 
 private:
   void updateAnimation(std::chrono::milliseconds time_delta);
-  void updatePosition(std::chrono::milliseconds time_delta);
-  void updateDirection();
+  void updatePosition(std::chrono::milliseconds time_delta, const DefaultBoard & board);
+  void updateDirection(const DefaultBoard & board);
 
 protected:
   Atlas::Ghost spriteSet;
@@ -55,7 +55,7 @@ protected:
   virtual double speed() const = 0;
   virtual Position initialPosition() const = 0;
 
-  bool isInPen() const;
+  bool isInPen(const DefaultBoard & board) const;
 };
 
 } // namespace pacman

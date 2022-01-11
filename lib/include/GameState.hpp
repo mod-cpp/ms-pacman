@@ -7,10 +7,8 @@
 #include "Inky.hpp"
 #include "InputState.hpp"
 #include "MsPacMan.hpp"
-#include "Pellets.hpp"
 #include "Pinky.hpp"
 #include "Score.hpp"
-#include "SuperPellets.hpp"
 #include "Level.hpp"
 
 namespace ms_pacman {
@@ -22,10 +20,10 @@ struct GameState {
 
   MsPacMan pacMan;
   InputState inputState;
-  Pellets pellets;
-  SuperPellets superPellets;
   GenericFruit currentFruit;
-  Level  level = getLevel(0);
+  Level level = getLevel(0);
+  DefaultBoard board;
+
   Score score;
   std::chrono::milliseconds timeSinceDeath{};
 

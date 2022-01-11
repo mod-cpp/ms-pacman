@@ -66,8 +66,8 @@ GridPosition Ghost::positionInGrid() const {
   return positionToGridPosition(pos);
 }
 
-void Ghost::update(std::chrono::milliseconds time_delta) {
-  if (state == State::Eyes && isInPen())
+void Ghost::update(std::chrono::milliseconds time_delta, const DefaultBoard & board) {
+  if (state == State::Eyes && isInPen(board))
     state = State::Scatter;
 
   if (state == State::Frightened) {
@@ -86,15 +86,15 @@ void Ghost::update(std::chrono::milliseconds time_delta) {
   }
 
   updateAnimation(time_delta);
-  updatePosition(time_delta);
+  updatePosition(time_delta, board);
 }
 
-bool Ghost::isInPen() const {
-  return ms_pacman::isInPen(positionInGrid());
+bool Ghost::isInPen(const DefaultBoard & board) const {
+  return ms_pacman::isInPen(board, positionInGrid());
 }
 
-void Ghost::updatePosition(std::chrono::milliseconds time_delta) {
-  updateDirection();
+void Ghost::updatePosition(std::chrono::milliseconds time_delta, const DefaultBoard & board) {
+  updateDirection(board);
 
   double position_delta = (0.004 * double(time_delta.count())) * speed();
 
@@ -122,9 +122,9 @@ void Ghost::updatePosition(std::chrono::milliseconds time_delta) {
       break;
   }
 
-  if (isPortal(positionInGrid(), direction)) {
+  if (isPortal(board, positionInGrid(), direction)) {
     pos = gridPositionToPosition(teleport(positionInGrid()));
-  } else if (!isWalkableForGhost(positionInGrid(), old_grid_position, isEyes())) {
+  } else if (!isWalkableForGhost(board, positionInGrid(), old_grid_position, isEyes())) {
     pos = old_position;
     direction = oppositeDirection(direction);
   }
@@ -146,7 +146,7 @@ void Ghost::updatePosition(std::chrono::milliseconds time_delta) {
  *  In the scatter state, each ghost tries to reach an unreachable position outside of the map.
  *  This makes ghosts run in circle around the island at each of the 4 map corner.
  */
-void Ghost::updateDirection() {
+void Ghost::updateDirection(const DefaultBoard & board) {
   const auto current_grid_position = positionInGrid();
   if (current_grid_position == last_grid_position)
     return;
@@ -167,7 +167,7 @@ void Ghost::updateDirection() {
   };
 
   for (auto & move : possible_moves) {
-    if (isPortal(current_grid_position, move.direction))
+    if (isPortal(board, current_grid_position, move.direction))
       move.position = gridPositionToPosition(teleport(current_grid_position));
 
     const bool invalid_position = (move.position.x < 0 || move.position.y < 0);
@@ -179,7 +179,7 @@ void Ghost::updateDirection() {
       continue;
 
     const GridPosition grid_position = { size_t(move.position.x), size_t(move.position.y) };
-    const bool can_walk = isWalkableForGhost(grid_position, current_grid_position, isEyes());
+    const bool can_walk = isWalkableForGhost(board, grid_position, current_grid_position, isEyes());
     if (!can_walk)
       continue;
 

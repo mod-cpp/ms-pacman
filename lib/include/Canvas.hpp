@@ -29,7 +29,7 @@ private:
   static constexpr uint16_t TARGET_MAZE_WIDTH = 448 * MAZE_SCALE_UP;
   static constexpr uint16_t TARGET_MAZE_HEIGHT = 496 * MAZE_SCALE_UP;
   static constexpr uint16_t SCORE_WIDTH = 200 * 2;
-  static constexpr uint16_t SPRITE_WIDTH = 32;
+  static constexpr uint16_t SPRITE_WIDTH  = 32;
   static constexpr uint16_t SPRITE_HEIGHT = 32;
 
 
@@ -38,14 +38,13 @@ private:
   void renderMaze();
   void renderPacMan(const MsPacMan & pac_man);
   void renderGhost(const Ghost & ghost);
-  void renderPellets(const Pellets & pellets);
-  void renderSuperPellets(const SuperPellets & superPellets);
+  void renderCells(const DefaultBoard &board);
 
   void renderFruits(const GenericFruit & fruit, std::span<const GenericFruit> eatenFruits) {
     Sprite sprite = getSprite(Fruits::sprite(fruit));
     if (Fruits::isVisible(fruit)) {
       const auto & pos = Fruits::position(fruit);
-      renderSprite(sprite, pos);
+      renderObject(sprite, pos);
     }
 
     auto render_fruit = [this](int position, Sprite fruit_sprite){
@@ -71,7 +70,14 @@ private:
   void renderScore(int score);
   void renderLives(int lives);
 
-  void renderSprite(Sprite sprite, Position pos);
+  template<typename Object>
+  void renderObject(Object sprite, Position pos) {
+    pos.x = 12 + LEFT_MARGIN + (pos.x * SPRITE_WIDTH);
+    pos.y = 12 + TOP_MARGIN  + (pos.y * SPRITE_HEIGHT);
+    sprite.setPosition(float(pos.x), float(pos.y));
+    window.draw(sprite);
+  }
+
   static Rect viewDimensions();
   static sf::Texture loadTexture(std::string_view path);
   static sf::Font loadFont(std::string_view path);

@@ -7,7 +7,7 @@ namespace ms_pacman {
 class Inky final : public Ghost {
 public:
   Inky();
-  void setTarget(GridPosition pacManPos, Direction pacManDir, GridPosition blinkyPos);
+  void setTarget(const DefaultBoard& board, GridPosition pacManPos, Direction pacManDir, GridPosition blinkyPos);
 
 protected:
   double speed() const override;

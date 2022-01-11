@@ -7,7 +7,7 @@ constexpr int NORMAL_PELLET_POINTS = 10;
 constexpr int POWER_PELLET_POINTS = 50;
 
 void GameState::step(std::chrono::milliseconds delta) {
-  pacMan.update(delta, inputState.direction());
+  pacMan.update(delta, inputState.direction(), board);
 
   if (isPacManDying()) {
     handleDeathAnimation(delta);
@@ -20,15 +20,15 @@ void GameState::step(std::chrono::milliseconds delta) {
   std::apply(
     [ this, &delta ]<typename... Ghost>(Ghost & ... ghost) {
       ([&]<typename T>(T & ghost) {
-        ghost.update(delta);
+        ghost.update(delta, board);
         if constexpr (std::is_same_v<T, Blinky>) {
-          ghost.setTarget(pacMan.position());
+          ghost.setTarget(board, pacMan.position());
         }
         if constexpr (std::is_same_v<T, Pinky>) {
-          ghost.setTarget(pacMan.positionInGrid(), pacMan.currentDirection());
+          ghost.setTarget(board, pacMan.positionInGrid(), pacMan.currentDirection());
         }
         if constexpr (std::is_same_v<T, Inky>) {
-          ghost.setTarget(pacMan.positionInGrid(), pacMan.currentDirection(), std::get<Blinky>(ghosts).positionInGrid());
+          ghost.setTarget(board, pacMan.positionInGrid(), pacMan.currentDirection(), std::get<Blinky>(ghosts).positionInGrid());
         }
       }(ghost),
        ...);
@@ -77,21 +77,27 @@ void GameState::handleDeathAnimation(std::chrono::milliseconds delta) {
 }
 
 void GameState::eatPellets() {
-  const auto pos = pacMan.positionInGrid();
-  if (pellets.eatPelletAtPosition(pos)) {
-    score.eatenPellets++;
-    score.points += NORMAL_PELLET_POINTS;
-  }
-
-  if (superPellets.eatPelletAtPosition(pos)) {
-    score.eatenPellets++;
-    score.points += POWER_PELLET_POINTS;
-
-    std::apply([](auto &... ghost) {
-      (ghost.frighten(), ...);
-    },
-               ghosts);
-  }
+    const auto pos = pacMan.positionInGrid();
+    const auto & cell = cellAtPosition(board, pos);
+    bool eaten = std::visit(overloaded{
+       [&](const Pellet &) {
+            score.eatenPellets++;
+            score.points += NORMAL_PELLET_POINTS;
+            return true;
+       },
+       [&](const SuperPellet &) {
+            score.eatenPellets++;
+            score.points += POWER_PELLET_POINTS;
+            std::apply([](auto &... ghost) { (ghost.frighten(), ...); },
+                                    ghosts);
+           return true;
+       },
+       [](const auto &) {
+           return false;
+       },
+    }, cell);
+    if(eaten)
+        board[pos.y][pos.x] = Walkable{};
 }
 
 void GameState::eatFruit() {

@@ -15,16 +15,16 @@ double Blinky::speed() const {
   return 0.75;
 }
 
-void Blinky::setTarget(Position pacManPos) {
+void Blinky::setTarget(const DefaultBoard& board, Position pacManPos) {
   if (state == State::Eyes) {
     target = initialPosition();
     return;
   }
 
-  if (isInPen()) {
+  if (isInPen(board)) {
     target = penDoorPosition();
     return;
-  }
+   }
 
   target = state == State::Chase ? pacManPos : scatterTarget();
 }
