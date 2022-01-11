@@ -42,7 +42,7 @@ private:
   void renderSuperPellets(const SuperPellets & superPellets);
 
   void renderFruits(const GenericFruit & fruit, std::span<const GenericFruit> eatenFruits) {
-    Sprite sprite = getSprite(fruit.currentSprite());
+    Sprite sprite = getSprite(getFruitSprite(fruit));
     if (getFruitVisibility(fruit)) {
       const auto & pos = getFruitPosition(fruit);
       renderSprite(sprite, pos);

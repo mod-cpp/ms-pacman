@@ -77,6 +77,18 @@ private:
 
 using GenericFruit = std::variant<Fruit<FruitType::Cherry>, Fruit<FruitType::Strawberry>>;
 
+constexpr void updateFruit(GenericFruit & currentFruit, std::chrono::milliseconds time_delta, int eatenPellets) {
+  std::visit([&](auto && fruit) { fruit.update(time_delta, eatenPellets); }, currentFruit);
+}
+
+constexpr GridPosition getFruitSprite(const GenericFruit & currentFruit) {
+  return std::visit([](auto && fruit) { return fruit.currentSprite(); }, currentFruit);
+}
+
+constexpr int getFruitValue(const GenericFruit & currentFruit) {
+  return std::visit([](auto && fruit) { return fruit.value(); }, currentFruit);
+}
+
 constexpr Position getFruitPosition(const GenericFruit & currentFruit) {
   return std::visit([](auto && fruit) { return fruit.position(); }, currentFruit);
 }
