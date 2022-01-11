@@ -77,32 +77,30 @@ private:
 
 using GenericFruit = std::variant<Fruit<FruitType::Cherry>, Fruit<FruitType::Strawberry>>;
 
-constexpr void updateFruit(GenericFruit & currentFruit, std::chrono::milliseconds time_delta, int eatenPellets) {
+namespace Fruits {
+constexpr void update(GenericFruit & currentFruit, std::chrono::milliseconds time_delta, int eatenPellets) {
   std::visit([&](auto && fruit) { fruit.update(time_delta, eatenPellets); }, currentFruit);
 }
 
-constexpr GridPosition getFruitSprite(const GenericFruit & currentFruit) {
+constexpr GridPosition currentSprite(const GenericFruit & currentFruit) {
   return std::visit([](auto && fruit) { return fruit.currentSprite(); }, currentFruit);
 }
 
-constexpr int getFruitValue(const GenericFruit & currentFruit) {
+constexpr int value(const GenericFruit & currentFruit) {
   return std::visit([](auto && fruit) { return fruit.value(); }, currentFruit);
 }
 
-constexpr Position getFruitPosition(const GenericFruit & currentFruit) {
+constexpr Position position(const GenericFruit & currentFruit) {
   return std::visit([](auto && fruit) { return fruit.position(); }, currentFruit);
 }
 
-constexpr GridPosition getFruitGridPosition(const GenericFruit & currentFruit) {
-  return std::visit([](auto && fruit) { return positionToGridPosition(fruit.position()); }, currentFruit);
-}
-
-constexpr bool getFruitVisibility(const GenericFruit & currentFruit) {
+constexpr bool isVisible(const GenericFruit & currentFruit) {
   return std::visit([](auto && fruit) { return fruit.isVisible(); }, currentFruit);
 }
 
-constexpr int eatFruits(GenericFruit & currentFruit) {
+constexpr int eat(GenericFruit & currentFruit) {
   return std::visit([](auto && fruit) { return fruit.eat(); }, currentFruit);
+}
 }
 
 } // namespace pacman

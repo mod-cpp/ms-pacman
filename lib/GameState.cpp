@@ -96,11 +96,11 @@ void GameState::eatPellets() {
 
 void GameState::eatFruit() {
   const auto pos = pacMan.positionInGrid();
-  const auto fruitpos = getFruitGridPosition(currentFruit);
+  const auto fruitpos = positionToGridPosition(Fruits::position(currentFruit));
 
   // TODO: hitboxes based collision
-  if (getFruitVisibility(currentFruit) && pos == fruitpos) {
-    score.points += eatFruits(currentFruit);
+  if (Fruits::isVisible(currentFruit) && pos == fruitpos) {
+    score.points += Fruits::eat(currentFruit);
     score.eatenFruits.emplace_back(currentFruit);
   }
 }
