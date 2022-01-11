@@ -48,10 +48,9 @@ private:
       renderSprite(sprite, pos);
     }
 
-    const auto x = static_cast<size_t>(LEFT_MARGIN + TARGET_MAZE_WIDTH + LEFT_MARGIN);
-    const auto y = static_cast<size_t>((TARGET_MAZE_HEIGHT / 3.0) * 2);
-
     auto render_fruit = [this](int position, Sprite fruit_sprite){
+      const auto x = static_cast<size_t>(LEFT_MARGIN + TARGET_MAZE_WIDTH + LEFT_MARGIN);
+      const auto y = static_cast<size_t>((TARGET_MAZE_HEIGHT / 3.0) * 2);
       const auto sprite_position = float(position) * SPRITE_WIDTH * 1.5f;
       const sf::Vector2f pos{ x + sprite_position, y };
       fruit_sprite.setPosition(pos.x, pos.y);
