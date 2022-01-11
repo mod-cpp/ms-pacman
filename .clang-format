@@ -13,4 +13,5 @@ PenaltyReturnTypeOnItsOwnLine: '10000'
 PointerAlignment: Middle
 FixNamespaceComments: true
 NamespaceIndentation: None
+AllowShortCaseLabelsOnASingleLine: true
 ...
