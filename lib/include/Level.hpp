@@ -16,41 +16,6 @@ inline constexpr auto array_extent = std::tuple<>{};
 template<typename T, std::size_t N>
 constexpr auto array_extent<std::array<T, N>> = std::tuple_cat(std::tuple<size_t>(N), array_extent<T>);
 
-template<int N>
-struct CellTypeFromValue {};
-
-template<>
-struct CellTypeFromValue<0> {
-  using type = Wall;
-};
-
-template<>
-struct CellTypeFromValue<3> {
-  using type = Wall;
-};
-
-template<>
-struct CellTypeFromValue<1> {
-  using type = Pellet;
-};
-
-template<>
-struct CellTypeFromValue<2> {
-  using type = Walkable;
-};
-
-template<>
-struct CellTypeFromValue<4> {
-  using type = SuperPellet;
-};
-
-template<>
-struct CellTypeFromValue<5> {
-  using type = Pen;
-};
-
-static_assert(std::is_same_v<typename CellTypeFromValue<0>::type, Wall>);
-
 struct Level {
   std::string_view background;
   array2d<int, ROWS, COLUMNS> maze_data;
@@ -60,15 +25,14 @@ struct Level {
     B b;
     for (std::size_t x = 0; x < COLUMNS; x++) {
       for (std::size_t y = 0; y < ROWS; y++) {
-        [&]<int... I>(std::integer_sequence<int, I...>) {
-          ([&]<int V>() {
-            if (V == maze_data[y][x]) {
-              b[y][x] = typename CellTypeFromValue<V>::type{};
-            }
-          }.template operator()<I>(),
-           ...);
+        switch (maze_data[y][x]) {
+          case 0: b[y][x] = Wall{}; break;
+          case 1: b[y][x] = Pellet{}; break;
+          case 2: b[y][x] = Walkable{}; break;
+          case 3: b[y][x] = Wall{}; break;
+          case 4: b[y][x] = SuperPellet{}; break;
+          case 5: b[y][x] = Pen{}; break;
         }
-        (std::make_integer_sequence<int, 6>());
       }
     }
     return b;
