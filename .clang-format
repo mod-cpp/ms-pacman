@@ -14,4 +14,6 @@ PointerAlignment: Middle
 FixNamespaceComments: true
 NamespaceIndentation: None
 AllowShortCaseLabelsOnASingleLine: true
+AllowShortLambdasOnASingleLine: Inline
+#LambdaBodyIndentation: Signature
 ...
