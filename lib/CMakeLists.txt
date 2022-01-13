@@ -7,11 +7,11 @@ endif ()
 
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "*.cpp" "*.hpp")
 
-add_library(libpacman ${sources})
+add_library(lib_ms_pacman ${sources})
 
-target_include_directories(libpacman PUBLIC include)
-target_link_libraries(libpacman PUBLIC scaling-lib fmt::fmt sfml-graphics)
+target_include_directories(lib_ms_pacman PUBLIC include)
+target_link_libraries(lib_ms_pacman PUBLIC scaling-lib fmt::fmt sfml-graphics)
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    target_link_libraries(libpacman PUBLIC OpenGL::OpenGL OpenGL::GLX)
+    target_link_libraries(lib_ms_pacman PUBLIC OpenGL::OpenGL OpenGL::GLX)
 endif ()
