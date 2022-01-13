@@ -13,11 +13,12 @@
 
 namespace ms_pacman {
 
+using Ghosts = std::tuple<Blinky, Pinky, Inky>;
+
 struct GameState {
   void step(std::chrono::milliseconds delta);
 
-  std::tuple<Blinky, Pinky, Inky> ghosts;
-
+  Ghosts ghosts;
   MsPacMan pacMan;
   InputState inputState;
   GenericFruit currentFruit;

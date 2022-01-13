@@ -35,6 +35,7 @@ private:
   void clear();
   void render();
   void renderMaze();
+  void renderGhosts(const Ghosts & ghosts);
   void renderPacMan(const MsPacMan & pac_man);
   void renderGhost(const Ghost & ghost);
   void renderCells(const DefaultBoard & board);

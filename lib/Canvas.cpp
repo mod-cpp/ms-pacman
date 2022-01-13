@@ -40,17 +40,10 @@ void Canvas::render(const GameState & gameState) {
 
   renderMaze();
   renderCells(gameState.board);
-
-  std::apply([this](auto &... ghost) {
-    (renderGhost(ghost), ...);
-  },
-             gameState.ghosts);
-
+  renderGhosts(gameState.ghosts);
   renderScore(gameState.score.points);
   renderLives(gameState.score.lives);
-
   renderFruits(gameState.currentFruit, gameState.score.eatenFruits);
-
   renderPacMan(gameState.pacMan);
 
   render();
@@ -82,6 +75,14 @@ void Canvas::renderMaze() {
   maze.setScale(MAZE_SCALE_UP, MAZE_SCALE_UP);
   maze.setPosition(LEFT_MARGIN, TOP_MARGIN);
   window.draw(maze);
+}
+
+void Canvas::renderGhosts(const Ghosts & ghosts) {
+  std::apply(
+    [this](const auto &... ghost) {
+      (renderGhost(ghost), ...);
+    },
+    ghosts);
 }
 
 void Canvas::renderCells(const DefaultBoard & board) {
