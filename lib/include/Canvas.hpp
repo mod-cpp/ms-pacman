@@ -38,7 +38,7 @@ private:
   void renderGhosts(const Ghosts & ghosts);
   void renderPacMan(const MsPacMan & pac_man);
   void renderGhost(const Ghost & ghost);
-  void renderCells(const DefaultBoard & board);
+  void renderPellets(const DefaultBoard & board);
 
   void renderFruits(const GenericFruit & fruit, std::span<const GenericFruit> eatenFruits) {
     Sprite sprite = getSprite(Fruits::sprite(fruit));

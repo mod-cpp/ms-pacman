@@ -39,7 +39,7 @@ void Canvas::render(const GameState & gameState) {
   clear();
 
   renderMaze();
-  renderCells(gameState.board);
+  renderPellets(gameState.board);
   renderGhosts(gameState.ghosts);
   renderScore(gameState.score.points);
   renderLives(gameState.score.lives);
@@ -85,7 +85,7 @@ void Canvas::renderGhosts(const Ghosts & ghosts) {
     ghosts);
 }
 
-void Canvas::renderCells(const DefaultBoard & board) {
+void Canvas::renderPellets(const DefaultBoard & board) {
   for (std::size_t x = 0; x < COLUMNS; x++) {
     for (std::size_t y = 0; y < ROWS; y++) {
       const BoardCell & cell = board[y][x];
