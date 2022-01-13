@@ -108,22 +108,6 @@ void Canvas::renderCells(const DefaultBoard & board) {
   }
 }
 
-// void Canvas::renderPellets(const Pellets & pellets) {
-//   Sprite pellet = getSprite(pellets.currentSprite());
-//   std::vector<GridPosition> pelletPositions = pellets.allPellets();
-//   for (const auto & pos : pelletPositions) {
-//     renderSprite(pellet, gridPositionToPosition(pos));
-//   }
-// }
-
-// void Canvas::renderSuperPellets(const SuperPellets & superPellets) {
-//   Sprite pellet = getSprite(superPellets.currentSprite());
-//   std::vector<GridPosition> superPelletPositions = superPellets.allPellets();
-//   for (const auto & pos : superPelletPositions) {
-//     renderSprite(pellet, gridPositionToPosition(pos));
-//   }
-// }
-
 void Canvas::renderPacMan(const MsPacMan & pac_man) {
   Sprite pacmanSprite = getSprite(pac_man.currentSprite());
   const auto & pos = pac_man.position();
