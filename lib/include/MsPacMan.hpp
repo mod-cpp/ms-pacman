@@ -1,7 +1,8 @@
 #pragma once
 
+#include "AtlasMsPacMan.hpp"
+#include "Board.hpp"
 #include "Direction.hpp"
-#include "PacManAnimation.hpp"
 #include "Position.hpp"
 
 #include <chrono>
@@ -30,7 +31,7 @@ private:
   Direction direction = Direction::NONE;
   Direction desired_direction = Direction::NONE;
   Position pos = initialPacManPosition();
-  PacManAnimation pacManAnimation;
+  Atlas::MsPacManAnimation pacManAnimation;
   bool dead = false;
 
   void updateAnimationPosition(std::chrono::milliseconds time_delta, bool paused);

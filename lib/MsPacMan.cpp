@@ -4,7 +4,7 @@
 namespace ms_pacman {
 
 GridPosition MsPacMan::currentSprite() const {
-  return dead ? pacManAnimation.deathAnimationFrame() : pacManAnimation.animationFrame(direction);
+  return dead ? Atlas::deathAnimationFrame(pacManAnimation) : Atlas::animationFrame(pacManAnimation, direction);
 }
 
 Position MsPacMan::position() const {
@@ -46,9 +46,9 @@ void MsPacMan::update(std::chrono::milliseconds time_delta, Direction input_dire
 
 void MsPacMan::updateAnimationPosition(std::chrono::milliseconds time_delta, bool paused) {
   if (paused) {
-    pacManAnimation.pause();
+    Atlas::pause(pacManAnimation);
   } else {
-    pacManAnimation.updateAnimationPosition(time_delta, dead);
+    Atlas::updateAnimationPosition(pacManAnimation, time_delta, dead);
   }
 }
 

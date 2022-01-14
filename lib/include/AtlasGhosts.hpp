@@ -15,31 +15,10 @@ enum class Ghost : unsigned int {
   clyde = 5,
 };
 
-constexpr GridPosition pacman_right_wide = { 2, 1 };
-constexpr GridPosition pacman_right_narrow = { 1, 1 };
-constexpr GridPosition pacman_right_closed = { 3, 1 };
-constexpr GridPosition pacman_left_narrow = { 6, 0 };
-constexpr GridPosition pacman_left_wide = { 7, 0 };
-constexpr GridPosition pacman_left_closed = { 0, 1 };
-constexpr GridPosition pacman_up_wide = { 1, 0 };
-constexpr GridPosition pacman_up_narrow = { 0, 0 };
-constexpr GridPosition pacman_up_closed = { 2, 0 };
-constexpr GridPosition pacman_down_wide = { 4, 0 };
-constexpr GridPosition pacman_down_narrow = { 3, 0 };
-constexpr GridPosition pacman_down_closed = { 5, 0 };
-
 constexpr GridPosition ghost_blue_frightened = { 4, 1 };
 constexpr GridPosition ghost_blue_frightened2 = { 5, 1 };
 constexpr GridPosition ghost_white_frightened = { 6, 1 };
 constexpr GridPosition ghost_white_frightened2 = { 7, 1 };
-
-constexpr GridPosition fruit_cherry = { 0, 6 };
-constexpr GridPosition fruit_strawberry = { 1, 6 };
-constexpr GridPosition fruit_orange = { 2, 6 };
-constexpr GridPosition fruit_pretzel = { 3, 6 };
-constexpr GridPosition fruit_apple = { 4, 6 };
-constexpr GridPosition fruit_pear = { 5, 6 };
-constexpr GridPosition fruit_banana = { 6, 6 };
 
 constexpr GridPosition eyeSprite(Direction direction) {
   switch (direction) {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Atlas.hpp"
+#include "AtlasGhosts.hpp"
 #include "Board.hpp"
 #include "GhostName.hpp"
 #include "GhostState.hpp"
