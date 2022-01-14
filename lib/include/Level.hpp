@@ -19,6 +19,18 @@ constexpr auto array_extent<std::array<T, N>> = std::tuple_cat(std::tuple<size_t
 struct Level {
   std::string_view background;
   array2d<int, ROWS, COLUMNS> maze_data;
+  int num_pellets = count_pellets();
+
+  constexpr int count_pellets() const {
+    int pellets = 0;
+    for (std::size_t x = 0; x < COLUMNS; x++) {
+      for (std::size_t y = 0; y < ROWS; y++) {
+        if (maze_data[y][x] == 1 || maze_data[y][x] == 4)
+          pellets++;
+      }
+    }
+    return pellets;
+  }
 
   constexpr auto create_board() const {
     using B = Board<COLUMNS, ROWS>;
@@ -36,6 +48,10 @@ struct Level {
       }
     }
     return b;
+  }
+
+  constexpr int getNumPellets() const {
+    return num_pellets;
   }
 };
 

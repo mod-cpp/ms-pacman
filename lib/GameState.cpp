@@ -5,6 +5,17 @@ namespace ms_pacman {
 constexpr int NORMAL_PELLET_POINTS = 10;
 constexpr int POWER_PELLET_POINTS = 50;
 
+bool GameState::levelOver() const {
+  return score.eatenPellets == level.getNumPellets();
+}
+
+void GameState::increaseLevel() {
+  levelNum = (levelNum + 1) % 4;
+  level = getLevel(levelNum);
+  score.reset();
+  reset();
+}
+
 void GameState::step(std::chrono::milliseconds delta) {
   msPacMan.update(delta, inputState.direction(), board);
 
@@ -41,14 +52,19 @@ void GameState::handleDeathAnimation(std::chrono::milliseconds delta) {
   timeSinceDeath += delta;
 
   if (timeSinceDeath.count() > 1000) {
-    std::apply([](auto &... ghost) {
+    reset();
+  }
+}
+
+void GameState::reset() {
+  std::apply(
+    [](auto &... ghost) {
       (ghost.reset(), ...);
     },
-               ghosts);
+    ghosts);
 
-    msPacMan.reset();
-    timeSinceDeath = std::chrono::milliseconds(0);
-  }
+  msPacMan.reset();
+  timeSinceDeath = std::chrono::milliseconds(0);
 }
 
 void GameState::eatPellets() {

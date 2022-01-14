@@ -27,7 +27,8 @@ struct GameState {
   MsPacMan msPacMan;
   InputState inputState;
   GenericFruit currentFruit;
-  Level level = getLevel(0);
+  size_t levelNum = 0;
+  Level level = getLevel(levelNum);
   DefaultBoard board;
 
   Score score;
@@ -55,6 +56,9 @@ struct GameState {
   void eatFruit();
   void killMsPacMan();
   bool isMsPacManDying() const;
+  void increaseLevel();
+  bool levelOver() const;
+  void reset();
 };
 
 } // namespace ms_pacman

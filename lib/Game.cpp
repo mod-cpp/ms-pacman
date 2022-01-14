@@ -13,6 +13,12 @@ void Game::run() {
   auto current_time = std::chrono::system_clock::now();
 
   while (true) {
+
+    if(gameState.levelOver()) {
+      gameState.increaseLevel();
+      loadLevel();
+    }
+
     const auto newTime = std::chrono::system_clock::now();
     const auto frameTime = std::chrono::duration_cast<std::chrono::milliseconds>(newTime - current_time);
 
