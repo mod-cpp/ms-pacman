@@ -8,7 +8,7 @@ constexpr int POWER_PELLET_POINTS = 50;
 void GameState::step(std::chrono::milliseconds delta) {
   msPacMan.update(delta, inputState.direction(), board);
 
-  if (isPacManDying()) {
+  if (isMsPacManDying()) {
     handleDeathAnimation(delta);
     return;
   }
@@ -87,13 +87,13 @@ void GameState::eatFruit() {
   }
 }
 
-void GameState::killPacMan() {
+void GameState::killMsPacMan() {
   msPacMan.die();
   score.lives--;
   timeSinceDeath = std::chrono::milliseconds(1);
 }
 
-bool GameState::isPacManDying() const {
+bool GameState::isMsPacManDying() const {
   return timeSinceDeath.count() != 0;
 }
 

@@ -35,7 +35,7 @@ struct GameState {
 
   template<GhostName Name>
   void checkCollision(Ghost<Name> & ghost) {
-    if (isPacManDying() || ghost.isEyes())
+    if (isMsPacManDying() || ghost.isEyes())
       return;
 
     // TODO: hitboxes based collision
@@ -46,15 +46,15 @@ struct GameState {
       ghost.die();
       score.points += GHOST_POINTS;
     } else {
-      killPacMan();
+      killMsPacMan();
     }
   }
 
   void handleDeathAnimation(std::chrono::milliseconds delta);
   void eatPellets();
   void eatFruit();
-  void killPacMan();
-  bool isPacManDying() const;
+  void killMsPacMan();
+  bool isMsPacManDying() const;
 };
 
 } // namespace ms_pacman
