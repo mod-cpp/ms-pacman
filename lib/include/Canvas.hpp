@@ -37,7 +37,14 @@ private:
   void renderMaze();
   void renderGhosts(const Ghosts & ghosts);
   void renderPacMan(const MsPacMan & pac_man);
-  void renderGhost(const Ghost & ghost);
+
+  template<GhostName Name>
+  void renderGhost(const Ghost<Name> & ghost) {
+    Sprite sprite = getSprite(ghost.currentSprite());
+    const auto & pos = ghost.position();
+    renderObject(sprite, pos);
+  }
+
   void renderPellets(const DefaultBoard & board);
 
   void renderFruits(const GenericFruit & fruit, std::span<const GenericFruit> eatenFruits) {

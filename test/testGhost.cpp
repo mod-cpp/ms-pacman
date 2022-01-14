@@ -1,6 +1,5 @@
-#include "Blinky.hpp"
-#include "Inky.hpp"
-#include "Pinky.hpp"
+#include "GameState.hpp"
+#include "Ghost.hpp"
 #include <catch2/catch.hpp>
 
 template<typename T>

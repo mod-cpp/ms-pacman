@@ -115,12 +115,6 @@ void Canvas::renderPacMan(const MsPacMan & pac_man) {
   renderObject(pacmanSprite, pos);
 }
 
-void Canvas::renderGhost(const Ghost & ghost) {
-  Sprite sprite = getSprite(ghost.currentSprite());
-  const auto & pos = ghost.position();
-  renderObject(sprite, pos);
-}
-
 void Canvas::renderScore(int score) {
   const int x = (LEFT_MARGIN + TARGET_MAZE_WIDTH + LEFT_MARGIN);
   const int y = (TOP_MARGIN * 2);

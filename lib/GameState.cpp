@@ -2,7 +2,6 @@
 
 namespace ms_pacman {
 
-constexpr int GHOST_POINTS = 200;
 constexpr int NORMAL_PELLET_POINTS = 10;
 constexpr int POWER_PELLET_POINTS = 50;
 
@@ -21,15 +20,7 @@ void GameState::step(std::chrono::milliseconds delta) {
     [ this, &delta ]<typename... Ghost>(Ghost & ... ghost) {
       ([&]<typename T>(T & ghost) {
         ghost.update(delta, board);
-        if constexpr (std::is_same_v<T, Blinky>) {
-          ghost.setTarget(board, pacMan.position());
-        }
-        if constexpr (std::is_same_v<T, Pinky>) {
-          ghost.setTarget(board, pacMan.positionInGrid(), pacMan.currentDirection());
-        }
-        if constexpr (std::is_same_v<T, Inky>) {
-          ghost.setTarget(board, pacMan.positionInGrid(), pacMan.currentDirection(), std::get<Blinky>(ghosts).positionInGrid());
-        }
+        ghost.setTarget(board, pacMan, std::get<Blinky>(ghosts).positionInGrid());
       }(ghost),
        ...);
     },
@@ -44,22 +35,6 @@ void GameState::step(std::chrono::milliseconds delta) {
 
   eatPellets();
   eatFruit();
-}
-
-void GameState::checkCollision(Ghost & ghost) {
-  if (isPacManDying() || ghost.isEyes())
-    return;
-
-  // TODO: hitboxes based collision
-  if (ghost.positionInGrid() != pacMan.positionInGrid())
-    return;
-
-  if (ghost.isFrightened()) {
-    ghost.die();
-    score.points += GHOST_POINTS;
-  } else {
-    killPacMan();
-  }
 }
 
 void GameState::handleDeathAnimation(std::chrono::milliseconds delta) {
