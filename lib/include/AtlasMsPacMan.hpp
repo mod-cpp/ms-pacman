@@ -4,6 +4,7 @@
 #include "Position.hpp"
 
 #include <array>
+#include <chrono>
 
 namespace ms_pacman::Atlas {
 
