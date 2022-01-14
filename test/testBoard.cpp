@@ -19,7 +19,7 @@ TEST_CASE("Is walkable for Pac-Man", "[board]") {
   /
 }
 
-TEST_CASE("Is walkable for GhostAnimation", "[board]") {
+TEST_CASE("Is walkable for Ghost", "[board]") {
   const ms_pacman::GridPosition pen = ms_pacman::GridPosition{ 11, 13 };
   const ms_pacman::GridPosition outside = ms_pacman::GridPosition{ 1, 1 };
 
