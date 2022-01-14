@@ -24,7 +24,7 @@ struct GameState {
   void step(std::chrono::milliseconds delta);
 
   Ghosts ghosts;
-  MsPacMan pacMan;
+  MsPacMan msPacMan;
   InputState inputState;
   GenericFruit currentFruit;
   Level level = getLevel(0);
@@ -39,7 +39,7 @@ struct GameState {
       return;
 
     // TODO: hitboxes based collision
-    if (ghost.positionInGrid() != pacMan.positionInGrid())
+    if (ghost.positionInGrid() != msPacMan.positionInGrid())
       return;
 
     if (ghost.isFrightened()) {

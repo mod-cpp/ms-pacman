@@ -6,21 +6,21 @@ constexpr int NORMAL_PELLET_POINTS = 10;
 constexpr int POWER_PELLET_POINTS = 50;
 
 void GameState::step(std::chrono::milliseconds delta) {
-  pacMan.update(delta, inputState.direction(), board);
+  msPacMan.update(delta, inputState.direction(), board);
 
   if (isPacManDying()) {
     handleDeathAnimation(delta);
     return;
   }
 
-  if (!pacMan.hasDirection())
+  if (!msPacMan.hasDirection())
     return;
 
   std::apply(
     [ this, &delta ]<typename... Ghost>(Ghost & ... ghost) {
       ([&]<typename T>(T & ghost) {
         ghost.update(delta, board);
-        ghost.setTarget(board, pacMan, std::get<Blinky>(ghosts).positionInGrid());
+        ghost.setTarget(board, msPacMan, std::get<Blinky>(ghosts).positionInGrid());
       }(ghost),
        ...);
     },
@@ -46,13 +46,13 @@ void GameState::handleDeathAnimation(std::chrono::milliseconds delta) {
     },
                ghosts);
 
-    pacMan.reset();
+    msPacMan.reset();
     timeSinceDeath = std::chrono::milliseconds(0);
   }
 }
 
 void GameState::eatPellets() {
-  const auto pos = pacMan.positionInGrid();
+  const auto pos = msPacMan.positionInGrid();
   const auto & cell = cellAtPosition(board, pos);
   bool eaten = std::visit(overloaded{
                             [&](const Pellet &) {
@@ -77,7 +77,7 @@ void GameState::eatPellets() {
 }
 
 void GameState::eatFruit() {
-  const auto pos = pacMan.positionInGrid();
+  const auto pos = msPacMan.positionInGrid();
   const auto fruitpos = positionToGridPosition(Fruits::position(currentFruit));
 
   // TODO: hitboxes based collision
@@ -88,7 +88,7 @@ void GameState::eatFruit() {
 }
 
 void GameState::killPacMan() {
-  pacMan.die();
+  msPacMan.die();
   score.lives--;
   timeSinceDeath = std::chrono::milliseconds(1);
 }

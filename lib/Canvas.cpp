@@ -44,7 +44,7 @@ void Canvas::render(const GameState & gameState) {
   renderScore(gameState.score.points);
   renderLives(gameState.score.lives);
   renderFruits(gameState.currentFruit, gameState.score.eatenFruits);
-  renderPacMan(gameState.pacMan);
+  renderPacMan(gameState.msPacMan);
 
   render();
 }
