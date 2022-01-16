@@ -44,6 +44,8 @@ struct Level {
           case 3: b[y][x] = Wall{}; break;
           case 4: b[y][x] = SuperPellet{}; break;
           case 5: b[y][x] = Pen{}; break;
+          case 6: b[y][x] = Portal{0}; break;
+          case 7: b[y][x] = Portal{1}; break;
         }
       }
     }

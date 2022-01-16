@@ -9,7 +9,9 @@ color_mapping = {
     0xFF0000: 5, # pen
     0xFFFF00: 2, # pen door
     0x00FF00: 4, # super pellet
-    0x0000FF: 1 # pellet
+    0x0000FF: 1, # pellet
+    0x00FFFF: 6, # portal 1
+    0xFF00FF: 7  # portal 2
 }
 
 def fromRGB(c):

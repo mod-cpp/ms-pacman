@@ -29,7 +29,7 @@ struct SuperPellet {
 };
 
 struct Portal {
-  //
+  int id;
 };
 
 using BoardCell = std::variant<Wall, Walkable, Pen, Pellet, SuperPellet, Portal>;
@@ -49,7 +49,9 @@ constexpr bool isWalkableForPacMan(const DefaultBoard & board, GridPosition poin
   return std::visit(overloaded{
                       [](const Wall &) { return false; },
                       [](const Pen &) { return false; },
-                      [](const auto &) { return true; } },
+                      [](const auto &) {
+                        return true;
+                      } },
                     cell);
 }
 
@@ -57,7 +59,9 @@ constexpr bool isInPen(const DefaultBoard & board, GridPosition point) {
   BoardCell cell = cellAtPosition(board, point);
   return std::visit(overloaded{
                       [](const Pen &) { return true; },
-                      [](const auto &) { return false; } },
+                      [](const auto &) {
+                        return false;
+                      } },
                     cell);
 }
 
@@ -66,16 +70,57 @@ constexpr bool isWalkableForGhost(const DefaultBoard & board, GridPosition targe
   return std::visit(overloaded{
                       [](const Wall &) { return false; },
                       [&](const Pen &) { return isEyes || isInPen(board, current_position); },
-                      [](const auto &) { return true; } },
+                      [](const auto &) {
+                        return true;
+                      } },
                     cell);
 }
 
-constexpr bool isPortal(const DefaultBoard &, GridPosition, Direction) {
+constexpr bool isPortal(const DefaultBoard & board, GridPosition position, Direction d) {
+  BoardCell cell = cellAtPosition(board, position);
+  return std::visit(overloaded{
+                      [&position, &d](const Portal &) {
+                        return (position.x < COLUMNS / 2 && d == Direction::LEFT) || (position.x > COLUMNS / 2 && d == Direction::RIGHT);
+                      },
+                      [](const auto &) {
+                        return false;
+                      } },
+                    cell);
   return false;
 }
 
-constexpr GridPosition teleport(GridPosition point) {
-  return point;
+constexpr GridPosition teleport(const DefaultBoard & board, GridPosition position) {
+  BoardCell cell = cellAtPosition(board, position);
+  auto match_at_position = [&board](const GridPosition & pos, const Portal & p) -> bool {
+    BoardCell other_cell = cellAtPosition(board, pos);
+    return std::visit(overloaded{
+                        [&p](const Portal & other) {
+                          return p.id == other.id;
+                        },
+                        [&p](const auto &) {
+                          return false;
+                        } },
+                      other_cell);
+  };
+
+  return std::visit(overloaded{
+                      [&](const Portal & p) {
+                        for (std::size_t x = 0; x < COLUMNS; x++) {
+                          for (std::size_t y = 0; y < ROWS; y++) {
+                            GridPosition other_pos{ x, y };
+                            if (other_pos == position)
+                              continue;
+                            if (match_at_position(other_pos, p)) {
+                              return other_pos;
+                            }
+                          }
+                        }
+                        return position;
+                      },
+                      [&position](const auto &) {
+                        return position;
+                      } },
+                    cell);
 }
 
 inline Position penDoorPosition() {
