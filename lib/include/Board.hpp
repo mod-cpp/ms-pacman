@@ -86,7 +86,6 @@ constexpr bool isPortal(const DefaultBoard & board, GridPosition position, Direc
                         return false;
                       } },
                     cell);
-  return false;
 }
 
 constexpr GridPosition teleport(const DefaultBoard & board, GridPosition position) {
