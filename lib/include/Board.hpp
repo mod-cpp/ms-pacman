@@ -20,14 +20,8 @@ overloaded(Ts...) -> overloaded<Ts...>;
 struct Wall {};
 struct Walkable {};
 struct Pen {};
-struct Pellet {
-  //
-};
-
-struct SuperPellet {
-  //
-};
-
+struct Pellet {};
+struct SuperPellet {};
 struct Portal {
   int id;
   GridPosition target_position = {};
