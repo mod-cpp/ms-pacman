@@ -1,4 +1,3 @@
-#include "GameState.hpp"
 #include "Ghost.hpp"
 #include <catch2/catch.hpp>
 

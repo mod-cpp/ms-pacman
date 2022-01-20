@@ -4,7 +4,6 @@
 
 #include "Fruit.hpp"
 #include "Ghost.hpp"
-#include "GhostName.hpp"
 #include "InputState.hpp"
 #include "Level.hpp"
 #include "MsPacMan.hpp"
@@ -14,10 +13,6 @@ namespace ms_pacman {
 
 constexpr int GHOST_POINTS = 200;
 
-using Blinky = Ghost<GhostName::Blinky>;
-using Pinky = Ghost<GhostName::Pinky>;
-using Inky = Ghost<GhostName::Inky>;
-using Clyde = Ghost<GhostName::Clyde>;
 using Ghosts = std::tuple<Blinky, Pinky, Inky, Clyde>;
 
 struct GameState {
@@ -34,8 +29,8 @@ struct GameState {
   Score score;
   std::chrono::milliseconds timeSinceDeath{};
 
-  template<GhostName Name>
-  void checkCollision(Ghost<Name> & ghost) {
+  template<typename Ghost>
+  void checkCollision(Ghost & ghost) {
     if (isMsPacManDying() || ghost.isEyes())
       return;
 

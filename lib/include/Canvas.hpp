@@ -38,8 +38,8 @@ private:
   void renderGhosts(const Ghosts & ghosts);
   void renderPacMan(const MsPacMan & pac_man);
 
-  template<GhostName Name>
-  void renderGhost(const Ghost<Name> & ghost) {
+  template<typename Ghost>
+  void renderGhost(const Ghost & ghost) {
     Sprite sprite = getSprite(ghost.currentSprite());
     const auto & pos = ghost.position();
     renderObject(sprite, pos);
