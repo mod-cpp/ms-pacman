@@ -103,7 +103,8 @@ void Canvas::renderPellets(const DefaultBoard & board) {
                      shape.setOrigin(shape.getRadius(), shape.getRadius());
                      renderObject(shape, { double(x), double(y) });
                    },
-                   [&](const auto &) {} },
+                   [&](const auto &) {
+                   } },
                  cell);
     }
   }

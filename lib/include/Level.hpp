@@ -2,9 +2,9 @@
 #include "Board.hpp"
 #include "Mazes.hpp"
 #include <array>
+#include <optional>
 #include <string_view>
 #include <tuple>
-#include <optional>
 
 namespace ms_pacman {
 
@@ -48,8 +48,14 @@ struct Level {
           case 3: b[y][x] = Wall{}; break;
           case 4: b[y][x] = SuperPellet{}; break;
           case 5: b[y][x] = Pen{}; break;
-          case 6: b[y][x] = Portal{0}; portals[idx++] = {x, y}; break;
-          case 7: b[y][x] = Portal{1}; portals[idx++] = {x, y}; break;
+          case 6:
+            b[y][x] = Portal{ 0 };
+            portals[idx++] = { x, y };
+            break;
+          case 7:
+            b[y][x] = Portal{ 1 };
+            portals[idx++] = { x, y };
+            break;
         }
       }
     }
