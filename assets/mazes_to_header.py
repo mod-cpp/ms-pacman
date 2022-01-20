@@ -24,7 +24,7 @@ def dump_as_array(path):
     name = Path(path).stem
     print("constexpr std::array<std::array<int, {}>, {}> {} = {{{{".format(w, h, name))
     for y in range(0, h):
-        print("{{{}{}{}".format(", ".join([str(color_mapping[fromRGB(img.getpixel((x, y)))]) for x in range(0, w)]), "}", "," if x < h-1 else "", "\n"))
+        print("{{{}{}{}".format(", ".join([str(color_mapping[fromRGB(img.getpixel((x, y)))]) for x in range(0, w)]), "}", "," if y < h-1 else "", "\n"))
     print("}};\n")
 
 print("{}\n".format("#pragma once"))
