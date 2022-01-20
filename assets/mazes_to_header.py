@@ -24,9 +24,12 @@ def dump_as_array(path):
     print("constexpr std::array<std::array<int, {}>, {}> {} = {{ {{".format(w, h, name))
     for y in range(0, h):
         print("{{{}{}{}".format(", ".join([str(color_mapping[fromRGB(img.getpixel((x, y)))]) for x in range(0, w)]), "}", "," if y < h-1 else "", "\n"))
-    print("} };\n")
+    print("}};\n")
 
+print("{}\n".format("// clang-format off"))
 print("{}\n".format("#pragma once"))
 print("{}\n".format("#include <array>"))
+print("namespace ms_pacman {\n")
 for n in range(1, len(sys.argv)):
     dump_as_array(sys.argv[n])
+print("} //namespace ms_pacman")
