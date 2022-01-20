@@ -180,7 +180,7 @@ public:
 
     if (shouldTeleport(board, positionInGrid(), direction)) {
       pos = gridPositionToPosition(teleport(board, positionInGrid()));
-    } else if (!isWalkableForGhost(board, positionInGrid(), old_grid_position, isEyes())) {
+    } else if (!isWalkableForGhost(board, old_grid_position, positionInGrid(), isEyes())) {
       pos = old_position;
       direction = oppositeDirection(direction);
     }
@@ -235,7 +235,7 @@ public:
         continue;
 
       const GridPosition grid_position = { size_t(move.position.x), size_t(move.position.y) };
-      const bool can_walk = isWalkableForGhost(board, grid_position, current_grid_position, isEyes());
+      const bool can_walk = isWalkableForGhost(board, current_grid_position, grid_position, isEyes());
       if (!can_walk)
         continue;
 

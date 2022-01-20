@@ -65,7 +65,7 @@ constexpr bool isInPen(const DefaultBoard & board, GridPosition point) {
                     cell);
 }
 
-constexpr bool isWalkableForGhost(const DefaultBoard & board, GridPosition target_position, GridPosition current_position, bool isEyes) {
+constexpr bool isWalkableForGhost(const DefaultBoard & board, GridPosition current_position, GridPosition target_position, bool isEyes) {
   BoardCell cell = cellAtPosition(board, target_position);
   return std::visit(overloaded{
                       [](const Wall &) { return false; },
