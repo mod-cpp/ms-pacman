@@ -20,6 +20,7 @@ overloaded(Ts...) -> overloaded<Ts...>;
 struct Wall {};
 struct Walkable {};
 struct Pen {};
+struct PenDoor {};
 struct Pellet {};
 struct SuperPellet {};
 struct Portal {
@@ -27,7 +28,7 @@ struct Portal {
   GridPosition target_position = {};
 };
 
-using BoardCell = std::variant<Wall, Walkable, Pen, Pellet, SuperPellet, Portal>;
+using BoardCell = std::variant<Wall, Walkable, Pen, PenDoor, Pellet, SuperPellet, Portal>;
 
 template<std::size_t Columns, std::size_t Rows>
 using Board = std::array<std::array<BoardCell, Columns>, Rows>;
@@ -44,6 +45,7 @@ constexpr bool isWalkableForPacMan(const DefaultBoard & board, GridPosition poin
   return std::visit(overloaded{
                       [](const Wall &) { return false; },
                       [](const Pen &) { return false; },
+                      [](const PenDoor &) { return false; },
                       [](const auto &) {
                         return true;
                       } },

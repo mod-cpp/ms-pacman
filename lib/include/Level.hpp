@@ -45,7 +45,7 @@ struct Level {
           case 0: b[y][x] = Wall{}; break;
           case 1: b[y][x] = Pellet{}; break;
           case 2: b[y][x] = Walkable{}; break;
-          case 3: b[y][x] = Wall{}; break;
+          case 3: b[y][x] = PenDoor{}; break;
           case 4: b[y][x] = SuperPellet{}; break;
           case 5: b[y][x] = Pen{}; break;
           case 6:
