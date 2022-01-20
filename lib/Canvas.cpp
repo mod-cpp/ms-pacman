@@ -89,19 +89,19 @@ void Canvas::renderPellets(const DefaultBoard & board) {
   for (std::size_t x = 0; x < COLUMNS; x++) {
     for (std::size_t y = 0; y < ROWS; y++) {
       const BoardCell & cell = board[y][x];
-
+      const Position renderPos = { double(x) + 0.5, double(y) + 0.5 };
       std::visit(overloaded{
                    [&](const Pellet &) {
                      sf::CircleShape shape(4);
                      shape.setFillColor(sf::Color(230, 230, 230));
                      shape.setOrigin(shape.getRadius(), shape.getRadius());
-                     renderObject(shape, { double(x), double(y) });
+                     renderObject(shape, renderPos);
                    },
                    [&](const SuperPellet &) {
                      sf::CircleShape shape(8);
                      shape.setFillColor(sf::Color(250, 250, 250));
                      shape.setOrigin(shape.getRadius(), shape.getRadius());
-                     renderObject(shape, { double(x), double(y) });
+                     renderObject(shape, renderPos);
                    },
                    [&](const auto &) {
                    } },

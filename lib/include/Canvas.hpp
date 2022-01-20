@@ -79,8 +79,8 @@ private:
 
   template<typename Object>
   void renderObject(Object sprite, Position pos) {
-    pos.x = 12 + LEFT_MARGIN + (pos.x * SPRITE_WIDTH);
-    pos.y = 12 + TOP_MARGIN + (pos.y * SPRITE_HEIGHT);
+    pos.x = LEFT_MARGIN + (pos.x * SPRITE_WIDTH);
+    pos.y = TOP_MARGIN + (pos.y * SPRITE_HEIGHT);
     sprite.setPosition(float(pos.x), float(pos.y));
     window.draw(sprite);
   }
