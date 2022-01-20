@@ -57,31 +57,6 @@ struct Pinky : public GhostBase<Pinky> {
 };
 
 // Curiously Recurring Template Pattern CRTP
-struct Blinky : public GhostBase<Blinky> {
-
-  Blinky()
-    : GhostBase<Blinky>(initialSpriteSet, initialPosition, scatterTarget) {}
-
-  static constexpr Atlas::Ghost initialSpriteSet = Atlas::Ghost::blinky;
-  static constexpr Position initialPosition = Position{ 13.5, 11 };
-  static constexpr Position scatterTarget = Position{ 25, -3 };
-
-  void setTarget(const DefaultBoard & board, const MsPacMan & msPacMan, const GridPosition &) {
-    if (state == GhostState::Eyes) {
-      target = initialPosition;
-      return;
-    }
-
-    if (isInPen(board)) {
-      target = penDoorPosition();
-      return;
-    }
-
-    target = state == GhostState::Chase ? msPacMan.position() : scatterTarget;
-  }
-};
-
-// Curiously Recurring Template Pattern CRTP
 struct Inky : public GhostBase<Inky> {
 
   Inky()
@@ -139,6 +114,32 @@ struct Inky : public GhostBase<Inky> {
     target = gridPositionToPosition(targetPosition);
   }
 };
+
+// Curiously Recurring Template Pattern CRTP
+struct Blinky : public GhostBase<Blinky> {
+
+  Blinky()
+    : GhostBase<Blinky>(initialSpriteSet, initialPosition, scatterTarget) {}
+
+  static constexpr Atlas::Ghost initialSpriteSet = Atlas::Ghost::blinky;
+  static constexpr Position initialPosition = Position{ 13.5, 11 };
+  static constexpr Position scatterTarget = Position{ 25, -3 };
+
+  void setTarget(const DefaultBoard & board, const MsPacMan & msPacMan, const GridPosition &) {
+    if (state == GhostState::Eyes) {
+      target = Inky::initialPosition;
+      return;
+    }
+
+    if (isInPen(board)) {
+      target = penDoorPosition();
+      return;
+    }
+
+    target = state == GhostState::Chase ? msPacMan.position() : scatterTarget;
+  }
+};
+
 
 // Curiously Recurring Template Pattern CRTP
 struct Clyde : public GhostBase<Clyde> {
