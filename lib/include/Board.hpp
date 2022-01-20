@@ -30,6 +30,7 @@ struct SuperPellet {
 
 struct Portal {
   int id;
+  GridPosition target_position = {};
 };
 
 using BoardCell = std::variant<Wall, Walkable, Pen, Pellet, SuperPellet, Portal>;
@@ -92,31 +93,9 @@ constexpr bool shouldTeleport(const DefaultBoard & board, GridPosition position,
 
 constexpr GridPosition teleport(const DefaultBoard & board, GridPosition position) {
   BoardCell cell = cellAtPosition(board, position);
-  auto match_at_position = [&board](const GridPosition & pos, const Portal & p) -> bool {
-    BoardCell other_cell = cellAtPosition(board, pos);
-    return std::visit(overloaded{
-                        [&p](const Portal & other) {
-                          return p.id == other.id;
-                        },
-                        [&p](const auto &) {
-                          return false;
-                        } },
-                      other_cell);
-  };
-
   return std::visit(overloaded{
                       [&](const Portal & p) {
-                        for (std::size_t x = 0; x < COLUMNS; x++) {
-                          for (std::size_t y = 0; y < ROWS; y++) {
-                            GridPosition other_pos{ x, y };
-                            if (other_pos == position)
-                              continue;
-                            if (match_at_position(other_pos, p)) {
-                              return other_pos;
-                            }
-                          }
-                        }
-                        return position;
+                        return p.target_position;
                       },
                       [&position](const auto &) {
                         return position;

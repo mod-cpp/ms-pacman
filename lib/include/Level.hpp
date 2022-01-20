@@ -4,6 +4,7 @@
 #include <array>
 #include <string_view>
 #include <tuple>
+#include <optional>
 
 namespace ms_pacman {
 
@@ -35,6 +36,9 @@ struct Level {
   constexpr auto create_board() const {
     using B = Board<COLUMNS, ROWS>;
     B b;
+    std::array<std::optional<GridPosition>, 4> portals;
+    std::size_t idx = 0;
+
     for (std::size_t x = 0; x < COLUMNS; x++) {
       for (std::size_t y = 0; y < ROWS; y++) {
         switch (maze_data[y][x]) {
@@ -44,10 +48,26 @@ struct Level {
           case 3: b[y][x] = Wall{}; break;
           case 4: b[y][x] = SuperPellet{}; break;
           case 5: b[y][x] = Pen{}; break;
-          case 6: b[y][x] = Portal{0}; break;
-          case 7: b[y][x] = Portal{1}; break;
+          case 6: b[y][x] = Portal{0}; portals[idx++] = {x, y}; break;
+          case 7: b[y][x] = Portal{1}; portals[idx++] = {x, y}; break;
         }
       }
+    }
+
+    for(auto && portal_position : portals) {
+        if(!portal_position)
+            break;
+        Portal & portal = std::get<Portal>(b[portal_position->y][portal_position->x]);
+        for(auto && other_position : portals) {
+            if(!other_position)
+                break;
+            if(portal_position == other_position)
+                continue;
+            Portal & other_portal = std::get<Portal>(b[other_position->y][other_position->x]);
+            if(portal.id != other_portal.id)
+                continue;
+            portal.target_position = *other_position;
+        }
     }
     return b;
   }
