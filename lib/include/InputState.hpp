@@ -11,7 +11,6 @@ public:
   bool down = false;
   bool left = false;
   bool right = false;
-  bool enableAI = false;
 
   constexpr Direction direction() const {
     if (up)
