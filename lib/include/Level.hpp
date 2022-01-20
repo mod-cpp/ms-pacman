@@ -54,20 +54,25 @@ struct Level {
       }
     }
 
-    for(auto && portal_position : portals) {
-        if(!portal_position)
-            break;
-        Portal & portal = std::get<Portal>(b[portal_position->y][portal_position->x]);
-        for(auto && other_position : portals) {
-            if(!other_position)
-                break;
-            if(portal_position == other_position)
-                continue;
-            Portal & other_portal = std::get<Portal>(b[other_position->y][other_position->x]);
-            if(portal.id != other_portal.id)
-                continue;
-            portal.target_position = *other_position;
-        }
+    auto getPortal = [&](GridPosition position) -> Portal & {
+      return std::get<Portal>(b[position.y][position.x]);
+    };
+
+    for (auto && portal_position : portals) {
+      if (!portal_position)
+        break;
+
+      Portal & portal = getPortal(portal_position.value());
+      for (auto && other_position : portals) {
+        if (!other_position)
+          break;
+        if (portal_position == other_position)
+          continue;
+        Portal & other_portal = getPortal(other_position.value());
+        if (portal.id != other_portal.id)
+          continue;
+        portal.target_position = *other_position;
+      }
     }
     return b;
   }
