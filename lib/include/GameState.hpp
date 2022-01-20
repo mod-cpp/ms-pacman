@@ -57,7 +57,7 @@ struct GameState {
   void killMsPacMan();
   bool isMsPacManDying() const;
   void increaseLevel();
-  bool levelOver() const;
+  bool isLevelCompleted() const;
   void reset();
 };
 

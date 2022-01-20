@@ -5,7 +5,7 @@ namespace ms_pacman {
 constexpr int NORMAL_PELLET_POINTS = 10;
 constexpr int POWER_PELLET_POINTS = 50;
 
-bool GameState::levelOver() const {
+bool GameState::isLevelCompleted() const {
   return score.eatenPellets == level.getNumPellets();
 }
 

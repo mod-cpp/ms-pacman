@@ -14,7 +14,7 @@ void Game::run() {
 
   while (true) {
 
-    if (gameState.levelOver()) {
+    if (gameState.isLevelCompleted()) {
       gameState.increaseLevel();
       loadLevel();
     }
