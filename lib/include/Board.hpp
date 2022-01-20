@@ -80,8 +80,8 @@ constexpr bool shouldTeleport(const DefaultBoard & board, GridPosition position,
   BoardCell cell = cellAtPosition(board, position);
   return std::visit(overloaded{
                       [&position, &direction](const Portal &) {
-                        bool enteringLeftPortal = position.x < COLUMNS / 2 && direction == Direction::LEFT;
-                        bool enteringRightPortal = position.x > COLUMNS / 2 && direction == Direction::RIGHT;
+                        bool enteringLeftPortal = position.x < (COLUMNS / 2) && direction == Direction::LEFT;
+                        bool enteringRightPortal = position.x > (COLUMNS / 2) && direction == Direction::RIGHT;
                         return enteringLeftPortal || enteringRightPortal;
                       },
                       [](const auto &) {
