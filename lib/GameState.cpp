@@ -12,7 +12,7 @@ bool GameState::levelOver() const {
 void GameState::increaseLevel() {
   levelNum = (levelNum + 1) % 4;
   level = getLevel(levelNum);
-  score.reset();
+  score.eatenPellets = 0;
   reset();
 }
 
