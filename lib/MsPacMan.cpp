@@ -53,7 +53,7 @@ void MsPacMan::updateAnimationPosition(std::chrono::milliseconds time_delta, boo
 }
 
 void MsPacMan::updateMazePosition(std::chrono::milliseconds time_delta, const DefaultBoard & board) {
-  if (isPortal(board, positionInGrid(), direction)) {
+  if (shouldTeleport(board, positionInGrid(), direction)) {
     pos = gridPositionToPosition(teleport(board, positionInGrid()));
     return;
   }

@@ -76,11 +76,13 @@ constexpr bool isWalkableForGhost(const DefaultBoard & board, GridPosition targe
                     cell);
 }
 
-constexpr bool isPortal(const DefaultBoard & board, GridPosition position, Direction d) {
+constexpr bool shouldTeleport(const DefaultBoard & board, GridPosition position, Direction direction) {
   BoardCell cell = cellAtPosition(board, position);
   return std::visit(overloaded{
-                      [&position, &d](const Portal &) {
-                        return (position.x < COLUMNS / 2 && d == Direction::LEFT) || (position.x > COLUMNS / 2 && d == Direction::RIGHT);
+                      [&position, &direction](const Portal &) {
+                        bool enteringLeftPortal = position.x < COLUMNS / 2 && direction == Direction::LEFT;
+                        bool enteringRightPortal = position.x > COLUMNS / 2 && direction == Direction::RIGHT;
+                        return enteringLeftPortal || enteringRightPortal;
                       },
                       [](const auto &) {
                         return false;

@@ -178,7 +178,7 @@ public:
         break;
     }
 
-    if (isPortal(board, positionInGrid(), direction)) {
+    if (shouldTeleport(board, positionInGrid(), direction)) {
       pos = gridPositionToPosition(teleport(board, positionInGrid()));
     } else if (!isWalkableForGhost(board, positionInGrid(), old_grid_position, isEyes())) {
       pos = old_position;
@@ -223,7 +223,7 @@ public:
     };
 
     for (auto & move : possible_moves) {
-      if (isPortal(board, current_grid_position, move.direction))
+      if (shouldTeleport(board, current_grid_position, move.direction))
         move.position = gridPositionToPosition(teleport(board, current_grid_position));
 
       const bool invalid_position = (move.position.x < 0 || move.position.y < 0);
