@@ -33,25 +33,26 @@ private:
   static constexpr uint16_t SPRITE_HEIGHT = 32;
 
   void clear();
-  void render();
+  void renderWindow();
   void renderMaze();
-  void renderGhosts(const Ghosts & ghosts);
-  void renderPacMan(const MsPacMan & pac_man);
+  void render(const Ghosts & ghosts);
+  void render(const MsPacMan & pac_man);
+  void render(const Score & score);
 
   template<typename Ghost>
-  void renderGhost(const Ghost & ghost) {
+  void renderGhost(const Ghost& ghost) {
     Sprite sprite = getSprite(ghost.currentSprite());
     const auto & pos = ghost.position();
-    renderObject(sprite, pos);
+    render(sprite, pos);
   }
 
   void renderPellets(const DefaultBoard & board);
 
-  void renderFruits(const GenericFruit & fruit, std::span<const GenericFruit> eatenFruits) {
+  void render(const GenericFruit & fruit, std::span<const GenericFruit> eatenFruits) {
     Sprite sprite = getSprite(Fruits::sprite(fruit));
     if (Fruits::isVisible(fruit)) {
       const auto & pos = Fruits::position(fruit);
-      renderObject(sprite, pos);
+      render(sprite, pos);
     }
 
     auto render_fruit = [this](int position, Sprite fruit_sprite) {
@@ -78,7 +79,7 @@ private:
   void renderLives(int lives);
 
   template<typename Object>
-  void renderObject(Object sprite, Position pos) {
+  void render(Object sprite, Position pos) {
     pos.x = LEFT_MARGIN + (pos.x * SPRITE_WIDTH);
     pos.y = TOP_MARGIN + (pos.y * SPRITE_HEIGHT);
     sprite.setPosition(float(pos.x), float(pos.y));

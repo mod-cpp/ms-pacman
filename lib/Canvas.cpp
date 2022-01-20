@@ -40,20 +40,19 @@ void Canvas::render(const GameState & gameState) {
 
   renderMaze();
   renderPellets(gameState.board);
-  renderGhosts(gameState.ghosts);
-  renderScore(gameState.score.points);
-  renderLives(gameState.score.lives);
-  renderFruits(gameState.currentFruit, gameState.score.eatenFruits);
-  renderPacMan(gameState.msPacMan);
+  render(gameState.ghosts);
+  render(gameState.score);
+  render(gameState.currentFruit, gameState.score.eatenFruits);
+  render(gameState.msPacMan);
 
-  render();
+  renderWindow();
 }
 
 void Canvas::clear() {
   window.clear(sf::Color::Black);
 }
 
-void Canvas::render() {
+void Canvas::renderWindow() {
   window.display();
 }
 
@@ -77,7 +76,7 @@ void Canvas::renderMaze() {
   window.draw(maze);
 }
 
-void Canvas::renderGhosts(const Ghosts & ghosts) {
+void Canvas::render(const Ghosts & ghosts) {
   std::apply(
     [this](const auto &... ghost) {
       (renderGhost(ghost), ...);
@@ -95,13 +94,13 @@ void Canvas::renderPellets(const DefaultBoard & board) {
                      sf::CircleShape shape(4);
                      shape.setFillColor(sf::Color(230, 230, 230));
                      shape.setOrigin(shape.getRadius(), shape.getRadius());
-                     renderObject(shape, renderPos);
+                     render(shape, renderPos);
                    },
                    [&](const SuperPellet &) {
                      sf::CircleShape shape(8);
                      shape.setFillColor(sf::Color(250, 250, 250));
                      shape.setOrigin(shape.getRadius(), shape.getRadius());
-                     renderObject(shape, renderPos);
+                     render(shape, renderPos);
                    },
                    [&](const auto &) {
                    } },
@@ -110,10 +109,15 @@ void Canvas::renderPellets(const DefaultBoard & board) {
   }
 }
 
-void Canvas::renderPacMan(const MsPacMan & pac_man) {
-  Sprite pacmanSprite = getSprite(pac_man.currentSprite());
-  const auto & pos = pac_man.position();
-  renderObject(pacmanSprite, pos);
+void Canvas::render(const MsPacMan & pac_man) {
+    Sprite pacmanSprite = getSprite(pac_man.currentSprite());
+    const auto & pos = pac_man.position();
+    render(pacmanSprite, pos);
+}
+
+void Canvas::render(const Score & score) {
+    renderScore(score.points);
+    renderLives(score.lives);
 }
 
 void Canvas::renderScore(int score) {
