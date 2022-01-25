@@ -45,6 +45,10 @@ void Canvas::render(const GameState & gameState) {
   render(gameState.currentFruit, gameState.score.eatenFruits);
   render(gameState.msPacMan);
 
+  if (gameState.score.lives == DEFAULT_LIVES && gameState.msPacMan.currentDirection() == Direction::NONE) {
+    renderReady();
+  }
+
   renderWindow();
 }
 
@@ -118,6 +122,38 @@ void Canvas::render(const MsPacMan & pac_man) {
 void Canvas::render(const Score & score) {
     renderScore(score.points);
     renderLives(score.lives);
+
+    if (score.lives == 0) {
+      renderGameOver();
+    }
+}
+
+void Canvas::renderGameOver() {
+  const int x = (LEFT_MARGIN + TARGET_MAZE_WIDTH / 2);
+  const int y = (TOP_MARGIN + TARGET_MAZE_HEIGHT / 2 + 50);
+
+  sf::Text text;
+  text.setPosition(x, y);
+  text.setFont(game_font);
+  text.setString(fmt::format("GAME OVER!"));
+  text.setCharacterSize(40);
+  text.setFillColor(sf::Color::Red);
+  text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
+  window.draw(text);
+}
+
+void Canvas::renderReady() {
+  const int x = (LEFT_MARGIN + TARGET_MAZE_WIDTH / 2);
+  const int y = (TOP_MARGIN + TARGET_MAZE_HEIGHT / 2 + 50);
+
+  sf::Text text;
+  text.setPosition(x, y);
+  text.setFont(game_font);
+  text.setString(fmt::format("Ready!"));
+  text.setCharacterSize(40);
+  text.setFillColor(sf::Color::Yellow);
+  text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
+  window.draw(text);
 }
 
 void Canvas::renderScore(int score) {

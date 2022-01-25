@@ -10,19 +10,27 @@ bool GameState::isLevelCompleted() const {
 }
 
 void GameState::increaseLevel() {
-  levelNum = (levelNum + 1) % 4;
+  levelNum++;
+  loadLevel();
+}
+
+void GameState::loadLevel() {
+  if (levelNum == 0) {
+    score.lives = DEFAULT_LIVES;
+  }
   level = getLevel(levelNum);
   score.eatenPellets = 0;
   reset();
 }
 
 void GameState::step(std::chrono::milliseconds delta) {
-  msPacMan.update(delta, inputState.direction(), board);
 
   if (isMsPacManDying()) {
     handleDeathAnimation(delta);
     return;
   }
+
+  msPacMan.update(delta, inputState.direction(), board);
 
   if (!msPacMan.hasDirection())
     return;
@@ -50,8 +58,10 @@ void GameState::step(std::chrono::milliseconds delta) {
 
 void GameState::handleDeathAnimation(std::chrono::milliseconds delta) {
   timeSinceDeath += delta;
-
-  if (timeSinceDeath.count() > 1000) {
+  if (score.lives == 0 && timeSinceDeath.count() > 4000) {
+    levelNum = 0;
+    loadLevel();
+  } else if (score.lives != 0 && timeSinceDeath.count() > 1000) {
     reset();
   }
 }

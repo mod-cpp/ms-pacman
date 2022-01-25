@@ -52,6 +52,7 @@ struct GameState {
   void killMsPacMan();
   bool isMsPacManDying() const;
   void increaseLevel();
+  void loadLevel();
   bool isLevelCompleted() const;
   void reset();
 };

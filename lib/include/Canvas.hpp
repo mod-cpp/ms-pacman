@@ -38,6 +38,8 @@ private:
   void render(const Ghosts & ghosts);
   void render(const MsPacMan & pac_man);
   void render(const Score & score);
+  void renderGameOver();
+  void renderReady();
 
   template<typename Ghost>
   void renderGhost(const Ghost& ghost) {
