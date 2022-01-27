@@ -20,18 +20,18 @@ constexpr auto array_extent<std::array<T, N>> = std::tuple_cat(std::tuple<size_t
 struct Level {
   std::string_view background;
   array2d<int, ROWS, COLUMNS> maze_data;
-  int num_pellets = count_pellets();
+  int num_pellets = 0;
 
-  constexpr int count_pellets() const {
-    int pellets = 0;
-    for (std::size_t x = 0; x < COLUMNS; x++) {
-      for (std::size_t y = 0; y < ROWS; y++) {
-        if (maze_data[y][x] == 1 || maze_data[y][x] == 4)
-          pellets++;
-      }
-    }
-    return pellets;
-  }
+  enum class Cell {
+    WALL = 0,
+    PELLET = 1,
+    PATH = 2,
+    PEN_DOOR = 3,
+    SUPER_PELLET = 4,
+    PEN = 5,
+    PORTAL1 = 6,
+    PORTAL2 = 7
+  };
 
   constexpr auto create_board() const {
     using B = Board<COLUMNS, ROWS>;
@@ -42,17 +42,29 @@ struct Level {
     for (std::size_t x = 0; x < COLUMNS; x++) {
       for (std::size_t y = 0; y < ROWS; y++) {
         switch (maze_data[y][x]) {
-          case 0: b[y][x] = Wall{}; break;
-          case 1: b[y][x] = Pellet{}; break;
-          case 2: b[y][x] = Walkable{}; break;
-          case 3: b[y][x] = PenDoor{}; break;
-          case 4: b[y][x] = SuperPellet{}; break;
-          case 5: b[y][x] = Pen{}; break;
-          case 6:
+          case static_cast<int>(Cell::WALL):
+            b[y][x] = Wall{};
+            break;
+          case static_cast<int>(Cell::PELLET):
+            b[y][x] = Pellet{};
+            break;
+          case static_cast<int>(Cell::PATH):
+            b[y][x] = Walkable{};
+            break;
+          case static_cast<int>(Cell::PEN_DOOR):
+            b[y][x] = PenDoor{};
+            break;
+          case static_cast<int>(Cell::SUPER_PELLET):
+            b[y][x] = SuperPellet{};
+            break;
+          case static_cast<int>(Cell::PEN):
+            b[y][x] = Pen{};
+            break;
+          case static_cast<int>(Cell::PORTAL1):
             b[y][x] = Portal{ 0 };
             portals[idx++] = { x, y };
             break;
-          case 7:
+          case static_cast<int>(Cell::PORTAL2):
             b[y][x] = Portal{ 1 };
             portals[idx++] = { x, y };
             break;
@@ -83,16 +95,27 @@ struct Level {
     return b;
   }
 
+  static constexpr int count_pellets(auto maze_data) {
+    int pellets = 0;
+    for (std::size_t x = 0; x < COLUMNS; x++) {
+      for (std::size_t y = 0; y < ROWS; y++) {
+        if (maze_data[y][x] == static_cast<int>(Cell::PELLET) || maze_data[y][x] == static_cast<int>(Cell::SUPER_PELLET))
+          pellets++;
+      }
+    }
+    return pellets;
+  }
+
   constexpr int getNumPellets() const {
     return num_pellets;
   }
 };
 
 constexpr std::array levels = {
-  Level{ "maze1.png", maze1_data },
-  Level{ "maze2.png", maze2_data },
-  Level{ "maze3.png", maze3_data },
-  Level{ "maze4.png", maze4_data }
+  Level{ "maze1.png", maze1_data, Level::count_pellets(maze1_data) },
+  Level{ "maze2.png", maze2_data, Level::count_pellets(maze2_data) },
+  Level{ "maze3.png", maze3_data, Level::count_pellets(maze3_data) },
+  Level{ "maze4.png", maze4_data, Level::count_pellets(maze4_data) }
 };
 
 constexpr Level getLevel(std::size_t n) {
