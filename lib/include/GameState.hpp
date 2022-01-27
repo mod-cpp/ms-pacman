@@ -25,7 +25,7 @@ struct GameState {
   size_t levelNum = 0;
   Level level = getLevel(levelNum);
   DefaultBoard board;
-
+  bool game_over = false;
   Score score;
   std::chrono::milliseconds timeSinceDeath{};
 
@@ -55,6 +55,9 @@ struct GameState {
   void loadLevel();
   bool isLevelCompleted() const;
   void reset();
+  void restartGame();
+  bool isGameOver() const;
+  void setGameOver();
 };
 
 } // namespace ms_pacman

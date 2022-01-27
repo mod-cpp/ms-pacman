@@ -17,6 +17,9 @@ void Game::run() {
     if (gameState.isLevelCompleted()) {
       gameState.increaseLevel();
       loadLevel();
+    } else if (gameState.isGameOver()) {
+      gameState.restartGame();
+      loadLevel();
     }
 
     const auto newTime = std::chrono::system_clock::now();

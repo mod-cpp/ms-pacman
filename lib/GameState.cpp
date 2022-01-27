@@ -5,6 +5,20 @@ namespace ms_pacman {
 constexpr int NORMAL_PELLET_POINTS = 10;
 constexpr int POWER_PELLET_POINTS = 50;
 
+void GameState::setGameOver() {
+  game_over = true;
+}
+
+bool GameState::isGameOver() const {
+  return game_over;
+}
+
+void GameState::restartGame() {
+  levelNum = 0;
+  loadLevel();
+  game_over = false;
+}
+
 bool GameState::isLevelCompleted() const {
   return score.eatenPellets == level.getNumPellets();
 }
@@ -61,8 +75,7 @@ void GameState::step(std::chrono::milliseconds delta) {
 void GameState::handleDeathAnimation(std::chrono::milliseconds delta) {
   timeSinceDeath += delta;
   if (score.lives == 0 && timeSinceDeath.count() > 4000) {
-    levelNum = 0;
-    loadLevel();
+    setGameOver();
   } else if (score.lives != 0 && timeSinceDeath.count() > 1000) {
     reset();
   }

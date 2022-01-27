@@ -15,3 +15,24 @@ TEST_CASE("Check initial state of GameState") {
   REQUIRE(gameState.score.eatenPellets == 0);
   REQUIRE(gameState.score.eatenFruits.empty());
 }
+
+static void simulatePlay(ms_pacman::GameState & state) {
+  state.levelNum = 3;
+  state.loadLevel();
+  state.score.lives = 0;
+  state.score.points = 1337;
+  state.score.eatenPellets = 42;
+  state.score.eatenFruits.emplace_back(state.currentFruit);
+}
+
+TEST_CASE("Restarting the game resets state") {
+  ms_pacman::GameState gameState;
+  simulatePlay(gameState);
+  gameState.restartGame();
+  REQUIRE(gameState.levelNum == 0);
+  REQUIRE(gameState.level.num_pellets == 228);
+  REQUIRE(gameState.score.lives == ms_pacman::DEFAULT_LIVES);
+  REQUIRE(gameState.score.points == 0);
+  REQUIRE(gameState.score.eatenPellets == 0);
+  REQUIRE(gameState.score.eatenFruits.empty());
+}
