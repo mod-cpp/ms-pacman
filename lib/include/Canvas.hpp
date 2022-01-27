@@ -42,7 +42,7 @@ private:
   void renderReady();
 
   template<typename Ghost>
-  void renderGhost(const Ghost& ghost) {
+  void renderGhost(const Ghost & ghost) {
     Sprite sprite = getSprite(ghost.currentSprite());
     const auto & pos = ghost.position();
     render(sprite, pos);

@@ -114,18 +114,18 @@ void Canvas::renderPellets(const DefaultBoard & board) {
 }
 
 void Canvas::render(const MsPacMan & pac_man) {
-    Sprite pacmanSprite = getSprite(pac_man.currentSprite());
-    const auto & pos = pac_man.position();
-    render(pacmanSprite, pos);
+  Sprite pacmanSprite = getSprite(pac_man.currentSprite());
+  const auto & pos = pac_man.position();
+  render(pacmanSprite, pos);
 }
 
 void Canvas::render(const Score & score) {
-    renderScore(score.points);
-    renderLives(score.lives);
+  renderScore(score.points);
+  renderLives(score.lives);
 
-    if (score.lives == 0) {
-      renderGameOver();
-    }
+  if (score.lives == 0) {
+    renderGameOver();
+  }
 }
 
 void Canvas::renderGameOver() {

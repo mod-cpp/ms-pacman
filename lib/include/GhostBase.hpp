@@ -60,7 +60,7 @@ public:
 
   void update(std::chrono::milliseconds time_delta, const DefaultBoard & board) {
     if (state == GhostState::Eyes && isInPen(board)) {
-       state = GhostState::Scatter;
+      state = GhostState::Scatter;
     }
 
     if (state == GhostState::Frightened) {

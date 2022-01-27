@@ -16,7 +16,7 @@ void GameState::increaseLevel() {
 
 void GameState::loadLevel() {
   if (levelNum == 0) {
-    score.lives  = DEFAULT_LIVES;
+    score.lives = DEFAULT_LIVES;
     score.points = 0;
     score.eatenFruits.clear();
   }

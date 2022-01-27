@@ -140,7 +140,6 @@ struct Blinky : public GhostBase<Blinky> {
   }
 };
 
-
 // Curiously Recurring Template Pattern CRTP
 struct Clyde : public GhostBase<Clyde> {
 

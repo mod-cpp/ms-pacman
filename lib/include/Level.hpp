@@ -96,17 +96,17 @@ constexpr std::array levels = {
 };
 
 constexpr Level getLevel(std::size_t n) {
-  switch(n) {
-       case 0:
-       case 1:
-         return levels[0];
-      case 2:
-      case 3:
-      case 4:
-        return levels[1];
-      default:
-        // alternate between each of the last 2 maps every 4 levels
-        return levels[((n - 5) % 8) < 4 ? 2 : 3];
+  switch (n) {
+    case 0:
+    case 1:
+      return levels[0];
+    case 2:
+    case 3:
+    case 4:
+      return levels[1];
+    default:
+      // alternate between each of the last 2 maps every 4 levels
+      return levels[((n - 5) % 8) < 4 ? 2 : 3];
   }
 }
 
