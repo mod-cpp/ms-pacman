@@ -15,8 +15,8 @@ concept number = std::is_integral_v<T> || std::is_floating_point_v<T>;
 
 template<number T>
 struct BasicPosition {
-  T x = {};
-  T y = {};
+  T x;
+  T y;
   constexpr BasicPosition() = default;
   constexpr BasicPosition(T x, T y)
     : x(x),
