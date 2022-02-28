@@ -3,7 +3,7 @@
 #include <cassert>
 #include <cmath>
 #include <limits>
-#include <type_traits>
+#include <concepts>
 
 namespace ms_pacman {
 
