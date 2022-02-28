@@ -51,15 +51,14 @@ void GameState::step(std::chrono::milliseconds delta) {
   if (!msPacMan.hasDirection())
     return;
 
-  std::apply(
-    [ this, &delta ]<typename... Ghost>(Ghost & ... ghost_param) {
-      ([&]<typename T>(T & ghost) {
-        ghost.update(delta, board);
-        ghost.setTarget(board, msPacMan, std::get<Blinky>(ghosts).positionInGrid());
-      }(ghost_param),
-       ...);
-    },
-    ghosts);
+  auto step_ghost = [&](auto & ghost) {
+    ghost.update(delta, board);
+    ghost.setTarget(board, msPacMan, std::get<Blinky>(ghosts).positionInGrid());
+  };
+
+  std::apply([&step_ghost](auto &... ghost) {
+    (step_ghost(ghost), ...);
+  }, ghosts);
 
   std::visit([&](auto && fruit) { fruit.update(delta, score.eatenPellets); }, currentFruit);
 
