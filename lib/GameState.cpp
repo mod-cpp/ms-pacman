@@ -52,11 +52,11 @@ void GameState::step(std::chrono::milliseconds delta) {
     return;
 
   std::apply(
-    [ this, &delta ]<typename... Ghost>(Ghost & ... ghost) {
+    [ this, &delta ]<typename... Ghost>(Ghost & ... ghost_param) {
       ([&]<typename T>(T & ghost) {
         ghost.update(delta, board);
         ghost.setTarget(board, msPacMan, std::get<Blinky>(ghosts).positionInGrid());
-      }(ghost),
+      }(ghost_param),
        ...);
     },
     ghosts);
