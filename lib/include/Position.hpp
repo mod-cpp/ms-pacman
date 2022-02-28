@@ -8,7 +8,7 @@
 namespace ms_pacman {
 
 template<typename T>
-concept number = std::is_integral_v<T> || std::is_floating_point_v<T>;
+concept number = std::integral<T> || std::floating_point<T>;
 
 template<number T>
 struct BasicPosition {
