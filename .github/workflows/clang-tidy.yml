@@ -45,10 +45,10 @@ jobs:
         sudo apt update -y
         sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev make ninja-build cmake
 
-    - name: Configure CMake
-      working-directory: build
-      run: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+#    - name: Configure CMake
+#      working-directory: build
+#      run: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
 
-    - name: Run clang-tidy-13
-      working-directory: build
-      run: run-clang-tidy-13
+#    - name: Run clang-tidy-13
+#      working-directory: build
+#      run: run-clang-tidy-13

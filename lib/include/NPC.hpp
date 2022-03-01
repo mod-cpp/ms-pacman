@@ -1,7 +1,14 @@
 #pragma once
 
 #include "Board.hpp"
+
+#include <algorithm>
 #include <chrono>
+#include <numeric>
+#include <ranges>
+#include <string>
+#include <vector>
+
 namespace ms_pacman {
 
 class NPC {
@@ -94,29 +101,43 @@ public:
       Move{ Direction::RIGHT, { x + 1, y } }
     };
 
-    for (auto & move : possible_moves) {
+    auto set_teleport = [&](const auto & move) {
+      Move transformed = move;
       if (shouldTeleport(board, current_grid_position, move.direction))
-        move.position = gridPositionToPosition(teleport(board, current_grid_position));
+        transformed.position = gridPositionToPosition(teleport(board, current_grid_position));
+      return transformed;
+    };
 
-      const bool invalid_position = (move.position.x < 0 || move.position.y < 0);
-      if (invalid_position)
-        continue;
+    auto has_valid_position = [](const auto & move) {
+      return !(move.position.x < 0 || move.position.y < 0);
+    };
 
-      const bool opposite_direction = (move.direction == oppositeDirection(direction));
-      if (opposite_direction)
-        continue;
+    auto has_valid_direction = [&](const auto & move) {
+      return !(move.direction == oppositeDirection(direction));
+    };
 
+    auto is_allowed_move = [&](const auto & move) {
       const GridPosition grid_position = { size_t(move.position.x), size_t(move.position.y) };
-      const bool can_walk = isWalkable(board, current_grid_position, grid_position);
-      if (!can_walk)
-        continue;
+      return isWalkable(board, current_grid_position, grid_position);
+    };
 
-      move.distance_to_target = std::hypot(move.position.x - target.x, move.position.y - target.y);
-    }
+    auto set_distance_to_target = [&](const auto & move) {
+      Move transformed = move;
+      transformed.distance_to_target = std::hypot(move.position.x - target.x, move.position.y - target.y);
+      return transformed;
+    };
 
-    const auto optimal_move = std::min_element(possible_moves.begin(), possible_moves.end(), [](const auto & a, const auto & b) {
-      return a.distance_to_target < b.distance_to_target;
-    });
+    auto view = possible_moves
+                | std::views::transform(set_teleport)
+                | std::views::filter(has_valid_position)
+                | std::views::filter(has_valid_direction)
+                | std::views::filter(is_allowed_move)
+                | std::views::transform(set_distance_to_target);
+
+    if (std::ranges::empty(view))
+      return;
+
+    const auto optimal_move = std::ranges::min_element(view, {}, &Move::distance_to_target);
 
     const auto & move = *optimal_move;
     direction = move.direction;
