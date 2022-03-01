@@ -173,8 +173,7 @@ public:
       double distance_to_target = std::numeric_limits<double>::infinity();
     };
 
-    const Position current_position = { double(current_grid_position.x), double(current_grid_position.y) };
-    const auto [x, y] = current_position;
+    const auto [x, y] = gridPositionToPosition(current_grid_position);
     std::array<Move, 4> possible_moves = {
       Move{ Direction::UP, { x, y - 1 } },
       Move{ Direction::LEFT, { x - 1, y } },
