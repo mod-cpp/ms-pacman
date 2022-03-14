@@ -1,5 +1,9 @@
 #pragma once
 
+#include <vector>
+
+#include "Fruit.hpp"
+
 namespace ms_pacman {
 
 constexpr int DEFAULT_LIVES = 3;
