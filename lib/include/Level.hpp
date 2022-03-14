@@ -11,12 +11,6 @@ namespace ms_pacman {
 template<typename T, std::size_t Rows, std::size_t Columns>
 using array2d = std::array<std::array<T, Columns>, Rows>;
 
-template<typename T>
-inline constexpr auto array_extent = std::tuple<>{};
-
-template<typename T, std::size_t N>
-constexpr auto array_extent<std::array<T, N>> = std::tuple_cat(std::tuple<size_t>(N), array_extent<T>);
-
 struct Level {
   std::string_view background;
   array2d<int, ROWS, COLUMNS> maze_data;
