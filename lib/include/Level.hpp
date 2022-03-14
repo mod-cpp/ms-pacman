@@ -28,8 +28,7 @@ struct Level {
   };
 
   constexpr auto create_board() const {
-    using B = Board<COLUMNS, ROWS>;
-    B b;
+    Board<COLUMNS, ROWS> board;
     std::array<std::optional<GridPosition>, 4> portals;
     std::size_t idx = 0;
 
@@ -37,29 +36,29 @@ struct Level {
       for (std::size_t y = 0; y < ROWS; y++) {
         switch (maze_data[y][x]) {
           case static_cast<int>(Cell::WALL):
-            b[y][x] = Wall{};
+            board[y][x] = Wall{};
             break;
           case static_cast<int>(Cell::PELLET):
-            b[y][x] = Pellet{};
+            board[y][x] = Pellet{};
             break;
           case static_cast<int>(Cell::PATH):
-            b[y][x] = Walkable{};
+            board[y][x] = Walkable{};
             break;
           case static_cast<int>(Cell::PEN_DOOR):
-            b[y][x] = PenDoor{};
+            board[y][x] = PenDoor{};
             break;
           case static_cast<int>(Cell::SUPER_PELLET):
-            b[y][x] = SuperPellet{};
+            board[y][x] = SuperPellet{};
             break;
           case static_cast<int>(Cell::PEN):
-            b[y][x] = Pen{};
+            board[y][x] = Pen{};
             break;
           case static_cast<int>(Cell::PORTAL1):
-            b[y][x] = Portal{ 0 };
+            board[y][x] = Portal{ 0 };
             portals[idx++] = { x, y };
             break;
           case static_cast<int>(Cell::PORTAL2):
-            b[y][x] = Portal{ 1 };
+            board[y][x] = Portal{ 1 };
             portals[idx++] = { x, y };
             break;
         }
@@ -67,7 +66,7 @@ struct Level {
     }
 
     auto getPortal = [&](GridPosition position) -> Portal & {
-      return std::get<Portal>(b[position.y][position.x]);
+      return std::get<Portal>(board[position.y][position.x]);
     };
 
     for (auto && portal_position : portals) {
@@ -86,7 +85,7 @@ struct Level {
         portal.target_position = *other_position;
       }
     }
-    return b;
+    return board;
   }
 
   static constexpr int count_pellets(auto maze_data) {
