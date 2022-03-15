@@ -4,7 +4,6 @@
 #include <cstdio>
 #include <sstream>
 #include <utility>
-#include <tuple>
 
 static std::tuple<std::string, int> split_line(std::string_view line) {
   auto index = line.find(',');
@@ -22,6 +21,13 @@ HighScoreFile::HighScoreFile(std::string filename) :
 HighScoreFile::~HighScoreFile() {
   if (file)
     std::fclose(file);
+}
+
+HighScoreFile::HighScoreFile(HighScoreFile && other) {
+  std::swap(name, other.name);
+  std::swap(file, other.file);
+  std::swap(input, other.input);
+  std::swap(parsed_input, other.parsed_input);
 }
 
 bool HighScoreFile::load() {
