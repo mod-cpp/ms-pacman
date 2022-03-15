@@ -1,6 +1,8 @@
 #include "HighScore.hpp"
 #include "HighScoreFile.hpp"
 
+#include <algorithm>
+
 int HighScore::top() const {
   if (high_scores.empty())
     return 0;
