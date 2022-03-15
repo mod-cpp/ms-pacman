@@ -6,12 +6,15 @@
 class HighScoreFile {
 public:
   explicit HighScoreFile(std::string filename);
-  bool is_valid();
-
-  bool load();
   virtual ~HighScoreFile();
 
+  bool is_valid() const;
+  bool load();
   size_t parse();
+
+  const auto & parsed_data() const {
+    return parsed_input;
+  }
 
 private:
   std::string name;

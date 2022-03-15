@@ -28,6 +28,7 @@ function(set_project_warnings)
             /w14905 # wide string literal cast to 'LPSTR'
             /w14906 # string literal cast to 'LPWSTR'
             /w14928 # illegal copy-initialization; more than one user-defined conversion has been implicitly applied
+            /wd4996 # disable 'fopen': This function or variable may be unsafe.
             /permissive- # standards conformance mode for MSVC compiler.
             )
 
