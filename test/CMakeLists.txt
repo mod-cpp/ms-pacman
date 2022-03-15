@@ -7,9 +7,8 @@ add_executable(ms_pacman_tests ${sources})
 target_link_libraries(ms_pacman_tests Catch2::Catch2 lib_ms_pacman)
 target_compile_definitions(ms_pacman_tests PUBLIC CATCH_CONFIG_CONSOLE_WIDTH=300)
 
-# This setup the tests on CI. We disable the AI tests
-# because you will have to implement them.
-add_test(NAME ms_pacman_tests COMMAND ms_pacman_tests)
+add_test(NAME ms_pacman_tests COMMAND ms_pacman_tests
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data/)
 
 add_custom_command(TARGET ms_pacman_tests POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy
