@@ -14,12 +14,9 @@ static std::tuple<std::string, int> split_line(std::string_view line) {
   return { std::string(line.substr(0, index)), score };
 }
 
-
 HighScoreFile::HighScoreFile(std::string filename) :
     name(std::move(filename)),
     file(fopen( name.c_str(), "r" )) {
-  auto e = errno;
-  (void) e;
 }
 
 HighScoreFile::~HighScoreFile() {
@@ -42,7 +39,7 @@ bool HighScoreFile::load() {
   return false;
 }
 
-bool HighScoreFile::is_valid() {
+bool HighScoreFile::is_valid() const {
   return file != nullptr;
 }
 

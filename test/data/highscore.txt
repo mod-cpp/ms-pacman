@@ -1,2 +1,2 @@
-Corentin 20000
-Patricia 10000
+Corentin,20000
+Patricia,10000

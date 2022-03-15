@@ -20,3 +20,14 @@ TEST_CASE("Check HighScore File", "[highscore]") {
   REQUIRE(file.load() == true);
   REQUIRE(file.parse() == 2);
 }
+
+TEST_CASE("Populate Using HighScore File", "[highscore]") {
+  HighScore highScore;
+  HighScoreFile file("highscore.txt");
+  REQUIRE(file.is_valid() == true);
+  REQUIRE(file.load() == true);
+  REQUIRE(file.parse() == 2);
+  highScore.populate(file);
+  REQUIRE(highScore.top() == 20000);
+  REQUIRE(highScore.num_players() == 2);
+}
