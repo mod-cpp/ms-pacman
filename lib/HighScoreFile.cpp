@@ -12,7 +12,7 @@ HighScoreFile::~HighScoreFile() {
     std::fclose(file);
 }
 
-HighScoreFile::HighScoreFile(HighScoreFile && other) {
+HighScoreFile::HighScoreFile(HighScoreFile && other) noexcept {
   std::swap(file, other.file);
 }
 
