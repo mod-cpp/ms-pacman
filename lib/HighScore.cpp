@@ -28,7 +28,7 @@ void HighScore::populate(std::vector<std::tuple<std::string, int>> list) {
   std::sort(high_scores.begin(), high_scores.end(), comp);
 }
 
-std::vector<std::tuple<std::string, int>> HighScore::parse(std::string input) {
+ParsedInput HighScore::parse(std::string input) {
   std::vector<std::tuple<std::string, int>> parsed_input;
   size_t num_lines = 0;
   auto stream = std::stringstream(input);
