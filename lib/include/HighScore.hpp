@@ -11,7 +11,7 @@ struct player {
 class HighScore {
 public:
   int top() const;
-  void populate(HighScoreFile file);
+  void populate(std::vector<std::tuple<std::string, int>> list);
 
   size_t num_players() const;
 

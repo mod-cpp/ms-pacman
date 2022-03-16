@@ -14,8 +14,7 @@ static std::tuple<std::string, int> split_line(std::string_view line) {
 }
 
 HighScoreFile::HighScoreFile(std::string filename) :
-    name(std::move(filename)),
-    file(fopen( name.c_str(), "r" )) {
+    file(fopen( filename.c_str(), "r" )) {
 }
 
 HighScoreFile::~HighScoreFile() {
@@ -24,14 +23,11 @@ HighScoreFile::~HighScoreFile() {
 }
 
 HighScoreFile::HighScoreFile(HighScoreFile && other) {
-  std::swap(name, other.name);
   std::swap(file, other.file);
-  std::swap(input, other.input);
-  std::swap(parsed_input, other.parsed_input);
 }
 
-bool HighScoreFile::load() {
-  input.clear();
+std::string HighScoreFile::load() {
+  std::string input;
 
   int c = 0;
   while ((c = std::fgetc(file)) != EOF) {
@@ -39,21 +35,22 @@ bool HighScoreFile::load() {
   }
 
   if (!std::ferror(file) && std::feof(file)) {
-    return true;
+    return input;
   }
 
-  return false;
+  return {};
 }
 
 bool HighScoreFile::is_valid() const {
   return file != nullptr;
 }
 
-size_t HighScoreFile::parse() {
+std::vector<std::tuple<std::string, int>> HighScoreFile::parse(std::string input) {
+  std::vector<std::tuple<std::string, int>> parsed_input;
   size_t num_lines = 0;
   auto stream = std::stringstream(input);
   for(std::string line; std::getline(stream, line); num_lines++) {
     parsed_input.push_back(split_line(line));
   }
-  return num_lines;
+  return parsed_input;
 }

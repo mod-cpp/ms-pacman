@@ -9,8 +9,7 @@ int HighScore::top() const {
   return high_scores.front().score;
 }
 
-void HighScore::populate(HighScoreFile file) {
-  const auto & list = file.parsed_data();
+void HighScore::populate(std::vector<std::tuple<std::string, int>> list) {
   for (auto && [name, score] : list)
     high_scores.emplace_back(name, score);
   auto comp = [](const player & first, const player & second){

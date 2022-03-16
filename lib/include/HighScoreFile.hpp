@@ -12,16 +12,9 @@ public:
   HighScoreFile(HighScoreFile&& other);
 
   bool is_valid() const;
-  bool load();
-  size_t parse();
-
-  const auto & parsed_data() const {
-    return parsed_input;
-  }
+  std::string load();
+  std::vector<std::tuple<std::string, int>> parse(std::string input);
 
 private:
-  std::string name;
   std::FILE* file = nullptr;
-  std::string input;
-  std::vector<std::tuple<std::string, int>> parsed_input;
 };
