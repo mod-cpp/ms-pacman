@@ -20,7 +20,7 @@ HighScoreFile::HighScoreFile(HighScoreFile && other) noexcept {
   swap(file, other.file);
 }
 
-std::string HighScoreFile::load() {
+std::string HighScoreFile::read_all() {
   std::string input;
   input.reserve(get_size());
 
