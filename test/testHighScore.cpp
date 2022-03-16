@@ -11,23 +11,28 @@ TEST_CASE("Empty HighScore has 0 top score", "[highscore]") {
 TEST_CASE("Load HighScore File", "[highscore]") {
   HighScoreFile file("highscore.txt");
   REQUIRE(file.is_valid() == true);
-  REQUIRE(file.load() == true);
+  auto input = file.load();
+  REQUIRE(!input.empty());
 }
 
 TEST_CASE("Check HighScore File", "[highscore]") {
   HighScoreFile file("highscore.txt");
   REQUIRE(file.is_valid() == true);
-  REQUIRE(file.load() == true);
-  REQUIRE(file.parse() == 2);
+  auto input = file.load();
+  REQUIRE(!input.empty());
+  auto parsed = file.parse(input);
+  REQUIRE(parsed.size() == 2);
 }
 
 TEST_CASE("Populate Using HighScore File", "[highscore]") {
   HighScore highScore;
   HighScoreFile file("highscore.txt");
   REQUIRE(file.is_valid() == true);
-  REQUIRE(file.load() == true);
-  REQUIRE(file.parse() == 2);
-  highScore.populate(std::move(file));
+  auto input = file.load();
+  REQUIRE(!input.empty());
+  auto parsed = file.parse(input);
+  REQUIRE(parsed.size() == 2);
+  highScore.populate(std::move(parsed));
   REQUIRE(highScore.top() == 20000);
   REQUIRE(highScore.num_players() == 2);
 }
