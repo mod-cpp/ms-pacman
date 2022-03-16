@@ -15,7 +15,7 @@ public:
   HighScoreFile(HighScoreFile&& other) noexcept;
   HighScoreFile operator=(HighScoreFile &&) = delete;
 
-  std::string load();
+  std::string read_all();
 
 private:
   std::string filename;
