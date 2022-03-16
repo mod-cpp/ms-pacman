@@ -24,8 +24,10 @@ std::string HighScoreFile::load() {
   std::string input;
   input.reserve(get_size());
 
-  int c = 0;
-  while ((c = std::fgetc(file)) != EOF) {
+  auto done = [&](auto c) { return std::ferror(file) || (c == EOF); };
+  auto next = [&]() { return std::fgetc(file); };
+
+  for (int c = next(); !done(c); c = next())  {
     input.push_back(static_cast<char>(c));
   }
 
