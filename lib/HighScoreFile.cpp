@@ -5,9 +5,9 @@
 #include <system_error>
 #include <tuple>
 
-HighScoreFile::HighScoreFile(std::string name) :
-    filename(std::move(name)),
-    file(fopen( filename.c_str(), "r" )) {
+HighScoreFile::HighScoreFile(std::string name)
+  : filename(std::move(name)),
+    file(std::fopen( filename.c_str(), "r" )) {
 }
 
 HighScoreFile::~HighScoreFile() {

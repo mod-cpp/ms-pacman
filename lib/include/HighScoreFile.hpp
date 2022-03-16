@@ -4,10 +4,10 @@
 #include <tuple>
 #include <vector>
 
-class HighScoreFile {
+class HighScoreFile final {
 public:
   explicit HighScoreFile(std::string filename);
-  virtual ~HighScoreFile();
+  ~HighScoreFile();
 
   HighScoreFile(const HighScoreFile &) = delete;
   HighScoreFile operator=(const HighScoreFile &) = delete;
