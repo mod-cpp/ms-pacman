@@ -18,5 +18,7 @@ public:
   std::string load();
 
 private:
+  std::string filename;
   std::FILE* file = nullptr;
+  size_t get_size();
 };
