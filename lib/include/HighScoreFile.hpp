@@ -9,7 +9,11 @@ public:
   explicit HighScoreFile(std::string filename);
   virtual ~HighScoreFile();
 
-  HighScoreFile(HighScoreFile&& other);
+  HighScoreFile(const HighScoreFile &) = delete;
+  HighScoreFile operator=(const HighScoreFile &) = delete;
+
+  HighScoreFile(HighScoreFile&& other) noexcept;
+  HighScoreFile operator=(HighScoreFile &&) = delete;
 
   std::string load();
 
