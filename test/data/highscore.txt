@@ -1,2 +1,3 @@
-Corentin,20000
-Patricia,10000
+Corentin,1345
+Patricia,2124
+Ólafur,1337
