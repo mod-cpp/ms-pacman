@@ -36,7 +36,7 @@ std::string HighScoreFile::load() {
   return {};
 }
 
-size_t HighScoreFile::get_size() {
+size_t HighScoreFile::get_size() const {
   std::error_code ec;
   auto file_size = std::filesystem::file_size(filename, ec);
   return ec ? 0 : file_size;
