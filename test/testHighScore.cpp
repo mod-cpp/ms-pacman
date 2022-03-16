@@ -20,7 +20,7 @@ TEST_CASE("Check HighScore File", "[highscore]") {
   auto input = file.read_all();
   REQUIRE(!input.empty());
   auto parsed = highScore.parse(input);
-  REQUIRE(parsed.size() == 2);
+  REQUIRE(parsed.size() == 3);
 }
 
 TEST_CASE("Populate Using HighScore File", "[highscore]") {
@@ -29,8 +29,8 @@ TEST_CASE("Populate Using HighScore File", "[highscore]") {
   auto input = file.read_all();
   REQUIRE(!input.empty());
   auto parsed = highScore.parse(input);
-  REQUIRE(parsed.size() == 2);
+  REQUIRE(parsed.size() == 3);
   highScore.populate(std::move(parsed));
-  REQUIRE(highScore.top() == 20000);
-  REQUIRE(highScore.num_players() == 2);
+  REQUIRE(highScore.top() == 2124);
+  REQUIRE(highScore.num_players() == 3);
 }
