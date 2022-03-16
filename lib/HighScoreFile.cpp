@@ -13,7 +13,8 @@ HighScoreFile::~HighScoreFile() {
 }
 
 HighScoreFile::HighScoreFile(HighScoreFile && other) noexcept {
-  std::swap(file, other.file);
+  using std::swap;
+  swap(file, other.file);
 }
 
 std::string HighScoreFile::load() {
