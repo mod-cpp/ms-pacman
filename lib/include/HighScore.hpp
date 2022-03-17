@@ -3,7 +3,9 @@
 #include "HighScoreFile.hpp"
 
 struct player {
-  player(std::string name, int score) : name(std::move(name)), score(score) {}
+  player(std::string name, int score)
+    : name(std::move(name)),
+      score(score) {}
   std::string name;
   int score = 0;
 };

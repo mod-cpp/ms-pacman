@@ -8,7 +8,7 @@
 
 HighScoreFile::HighScoreFile(std::string name)
   : filename(std::move(name)),
-    file(std::fopen( filename.c_str(), "r" )) {
+    file(std::fopen(filename.c_str(), "r")) {
 }
 
 HighScoreFile::~HighScoreFile() {
@@ -26,10 +26,14 @@ std::string HighScoreFile::read_all() {
   std::string input;
   input.reserve(get_size());
 
-  auto done = [&](auto c) { return std::ferror(file) || (c == EOF); };
-  auto next = [&]() { return std::fgetc(file); };
+  auto done = [&](auto c) {
+    return std::ferror(file) || (c == EOF);
+  };
+  auto next = [&]() {
+    return std::fgetc(file);
+  };
 
-  for (int c = next(); !done(c); c = next())  {
+  for (int c = next(); !done(c); c = next()) {
     input.push_back(static_cast<char>(c));
   }
 

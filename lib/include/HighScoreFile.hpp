@@ -10,10 +10,10 @@ public:
   ~HighScoreFile();
 
   HighScoreFile(const HighScoreFile &) = delete;
-  HighScoreFile& operator=(const HighScoreFile &) = delete;
+  HighScoreFile & operator=(const HighScoreFile &) = delete;
 
-  HighScoreFile(HighScoreFile&& other) noexcept;
-  HighScoreFile& operator=(HighScoreFile &&) = delete;
+  HighScoreFile(HighScoreFile && other) noexcept;
+  HighScoreFile & operator=(HighScoreFile &&) = delete;
 
   std::string read_all();
 
@@ -21,6 +21,6 @@ public:
 
 private:
   std::string filename;
-  std::FILE* file = nullptr;
+  std::FILE * file = nullptr;
   size_t get_size() const;
 };
