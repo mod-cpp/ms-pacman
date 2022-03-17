@@ -35,6 +35,8 @@ TEST_CASE("Populate Using HighScore File", "[highscore]") {
   REQUIRE(highScore.num_players() == 3);
 }
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "bugprone-use-after-move"
 TEST_CASE("Transfer ownership of HighScore File", "[highscore]") {
   HighScore highScore;
   HighScoreFile file("highscore.txt");
@@ -42,3 +44,4 @@ TEST_CASE("Transfer ownership of HighScore File", "[highscore]") {
   highScore.initialize(std::move(file));
   REQUIRE(!file.is_valid());
 }
+#pragma clang diagnostic pop
