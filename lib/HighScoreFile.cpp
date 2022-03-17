@@ -1,5 +1,6 @@
 #include "HighScoreFile.hpp"
 
+#include <cassert>
 #include <cstdio>
 #include <filesystem>
 #include <system_error>
@@ -18,6 +19,7 @@ HighScoreFile::~HighScoreFile() {
 HighScoreFile::HighScoreFile(HighScoreFile && other) noexcept {
   using std::swap;
   swap(file, other.file);
+  assert(other.file == nullptr);
 }
 
 std::string HighScoreFile::read_all() {
@@ -42,4 +44,8 @@ size_t HighScoreFile::get_size() const {
   std::error_code ec;
   auto file_size = std::filesystem::file_size(filename, ec);
   return ec ? 0 : file_size;
+}
+
+bool HighScoreFile::is_valid() const {
+  return file != nullptr;
 }

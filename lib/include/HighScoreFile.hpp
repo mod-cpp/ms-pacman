@@ -17,6 +17,8 @@ public:
 
   std::string read_all();
 
+  bool is_valid() const;
+
 private:
   std::string filename;
   std::FILE* file = nullptr;
