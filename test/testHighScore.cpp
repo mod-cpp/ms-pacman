@@ -34,3 +34,11 @@ TEST_CASE("Populate Using HighScore File", "[highscore]") {
   REQUIRE(highScore.top() == 2124);
   REQUIRE(highScore.num_players() == 3);
 }
+
+TEST_CASE("Transfer ownership of HighScore File", "[highscore]") {
+  HighScore highScore;
+  HighScoreFile file("highscore.txt");
+  REQUIRE(file.is_valid());
+  highScore.initialize(std::move(file));
+  REQUIRE(!file.is_valid());
+}

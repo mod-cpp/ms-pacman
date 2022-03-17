@@ -18,6 +18,8 @@ public:
 
   size_t num_players() const;
 
+  void initialize(HighScoreFile file);
+
 private:
   std::vector<player> high_scores;
 };
