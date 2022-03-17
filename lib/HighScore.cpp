@@ -42,5 +42,5 @@ size_t HighScore::num_players() const {
   return high_scores.size();
 }
 
-void HighScore::initialize(HighScoreFile file) {
+void HighScore::initialize(HighScoreFile) {
 }
