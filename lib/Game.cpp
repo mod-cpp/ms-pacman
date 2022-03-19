@@ -1,6 +1,7 @@
 #include "Game.hpp"
 #include "GameState.hpp"
-
+#include "HighScore.hpp"
+#include "User.hpp"
 #include <chrono>
 
 namespace ms_pacman {
@@ -11,6 +12,7 @@ void Game::run() {
   const std::chrono::milliseconds delta_time(1000 / 60);
   std::chrono::milliseconds accumulator(0);
   auto current_time = std::chrono::system_clock::now();
+  int highScore = loadBestScore();
 
   while (true) {
 
@@ -18,6 +20,8 @@ void Game::run() {
       gameState.increaseLevel();
       loadLevel();
     } else if (gameState.isGameOver()) {
+      highScore = std::max(highScore, gameState.score.points);
+      saveScore(gameState.score.points);
       gameState.restartGame();
       loadLevel();
     }
@@ -37,7 +41,7 @@ void Game::run() {
       accumulator -= delta_time;
     }
 
-    canvas.render(gameState);
+    canvas.render(gameState, highScore);
   }
 }
 
@@ -71,6 +75,29 @@ void Game::processEvents(InputState & inputState) {
   inputState.up = isKeyPressed(sf::Keyboard::Key::Up);
   inputState.left = isKeyPressed(sf::Keyboard::Key::Left);
   inputState.right = isKeyPressed(sf::Keyboard::Key::Right);
+}
+
+static HighScoreFile loadHighScoreFile() {
+  return HighScoreFile("highscore.txt");
+}
+
+int Game::loadBestScore() const {
+  HighScore scores;
+  scores.initialize(loadHighScoreFile());
+  return scores.top();
+}
+
+void Game::saveScore(int score) const {
+  if (gameState.score.points == 0)
+    return;
+  HighScore scores;
+  scores.initialize(loadHighScoreFile());
+  scores.insert(userlogin(), score);
+  scores.save("highscore.txt");
+}
+
+Game::~Game() {
+  saveScore(gameState.score.points);
 }
 
 } // namespace ms_pacman

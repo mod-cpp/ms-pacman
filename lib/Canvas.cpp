@@ -35,13 +35,14 @@ void Canvas::loadMaze(std::string_view path) {
   maze_texture = loadTexture(path);
 }
 
-void Canvas::render(const GameState & gameState) {
+void Canvas::render(const GameState & gameState, int highScore) {
   clear();
 
   renderMaze();
   render(gameState.board);
   render(gameState.ghosts);
   render(gameState.score);
+  renderHighScore(highScore);
   render(gameState.currentFruit, gameState.score.eatenFruits);
   render(gameState.msPacMan);
 
@@ -188,6 +189,22 @@ void Canvas::renderScore(int score) {
   text.setFont(game_font);
   text.setString(fmt::format("SCORE\n{}", score));
   text.setCharacterSize(40);
+  text.setFillColor(sf::Color::White);
+  window.draw(text);
+}
+
+void Canvas::renderHighScore(int highScore) {
+  if (highScore == 0)
+    return;
+
+  const int x = (LEFT_MARGIN + TARGET_MAZE_WIDTH + LEFT_MARGIN);
+  const int y = (TOP_MARGIN * 2) + 150;
+
+  sf::Text text;
+  text.setPosition(x, y);
+  text.setFont(game_font);
+  text.setString(fmt::format("HIGH SCORE\n{}", highScore));
+  text.setCharacterSize(30);
   text.setFillColor(sf::Color::White);
   window.draw(text);
 }

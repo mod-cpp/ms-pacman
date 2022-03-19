@@ -9,6 +9,7 @@ namespace ms_pacman {
 class Game {
 public:
   void run();
+  ~Game();
 
 private:
   Canvas canvas;
@@ -16,6 +17,9 @@ private:
 
   void loadLevel();
   void processEvents(InputState & inputState);
+
+  int loadBestScore() const;
+  void saveScore(int) const;
 };
 
 } // namespace ms_pacman

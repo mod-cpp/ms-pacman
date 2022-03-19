@@ -17,10 +17,13 @@ public:
   int top() const;
   ParsedInput parse(std::string input);
   void populate(std::vector<std::tuple<std::string, int>> list);
+  void insert(std::string, int);
 
   size_t num_players() const;
 
   void initialize(HighScoreFile file);
+
+  void save(std::string file);
 
 private:
   std::vector<player> high_scores;

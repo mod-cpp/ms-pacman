@@ -31,7 +31,7 @@ class Canvas {
 public:
   Canvas();
   void loadMaze(std::string_view path);
-  void render(const GameState & gameState);
+  void render(const GameState & gameState, int highScore);
   std::optional<sf::Event> pollEvent();
 
 private:
@@ -68,6 +68,7 @@ private:
   void render(const GenericFruit & fruit, std::span<const GenericFruit> eatenFruits);
 
   void renderScore(int score);
+  void renderHighScore(int score);
   void renderLives(int lives);
 
   template<typename Object>
