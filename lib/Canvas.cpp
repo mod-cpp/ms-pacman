@@ -35,14 +35,14 @@ void Canvas::loadMaze(std::string_view path) {
   maze_texture = loadTexture(path);
 }
 
-void Canvas::render(const GameState & gameState, int highScore) {
+void Canvas::render(const GameState & gameState) {
   clear();
 
   renderMaze();
   render(gameState.board);
   render(gameState.ghosts);
   render(gameState.score);
-  renderHighScore(highScore);
+  renderHighScore(gameState.highScore.top());
   render(gameState.currentFruit, gameState.score.eatenFruits);
   render(gameState.msPacMan);
 

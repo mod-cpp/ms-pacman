@@ -5,6 +5,10 @@ namespace ms_pacman {
 constexpr int NORMAL_PELLET_POINTS = 10;
 constexpr int POWER_PELLET_POINTS = 50;
 
+GameState::~GameState() {
+  highScore.saveScore(score.points);
+}
+
 void GameState::setGameOver() {
   game_over = true;
 }
@@ -15,6 +19,7 @@ bool GameState::isGameOver() const {
 
 void GameState::restartGame() {
   levelNum = 0;
+  highScore.saveScore(score.points);
   loadLevel();
   game_over = false;
 }

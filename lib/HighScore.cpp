@@ -1,5 +1,6 @@
 #include "HighScore.hpp"
 #include "HighScoreFile.hpp"
+#include "User.hpp"
 
 #include <algorithm>
 #include <charconv>
@@ -14,6 +15,12 @@ static std::tuple<std::string, int> split_line(std::string_view line) {
   int score{};
   std::from_chars(name.data(), name.data() + name.size(), score);
   return { std::string(line.substr(0, index)), score };
+}
+
+namespace ms_pacman {
+
+HighScore::HighScore(std::string save_filename) : filename(save_filename) {
+  initialize(HighScoreFile(filename));
 }
 
 int HighScore::top() const {
@@ -64,11 +71,24 @@ void HighScore::initialize(HighScoreFile file) {
   populate(data);
 }
 
-void HighScore::save(std::string save) {
-  std::unique_ptr<FILE, decltype(&fclose)> file(fopen(save.c_str(), "w"), &fclose);
+void HighScore::save() const {
+  std::unique_ptr<FILE, decltype(&fclose)> file(fopen(filename.c_str(), "w"), &fclose);
   if (!file)
     return;
   for (const auto & [name, score] : high_scores) {
     fmt::print(file.get(), "{},{}\n", name, score);
   }
+}
+
+void HighScore::saveScore(int score) {
+  if (score == 0)
+    return;
+  insert(userlogin(), score);
+  save();
+}
+
+HighScore::~HighScore() {
+  save();
+}
+
 }

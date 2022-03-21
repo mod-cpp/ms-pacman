@@ -31,7 +31,7 @@ class Canvas {
 public:
   Canvas();
   void loadMaze(std::string_view path);
-  void render(const GameState & gameState, int highScore);
+  void render(const GameState & gameState);
   std::optional<sf::Event> pollEvent();
 
 private:
