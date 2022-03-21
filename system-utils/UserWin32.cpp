@@ -10,6 +10,7 @@ std::string userlogin() {
     return {};
   std::string s(size, 0);
   GetUserNameA(s.data(), &size);
+  s.resize(size - 1);
   return s;
 }
 
