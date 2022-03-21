@@ -29,7 +29,7 @@ int HighScore::top() const {
   auto it = std::max_element(high_scores.begin(),
                              high_scores.end(),
                              [](const auto & player_one, const auto & player_two) {
-                               return player_one.second.score > player_two.second.score;
+                               return player_one.second.score < player_two.second.score;
                              });
   auto [name, player] = *it;
   return player.score;
