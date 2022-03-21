@@ -3,6 +3,7 @@
 
 namespace ms_pacman {
 std::string userlogin() {
-  return getlogin() ? getlogin() : "";
+  char * login = getlogin();
+  return login ? login : "";
 }
 } // namespace ms_pacman
