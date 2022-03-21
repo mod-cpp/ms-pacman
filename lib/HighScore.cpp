@@ -8,6 +8,7 @@
 #include <fmt/printf.h>
 #include <memory>
 #include <sstream>
+#include <utility>
 
 static std::tuple<std::string, int> split_line(std::string_view line) {
   auto index = line.find(',');
@@ -19,7 +20,7 @@ static std::tuple<std::string, int> split_line(std::string_view line) {
 
 namespace ms_pacman {
 
-HighScore::HighScore(std::string save_filename) : filename(save_filename) {
+HighScore::HighScore(std::string save_filename) : filename(std::move(save_filename)) {
   initialize(HighScoreFile(filename));
 }
 
@@ -35,7 +36,7 @@ int HighScore::top() const {
   return player.score;
 }
 
-void HighScore::populate(std::vector<std::tuple<std::string, int>> list) {
+void HighScore::populate(const std::vector<std::tuple<std::string, int>>& list) {
   for (auto && [name, score] : list)
     high_scores.emplace(name, player{ name, score });
 }
@@ -44,7 +45,7 @@ void HighScore::insert(const std::string& name, int score) {
   high_scores.insert_or_assign(name, player{ name, score });
 }
 
-ParsedInput HighScore::parse(std::string input) const {
+ParsedInput HighScore::parse(const std::string& input) const {
   std::vector<std::tuple<std::string, int>> parsed_input;
   size_t num_lines = 0;
   auto stream = std::stringstream(input);

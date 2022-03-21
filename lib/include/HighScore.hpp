@@ -21,8 +21,8 @@ public:
   explicit HighScore(std::string save_filename);
   ~HighScore();
   int top() const;
-  ParsedInput parse(std::string input) const;
-  void populate(std::vector<std::tuple<std::string, int>> list);
+  ParsedInput parse(const std::string& input) const;
+  void populate(const std::vector<std::tuple<std::string, int>>& list);
   void insert(const std::string&, int);
 
   size_t num_players() const;
