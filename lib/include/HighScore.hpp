@@ -2,6 +2,8 @@
 
 #include "HighScoreFile.hpp"
 
+#include <unordered_map>
+
 namespace ms_pacman {
 
 struct player {
@@ -19,9 +21,9 @@ public:
   explicit HighScore(std::string save_filename);
   ~HighScore();
   int top() const;
-  ParsedInput parse(std::string input);
+  ParsedInput parse(std::string input) const;
   void populate(std::vector<std::tuple<std::string, int>> list);
-  void insert(std::string, int);
+  void insert(const std::string&, int);
 
   size_t num_players() const;
 
@@ -32,7 +34,7 @@ public:
   void saveScore(int);
 
 private:
-  std::vector<player> high_scores;
+  std::unordered_map<std::string, player> high_scores;
   std::string filename;
 };
 

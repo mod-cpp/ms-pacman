@@ -26,31 +26,25 @@ HighScore::HighScore(std::string save_filename) : filename(save_filename) {
 int HighScore::top() const {
   if (high_scores.empty())
     return 0;
-  return high_scores.front().score;
+  auto it = std::max_element(high_scores.begin(),
+                             high_scores.end(),
+                             [](const auto & player_one, const auto & player_two) {
+                               return player_one.second.score > player_two.second.score;
+                             });
+  auto [name, player] = *it;
+  return player.score;
 }
 
 void HighScore::populate(std::vector<std::tuple<std::string, int>> list) {
   for (auto && [name, score] : list)
-    high_scores.emplace_back(name, score);
-  auto comp = [](const player & first, const player & second) {
-    return first.score > second.score;
-  };
-  std::sort(high_scores.begin(), high_scores.end(), comp);
+    high_scores.emplace(name, player{ name, score });
 }
 
-void HighScore::insert(std::string name, int score) {
-  auto comp = [](const player & first, const player & second) {
-    return first.score > second.score;
-  };
-  player p{ std::move(name), score };
-  high_scores.insert(std::lower_bound(high_scores.begin(),
-                                      high_scores.end(),
-                                      p,
-                                      comp),
-                     p);
+void HighScore::insert(const std::string& name, int score) {
+  high_scores.insert_or_assign(name, player{ name, score });
 }
 
-ParsedInput HighScore::parse(std::string input) {
+ParsedInput HighScore::parse(std::string input) const {
   std::vector<std::tuple<std::string, int>> parsed_input;
   size_t num_lines = 0;
   auto stream = std::stringstream(input);
@@ -75,8 +69,8 @@ void HighScore::save() const {
   std::unique_ptr<FILE, decltype(&fclose)> file(fopen(filename.c_str(), "w"), &fclose);
   if (!file)
     return;
-  for (const auto & [name, score] : high_scores) {
-    fmt::print(file.get(), "{},{}\n", name, score);
+  for (const auto & [name, player] : high_scores) {
+    fmt::print(file.get(), "{},{}\n", name, player.score);
   }
 }
 
