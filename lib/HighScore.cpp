@@ -1,9 +1,10 @@
 #include "HighScore.hpp"
 #include "HighScoreFile.hpp"
-#include "fmt/printf.h"
+
 #include <algorithm>
 #include <charconv>
 #include <cstdlib>
+#include <fmt/printf.h>
 #include <memory>
 #include <sstream>
 
