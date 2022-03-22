@@ -4,6 +4,8 @@
 
 #include "GameState.hpp"
 #include "Position.hpp"
+#include "concepts.hpp"
+
 #include <optional>
 #include <span>
 
