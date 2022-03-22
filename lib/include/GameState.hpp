@@ -8,6 +8,7 @@
 #include "Level.hpp"
 #include "MsPacMan.hpp"
 #include "Score.hpp"
+#include "HighScore.hpp"
 
 namespace ms_pacman {
 
@@ -16,6 +17,7 @@ constexpr int GHOST_POINTS = 200;
 using Ghosts = std::tuple<Blinky, Pinky, Inky, Clyde>;
 
 struct GameState {
+  ~GameState();
   void step(std::chrono::milliseconds delta);
 
   Ghosts ghosts;
@@ -27,6 +29,7 @@ struct GameState {
   DefaultBoard board;
   bool game_over = false;
   Score score;
+  HighScore highScore {"highscore.txt"};
   std::chrono::milliseconds timeSinceDeath{};
 
   template<typename Ghost>

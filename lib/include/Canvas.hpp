@@ -68,6 +68,7 @@ private:
   void render(const GenericFruit & fruit, std::span<const GenericFruit> eatenFruits);
 
   void renderScore(int score);
+  void renderHighScore(int score);
   void renderLives(int lives);
 
   template<typename Object>

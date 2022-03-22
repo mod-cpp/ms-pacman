@@ -1,6 +1,5 @@
 #include "Game.hpp"
 #include "GameState.hpp"
-
 #include <chrono>
 
 namespace ms_pacman {
