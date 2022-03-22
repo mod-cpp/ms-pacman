@@ -52,19 +52,19 @@ void Canvas::render(const GameState & gameState) {
   renderWindow();
 }
 
+std::optional<sf::Event> Canvas::pollEvent() {
+  sf::Event event{};
+  if (window.pollEvent(event))
+    return event;
+  return std::nullopt;
+}
+
 void Canvas::clear() {
   window.clear(sf::Color::Black);
 }
 
 void Canvas::renderWindow() {
   window.display();
-}
-
-std::optional<sf::Event> Canvas::pollEvent() {
-  sf::Event event{};
-  if (window.pollEvent(event))
-    return event;
-  return std::nullopt;
 }
 
 void Canvas::renderMaze() {
@@ -78,6 +78,34 @@ void Canvas::renderMaze() {
   maze.setScale(MAZE_SCALE_UP, MAZE_SCALE_UP);
   maze.setPosition(LEFT_MARGIN, TOP_MARGIN);
   window.draw(maze);
+}
+
+void Canvas::renderGameOver() {
+  const int x = (LEFT_MARGIN + TARGET_MAZE_WIDTH / 2);
+  const int y = (TOP_MARGIN + TARGET_MAZE_HEIGHT / 2 + 50);
+
+  sf::Text text;
+  text.setPosition(x, y);
+  text.setFont(game_font);
+  text.setString(fmt::format("GAME OVER!"));
+  text.setCharacterSize(40);
+  text.setFillColor(sf::Color::Red);
+  text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
+  window.draw(text);
+}
+
+void Canvas::renderReady() {
+  const int x = (LEFT_MARGIN + TARGET_MAZE_WIDTH / 2);
+  const int y = (TOP_MARGIN + TARGET_MAZE_HEIGHT / 2 + 50);
+
+  sf::Text text;
+  text.setPosition(x, y);
+  text.setFont(game_font);
+  text.setString(fmt::format("Ready!"));
+  text.setCharacterSize(40);
+  text.setFillColor(sf::Color::Yellow);
+  text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
+  window.draw(text);
 }
 
 void Canvas::render(const Ghosts & ghosts) {
@@ -149,34 +177,6 @@ void Canvas::render(const Score & score) {
   if (score.lives == 0) {
     renderGameOver();
   }
-}
-
-void Canvas::renderGameOver() {
-  const int x = (LEFT_MARGIN + TARGET_MAZE_WIDTH / 2);
-  const int y = (TOP_MARGIN + TARGET_MAZE_HEIGHT / 2 + 50);
-
-  sf::Text text;
-  text.setPosition(x, y);
-  text.setFont(game_font);
-  text.setString(fmt::format("GAME OVER!"));
-  text.setCharacterSize(40);
-  text.setFillColor(sf::Color::Red);
-  text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
-  window.draw(text);
-}
-
-void Canvas::renderReady() {
-  const int x = (LEFT_MARGIN + TARGET_MAZE_WIDTH / 2);
-  const int y = (TOP_MARGIN + TARGET_MAZE_HEIGHT / 2 + 50);
-
-  sf::Text text;
-  text.setPosition(x, y);
-  text.setFont(game_font);
-  text.setString(fmt::format("Ready!"));
-  text.setCharacterSize(40);
-  text.setFillColor(sf::Color::Yellow);
-  text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
-  window.draw(text);
 }
 
 void Canvas::renderScore(int score) {

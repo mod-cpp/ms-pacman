@@ -50,10 +50,11 @@ private:
   void clear();
   void renderWindow();
   void renderMaze();
-  void render(const Ghosts & ghosts);
-  void render(const Score & score);
   void renderGameOver();
   void renderReady();
+
+  void render(const Ghosts & ghosts);
+  void render(const Score & score);
 
   template<positioned_sprite T>
   void render(const T & object) {
