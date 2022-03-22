@@ -63,7 +63,7 @@ private:
     render(sprite, pos);
   }
 
-  void renderPellets(const DefaultBoard & board);
+  void render(const DefaultBoard & board);
 
   void render(const GenericFruit & fruit, std::span<const GenericFruit> eatenFruits);
 

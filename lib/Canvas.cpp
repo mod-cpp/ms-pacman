@@ -39,7 +39,7 @@ void Canvas::render(const GameState & gameState) {
   clear();
 
   renderMaze();
-  renderPellets(gameState.board);
+  render(gameState.board);
   render(gameState.ghosts);
   render(gameState.score);
   render(gameState.currentFruit, gameState.score.eatenFruits);
@@ -116,7 +116,7 @@ void Canvas::render(const Ghosts & ghosts) {
     ghosts);
 }
 
-void Canvas::renderPellets(const DefaultBoard & board) {
+void Canvas::render(const DefaultBoard & board) {
   for (std::size_t x = 0; x < COLUMNS; x++) {
     for (std::size_t y = 0; y < ROWS; y++) {
       const BoardCell & cell = board[y][x];
