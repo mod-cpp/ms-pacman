@@ -1,11 +1,13 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-
 #include "GameState.hpp"
 #include "Position.hpp"
+
+#include <concepts>
 #include <optional>
 #include <span>
+
+#include <SFML/Graphics.hpp>
 
 namespace ms_pacman {
 
