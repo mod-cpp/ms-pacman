@@ -12,6 +12,21 @@ namespace ms_pacman {
 using Rect = sf::Rect<int>;
 using Sprite = sf::Sprite;
 
+template<typename T>
+concept has_position =
+  requires(const T & const_object) {
+  { const_object.position() } -> std::same_as<Position>;
+};
+
+template<typename T>
+concept is_sprite =
+  requires(const T & const_object) {
+  { const_object.currentSprite() };
+};
+
+template<typename T>
+concept positioned_sprite = has_position<T> && is_sprite<T>;
+
 class Canvas {
 public:
   Canvas();
@@ -36,15 +51,14 @@ private:
   void renderWindow();
   void renderMaze();
   void render(const Ghosts & ghosts);
-  void render(const MsPacMan & pac_man);
   void render(const Score & score);
   void renderGameOver();
   void renderReady();
 
-  template<typename Ghost>
-  void renderGhost(const Ghost & ghost) {
-    Sprite sprite = getSprite(ghost.currentSprite());
-    const auto & pos = ghost.position();
+  template<positioned_sprite T>
+  void render(const T & object) {
+    Sprite sprite = getSprite(object.currentSprite());
+    const auto & pos = object.position();
     render(sprite, pos);
   }
 

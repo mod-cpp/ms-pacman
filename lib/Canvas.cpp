@@ -83,7 +83,7 @@ void Canvas::renderMaze() {
 void Canvas::render(const Ghosts & ghosts) {
   std::apply(
     [this](const auto &... ghost) {
-      (renderGhost(ghost), ...);
+      (render(ghost), ...);
     },
     ghosts);
 }
@@ -140,12 +140,6 @@ void Canvas::render(const GenericFruit & fruit, std::span<const GenericFruit> ea
   }
 
   render_fruit(position, sprite);
-}
-
-void Canvas::render(const MsPacMan & pac_man) {
-  Sprite pacmanSprite = getSprite(pac_man.currentSprite());
-  const auto & pos = pac_man.position();
-  render(pacmanSprite, pos);
 }
 
 void Canvas::render(const Score & score) {
