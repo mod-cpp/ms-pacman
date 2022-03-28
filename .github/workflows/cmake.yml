@@ -47,9 +47,10 @@ jobs:
         cache-name: vcpkg-modules
       with:
         path: |
+          /home/runner/.cache/vcpkg
           ${{runner.workspace}}/build/vcpkg_installed
           ${{runner.workspace}}/build/_deps
-        key: ${{ matrix.configurations.os }}-${{ matrix.cmake-build-type }}-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
+        key: ${{ matrix.configurations.os }}-${{ matrix.cmake-build-type }}-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}-2
 
     - name: Fix Path on Ubuntu
       if: matrix.configurations.os == 'ubuntu-20.04'
