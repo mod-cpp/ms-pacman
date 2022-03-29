@@ -37,7 +37,7 @@ public:
 
   // TODO: for C++20 use consteval
   constexpr GridPosition sprite() const {
-    constexpr auto ret = []() {
+    constexpr auto ret = []() constexpr {
       switch (Type) {
         case FruitType::Cherry: return Atlas::fruit_cherry;
         case FruitType::Strawberry: return Atlas::fruit_strawberry;
