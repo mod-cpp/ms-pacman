@@ -80,9 +80,6 @@ jobs:
       if: matrix.configurations.os == 'ubuntu-20.04'
       run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev clang-12 make ninja-build cmake
 
-#    - name: Create Build Environment
-#      run: cmake -E make_directory ${{runner.workspace}}/build
-
     - name: Configure CMake
       shell: bash
       run: cmake --preset ${{ matrix.configurations.config-preset }} -DCMAKE_BUILD_TYPE=${{ matrix.cmake-build-type }}
@@ -96,5 +93,3 @@ jobs:
     - name: Test
       shell: bash
       run: ctest --preset ${{ matrix.configurations.test-preset }} -C ${{ matrix.cmake-build-type }} -VV
-#      env:
-#        CTEST_OUTPUT_ON_FAILURE: 1
