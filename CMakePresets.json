@@ -50,7 +50,7 @@
             "generator": "Ninja",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_CXX_COMPILER": "g++"
+                "CMAKE_CXX_COMPILER": "g++-10"
             },
             "vendor": {
                 "microsoft.com/VisualStudioSettings/CMake/1.0": {
