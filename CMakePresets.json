@@ -21,7 +21,7 @@
         {
             "name": "x64-windows",
             "description": "Sets x64 arch, compilers, build type",
-            "generator": "NMake Makefiles",
+            "generator": "",
             "inherits": "base",
             "architecture": {
                 "value": "x64",
