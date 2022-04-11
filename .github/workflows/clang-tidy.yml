@@ -1,46 +1,61 @@
 name: Clang Tidy
 
+env:
+  VCPKG_BINARY_SOURCES: 'clear;nuget,GitHub,readwrite'
+
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
+  workflow_dispatch:
+
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    name: "${{ matrix.configurations.name }} | ${{ matrix.configurations.config-preset }} | ${{ matrix.cmake-build-type }}"
+    runs-on: ${{ matrix.configurations.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        configurations:
+          - name: Ubuntu 20.04
+            os: ubuntu-20.04
+            config-preset: linux-clang
+            build-preset: linux-clang-build
+            test-preset: linux-clang-test
+        cmake-build-type: [Release]
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Create vcpkg build folder
-      run: |
-        mkdir -p build/vcpkg_installed
-        mkdir -p build/_deps
+      - name: Create vcpkg build folder
+        env:
+          vcpkg_project_root: ${{runner.workspace}}/ms-pacman/build/${{ matrix.configurations.config-preset }}
+        run: |
+          mkdir -p ${{ env.vcpkg_project_root }}/vcpkg_installed
+          mkdir -p ${{ env.vcpkg_project_root }}/_deps
 
-    - name: Cache vcpkg
-      uses: actions/cache@v2
-      env:
-        cache-name: vcpkg-modules
-      with:
-        path: |
-          ${{runner.workspace}}/build/vcpkg_installed
-          ${{runner.workspace}}/build/_deps
-        key: clang-tidy-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
+      - name: Cache vcpkg
+        uses: actions/cache@v2
+        env:
+          vcpkg_project_root: ${{runner.workspace}}/ms-pacman/build/${{ matrix.configurations.config-preset }}
+          cache-name: vcpkg-modules
+        with:
+          path: |
+            /home/runner/.cache/vcpkg
+            ${{ env.vcpkg_project_root }}/vcpkg_installed
+            ${{ env.vcpkg_project_root }}/_deps
+          key: ${{ matrix.configurations.os }}-${{ matrix.configurations.config-preset }}-${{ matrix.cmake-build-type }}-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
 
-    - name: Fix Path
-      run: echo "/home/runner/.local/bin" >> $GITHUB_PATH
+      - name: Install Linux dependencies
+        if: matrix.configurations.os == 'ubuntu-20.04'
+        run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev clang-12 make ninja-build cmake
 
-    - name: Install Linux dependencies
-      run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev make ninja-build cmake
-
-    - name: Install clang-tidy
-      run: sudo apt-get install clang-tidy
-
-    - name: Configure CMake
+      - name: Configure CMake
       working-directory: build
       run: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
 
-    - name: Run clang-tidy
-      working-directory: build
-      run: run-clang-tidy
+      - name: Run clang-tidy
+        working-directory: build
+        run: run-clang-tidy
