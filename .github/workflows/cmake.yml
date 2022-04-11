@@ -61,8 +61,8 @@ jobs:
       env:
         vcpkg_project_root: ${{runner.workspace}}/ms-pacman/build/${{ matrix.configurations.config-preset }}
       run: |
-        mkdir -p ${{env.vcpkg_project_root}}/vcpkg_installed
-        mkdir -p ${{env.vcpkg_project_root}}/_deps
+        mkdir -p ${{ env.vcpkg_project_root }}/vcpkg_installed
+        mkdir -p ${{ env.vcpkg_project_root }}/_deps
 
     - name: Cache vcpkg
       uses: actions/cache@v2
@@ -72,8 +72,8 @@ jobs:
       with:
         path: |
           /home/runner/.cache/vcpkg
-          ${{vcpkg_project_root}}/vcpkg_installed
-          ${{vcpkg_project_root}}/_deps
+          ${{ env.vcpkg_project_root }}/vcpkg_installed
+          ${{ env.vcpkg_project_root }}/_deps
         key: ${{ matrix.configurations.os }}-${{ matrix.configurations.config-preset }}-${{ matrix.cmake-build-type }}-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
 
     - name: Install Linux dependencies
