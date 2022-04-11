@@ -42,6 +42,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: turtlesec-no/get-ninja@1.0.0
 
     - name: Create vcpkg build folder
       run: |
