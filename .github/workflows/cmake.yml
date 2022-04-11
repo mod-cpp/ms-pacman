@@ -78,7 +78,7 @@ jobs:
       # Use a bash shell so we can use the same syntax for environment variable
       # access regardless of the host operating system
       shell: bash
-      run: cmake --preset ${{ matrix.configurations.preset }} $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=${{ matrix.cmake-build-type }}
+      run: cmake --preset ${{ matrix.configurations.preset }} -DCMAKE_BUILD_TYPE=${{ matrix.cmake-build-type }}
       env: ${{ matrix.configurations.cmake_env }}
 
     - name: Build
