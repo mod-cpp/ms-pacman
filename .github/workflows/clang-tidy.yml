@@ -53,8 +53,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev clang-12 make ninja-build cmake
 
     - name: Configure CMake
-      working-directory: build
-      run: cmake --preset ${{ matrix.configurations.config-preset }} -DCMAKE_BUILD_TYPE=${{ matrix.cmake-build-type }} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+      run: cmake --preset ${{ matrix.configurations.config-preset }} -DCMAKE_BUILD_TYPE=${{ matrix.cmake-build-type }} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
     - name: Run clang-tidy
       working-directory: build
