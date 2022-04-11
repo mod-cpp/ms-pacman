@@ -163,7 +163,7 @@
             ]
         },
         {
-            "name": "OSX test",
+            "name": "osx-test",
             "description": "Run tests on Mac",
             "configurePreset": "osx",
             "inherits": [
