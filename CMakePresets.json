@@ -21,7 +21,7 @@
         {
             "name": "x64-windows",
             "description": "Sets x64 arch, compilers, build type",
-            "generator": "Invalid",
+            "generator": "Visual Studio 17 2022",
             "inherits": "base",
             "architecture": {
                 "value": "x64",
