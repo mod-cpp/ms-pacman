@@ -66,7 +66,7 @@ jobs:
           /home/runner/.cache/vcpkg
           ${{runner.workspace}}/build/vcpkg_installed
           ${{runner.workspace}}/build/_deps
-        key: ${{ matrix.configurations.os }}-${{ matrix.configurations.preset }}-${{ matrix.cmake-build-type }}-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
+        key: ${{ matrix.configurations.os }}-${{ matrix.configurations.build-preset }}-${{ matrix.cmake-build-type }}-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
 
 #    - name: Fix Path on Ubuntu
 #      if: matrix.configurations.os == 'ubuntu-20.04'
