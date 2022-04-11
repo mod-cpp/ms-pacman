@@ -22,21 +22,21 @@ jobs:
         configurations:
           - name: Ubuntu 20.04
             os: ubuntu-20.04
-            preset: linux-clang
+            preset: linux-clang-build
             cmake_env:
               CC: clang-12
               CXX: clang++-12
           - name: Ubuntu 20.04
             os: ubuntu-20.04
-            preset: linux-gcc
+            preset: linux-gcc-build
             cmake_env: {}
           - name: Windows 2022
             os: windows-2022
-            preset: x64-windows
+            preset: windows-build
             cmake_env: {}
           - name: MacOS 11
             os: macos-11
-            preset: osx
+            preset: osx-build
             cmake_env: {}
         cmake-build-type: [Debug, Release]
 
