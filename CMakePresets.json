@@ -105,7 +105,7 @@
             "inheritConfigureEnvironment": true
         },
         {
-            "name": "windows-build",
+            "name": "x64-windows-build",
             "description": "Clean before build (--clean-first)",
             "configurePreset": "x64-windows",
             "inherits": "core-build"
@@ -137,7 +137,7 @@
             }
         },
         {
-            "name": "windows-tests",
+            "name": "x64-windows-test",
             "description": "Run tests on windows",
             "configurePreset": "x64-windows",
             "inherits": [
@@ -145,7 +145,7 @@
             ]
         },
         {
-            "name": "linux-test-gcc",
+            "name": "linux-gcc-test",
             "description": "Run tests on linux (GCC)",
             "configurePreset": "linux-gcc",
             "displayName": "linux-test",
@@ -154,7 +154,7 @@
             ]
         },
         {
-            "name": "linux-test-clang",
+            "name": "linux-clang-test",
             "description": "Run tests on linux (Clang)",
             "configurePreset": "linux-clang",
             "displayName": "linux-test",
