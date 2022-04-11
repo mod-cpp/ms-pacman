@@ -22,21 +22,25 @@ jobs:
         configurations:
           - name: Ubuntu 20.04
             os: ubuntu-20.04
-            preset: linux-clang-build
+            config-preset: linux-clang
+            build-preset: linux-clang-build
             cmake_env:
               CC: clang-12
               CXX: clang++-12
           - name: Ubuntu 20.04
             os: ubuntu-20.04
-            preset: linux-gcc-build
+            config-preset: linux-gcc
+            build-preset: linux-gcc-build
             cmake_env: {}
           - name: Windows 2022
             os: windows-2022
-            preset: windows-build
+            config-preset: x64-windows
+            build-preset: windows-build
             cmake_env: {}
           - name: MacOS 11
             os: macos-11
-            preset: osx-build
+            config-preset: osx
+            build-preset: osx-build
             cmake_env: {}
         cmake-build-type: [Debug, Release]
 
@@ -78,14 +82,14 @@ jobs:
       # Use a bash shell so we can use the same syntax for environment variable
       # access regardless of the host operating system
       shell: bash
-      run: cmake --preset ${{ matrix.configurations.preset }} -DCMAKE_BUILD_TYPE=${{ matrix.cmake-build-type }}
+      run: cmake --preset ${{ matrix.configurations.config-preset }} -DCMAKE_BUILD_TYPE=${{ matrix.cmake-build-type }}
       env: ${{ matrix.configurations.cmake_env }}
 
     - name: Build
       #working-directory: ${{runner.workspace}}/build
       shell: bash
       # Execute the build.  You can specify a specific target with "--target <NAME>"
-      run: cmake --build --preset ${{ matrix.configurations.preset }} --config ${{ matrix.cmake-build-type }}
+      run: cmake --build --preset ${{ matrix.configurations.build-preset }} --config ${{ matrix.cmake-build-type }}
       env: ${{ matrix.configurations.cmake_env }}
 
     - name: Test
