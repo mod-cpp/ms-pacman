@@ -3,7 +3,7 @@
 #include <cassert>
 #include <cmath>
 #include <limits>
-#include <type_traits>
+#include <concepts>
 
 namespace ms_pacman {
 
@@ -41,10 +41,6 @@ inline Position gridPositionToPosition(GridPosition pos) {
   return { double(pos.x), double(pos.y) };
 }
 
-constexpr bool operator==(const GridPosition & a, const GridPosition & b) {
-  return a.x == b.x && a.y == b.y;
-}
-
 template<typename T>
 inline double positionDistance(const T & a, const T & b) {
   const double first = double(a.x) - double(b.x);
@@ -52,10 +48,19 @@ inline double positionDistance(const T & a, const T & b) {
   return std::sqrt((first * first) + (second * second));
 }
 
-inline bool operator==(const Position & a, const Position & b) {
-  // This is ok as a test unless x and y become very large.
-  constexpr double epsilon = std::numeric_limits<double>::epsilon();
-  return std::abs(a.x - b.x) <= epsilon && std::abs(a.y - b.y) <= epsilon;
+template<number T>
+bool operator==(const BasicPosition<T> & a,
+                const BasicPosition<T> & b) {
+  return a.x == b.x && a.y == b.y;
+}
+
+template<floating_point T>
+bool operator==(const BasicPosition<T> & a,
+                const BasicPosition<T> & b) {
+  constexpr double epsilon =
+    std::numeric_limits<double>::epsilon();
+  return std::abs(a.x - b.x) <= epsilon &&
+         std::abs(a.y - b.y) <= epsilon;
 }
 
 } // namespace ms_pacman
