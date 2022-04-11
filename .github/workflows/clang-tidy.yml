@@ -54,7 +54,7 @@ jobs:
 
     - name: Configure CMake
       working-directory: build
-      run: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+      run: cmake --preset ${{ matrix.configurations.config-preset }} -DCMAKE_BUILD_TYPE=${{ matrix.cmake-build-type }} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
 
     - name: Run clang-tidy
       working-directory: build
