@@ -29,33 +29,33 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-      - name: Create vcpkg build folder
-        env:
-          vcpkg_project_root: ${{runner.workspace}}/ms-pacman/build/${{ matrix.configurations.config-preset }}
-        run: |
-          mkdir -p ${{ env.vcpkg_project_root }}/vcpkg_installed
-          mkdir -p ${{ env.vcpkg_project_root }}/_deps
+    - name: Create vcpkg build folder
+      env:
+        vcpkg_project_root: ${{runner.workspace}}/ms-pacman/build/${{ matrix.configurations.config-preset }}
+      run: |
+        mkdir -p ${{ env.vcpkg_project_root }}/vcpkg_installed
+        mkdir -p ${{ env.vcpkg_project_root }}/_deps
 
-      - name: Cache vcpkg
-        uses: actions/cache@v2
-        env:
-          vcpkg_project_root: ${{runner.workspace}}/ms-pacman/build/${{ matrix.configurations.config-preset }}
-          cache-name: vcpkg-modules
-        with:
-          path: |
-            /home/runner/.cache/vcpkg
-            ${{ env.vcpkg_project_root }}/vcpkg_installed
-            ${{ env.vcpkg_project_root }}/_deps
-          key: ${{ matrix.configurations.os }}-${{ matrix.configurations.config-preset }}-${{ matrix.cmake-build-type }}-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
+    - name: Cache vcpkg
+      uses: actions/cache@v2
+      env:
+        vcpkg_project_root: ${{runner.workspace}}/ms-pacman/build/${{ matrix.configurations.config-preset }}
+        cache-name: vcpkg-modules
+      with:
+        path: |
+          /home/runner/.cache/vcpkg
+          ${{ env.vcpkg_project_root }}/vcpkg_installed
+          ${{ env.vcpkg_project_root }}/_deps
+        key: ${{ matrix.configurations.os }}-${{ matrix.configurations.config-preset }}-${{ matrix.cmake-build-type }}-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
 
-      - name: Install Linux dependencies
-        if: matrix.configurations.os == 'ubuntu-20.04'
-        run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev clang-12 make ninja-build cmake
+    - name: Install Linux dependencies
+      if: matrix.configurations.os == 'ubuntu-20.04'
+      run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev clang-12 make ninja-build cmake
 
-      - name: Configure CMake
+    - name: Configure CMake
       working-directory: build
       run: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
 
-      - name: Run clang-tidy
-        working-directory: build
-        run: run-clang-tidy
+    - name: Run clang-tidy
+      working-directory: build
+      run: run-clang-tidy
