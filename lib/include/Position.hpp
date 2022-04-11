@@ -54,7 +54,7 @@ bool operator==(const BasicPosition<T> & a,
   return a.x == b.x && a.y == b.y;
 }
 
-template<std::floating_point T>
+template<floating_point T>
 bool operator==(const BasicPosition<T> & a,
                 const BasicPosition<T> & b) {
   constexpr double epsilon =
