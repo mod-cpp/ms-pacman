@@ -21,7 +21,7 @@
         {
             "name": "x64-windows",
             "description": "Sets x64 arch, compilers, build type",
-            "generator": "",
+            "generator": "Invalid",
             "inherits": "base",
             "architecture": {
                 "value": "x64",
@@ -45,7 +45,7 @@
         },
         {
             "name": "linux-gcc",
-            "description": "Compile On linux with GCC",
+            "description": "Compile On Linux (GCC 10)",
             "inherits": "base",
             "generator": "Ninja",
             "cacheVariables": {
@@ -62,7 +62,7 @@
         },
         {
             "name": "linux-clang",
-            "description": "Compile On linux with GCC",
+            "description": "Compile On Linux (Clang)",
             "inherits": "base",
             "generator": "Ninja",
             "cacheVariables": {
@@ -81,7 +81,7 @@
         {
             "name": "osx",
             "generator": "Ninja",
-            "description": "Compile on osx",
+            "description": "Compile on macOS",
             "inherits": "base",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
@@ -138,7 +138,7 @@
         },
         {
             "name": "x64-windows-test",
-            "description": "Run tests on windows",
+            "description": "Run tests on Windows",
             "configurePreset": "x64-windows",
             "inherits": [
                 "core-tests"
@@ -146,7 +146,7 @@
         },
         {
             "name": "linux-gcc-test",
-            "description": "Run tests on linux (GCC)",
+            "description": "Run tests on Linux (GCC 10)",
             "configurePreset": "linux-gcc",
             "displayName": "linux-test",
             "inherits": [
@@ -155,7 +155,7 @@
         },
         {
             "name": "linux-clang-test",
-            "description": "Run tests on linux (Clang)",
+            "description": "Run tests on Linux (Clang)",
             "configurePreset": "linux-clang",
             "displayName": "linux-test",
             "inherits": [
@@ -164,7 +164,7 @@
         },
         {
             "name": "osx-test",
-            "description": "Run tests on Mac",
+            "description": "Run tests on macOS",
             "configurePreset": "osx",
             "inherits": [
                 "core-tests"
