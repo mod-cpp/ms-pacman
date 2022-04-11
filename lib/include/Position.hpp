@@ -7,8 +7,14 @@
 
 namespace ms_pacman {
 
+template <typename T >
+concept integral = std::is_integral_v<T>;
+
+template <typename T >
+concept floating_point = std::is_floating_point_v<T>;
+
 template<typename T>
-concept number = std::is_integral_v<T> || std::is_floating_point_v<T>;
+concept number = integral<T> || floating_point<T>;
 // This line should be:
 // concept number = std::integral<T> || std::floating_point<T>;
 // but this is not fully supported in AppleClang currently
