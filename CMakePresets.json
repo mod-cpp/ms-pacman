@@ -44,6 +44,31 @@
             }
         },
         {
+            "name": "x86-windows",
+            "description": "Sets x86 arch, compilers, build type",
+            "generator": "Visual Studio 17 2022",
+            "inherits": "base",
+            "architecture": {
+                "value": "x86",
+                "strategy": "external"
+            },
+            "toolset": {
+                "value": "host=x86",
+                "strategy": "external"
+            },
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_COMPILER": "cl"
+            },
+            "vendor": {
+                "microsoft.com/VisualStudioSettings/CMake/1.0": {
+                    "hostOS": [
+                        "Windows"
+                    ]
+                }
+            }
+        },
+        {
             "name": "linux-gcc",
             "description": "Compile On Linux (GCC 10)",
             "inherits": "base",
@@ -111,6 +136,12 @@
             "inherits": "core-build"
         },
         {
+            "name": "x86-windows-build",
+            "description": "Clean before build (--clean-first)",
+            "configurePreset": "x86-windows",
+            "inherits": "core-build"
+        },
+        {
             "name": "linux-gcc-build",
             "configurePreset": "linux-gcc",
             "inherits": "core-build"
@@ -140,6 +171,14 @@
             "name": "x64-windows-test",
             "description": "Run tests on Windows",
             "configurePreset": "x64-windows",
+            "inherits": [
+                "core-tests"
+            ]
+        },
+        {
+            "name": "x86-windows-test",
+            "description": "Run tests on Windows",
+            "configurePreset": "x86-windows",
             "inherits": [
                 "core-tests"
             ]

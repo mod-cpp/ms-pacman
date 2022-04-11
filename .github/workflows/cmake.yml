@@ -3,7 +3,6 @@ name: CMake
 env:
   VCPKG_BINARY_SOURCES: 'clear;nuget,GitHub,readwrite'
 
-
 on:
   push:
     branches: [ main ]
@@ -40,6 +39,12 @@ jobs:
             build-preset: x64-windows-build
             test-preset: x64-windows-test
             cmake_env: {}
+          - name: Windows 2022
+            os: windows-2022
+            config-preset: x86-windows
+            build-preset: x86-windows-build
+            test-preset: x86-windows-test
+            cmake_env: {}
           - name: MacOS 11
             os: macos-11
             config-preset: osx
@@ -68,39 +73,25 @@ jobs:
           ${{runner.workspace}}/build/_deps
         key: ${{ matrix.configurations.os }}-${{ matrix.configurations.build-preset }}-${{ matrix.cmake-build-type }}-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
 
-#    - name: Fix Path on Ubuntu
-#      if: matrix.configurations.os == 'ubuntu-20.04'
-#      run: echo "/home/runner/.local/bin" >> $GITHUB_PATH
-
     - name: Install Linux dependencies
       if: matrix.configurations.os == 'ubuntu-20.04'
       run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev clang-12 make ninja-build cmake
 
     - name: Create Build Environment
-      # Some projects don't allow in-source building, so create a separate build directory
-      # We'll use this as our working directory for all subsequent commands
       run: cmake -E make_directory ${{runner.workspace}}/build
 
     - name: Configure CMake
-      #working-directory: ${{runner.workspace}}/build
-      # Use a bash shell so we can use the same syntax for environment variable
-      # access regardless of the host operating system
       shell: bash
       run: cmake --preset ${{ matrix.configurations.config-preset }} -DCMAKE_BUILD_TYPE=${{ matrix.cmake-build-type }}
       env: ${{ matrix.configurations.cmake_env }}
 
     - name: Build
-      #working-directory: ${{runner.workspace}}/build
       shell: bash
-      # Execute the build.  You can specify a specific target with "--target <NAME>"
       run: cmake --build --preset ${{ matrix.configurations.build-preset }} --config ${{ matrix.cmake-build-type }}
       env: ${{ matrix.configurations.cmake_env }}
 
     - name: Test
-      #working-directory: ${{runner.workspace}}/build
       shell: bash
-      # Execute tests defined by the CMake configuration.
-      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest --preset ${{ matrix.configurations.test-preset }} -C ${{ matrix.cmake-build-type }}
       env:
         CTEST_OUTPUT_ON_FAILURE: 1
