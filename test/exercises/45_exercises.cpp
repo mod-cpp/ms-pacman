@@ -9,4 +9,4 @@ TEST_CASE("Exercise 451 : ", "[.][45]") {
   REQUIRE(true == false);
 }
 
-}; // namespace exercises_45
+} // namespace exercises_45

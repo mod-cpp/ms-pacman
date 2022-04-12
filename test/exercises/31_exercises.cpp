@@ -16,4 +16,4 @@ TEST_CASE("Exercise 312 : Distinguish between REQUIRE and CHECK in Catch2", "[.]
   CHECK(false == true);
 }
 
-}; // namespace exercises_31
+} // namespace exercises_31

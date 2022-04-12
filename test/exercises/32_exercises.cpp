@@ -39,4 +39,4 @@ TEST_CASE("Exercise 322 : Call to 'doThing' is ambiguous", "[.][32]") {
   // CHECK(doThing(42.0) == ReturnValue::Wrong);
 }
 
-}; // namespace exercises_32
+} // namespace exercises_32

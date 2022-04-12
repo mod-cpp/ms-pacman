@@ -44,4 +44,4 @@ TEST_CASE("Exercise 341 : Implement streaming operator as insert into the set", 
   int_set << 43;
   CHECK(int_set.size() == 2);
 }
-}; // namespace exercises_34
+} // namespace exercises_34

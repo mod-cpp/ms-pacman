@@ -34,4 +34,4 @@ TEST_CASE("Exercise 351 : using alias int_set", "[.][35]") {
   //  CHECK(set.size() == 1);
 }
 
-}; // namespace exercises_35
+} // namespace exercises_35

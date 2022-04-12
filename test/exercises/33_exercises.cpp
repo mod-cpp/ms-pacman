@@ -116,4 +116,4 @@ TEST_CASE("Exercise 337 : operator() as a custom member function", "[.][33]") {
   CHECK(!visit(other));
 }
 
-}; // namespace exercises_33
+} // namespace exercises_33
