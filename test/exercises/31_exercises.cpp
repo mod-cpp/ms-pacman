@@ -2,6 +2,8 @@
 
 // To enable a test remove [.] from the tags on the test
 
+namespace exercises_31 {
+
 // 31. Introduction
 
 // HINT: To enable a test remove [.] from the tags on the test
@@ -14,3 +16,5 @@ TEST_CASE("Exercise 312 : Distinguish between REQUIRE and CHECK in Catch2", "[.]
   CHECK(true == false);
   CHECK(false == true);
 }
+
+}; // namespace exercises_31

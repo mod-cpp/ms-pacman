@@ -1,8 +1,10 @@
 #include <catch2/catch.hpp>
 
+#include <vector>
+
 // To enable a test remove [.] from the tags on the test
 
-#include <vector>
+namespace exercises_32 {
 
 // 32. Overloading
 
@@ -37,3 +39,5 @@ TEST_CASE("Exercise 321 : Which overload will be called?", "[.][32]") {
 TEST_CASE("Exercise 322 : Call to 'doThing' is ambiguous", "[.][32]") {
   // CHECK(doThing(42.0) == ReturnValue::Wrong);
 }
+
+}; // namespace exercises_32

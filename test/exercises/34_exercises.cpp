@@ -2,7 +2,10 @@
 
 // To enable a test remove [.] from the tags on the test
 
-constexpr void unused(auto X) { (void) X; }
+namespace exercises_34 {
+constexpr void unused(auto X) {
+  (void)X;
+}
 
 // 34. Class templates, function templates, non-type parameters
 
@@ -14,7 +17,7 @@ public:
   }
 
   bool contains(const T & item) const {
-    return std::any_of(items.begin(), items.end(), [&item](T current){ return current == item; });
+    return std::any_of(items.begin(), items.end(), [&item](T current) { return current == item; });
   }
 
   void operator<<(const T & item) {
@@ -22,6 +25,7 @@ public:
     // Exercise 341
     // Hint: https://en.cppreference.com/w/cpp/container/vector/push_back
   }
+
 private:
   std::vector<T> items;
 };
@@ -35,7 +39,9 @@ TEST_CASE("Exercise 341 : Implement streaming operator as insert into the set", 
   int_set << 43;
   CHECK(int_set.size() == 2);
   int_set << 42;
-  CHECK(int_set.size() == 2);;
+  CHECK(int_set.size() == 2);
+  ;
   int_set << 43;
   CHECK(int_set.size() == 2);
 }
+}; // namespace exercises_34
