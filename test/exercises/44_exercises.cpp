@@ -2,6 +2,6 @@
 
 // 44. Concepts- Intermediate
 
-TEST_CASE("44 Demo", "[!shouldfail][44]") {
+TEST_CASE("44 Demo", "[.][44]") {
   REQUIRE(true == false);
 }

@@ -2,6 +2,6 @@
 
 // 31. Introduction
 
-TEST_CASE("31 Demo", "[!shouldfail][31]") {
+TEST_CASE("31 Demo", "[.][31]") {
   REQUIRE(true == false);
 }
