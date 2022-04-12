@@ -10,6 +10,7 @@ enum class ReturnValue {
   First,
   Second,
   Third,
+  Fourth,
   Wrong
 };
 
@@ -30,4 +31,9 @@ TEST_CASE("Exercise 321 : Which overload will be called?", "[.][32]") {
   CHECK(doThing(42) == ReturnValue::Wrong);
   CHECK(doThing(true) == ReturnValue::Wrong);
   CHECK(doThing({ 1, 2 }) == ReturnValue::Wrong);
+}
+
+// Uncomment check below and make a new overload to make the call un-ambiguous
+TEST_CASE("Exercise 322 : Call to 'doThing' is ambiguous", "[.][32]") {
+  // CHECK(doThing(42.0) == ReturnValue::Wrong);
 }
