@@ -78,3 +78,7 @@ ctest --test-dir build -C Debug
 * Enable it by checking the checkbox "Enable profile"
 * Click "Apply" and "OK"
 * (If CLion created a `cmake-build-debug` folder you can safely delete it, we will be using the `build` directory)
+
+## Exercise 311 : Enable a test and make it green
+
+## Exercise 312 : Distinguish between REQUIRE and CHECK in Catch2
