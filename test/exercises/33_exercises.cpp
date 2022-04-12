@@ -4,6 +4,6 @@
 
 // 33. Operators
 
-TEST_CASE("33 Demo", "[.][33]") {
+TEST_CASE("Exercise 331 : ", "[.][33]") {
   REQUIRE(true == false);
 }

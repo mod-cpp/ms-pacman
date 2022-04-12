@@ -4,6 +4,6 @@
 
 // 34. Class templates, function templates, non-type parameters
 
-TEST_CASE("34 Demo", "[.][34]") {
+TEST_CASE("Exercise 341 : ", "[.][34]") {
   REQUIRE(true == false);
 }

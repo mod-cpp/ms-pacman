@@ -4,6 +4,6 @@
 
 // 35. Aliases and and alias templates
 
-TEST_CASE("35 Demo", "[.][35]") {
+TEST_CASE("Exercise 351 : ", "[.][35]") {
   REQUIRE(true == false);
 }

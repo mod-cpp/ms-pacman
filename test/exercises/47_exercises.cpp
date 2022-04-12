@@ -4,6 +4,6 @@
 
 // 47. Safety
 
-TEST_CASE("47 Demo", "[.][47]") {
+TEST_CASE("Exercise 471 : ", "[.][47]") {
   REQUIRE(true == false);
 }

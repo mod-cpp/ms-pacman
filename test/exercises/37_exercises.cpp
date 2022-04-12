@@ -4,6 +4,6 @@
 
 // 37. std::tuple and structured bindings
 
-TEST_CASE("37 Demo", "[.][37]") {
+TEST_CASE("Exercise 371 : ", "[.][37]") {
   REQUIRE(true == false);
 }

@@ -4,6 +4,6 @@
 
 // 36. std::variant and std::visit
 
-TEST_CASE("36 Demo", "[.][36]") {
+TEST_CASE("Exercise 361 : ", "[.][36]") {
   REQUIRE(true == false);
 }

@@ -4,6 +4,6 @@
 
 // 43. Constexpr and Consteval
 
-TEST_CASE("43 Demo", "[.][43]") {
+TEST_CASE("Exercise 431 : ", "[.][43]") {
   REQUIRE(true == false);
 }

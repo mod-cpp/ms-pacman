@@ -4,6 +4,6 @@
 
 // 45. Special member functions, including Rule of Five/Zero
 
-TEST_CASE("45 Demo", "[.][45]") {
+TEST_CASE("Exercise 451 : ", "[.][45]") {
   REQUIRE(true == false);
 }
