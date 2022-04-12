@@ -30,7 +30,7 @@ jobs:
           /home/runner/.cache/vcpkg
           ${{ env.vcpkg_project_root }}/vcpkg_installed
           ${{ env.vcpkg_project_root }}/_deps
-        key: clang-tidy-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
+        key: clang-tidy-cache-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
 
     - name: Fix Path
       run: echo "/home/runner/.local/bin" >> $GITHUB_PATH
