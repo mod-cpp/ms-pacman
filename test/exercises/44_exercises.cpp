@@ -59,7 +59,7 @@ ReturnValue process(is_shape auto) {
 
 ReturnValue process(is_circle auto) {
   return ReturnValue::Second;
-};
+}
 
 ReturnValue process(is_red auto) {
   return ReturnValue::Third;
