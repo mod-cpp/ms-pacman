@@ -14,18 +14,22 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Create vcpkg build folder
+      env:
+        vcpkg_project_root: ${{runner.workspace}}/ms-pacman/build
       run: |
-        mkdir -p build/vcpkg_installed
-        mkdir -p build/_deps
+        mkdir -p ${{ env.vcpkg_project_root }}/vcpkg_installed
+        mkdir -p ${{ env.vcpkg_project_root }}/_deps
 
     - name: Cache vcpkg
       uses: actions/cache@v2
       env:
+        vcpkg_project_root: ${{runner.workspace}}/ms-pacman/build
         cache-name: vcpkg-modules
       with:
         path: |
-          ${{runner.workspace}}/build/vcpkg_installed
-          ${{runner.workspace}}/build/_deps
+          /home/runner/.cache/vcpkg
+          ${{ env.vcpkg_project_root }}/vcpkg_installed
+          ${{ env.vcpkg_project_root }}/_deps
         key: clang-tidy-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
 
     - name: Fix Path
