@@ -2,9 +2,8 @@
 
 // To enable a test remove [.] from the tags on the test
 
-namespace exercises_31 {
-
 // 31. Introduction
+namespace exercises_31 {
 
 // HINT: To enable a test remove [.] from the tags on the test
 TEST_CASE("Exercise 311 : Enable a test and make it green", "[.][31]") {

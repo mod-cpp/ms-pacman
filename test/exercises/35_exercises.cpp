@@ -2,9 +2,8 @@
 
 // To enable a test remove [.] from the tags on the test
 
-namespace exercises_35 {
-
 // 35. Aliases and alias templates
+namespace exercises_35 {
 
 template<typename T>
 class set {
@@ -27,12 +26,12 @@ private:
 };
 
 TEST_CASE("Exercise 351 : using alias int_set", "[.][35]") {
-//  int_set set;
-//  CHECK(set.size() == 0);
-//  set << 4;
-//  CHECK(set.size() == 1);
-//  set << 4;
-//  CHECK(set.size() == 1);
+  //  int_set set;
+  //  CHECK(set.size() == 0);
+  //  set << 4;
+  //  CHECK(set.size() == 1);
+  //  set << 4;
+  //  CHECK(set.size() == 1);
 }
 
 }; // namespace exercises_35

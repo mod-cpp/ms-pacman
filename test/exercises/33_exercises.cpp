@@ -2,9 +2,8 @@
 
 // To enable a test remove [.] from the tags on the test
 
-namespace exercises_33 {
-
 // 33. Operators
+namespace exercises_33 {
 
 TEST_CASE("Exercise 331 : operator== as a free function", "[.][33]") {
   struct Point {

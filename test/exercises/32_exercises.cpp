@@ -4,9 +4,8 @@
 
 // To enable a test remove [.] from the tags on the test
 
-namespace exercises_32 {
-
 // 32. Overloading
+namespace exercises_32 {
 
 enum class ReturnValue {
   First,

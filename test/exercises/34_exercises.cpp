@@ -2,12 +2,12 @@
 
 // To enable a test remove [.] from the tags on the test
 
+// 34. Class templates, function templates, non-type parameters
 namespace exercises_34 {
+
 constexpr void unused(auto X) {
   (void)X;
 }
-
-// 34. Class templates, function templates, non-type parameters
 
 template<typename T>
 class set {
