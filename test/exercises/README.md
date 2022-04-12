@@ -23,3 +23,8 @@
 * [46. Pragmatic introduction to move semantics and return value optimizations](46_exercises.md)
 * [47. Safety](47_exercises.md)
 * [48. Conclusion](48_exercises.md)
+
+## Extra
+
+* Exercise : Make a cheat code that gives you infinite lives
+* Exercise : Make fruits move
