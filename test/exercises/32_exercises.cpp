@@ -2,8 +2,32 @@
 
 // To enable a test remove [.] from the tags on the test
 
+#include <vector>
+
 // 32. Overloading
 
-TEST_CASE("32 Demo", "[.][32]") {
-  REQUIRE(true == false);
+enum class ReturnValue {
+  First,
+  Second,
+  Third,
+  Wrong
+};
+
+ReturnValue doThing(int) {
+  return ReturnValue::First;
+}
+
+ReturnValue doThing(bool) {
+  return ReturnValue::Second;
+}
+
+ReturnValue doThing(std::vector<int>) {
+  return ReturnValue::Third;
+}
+
+// Try to guess the right answer before testing it
+TEST_CASE("Exercise 321 : Which overload will be called?", "[.][32]") {
+  CHECK(doThing(42) == ReturnValue::Wrong);
+  CHECK(doThing(true) == ReturnValue::Wrong);
+  CHECK(doThing({ 1, 2 }) == ReturnValue::Wrong);
 }
