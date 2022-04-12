@@ -2,7 +2,7 @@
 
 # 31. Introduction
 
-## Exercise: Set up development environment
+## Exercise 310: Set up development environment
 
 ### Install tools
 
