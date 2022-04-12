@@ -1,7 +1,32 @@
+#define CATCH_CONFIG_EXTERNAL_INTERFACES
 #include <catch2/catch.hpp>
 
 #include "HighScore.hpp"
 #include "HighScoreFile.hpp"
+
+#include <iostream>
+#include <fstream>
+#include <cstdio>
+
+struct HighScoreListener : Catch::TestEventListenerBase {
+
+  using TestEventListenerBase::TestEventListenerBase; // inherit constructor
+
+  void testCaseStarting( Catch::TestCaseInfo const& ) override {
+    // Perform some setup before a test case is run
+    std::basic_ofstream<char> outputStream = std::ofstream("highscore.txt");
+    outputStream << "Corentin,1345\n";
+    outputStream << "Patricia,2124\n";
+    outputStream << "Ólafur,1337\n";
+  }
+
+  void testCaseEnded( Catch::TestCaseStats const& ) override {
+    // Tear-down after a test case is run
+    std::remove("highscore.txt");
+    std::remove("empty_highscore.txt");
+  }
+};
+CATCH_REGISTER_LISTENER(HighScoreListener)
 
 TEST_CASE("Empty HighScore has 0 top score", "[highscore]") {
   ms_pacman::HighScore highScore{"empty_highscore.txt"};
@@ -20,7 +45,7 @@ TEST_CASE("Check HighScore File", "[highscore]") {
   auto input = file.read_all();
   REQUIRE(!input.empty());
   auto parsed = highScore.parse(input);
-  REQUIRE(parsed.size() == 4);
+  REQUIRE(parsed.size() == 3);
 }
 
 TEST_CASE("Populate Using HighScore File", "[highscore]") {
@@ -29,10 +54,10 @@ TEST_CASE("Populate Using HighScore File", "[highscore]") {
   auto input = file.read_all();
   REQUIRE(!input.empty());
   auto parsed = highScore.parse(input);
-  REQUIRE(parsed.size() == 4);
+  REQUIRE(parsed.size() == 3);
   highScore.populate(std::move(parsed));
   REQUIRE(highScore.top() == 2124);
-  REQUIRE(highScore.num_players() == 4);
+  REQUIRE(highScore.num_players() == 3);
 }
 
 TEST_CASE("Transfer ownership of HighScore File", "[highscore]") {
