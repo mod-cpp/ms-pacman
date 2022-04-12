@@ -83,4 +83,4 @@ jobs:
 
     - name: Test
       shell: bash
-      run: ctest --preset ${{ matrix.configurations.test-preset }} -C ${{ matrix.cmake-build-type }} -VV
+      run: ctest --preset ${{ matrix.configurations.test-preset }} -C ${{ matrix.cmake-build-type }} --extra-verbose
