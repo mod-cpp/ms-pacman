@@ -4,3 +4,4 @@
 
 * Exercise : Make a cheat code that gives you infinite lives
 * Exercise : Make fruits move
+* [tests](test/README.md)
