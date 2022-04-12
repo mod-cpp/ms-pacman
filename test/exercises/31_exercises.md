@@ -53,8 +53,8 @@ brew install cmake ninja
 #### All Platforms, using VS Code
 
 ```bash
-git clone https://github.com/mod-cpp/pacman.git
-cd pacman
+git clone https://github.com/mod-cpp/ms-pacman.git
+cd ms-pacman
 code .
 ```
 
@@ -63,8 +63,8 @@ code .
 #### Commandline based build (Not used in this training)
 
 ```bash
-git clone https://github.com/mod-cpp/pacman.git
-cd pacman
+git clone https://github.com/mod-cpp/ms-pacman.git
+cd ms-pacman
 cmake -B build
 cmake --build build
 ctest --test-dir build -C Debug
