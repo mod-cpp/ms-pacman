@@ -28,9 +28,9 @@ TEST_CASE("Exercise 371 : structured binding of a C array", "[.][37]") {
 #ifndef ENABLE_TEST_371
   char chars[] = { 'h', 'e', 'y' }; // NOLINT
 
-  // TODO : use structured binding to get the characters in chars and put then in x,y,z
+  // Use structured binding to get the characters in chars and put then in x,y,z
 
-  // TODO : use the checks below to test it
+  // Use the checks below to test it
   static_assert(std::is_same_v<decltype(x), char>);
   CHECK(x == 'h');
   CHECK(y == 'e');
@@ -57,9 +57,9 @@ TEST_CASE("Exercise 372 : structured binding of a std::array", "[.][37]") {
 #ifndef ENABLE_TEST_372
   std::array chars = { 'h', 'e', 'y' };
 
-  // TODO : use structured binding to get the characters in chars and put then in x,y,z
+  // Use structured binding to get the characters in chars and put then in x,y,z
 
-  // TODO : use the checks below to test it
+  // Use the checks below to test it
   static_assert(std::is_same_v<decltype(x), char>);
   CHECK(x == 'h');
   CHECK(y == 'e');
@@ -89,9 +89,9 @@ TEST_CASE("Exercise 373 : structured binding of a struct", "[.][37]") {
 #ifndef ENABLE_TEST_373
   Point q = { 12, 21 };
 
-  // TODO : use structured binding to get the ints in q and put then in xx and yy
+  // Use structured binding to get the ints in q and put then in xx and yy
 
-  // TODO : use the checks below to test it
+  // Use the checks below to test it
   static_assert(std::is_same_v<decltype(xx), int>);
   CHECK(xx == 12);
   CHECK(yy == 21);
@@ -115,9 +115,9 @@ TEST_CASE("Exercise 374 : structured binding of a std::tuple", "[.][37]") {
 #ifndef ENABLE_TEST_374
   std::tuple q = std::make_tuple(21, 12);
 
-  // TODO : use structured binding to get the ints in q and put then in xx and yy
+  // Use structured binding to get the ints in q and put then in xx and yy
 
-  // TODO : use the checks below to test it
+  // Use the checks below to test it
   static_assert(std::is_same_v<decltype(xx), int>);
   CHECK(xx == 21);
   CHECK(yy == 12);
@@ -149,14 +149,14 @@ TEST_CASE("Exercise 375 : structured binding of a std::map", "[.][37]") {
   }
 
 #ifndef ENABLE_TEST_375
-  // TODO : use the loop and a low_score std::pair to find the lowest score
+  // Use the loop and a low_score std::pair to find the lowest score
   for (const auto & [name, score] : map) {
     static_assert(std::is_same_v<decltype(name), const std::string>);
     static_assert(std::is_same_v<decltype(score), const int>);
-    // TODO : find lowest score
+    // Find lowest score
   }
 
-  // TODO : use the checks below to test it
+  // Use the checks below to test it
   CHECK(low_score.second == 1337);
   CHECK(low_score.first == "Ólafur");
 #endif

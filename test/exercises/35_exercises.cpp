@@ -51,7 +51,7 @@ const std::size_t COLUMNS = 28;
 
 #ifndef ENABLE_TEST_352
 template<typename T, auto Width, auto Height>
-using array2d = <IMPLEMENT ME>; // TODO
+using array2d = <IMPLEMENT ME>; // Implement
 
 template<typename T>
 using grid = array2d<T, COLUMNS, ROWS>;
