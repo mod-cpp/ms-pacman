@@ -34,10 +34,12 @@ TEST_CASE("Exercise 321 : Which overload will be called?", "[.][32]") {
   CHECK(doThing({ 1, 2 }) == ReturnValue::Wrong);
 }
 
+// Comment out define below
+#define ENABLE_TEST_322
 // Make a new overload to make the call below un-ambiguous
 TEST_CASE("Exercise 322 : Call to 'doThing' is ambiguous", "[.][32]") {
-#if 0
-   CHECK(doThing(42.0) == ReturnValue::Wrong);
+#ifndef ENABLE_TEST_322
+  CHECK(doThing(42.0) == ReturnValue::Wrong);
 #endif
 }
 

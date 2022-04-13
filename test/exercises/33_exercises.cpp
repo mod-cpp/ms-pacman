@@ -5,6 +5,8 @@
 // 33. Operators
 namespace exercises_33 {
 
+// Comment out define below
+#define ENABLE_TEST_331
 TEST_CASE("Exercise 331 : operator== as a free function", "[.][33]") {
   struct Point {
     int x = 0;
@@ -13,17 +15,19 @@ TEST_CASE("Exercise 331 : operator== as a free function", "[.][33]") {
 
   Point p;
   CHECK(p.x == 0);
-#if 0
-   CHECK(p == p);
+#ifndef ENABLE_TEST_331
+  CHECK(p == p);
 #endif
 
   Point other{ 1, 1 };
   CHECK(other.x == 0);
-#if 0
-   CHECK(p != other);
+#ifndef ENABLE_TEST_331
+  CHECK(p != other);
 #endif
 }
 
+// Comment out define below
+#define ENABLE_TEST_332
 TEST_CASE("Exercise 332 : operator== as a defaulted member function", "[.][33]") {
   struct Point {
     int x = 0;
@@ -32,17 +36,19 @@ TEST_CASE("Exercise 332 : operator== as a defaulted member function", "[.][33]")
 
   Point p;
   CHECK(p.x == 0);
-#if 0
-   CHECK(p == p);
+#ifndef ENABLE_TEST_332
+  CHECK(p == p);
 #endif
 
   Point other{ 1, 1 };
   CHECK(other.x == 0);
-#if 0
-   CHECK(p != other);
+#ifndef ENABLE_TEST_332
+  CHECK(p != other);
 #endif
 }
 
+// Comment out define below
+#define ENABLE_TEST_333
 TEST_CASE("Exercise 333 : operator== as a custom member function", "[.][33]") {
   struct Point {
     int x = 0;
@@ -51,17 +57,19 @@ TEST_CASE("Exercise 333 : operator== as a custom member function", "[.][33]") {
 
   Point p;
   CHECK(p.x == 0);
-#if 0
-   CHECK(p == p);
+#ifndef ENABLE_TEST_333
+  CHECK(p == p);
 #endif
 
   Point other{ 1, 1 };
   CHECK(other.x == 0);
-#if 0
-   CHECK(p != other);
+#ifndef ENABLE_TEST_333
+  CHECK(p != other);
 #endif
 }
 
+// Comment out define below
+#define ENABLE_TEST_334
 TEST_CASE("Exercise 334 : operator<=> as a free function", "[.][33]") {
   struct Point {
     int x = 0;
@@ -70,18 +78,20 @@ TEST_CASE("Exercise 334 : operator<=> as a free function", "[.][33]") {
 
   Point p;
   CHECK(p.x == 0);
-#if 0
-   CHECK(p == p);
+#ifndef ENABLE_TEST_334
+  CHECK(p == p);
 #endif
 
   Point other{ 1, 1 };
   CHECK(other.x == 0);
-#if 0
-   CHECK(p != other);
-   CHECK(p <= other);
+#ifndef ENABLE_TEST_334
+  CHECK(p != other);
+  CHECK(p <= other);
 #endif
 }
 
+// Comment out define below
+#define ENABLE_TEST_335
 TEST_CASE("Exercise 335 : operator<=> as a defaulted member function", "[.][33]") {
   struct Point {
     int x = 0;
@@ -90,18 +100,20 @@ TEST_CASE("Exercise 335 : operator<=> as a defaulted member function", "[.][33]"
 
   Point p;
   CHECK(p.x == 0);
-#if 0
-   CHECK(p == p);
+#ifndef ENABLE_TEST_335
+  CHECK(p == p);
 #endif
 
   Point other{ 1, 1 };
   CHECK(other.x == 0);
-#if 0
-   CHECK(p != other);
-   CHECK(p <= other);
+#ifndef ENABLE_TEST_335
+  CHECK(p != other);
+  CHECK(p <= other);
 #endif
 }
 
+// Comment out define below
+#define ENABLE_TEST_336
 TEST_CASE("Exercise 336 : operator<=> as a custom member function", "[.][33]") {
   struct Point {
     int x = 0;
@@ -110,15 +122,15 @@ TEST_CASE("Exercise 336 : operator<=> as a custom member function", "[.][33]") {
 
   Point p;
   CHECK(p.x == 0);
-#if 0
-   CHECK(p == p);
+#ifndef ENABLE_TEST_336
+  CHECK(p == p);
 #endif
 
   Point other{ 1, 1 };
   CHECK(other.x == 0);
-#if 0
-   CHECK(p != other);
-   CHECK(p <= other);
+#ifndef ENABLE_TEST_336
+  CHECK(p != other);
+  CHECK(p <= other);
 #endif
 }
 
