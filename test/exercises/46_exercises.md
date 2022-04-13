@@ -6,6 +6,9 @@
 
 ## Exercise 461 : Implement bounding_box
 
+<details>
+   <summary>Solution</summary>
+
 ```cpp
 static Rect bounding_box(const Rect & one, const Rect & two) {
   int x = std::min(one.x(), two.x());
@@ -17,3 +20,5 @@ static Rect bounding_box(const Rect & one, const Rect & two) {
   return { { x, y }, { width, height } };
 }
 ```
+
+</details>
