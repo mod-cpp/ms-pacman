@@ -12,7 +12,7 @@ namespace exercises_37 {
 TEST_CASE("Exercise 371 : structured binding of a C array", "[.][37]") {
   // EXAMPLE
   {
-    int ints[] = { 12, 23, 34, 45 };
+    int ints[] = { 12, 23, 34, 45 }; // NOLINT
 
     auto [a, b, c, d] = ints;
 
@@ -24,7 +24,7 @@ TEST_CASE("Exercise 371 : structured binding of a C array", "[.][37]") {
   }
 
 #if 0
-  char chars[] = { 'h', 'e', 'y' };
+  char chars[] = { 'h', 'e', 'y' }; // NOLINT
 
   // TODO : use structured binding to get the characters in chars and put then in x,y,z
 
