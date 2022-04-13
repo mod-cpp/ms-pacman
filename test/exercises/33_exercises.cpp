@@ -13,11 +13,15 @@ TEST_CASE("Exercise 331 : operator== as a free function", "[.][33]") {
 
   Point p;
   CHECK(p.x == 0);
-  // CHECK(p == p);
+#if 0
+   CHECK(p == p);
+#endif
 
   Point other{ 1, 1 };
   CHECK(other.x == 0);
-  // CHECK(p != other);
+#if 0
+   CHECK(p != other);
+#endif
 }
 
 TEST_CASE("Exercise 332 : operator== as a defaulted member function", "[.][33]") {
@@ -28,11 +32,15 @@ TEST_CASE("Exercise 332 : operator== as a defaulted member function", "[.][33]")
 
   Point p;
   CHECK(p.x == 0);
-  // CHECK(p == p);
+#if 0
+   CHECK(p == p);
+#endif
 
   Point other{ 1, 1 };
   CHECK(other.x == 0);
-  // CHECK(p != other);
+#if 0
+   CHECK(p != other);
+#endif
 }
 
 TEST_CASE("Exercise 333 : operator== as a custom member function", "[.][33]") {
@@ -43,11 +51,15 @@ TEST_CASE("Exercise 333 : operator== as a custom member function", "[.][33]") {
 
   Point p;
   CHECK(p.x == 0);
-  // CHECK(p == p);
+#if 0
+   CHECK(p == p);
+#endif
 
   Point other{ 1, 1 };
   CHECK(other.x == 0);
-  // CHECK(p != other);
+#if 0
+   CHECK(p != other);
+#endif
 }
 
 TEST_CASE("Exercise 334 : operator<=> as a free function", "[.][33]") {
@@ -58,12 +70,16 @@ TEST_CASE("Exercise 334 : operator<=> as a free function", "[.][33]") {
 
   Point p;
   CHECK(p.x == 0);
-  // CHECK(p == p);
+#if 0
+   CHECK(p == p);
+#endif
 
   Point other{ 1, 1 };
   CHECK(other.x == 0);
-  // CHECK(p != other);
-  // CHECK(p <= other);
+#if 0
+   CHECK(p != other);
+   CHECK(p <= other);
+#endif
 }
 
 TEST_CASE("Exercise 335 : operator<=> as a defaulted member function", "[.][33]") {
@@ -74,12 +90,16 @@ TEST_CASE("Exercise 335 : operator<=> as a defaulted member function", "[.][33]"
 
   Point p;
   CHECK(p.x == 0);
-  // CHECK(p == p);
+#if 0
+   CHECK(p == p);
+#endif
 
   Point other{ 1, 1 };
   CHECK(other.x == 0);
-  // CHECK(p != other);
-  // CHECK(p <= other);
+#if 0
+   CHECK(p != other);
+   CHECK(p <= other);
+#endif
 }
 
 TEST_CASE("Exercise 336 : operator<=> as a custom member function", "[.][33]") {
@@ -90,12 +110,16 @@ TEST_CASE("Exercise 336 : operator<=> as a custom member function", "[.][33]") {
 
   Point p;
   CHECK(p.x == 0);
-  // CHECK(p == p);
+#if 0
+   CHECK(p == p);
+#endif
 
   Point other{ 1, 1 };
   CHECK(other.x == 0);
-  // CHECK(p != other);
-  // CHECK(p <= other);
+#if 0
+   CHECK(p != other);
+   CHECK(p <= other);
+#endif
 }
 
 TEST_CASE("Exercise 337 : operator() as a custom member function", "[.][33]") {

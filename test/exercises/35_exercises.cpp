@@ -32,31 +32,37 @@ private:
 };
 
 TEST_CASE("Exercise 351 : using alias int_set", "[.][35]") {
-  //  int_set set;
-  //  CHECK(set.size() == 0);
-  //  set << 4;
-  //  CHECK(set.size() == 1);
-  //  set << 4;
-  //  CHECK(set.size() == 1);
+#if 0
+    int_set set;
+    CHECK(set.size() == 0);
+    set << 4;
+    CHECK(set.size() == 1);
+    set << 4;
+    CHECK(set.size() == 1);
+#endif
 }
 
 const std::size_t ROWS = 31;
 const std::size_t COLUMNS = 28;
 
-//template <typename T, auto Width, auto Height>
-//using array2d = <IMPLEMENT ME>;
+#if 0
+template <typename T, auto Width, auto Height>
+using array2d = <IMPLEMENT ME>; // TODO
 
-//template <typename T>
-//using grid = array2d<T, COLUMNS, ROWS>;
+template <typename T>
+using grid = array2d<T, COLUMNS, ROWS>;
+#endif
 
 // Exercise 352: Implement array2d
 // Hint: https://en.cppreference.com/w/cpp/container/array
 TEST_CASE("Exercise 352 : Implement array2d (alias template)", "[.][35]") {
   unused(ROWS);
   unused(COLUMNS);
-//  grid<int> board;
-//  CHECK(board.size() == ROWS);
-//  CHECK(board[0].size() == COLUMNS);
+#if 0
+  grid<int> board;
+  CHECK(board.size() == ROWS);
+  CHECK(board[0].size() == COLUMNS);
+#endif
 }
 
 } // namespace exercises_35

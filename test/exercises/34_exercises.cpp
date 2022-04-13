@@ -44,7 +44,7 @@ TEST_CASE("Exercise 341 : Implement streaming operator as insert into the set", 
   CHECK(int_set.size() == 2);
 }
 
-template <typename T>
+template<typename T>
 static T accumulate(std::vector<T> vec, T init) {
   unused(vec);
   // Exercise 342
@@ -53,11 +53,11 @@ static T accumulate(std::vector<T> vec, T init) {
 }
 
 TEST_CASE("Exercise 342 : Implement a function template", "[.][34]") {
-std::vector<int> int_vec = { 21, 32, 43, 54 };
-CHECK(accumulate(int_vec, 0) == (21 + 32 + 43 + 54));
+  std::vector<int> int_vec = { 21, 32, 43, 54 };
+  CHECK(accumulate(int_vec, 0) == (21 + 32 + 43 + 54));
 
-std::vector<std::string> string_vec = { "21", "32", "43", "54" };
-CHECK(accumulate(string_vec, { "" }) == "21324354");
+  std::vector<std::string> string_vec = { "21", "32", "43", "54" };
+  CHECK(accumulate(string_vec, { "" }) == "21324354");
 }
 
 static auto acc(auto vec, auto init) {

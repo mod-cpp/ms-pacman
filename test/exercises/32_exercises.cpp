@@ -34,9 +34,11 @@ TEST_CASE("Exercise 321 : Which overload will be called?", "[.][32]") {
   CHECK(doThing({ 1, 2 }) == ReturnValue::Wrong);
 }
 
-// Uncomment check below and make a new overload to make the call un-ambiguous
+// Make a new overload to make the call below un-ambiguous
 TEST_CASE("Exercise 322 : Call to 'doThing' is ambiguous", "[.][32]") {
-  // CHECK(doThing(42.0) == ReturnValue::Wrong);
+#if 0
+   CHECK(doThing(42.0) == ReturnValue::Wrong);
+#endif
 }
 
 } // namespace exercises_32
