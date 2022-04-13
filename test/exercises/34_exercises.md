@@ -6,8 +6,32 @@
 
 ## Exercise 341 : Implement streaming operator as insert into the set
 
+<details>
+   <summary>Solution</summary>
+
+```cpp
+
+```
+</details>
+
 ## Exercise 342 : Implement a function template
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+
+```
+</details>
 
 ## Exercise 343 : Implement an abbreviated function template
 
 Considering exercise 342 and 343 - how are they different? Will they match the same signatures?
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+
+```
+</details>

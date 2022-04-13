@@ -5,3 +5,11 @@
 ## Exercise 360: 
 
 ## Exercise 361 : Fill in std::visit
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+
+```
+</details>
