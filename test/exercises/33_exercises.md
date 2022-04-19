@@ -98,7 +98,15 @@ TEST_CASE("Exercise 333 : operator== as a custom member function", "[33]") {
    <summary>Solution</summary>
 
 ```cpp
+bool operator==( const Point& lhs, const Point& rhs ) {
+  return lhs.x == rhs.x && lhs.y == rhs.y;
+}
 
+std::strong_ordering operator<=>( const Point& lhs, const Point& rhs ) {
+  if (auto C = lhs.x <=> rhs.x; C != 0)
+    return C;
+  return lhs.y <=> rhs.y;
+}
 ```
 </details>
 
