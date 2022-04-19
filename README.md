@@ -3,5 +3,6 @@
 
 # Mod(C++) Intermediate
 
+* [Course Description and Booking](https://turtlesec.no/blog/mod-cpp-intermediate/)
 * [Build and run](test/exercises/31_exercises.md)
 * [Exercises](test/exercises/README.md)
