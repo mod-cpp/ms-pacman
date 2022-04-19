@@ -2,6 +2,10 @@
 
 # 32. Overloading
 
+* [Exercise 320](#exercise-320)
+* [Exercise 321](#exercise-321)
+* [Exercise 322](#exercise-322)
+
 ## Exercise 320 
 
 ## [Exercise 321][1]

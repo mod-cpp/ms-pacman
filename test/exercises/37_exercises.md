@@ -2,6 +2,13 @@
 
 # 37. std::tuple and structured bindings
 
+* [Exercise 370](#exercise-370)
+* [Exercise 371](#exercise-371)
+* [Exercise 372](#exercise-372)
+* [Exercise 373](#exercise-373)
+* [Exercise 374](#exercise-374)
+* [Exercise 375](#exercise-375)
+
 ## Exercise 370
 
 ## [Exercise 371][1]

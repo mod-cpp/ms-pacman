@@ -2,6 +2,15 @@
 
 # 33. Operators
 
+* [Exercise 330](#exercise-330)
+* [Exercise 331](#exercise-331)
+* [Exercise 332](#exercise-332)
+* [Exercise 333](#exercise-333)
+* [Exercise 334](#exercise-334)
+* [Exercise 335](#exercise-335)
+* [Exercise 336](#exercise-336)
+* [Exercise 337](#exercise-337)
+
 ## Exercise 330
 
 ## [Exercise 331][1]

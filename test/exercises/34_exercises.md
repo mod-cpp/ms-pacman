@@ -2,6 +2,11 @@
 
 # 34. Class templates, function templates, non-type parameters
 
+* [Exercise 340](#exercise-340)
+* [Exercise 341](#exercise-341)
+* [Exercise 342](#exercise-342)
+* [Exercise 343](#exercise-343)
+
 ## Exercise 340
 
 ## [Exercise 341][1]

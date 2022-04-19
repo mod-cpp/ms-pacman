@@ -2,6 +2,9 @@
 
 # 46. Pragmatic introduction to move semantics and return value optimizations
 
+* [Exercise 460](#exercise-460)
+* [Exercise 461](#exercise-461)
+
 ## Exercise 460
 
 ## [Exercise 461][1]

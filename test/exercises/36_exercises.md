@@ -2,6 +2,9 @@
 
 # 36. std::variant and std::visit
 
+* [Exercise 360](#exercise-360)
+* [Exercise 361](#exercise-361)
+
 ## Exercise 360
 
 ## [Exercise 361][1]

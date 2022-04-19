@@ -2,6 +2,9 @@
 
 # 44. Concepts
 
+* [Exercise 440](#exercise-440)
+* [Exercise 441](#exercise-441)
+
 ## Exercise 440
 
 ## [Exercise 441][1]

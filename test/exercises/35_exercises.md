@@ -2,6 +2,10 @@
 
 # 35. Aliases and alias templates
 
+* [Exercise 350](#exercise-350)
+* [Exercise 351](#exercise-351)
+* [Exercise 352](#exercise-352)
+
 ## Exercise 350
 
 ## [Exercise 351][1]
