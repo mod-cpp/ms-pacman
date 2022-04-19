@@ -138,7 +138,32 @@ TEST_CASE("Exercise 335 : operator<=> as a defaulted member function", "[33]") {
    <summary>Solution</summary>
 
 ```cpp
+//#define ENABLE_TEST_336
+TEST_CASE("Exercise 336 : operator<=> as a custom member function", "[33]") {
+  struct Point {
+    int x = 0;
+    int y = 0;
+    std::strong_ordering operator<=>(const Point& other) const {
+      if (auto C = x <=> other.x; C != 0)
+        return C;
+      return y <=> other.y;
+    }
+    bool operator==(const Point& other) const = default;
+  };
 
+  Point p;
+  CHECK(p.x == 0);
+#ifndef ENABLE_TEST_336
+  CHECK(p == p);
+#endif
+
+  Point other{ 1, 1 };
+  CHECK(other.x == 1);
+#ifndef ENABLE_TEST_336
+  CHECK(p != other);
+  CHECK(p <= other);
+#endif
+}
 ```
 </details>
 
