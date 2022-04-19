@@ -10,7 +10,7 @@
    <summary>Solution</summary>
 
 ```cpp
-
+using int_set = set<int>;
 ```
 </details>
 
@@ -20,7 +20,8 @@
    <summary>Solution</summary>
 
 ```cpp
-
+template<typename T, auto Width, auto Height>
+using array2d = std::array<std::array<T, Width>, Height>;
 ```
 </details>
 
