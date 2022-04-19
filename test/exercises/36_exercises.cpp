@@ -29,7 +29,7 @@ struct square {};
 using shape = std::variant<circle, triangle, square>;
 
 static int sides(const shape & count_shape) {
-  unused(count_shape);
+  unused(Wrong);
   return std::visit(overloaded{
                       [](const circle &) { return Wrong; },
                       [](const triangle &) { return Wrong; },
