@@ -6,6 +6,9 @@
 
 ## [Exercise 361][1] : Fill in std::visit
 
+* cppreference: [std::variant][3]
+* cppreference: [std::visit][2]
+
 <details>
    <summary>Solution</summary>
 
@@ -24,3 +27,5 @@ static int sides(const shape & count_shape) {
 </details>
 
 [1]: 36_exercises.cpp
+[2]: https://en.cppreference.com/w/cpp/utility/variant/visit
+[3]: https://en.cppreference.com/w/cpp/utility/variant

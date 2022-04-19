@@ -6,6 +6,9 @@
 
 ## [Exercise 461][1] : Implement bounding_box
 
+* cppreference : [std::min][2]
+* cppreference : [std::max][3]
+
 <details>
    <summary>Solution</summary>
 
@@ -24,3 +27,5 @@ static Rect bounding_box(const Rect & one, const Rect & two) {
 </details>
 
 [1]: 46_exercises.cpp
+[2]: https://en.cppreference.com/w/cpp/algorithm/min
+[3]: https://en.cppreference.com/w/cpp/algorithm/max

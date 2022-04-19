@@ -93,6 +93,8 @@ TEST_CASE("Exercise 311 : Enable a test and make it green", "[31]") {
 
 ## [Exercise 312][1] : Make both asserts run (distinguish between REQUIRE and CHECK in Catch2)
 
+* Catch2 : [Assertion Macros][2]
+
 <details>
    <summary>Solution</summary>
 
@@ -105,3 +107,4 @@ TEST_CASE("Exercise 312 : Make both asserts run (distinguish between REQUIRE and
 </details>
 
 [1]: 31_exercises.cpp
+[2]: https://github.com/catchorg/Catch2/blob/v2.x/docs/assertions.md

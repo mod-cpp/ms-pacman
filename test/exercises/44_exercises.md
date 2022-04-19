@@ -6,6 +6,8 @@
 
 ## [Exercise 441][1] : Reason about conjunction
 
+* cppreference : [Conjunctions][2]
+
 <details>
    <summary>Solution</summary>
 
@@ -44,3 +46,4 @@ TEST_CASE("Exercise 441 : Reason about conjunction", "[44]") {
 </details>
 
 [1]: 44_exercises.cpp
+[2]: https://en.cppreference.com/w/cpp/language/constraints#Conjunctions

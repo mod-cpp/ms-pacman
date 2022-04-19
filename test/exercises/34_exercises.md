@@ -6,6 +6,8 @@
 
 ## [Exercise 341][1] : Implement streaming operator as insert into the set
 
+* cppreference: [std::vector\<T\>::push_back][2]
+
 <details>
    <summary>Solution</summary>
 
@@ -18,6 +20,8 @@
 </details>
 
 ## [Exercise 342][1] : Implement a function template
+
+* cppreference: [std::accumulate][3]
 
 <details>
    <summary>Solution</summary>
@@ -32,6 +36,8 @@ static T accumulate(std::vector<T> vec, T init) {
 
 ## [Exercise 343][1] : Implement an abbreviated function template
 
+* cppreference: [std::accumulate][3]
+
 Considering exercise 342 and 343 - how are they different? Will they match the same signatures?
 
 <details>
@@ -45,3 +51,5 @@ static auto acc(auto vec, auto init) {
 </details>
 
 [1]: 34_exercises.cpp
+[2]: https://en.cppreference.com/w/cpp/container/vector/push_back
+[3]: https://en.cppreference.com/w/cpp/algorithm/accumulate

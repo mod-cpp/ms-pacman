@@ -6,6 +6,8 @@
 
 ## [Exercise 351][1] : using alias int_set
 
+* cppreference : [Type alias, alias template][3]
+
 <details>
    <summary>Solution</summary>
 
@@ -15,6 +17,9 @@ using int_set = set<int>;
 </details>
 
 ## [Exercise 352][1] : Implement array2d (alias template)
+
+* cppreference : [std::array][2]
+* cppreference : [Type alias, alias template][3]
 
 <details>
    <summary>Solution</summary>
@@ -26,3 +31,5 @@ using array2d = std::array<std::array<T, Width>, Height>;
 </details>
 
 [1]: 35_exercises.cpp
+[2]: https://en.cppreference.com/w/cpp/container/array
+[3]: https://en.cppreference.com/w/cpp/language/type_alias
