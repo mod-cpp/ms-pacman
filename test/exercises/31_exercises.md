@@ -3,6 +3,8 @@
 # 31. Introduction
 
 * [Exercise 310](#exercise-310)
+* [Exercise 311](#exercise-311)
+* [Exercise 312](#exercise-312)
 
 ## Exercise 310
 ### Set up development environment
