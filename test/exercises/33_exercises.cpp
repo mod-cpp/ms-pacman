@@ -5,14 +5,14 @@
 // 33. Operators
 namespace exercises_33 {
 
+struct Point {
+  int x = 0;
+  int y = 0;
+};
+
 // Comment out define below
 #define ENABLE_TEST_331
 TEST_CASE("Exercise 331 : operator== as a free function", "[.][33]") {
-  struct Point {
-    int x = 0;
-    int y = 0;
-  };
-
   Point p;
   CHECK(p.x == 0);
 #ifndef ENABLE_TEST_331
