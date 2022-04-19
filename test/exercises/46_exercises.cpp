@@ -34,7 +34,13 @@ struct Rect {
 static Rect bounding_box(const Rect & one, const Rect & two) {
   unused(one);
   unused(two);
-  return { { 0, 0 }, { 0, 0 } };
+  int x = 0;
+  int y = 0;
+  int right = 0;
+  int bottom = 0;
+  size_t width = 0;
+  size_t height = 0;
+  return { { x, y }, { width, height } };
 }
 
 TEST_CASE("Exercise 461 : Implement bounding_box", "[.][46]") {
