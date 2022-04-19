@@ -4,7 +4,7 @@
 
 ## Exercise 360: 
 
-## Exercise 361 : Fill in std::visit
+## [Exercise 361][1] : Fill in std::visit
 
 <details>
    <summary>Solution</summary>
@@ -13,3 +13,5 @@
 
 ```
 </details>
+
+[1]: 36_exercises.cpp

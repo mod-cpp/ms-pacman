@@ -4,7 +4,7 @@
 
 ## Exercise 340:
 
-## Exercise 341 : Implement streaming operator as insert into the set
+## [Exercise 341][1] : Implement streaming operator as insert into the set
 
 <details>
    <summary>Solution</summary>
@@ -14,7 +14,7 @@
 ```
 </details>
 
-## Exercise 342 : Implement a function template
+## [Exercise 342][1] : Implement a function template
 
 <details>
    <summary>Solution</summary>
@@ -24,7 +24,7 @@
 ```
 </details>
 
-## Exercise 343 : Implement an abbreviated function template
+## [Exercise 343][1] : Implement an abbreviated function template
 
 Considering exercise 342 and 343 - how are they different? Will they match the same signatures?
 
@@ -35,3 +35,5 @@ Considering exercise 342 and 343 - how are they different? Will they match the s
 
 ```
 </details>
+
+[1]: 34_exercises.cpp

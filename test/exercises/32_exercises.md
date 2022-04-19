@@ -4,7 +4,7 @@
 
 ## Exercise 320: 
 
-## Exercise 321 : Which overload will be called?
+## [Exercise 321][1] : Which overload will be called?
 
 <details>
    <summary>Solution</summary>
@@ -14,7 +14,7 @@
 ```
 </details>
 
-## Exercise 322 : Call to 'doThing' is ambiguous
+## [Exercise 322][1] : Call to 'doThing' is ambiguous
 
 <details>
    <summary>Solution</summary>
@@ -23,3 +23,5 @@
 
 ```
 </details>
+
+[1]: 32_exercises.cpp

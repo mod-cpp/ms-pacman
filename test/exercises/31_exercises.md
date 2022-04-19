@@ -79,6 +79,8 @@ ctest --test-dir build -C Debug
 * Click "Apply" and "OK"
 * (If CLion created a `cmake-build-debug` folder you can safely delete it, we will be using the `build` directory)
 
-## Exercise 311 : Enable a test and make it green
+## [Exercise 311][1] : Enable a test and make it green
 
-## Exercise 312 : Distinguish between REQUIRE and CHECK in Catch2
+## [Exercise 312][1] : Distinguish between REQUIRE and CHECK in Catch2
+
+[1]: 31_exercises.cpp

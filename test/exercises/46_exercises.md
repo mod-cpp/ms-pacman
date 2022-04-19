@@ -4,7 +4,7 @@
 
 ## Exercise 460: 
 
-## Exercise 461 : Implement bounding_box
+## [Exercise 461][1] : Implement bounding_box
 
 <details>
    <summary>Solution</summary>
@@ -22,3 +22,5 @@ static Rect bounding_box(const Rect & one, const Rect & two) {
 ```
 
 </details>
+
+[1]: 46_exercises.cpp

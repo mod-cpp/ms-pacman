@@ -4,7 +4,7 @@
 
 ## Exercise 350:
 
-## Exercise 351 : using alias int_set
+## [Exercise 351][1] : using alias int_set
 
 <details>
    <summary>Solution</summary>
@@ -14,7 +14,7 @@
 ```
 </details>
 
-## Exercise 352 : Implement array2d (alias template)
+## [Exercise 352][1] : Implement array2d (alias template)
 
 <details>
    <summary>Solution</summary>
@@ -23,3 +23,5 @@
 
 ```
 </details>
+
+[1]: 35_exercises.cpp
