@@ -108,7 +108,27 @@ TEST_CASE("Exercise 333 : operator== as a custom member function", "[33]") {
    <summary>Solution</summary>
 
 ```cpp
+//#define ENABLE_TEST_335
+TEST_CASE("Exercise 335 : operator<=> as a defaulted member function", "[33]") {
+  struct Point {
+    int x = 0;
+    int y = 0;
+    auto operator<=>(const Point& other) const = default;
+  };
 
+  Point p;
+  CHECK(p.x == 0);
+#ifndef ENABLE_TEST_335
+  CHECK(p == p);
+#endif
+
+  Point other{ 1, 1 };
+  CHECK(other.x == 1);
+#ifndef ENABLE_TEST_335
+  CHECK(p != other);
+  CHECK(p <= other);
+#endif
+}
 ```
 </details>
 
