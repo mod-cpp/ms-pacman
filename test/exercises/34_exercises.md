@@ -10,7 +10,10 @@
    <summary>Solution</summary>
 
 ```cpp
-
+  void operator<<(const T & item) {
+    if (!contains(item))
+      items.push_back(item);
+  }
 ```
 </details>
 
@@ -20,7 +23,10 @@
    <summary>Solution</summary>
 
 ```cpp
-
+template<typename T>
+static T accumulate(std::vector<T> vec, T init) {
+  return std::accumulate(vec.begin(), vec.end(), init);
+}
 ```
 </details>
 
@@ -32,7 +38,9 @@ Considering exercise 342 and 343 - how are they different? Will they match the s
    <summary>Solution</summary>
 
 ```cpp
-
+static auto acc(auto vec, auto init) {
+  return std::accumulate(vec.begin(), vec.end(), init);
+}
 ```
 </details>
 
