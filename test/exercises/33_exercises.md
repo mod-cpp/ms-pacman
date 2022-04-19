@@ -2,9 +2,10 @@
 
 # 33. Operators
 
-## Exercise 330: 
+## Exercise 330
 
-## [Exercise 331][1] : operator== as a free function
+## [Exercise 331][1]
+### operator== as a free function
 
 * cppreference : [Comparison Operators][2]
 * cppreference : [Two-Way Comparison][5]
@@ -35,7 +36,8 @@ TEST_CASE("Exercise 331 : operator== as a free function", "[33]") {
 ```
 </details>
 
-## [Exercise 332][1] : operator== as a defaulted member function
+## [Exercise 332][1]
+### operator== as a defaulted member function
 
 * cppreference : [Comparison Operators][2]
 * cppreference : [Two-Way Comparison][5]
@@ -67,7 +69,8 @@ TEST_CASE("Exercise 332 : operator== as a defaulted member function", "[33]") {
 ```
 </details>
 
-## [Exercise 333][1] : operator== as a custom member function
+## [Exercise 333][1]
+### operator== as a custom member function
 
 * cppreference : [Comparison Operators][2]
 * cppreference : [Two-Way Comparison][5]
@@ -101,7 +104,8 @@ TEST_CASE("Exercise 333 : operator== as a custom member function", "[33]") {
 ```
 </details>
 
-## [Exercise 334][1] : operator<=> as a free function
+## [Exercise 334][1]
+### operator<=> as a free function
 
 * cppreference : [Comparison Operators][2]
 * cppreference : [Three-Way Comparison][4]
@@ -122,7 +126,8 @@ std::strong_ordering operator<=>( const Point& lhs, const Point& rhs ) {
 ```
 </details>
 
-## [Exercise 335][1] : operator<=> as a defaulted member function
+## [Exercise 335][1]
+### operator<=> as a defaulted member function
 
 * cppreference : [Comparison Operators][2]
 * cppreference : [Three-Way Comparison][4]
@@ -155,7 +160,8 @@ TEST_CASE("Exercise 335 : operator<=> as a defaulted member function", "[33]") {
 ```
 </details>
 
-## [Exercise 336][1] : operator<=> as a custom member function
+## [Exercise 336][1]
+### operator<=> as a custom member function
 
 * cppreference : [Comparison Operators][2]
 * cppreference : [Three-Way Comparison][4]
@@ -193,7 +199,8 @@ TEST_CASE("Exercise 336 : operator<=> as a custom member function", "[33]") {
 ```
 </details>
 
-## [Exercise 337][1] : operator() as a custom member function
+## [Exercise 337][1]
+### operator() as a custom member function
 
 * cppreference : [Function Call Operator][3]
 

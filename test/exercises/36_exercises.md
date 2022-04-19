@@ -2,9 +2,10 @@
 
 # 36. std::variant and std::visit
 
-## Exercise 360: 
+## Exercise 360
 
-## [Exercise 361][1] : Fill in std::visit
+## [Exercise 361][1]
+### Fill in std::visit
 
 * cppreference: [std::variant][3]
 * cppreference: [std::visit][2]

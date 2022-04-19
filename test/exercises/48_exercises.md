@@ -2,6 +2,6 @@
 
 # 48. Conclusion
 
-## [Exercise 480][1] : 
+## [Exercise 480][1]
 
 [1]: 48_exercises.cpp

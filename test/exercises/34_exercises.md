@@ -2,9 +2,10 @@
 
 # 34. Class templates, function templates, non-type parameters
 
-## Exercise 340:
+## Exercise 340
 
-## [Exercise 341][1] : Implement streaming operator as insert into the set
+## [Exercise 341][1]
+### Implement streaming operator as insert into the set
 
 * cppreference: [std::vector\<T\>::push_back][2]
 
@@ -19,7 +20,8 @@
 ```
 </details>
 
-## [Exercise 342][1] : Implement a function template
+## [Exercise 342][1]
+### Implement a function template
 
 * cppreference: [std::accumulate][3]
 
@@ -34,7 +36,8 @@ static T accumulate(std::vector<T> vec, T init) {
 ```
 </details>
 
-## [Exercise 343][1] : Implement an abbreviated function template
+## [Exercise 343][1]
+### Implement an abbreviated function template
 
 * cppreference: [std::accumulate][3]
 

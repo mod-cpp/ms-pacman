@@ -2,21 +2,10 @@
 
 # 37. std::tuple and structured bindings
 
-## Exercise 370: 
+## Exercise 370
 
-## [Exercise 371][1] : structured binding of a C array
-
-* cppreference : [Structured Binding Declaration][2]
-
-<details>
-   <summary>Solution</summary>
-
-```cpp
-  auto [x, y, z] = chars;
-```
-</details>
-
-## [Exercise 372][1] : structured binding of a std::array
+## [Exercise 371][1]
+### structured binding of a C array
 
 * cppreference : [Structured Binding Declaration][2]
 
@@ -28,7 +17,21 @@
 ```
 </details>
 
-## [Exercise 373][1] : structured binding of a struct
+## [Exercise 372][1]
+### structured binding of a std::array
+
+* cppreference : [Structured Binding Declaration][2]
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+  auto [x, y, z] = chars;
+```
+</details>
+
+## [Exercise 373][1]
+### structured binding of a struct
 
 * cppreference : [Structured Binding Declaration][2]
 
@@ -40,7 +43,8 @@
 ```
 </details>
 
-## [Exercise 374][1] : structured binding of a std::tuple
+## [Exercise 374][1]
+### structured binding of a std::tuple
 
 * cppreference : [Structured Binding Declaration][2]
 
@@ -52,7 +56,8 @@
 ```
 </details>
 
-## [Exercise 375][1] : structured binding of a std::map
+## [Exercise 375][1]
+### structured binding of a std::map
 
 * cppreference : [Structured Binding Declaration][2]
 * cppreference : [std::pair][3]

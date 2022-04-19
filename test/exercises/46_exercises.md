@@ -2,9 +2,10 @@
 
 # 46. Pragmatic introduction to move semantics and return value optimizations
 
-## Exercise 460: 
+## Exercise 460
 
-## [Exercise 461][1] : Implement bounding_box
+## [Exercise 461][1]
+### Implement bounding_box
 
 * cppreference : [std::min][2]
 * cppreference : [std::max][3]

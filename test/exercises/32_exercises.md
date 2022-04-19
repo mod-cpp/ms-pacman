@@ -2,9 +2,10 @@
 
 # 32. Overloading
 
-## Exercise 320: 
+## Exercise 320 
 
-## [Exercise 321][1] : Which overload will be called?
+## [Exercise 321][1]
+### Which overload will be called?
 
 <details>
    <summary>Solution</summary>
@@ -18,7 +19,8 @@ TEST_CASE("Exercise 321 : Which overload will be called?", "[32]") {
 ```
 </details>
 
-## [Exercise 322][1] : Make a new overload to make the 'doThing' call below un-ambiguous
+## [Exercise 322][1]
+### Make a new overload to make the 'doThing' call below un-ambiguous
 
 <details>
    <summary>Solution</summary>

@@ -2,9 +2,10 @@
 
 # 44. Concepts
 
-## Exercise 440:
+## Exercise 440
 
-## [Exercise 441][1] : Reason about conjunction
+## [Exercise 441][1]
+### Reason about conjunction
 
 * cppreference : [Conjunctions][2]
 
