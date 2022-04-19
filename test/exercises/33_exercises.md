@@ -128,7 +128,18 @@ TEST_CASE("Exercise 333 : operator== as a custom member function", "[33]") {
    <summary>Solution</summary>
 
 ```cpp
+TEST_CASE("Exercise 337 : operator() as a custom member function", "[33]") {
+  struct OrigoVisitor {
+    constexpr auto operator()(const Point & p) const { return p.x == 0 && p.y == 0; }
+  };
 
+  OrigoVisitor visit;
+  Point p;
+  CHECK(visit(p));
+
+  Point other{ 1, 1 };
+  CHECK(!visit(other));
+}
 ```
 </details>
 

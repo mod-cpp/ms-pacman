@@ -130,11 +130,6 @@ TEST_CASE("Exercise 336 : operator<=> as a custom member function", "[.][33]") {
 }
 
 TEST_CASE("Exercise 337 : operator() as a custom member function", "[.][33]") {
-  struct Point {
-    int x = 0;
-    int y = 0;
-  };
-
   struct OrigoVisitor {
     constexpr auto operator()(const Point &) const { return false; }
   };
