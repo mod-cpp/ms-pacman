@@ -15,8 +15,8 @@ TEST_CASE("Exercise 311 : Enable a test and make it green", "[.][31]") {
 }
 
 // HINT: https://github.com/catchorg/Catch2/blob/v2.x/docs/assertions.md
-TEST_CASE("Exercise 312 : Distinguish between REQUIRE and CHECK in Catch2", "[.][31]") {
-  CHECK(true == false);
+TEST_CASE("Exercise 312 : Make both asserts run (distinguish between REQUIRE and CHECK in Catch2)", "[.][31]") {
+  REQUIRE(true == false);
   CHECK(false == true);
 }
 

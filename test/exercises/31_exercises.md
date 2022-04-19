@@ -81,6 +81,27 @@ ctest --test-dir build -C Debug
 
 ## [Exercise 311][1] : Enable a test and make it green
 
-## [Exercise 312][1] : Distinguish between REQUIRE and CHECK in Catch2
+<details>
+   <summary>Solution</summary>
+
+```cpp
+TEST_CASE("Exercise 311 : Enable a test and make it green", "[31]") {
+  REQUIRE(true == true);
+}
+```
+</details>
+
+## [Exercise 312][1] : Make both asserts run (distinguish between REQUIRE and CHECK in Catch2)
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+TEST_CASE("Exercise 312 : Make both asserts run (distinguish between REQUIRE and CHECK in Catch2)", "[31]") {
+  CHECK(true == true);
+  CHECK(true == true);
+}
+```
+</details>
 
 [1]: 31_exercises.cpp
