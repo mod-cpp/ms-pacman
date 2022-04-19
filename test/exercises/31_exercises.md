@@ -2,7 +2,8 @@
 
 # 31. Introduction
 
-## Exercise 310: Set up development environment
+## Exercise 310
+### Set up development environment
 
 ### Install tools
 
@@ -79,7 +80,8 @@ ctest --test-dir build -C Debug
 * Click "Apply" and "OK"
 * (If CLion created a `cmake-build-debug` folder you can safely delete it, we will be using the `build` directory)
 
-## [Exercise 311][1] : Enable a test and make it green
+## [Exercise 311][1]
+### Enable a test and make it green
 
 * Catch2 : [Special Tags][3]
 
@@ -93,7 +95,8 @@ TEST_CASE("Exercise 311 : Enable a test and make it green", "[31]") {
 ```
 </details>
 
-## [Exercise 312][1] : Make both asserts run (distinguish between REQUIRE and CHECK in Catch2)
+## [Exercise 312][1]
+### Make both asserts run (distinguish between REQUIRE and CHECK in Catch2)
 
 * Catch2 : [Assertion Macros][2]
 
