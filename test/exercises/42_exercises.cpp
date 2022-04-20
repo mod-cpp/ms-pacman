@@ -52,18 +52,20 @@ TEST_CASE("Exercise 423 : Split view into tokens based on whitespace", "[.][42]"
   const std::string delimiter = " ";
   std::vector<std::string> tokens = split(haystack);
   REQUIRE(tokens.size() == 12);
-  CHECK(tokens[0] == "Why,");
-  CHECK(tokens[1] == "sometimes");
-  CHECK(tokens[2] == "I’ve");
-  CHECK(tokens[3] == "believed");
-  CHECK(tokens[4] == "as");
-  CHECK(tokens[5] == "many");
-  CHECK(tokens[6] == "as");
-  CHECK(tokens[7] == "six");
-  CHECK(tokens[8] == "impossible");
-  CHECK(tokens[9] == "things");
-  CHECK(tokens[10] == "before");
-  CHECK(tokens[11] == "breakfast.");
+  if (tokens.size() == 12) {
+    CHECK(tokens[0] == "Why,");
+    CHECK(tokens[1] == "sometimes");
+    CHECK(tokens[2] == "I’ve");
+    CHECK(tokens[3] == "believed");
+    CHECK(tokens[4] == "as");
+    CHECK(tokens[5] == "many");
+    CHECK(tokens[6] == "as");
+    CHECK(tokens[7] == "six");
+    CHECK(tokens[8] == "impossible");
+    CHECK(tokens[9] == "things");
+    CHECK(tokens[10] == "before");
+    CHECK(tokens[11] == "breakfast.");
+  }
 }
 
 }
