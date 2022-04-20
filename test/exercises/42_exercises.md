@@ -3,7 +3,69 @@
 # 42. std::string_view and std::span
 
 * [Exercise 420](#exercise-420)
+* [Exercise 421](#exercise-421)
+* [Exercise 422](#exercise-422)
+* [Exercise 423](#exercise-423)
 
-## [Exercise 420][1]
+## Exercise 420
+
+## [Exercise 421][1]
+### Make whole word uppercase
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+std::string to_upper(std::string_view word) {
+  unused(word);
+  std::string ret;
+  ret.resize(word.size());
+  std::transform(word.begin(), word.end(), ret.begin(), ::toupper);
+  return ret;
+}
+```
+</details>
+
+## [Exercise 422][1]
+### Trim leading and trailing white space
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+std::string trim(std::string_view view) {
+  auto start_it = std::find_if_not(view.begin(), view.end(), ::isspace);
+  auto end_it = std::find_if_not(view.rbegin(), view.rend(), ::isspace);
+  auto dist = std::distance(start_it, end_it.base());
+  return { start_it, static_cast<size_t>(dist) };
+}
+```
+</details>
+
+## [Exercise 423][1]
+### Split view into tokens based on whitespace
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+std::vector<std::string> split(std::string_view view) {
+  std::vector<std::string> tokens;
+
+  auto start = view.begin();
+  const auto stop = view.end();
+
+  while (start < stop) {
+    auto start_word = std::find_if_not(start, stop, ::isspace);
+    auto end_word = std::find_if(start_word, stop, ::isspace);
+    auto dist = std::distance(start_word, end_word);
+    tokens.emplace_back(start_word, dist);
+    start = end_word;
+  }
+
+  return tokens;
+}
+```
+</details>
 
 [1]: 42_exercises.cpp
