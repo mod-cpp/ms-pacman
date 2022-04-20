@@ -3,7 +3,21 @@
 # 43. constexpr and consteval
 
 * [Exercise 430](#exercise-430)
+* [Exercise 431](#exercise-431)
 
-## [Exercise 430][1]
+## Exercise 430
+
+## [Exercise 431][1]
+### Implement a consteval function that calculates the volume of a cube
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+consteval int volume(int width, int height, int depth) {
+  return width * height * depth;
+}
+```
+</details>
 
 [1]: 43_exercises.cpp
