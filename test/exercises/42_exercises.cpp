@@ -40,7 +40,6 @@ TEST_CASE("Exercise 422 : Trim leading and trailing white space", "[.][42]") {
   CHECK("impossible things" == trim(" impossible things "));
 }
 
-#if 0
 std::vector<std::string> split(std::string_view view) {
   unused(view);
   std::vector<std::string> tokens;
@@ -53,6 +52,7 @@ TEST_CASE("Exercise 423 : Split view into tokens based on whitespace", "[.][42]"
   const std::string delimiter = " ";
   std::vector<std::string> tokens = split(haystack);
   REQUIRE(tokens.size() == 12);
+#if 0
   CHECK(tokens[0] == "Why,");
   CHECK(tokens[1] == "sometimes");
   CHECK(tokens[2] == "I’ve");
@@ -65,7 +65,7 @@ TEST_CASE("Exercise 423 : Split view into tokens based on whitespace", "[.][42]"
   CHECK(tokens[9] == "things");
   CHECK(tokens[10] == "before");
   CHECK(tokens[11] == "breakfast.");
-}
 #endif
+}
 
 }
