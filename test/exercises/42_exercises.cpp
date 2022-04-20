@@ -9,7 +9,6 @@ constexpr void unused(auto X) {
   (void)X;
 }
 
-#if 0
 std::string to_upper(std::string_view word) {
   unused(word);
   std::string ret;
@@ -40,8 +39,8 @@ TEST_CASE("Exercise 422 : Trim leading and trailing white space", "[.][42]") {
   CHECK("impossible" == trim(" impossible "));
   CHECK("impossible things" == trim(" impossible things "));
 }
-#endif
 
+#if 0
 std::vector<std::string> split(std::string_view view) {
   unused(view);
   std::vector<std::string> tokens;
@@ -67,5 +66,6 @@ TEST_CASE("Exercise 423 : Split view into tokens based on whitespace", "[.][42]"
   CHECK(tokens[10] == "before");
   CHECK(tokens[11] == "breakfast.");
 }
+#endif
 
 }
