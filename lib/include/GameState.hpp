@@ -4,11 +4,11 @@
 
 #include "Fruit.hpp"
 #include "Ghost.hpp"
+#include "HighScore.hpp"
 #include "InputState.hpp"
 #include "Level.hpp"
 #include "MsPacMan.hpp"
 #include "Score.hpp"
-#include "HighScore.hpp"
 
 namespace ms_pacman {
 
@@ -29,7 +29,7 @@ struct GameState {
   DefaultBoard board;
   bool game_over = false;
   Score score;
-  HighScore highScore {"highscore.txt"};
+  HighScore highScore{ "highscore.txt" };
   std::chrono::milliseconds timeSinceDeath{};
 
   template<typename Ghost>
@@ -49,9 +49,11 @@ struct GameState {
     }
   }
 
+  bool stepMsPacMan(std::chrono::milliseconds & delta, MsPacMan & ms_pac_man);
+  void stepGhosts(const std::chrono::milliseconds & delta, Ghosts & ghost_tuple);
+  void stepPellets(DefaultBoard & grid);
+  void stepFruit(std::chrono::milliseconds delta, GenericFruit & fruit);
   void handleDeathAnimation(std::chrono::milliseconds delta);
-  void eatPellets();
-  void eatFruit();
   void killMsPacMan();
   bool isMsPacManDying() const;
   void increaseLevel();

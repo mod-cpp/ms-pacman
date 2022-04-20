@@ -45,35 +45,80 @@ void GameState::loadLevel() {
 }
 
 void GameState::step(std::chrono::milliseconds delta) {
+  if (!stepMsPacMan(delta, msPacMan))
+    return;
 
+  stepGhosts(delta, ghosts);
+  stepPellets(board);
+  stepFruit(delta, currentFruit);
+}
+
+bool GameState::stepMsPacMan(std::chrono::milliseconds & delta, MsPacMan & ms_pac_man) {
+  // Life over, only render death animation
   if (isMsPacManDying()) {
     handleDeathAnimation(delta);
-    return;
+    return false;
   }
 
-  msPacMan.update(delta, inputState.direction(), board);
+  ms_pac_man.update(delta, inputState.direction(), board);
 
-  if (!msPacMan.hasDirection())
-    return;
+  // Wait for Ms Pac-Man to move before starting the game
+  return msPacMan.hasDirection();
+}
 
+void GameState::stepGhosts(const std::chrono::milliseconds & delta, Ghosts & ghost_tuple) {
   auto step_ghost = [&](auto & ghost) {
     ghost.update(delta, board);
-    ghost.setTarget(board, msPacMan, std::get<Blinky>(ghosts).positionInGrid());
+    ghost.setTarget(board, msPacMan, std::__1::get<Blinky>(ghost_tuple).positionInGrid());
   };
 
   std::apply([&step_ghost](auto &... ghost) {
     (step_ghost(ghost), ...);
-  }, ghosts);
-
-  std::visit([&](auto && fruit) { fruit.update(delta, score.eatenPellets); }, currentFruit);
+  },
+             ghost_tuple);
 
   std::apply([this](auto &... ghost) {
     (checkCollision(ghost), ...);
   },
-             ghosts);
+             ghost_tuple);
+}
 
-  eatPellets();
-  eatFruit();
+void GameState::stepPellets(DefaultBoard & grid) {
+  const auto pos = msPacMan.positionInGrid();
+  const auto & cell = cellAtPosition(grid, pos);
+  bool eaten = std::visit(overloaded{
+                            [&](const Pellet &) {
+                              score.eatenPellets++;
+                              score.points += NORMAL_PELLET_POINTS;
+                              return true;
+                            },
+                            [&](const SuperPellet &) {
+                              score.eatenPellets++;
+                              score.points += POWER_PELLET_POINTS;
+                              std::apply([](auto &... ghost) { (ghost.frighten(), ...); },
+                                         ghosts);
+                              return true;
+                            },
+                            [](const auto &) {
+                              return false;
+                            },
+                          },
+                          cell);
+  if (eaten)
+    grid[pos.y][pos.x] = Walkable{};
+}
+
+void GameState::stepFruit(std::chrono::milliseconds delta, GenericFruit & fruit) {
+  const auto pos = msPacMan.positionInGrid();
+  const auto fruitpos = positionToGridPosition(Fruits::position(fruit));
+
+  // TODO: hitboxes based collision
+  if (Fruits::isVisible(fruit) && pos == fruitpos) {
+    score.points += Fruits::eat(fruit);
+    score.eatenFruits.emplace_back(fruit);
+  }
+
+  std::visit([&](auto && fruit) { fruit.update(delta, score.eatenPellets); }, fruit);
 }
 
 void GameState::handleDeathAnimation(std::chrono::milliseconds delta) {
@@ -94,42 +139,6 @@ void GameState::reset() {
 
   msPacMan.reset();
   timeSinceDeath = std::chrono::milliseconds(0);
-}
-
-void GameState::eatPellets() {
-  const auto pos = msPacMan.positionInGrid();
-  const auto & cell = cellAtPosition(board, pos);
-  bool eaten = std::visit(overloaded{
-                            [&](const Pellet &) {
-                              score.eatenPellets++;
-                              score.points += NORMAL_PELLET_POINTS;
-                              return true;
-                            },
-                            [&](const SuperPellet &) {
-                              score.eatenPellets++;
-                              score.points += POWER_PELLET_POINTS;
-                              std::apply([](auto &... ghost) { (ghost.frighten(), ...); },
-                                         ghosts);
-                              return true;
-                            },
-                            [](const auto &) {
-                              return false;
-                            },
-                          },
-                          cell);
-  if (eaten)
-    board[pos.y][pos.x] = Walkable{};
-}
-
-void GameState::eatFruit() {
-  const auto pos = msPacMan.positionInGrid();
-  const auto fruitpos = positionToGridPosition(Fruits::position(currentFruit));
-
-  // TODO: hitboxes based collision
-  if (Fruits::isVisible(currentFruit) && pos == fruitpos) {
-    score.points += Fruits::eat(currentFruit);
-    score.eatenFruits.emplace_back(currentFruit);
-  }
 }
 
 void GameState::killMsPacMan() {
