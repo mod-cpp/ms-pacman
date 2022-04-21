@@ -9,6 +9,20 @@
 
 ## Exercise 340
 
+Rewrite the operator== to templates, use non-type parameter to specialize
+
+```cpp
+constexpr bool operator==(const GridPosition & a, const GridPosition & b) {
+  return a.x == b.x && a.y == b.y;
+}
+
+constexpr bool operator==(const Position & a, const Position & b) {
+  constexpr double epsilon = std::numeric_limits<double>::epsilon();
+  return std::abs(a.x - b.x) <= epsilon &&
+         std::abs(a.y - b.y) <= epsilon;
+}
+```
+
 <details>
    <summary>Solution</summary>
 
