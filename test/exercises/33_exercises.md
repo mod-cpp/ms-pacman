@@ -13,7 +13,8 @@
 
 ## Exercise 330
 
-Rewrite these functions into operator== 
+Use these functions as a basis for writing two operator==, one for Position and one for 
+GridPosition. Show that this works by using these in the implementation of isSamePosition.
 
 ```cpp
 inline bool isSamePosition(const GridPosition & a, const GridPosition & b) {
@@ -24,6 +25,18 @@ inline bool isSamePosition(const Position & a, const Position & b) {
     constexpr double epsilon = std::numeric_limits<double>::epsilon();
     return std::abs(a.x - b.x) <= epsilon &&
     std::abs(a.y - b.y) <= epsilon;
+}
+```
+
+These should then look like so
+
+```cpp
+inline bool isSamePosition(const GridPosition & a, const GridPosition & b) {
+  return a == b;
+}
+
+inline bool isSamePosition(const Position & a, const Position & b) {
+  return a == b;
 }
 ```
 
