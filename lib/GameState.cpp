@@ -69,7 +69,7 @@ bool GameState::stepMsPacMan(std::chrono::milliseconds & delta, MsPacMan & ms_pa
 void GameState::stepGhosts(const std::chrono::milliseconds & delta, Ghosts & ghost_tuple) {
   auto step_ghost = [&](auto & ghost) {
     ghost.update(delta, board);
-    ghost.setTarget(board, msPacMan, std::__1::get<Blinky>(ghost_tuple).positionInGrid());
+    ghost.setTarget(board, msPacMan, std::get<Blinky>(ghost_tuple).positionInGrid());
   };
 
   std::apply([&step_ghost](auto &... ghost) {
