@@ -27,6 +27,32 @@ constexpr bool isSamePosition(const Position & a, const Position & b) {
 }
 ```
 
+<details>
+   <summary>Solution</summary>
+
+```cpp
+constexpr bool operator==(const GridPosition & a, const GridPosition & b) {
+  return a.x == b.x && a.y == b.y;
+}
+
+constexpr bool isSamePosition(const GridPosition & a, const GridPosition & b) {
+  return a == b;
+}
+
+constexpr bool operator==(const Position & a, const Position & b) {
+  constexpr double epsilon = std::numeric_limits<double>::epsilon();
+  return std::abs(a.x - b.x) <= epsilon &&
+         std::abs(a.y - b.y) <= epsilon;
+}
+
+constexpr bool isSamePosition(const Position & a, const Position & b) {
+  return a == b;
+}
+```
+</details>
+
+Extra time: replace all calls to isSamePosition with == and !=
+
 ## [Exercise 331][1]
 ### operator== as a free function
 
