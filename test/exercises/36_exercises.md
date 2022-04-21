@@ -7,6 +7,33 @@
 
 ## Exercise 360
 
+Rewrite teleport to use std::visit and overloaded instead.
+
+```cpp
+constexpr GridPosition teleport(const DefaultBoard & board, GridPosition position) {
+  BoardCell cell = cellAtPosition(board, position);
+  if (std::holds_alternative<Portal>(cell)) {
+    return std::get<Portal>(cell).target_position;
+  }
+  return position;
+}
+```
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+constexpr GridPosition teleport(const DefaultBoard & board, GridPosition position) {
+  BoardCell cell = cellAtPosition(board, position);
+  return std::visit(overloaded{
+                              [&](const Portal & p) { return p.target_position; },
+                              [&position](const auto &) { return position;}
+                              }, cell);
+}
+```
+</details>
+
+
 ## [Exercise 361][1]
 ### Fill in std::visit
 

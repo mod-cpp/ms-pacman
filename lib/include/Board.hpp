@@ -89,14 +89,10 @@ constexpr bool shouldTeleport(const DefaultBoard & board, GridPosition position,
 
 constexpr GridPosition teleport(const DefaultBoard & board, GridPosition position) {
   BoardCell cell = cellAtPosition(board, position);
-  return std::visit(overloaded{
-                      [&](const Portal & p) {
-                        return p.target_position;
-                      },
-                      [&position](const auto &) {
-                        return position;
-                      } },
-                    cell);
+  if (std::holds_alternative<Portal>(cell)) {
+    return std::get<Portal>(cell).target_position;
+  }
+  return position;
 }
 
 inline Position penDoorPosition() {
