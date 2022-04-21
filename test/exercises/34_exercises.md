@@ -9,7 +9,7 @@
 
 ## Exercise 340
 
-Rewrite the operator== to templates, use non-type parameter to specialize
+Rewrite the operator== to templates and use template specialization for the one with double
 
 ```cpp
 constexpr bool operator==(const GridPosition & a, const GridPosition & b) {
@@ -27,18 +27,16 @@ constexpr bool operator==(const Position & a, const Position & b) {
    <summary>Solution</summary>
 
 ```cpp
-template<number T>
-bool operator==(const BasicPosition<T> & a,
-                const BasicPosition<T> & b) {
-    return a.x == b.x && a.y == b.y;
+template<typename T>
+constexpr bool operator==(const BasicPosition<T> & a, const BasicPosition<T> & b) {
+  return a.x == b.x && a.y == b.y;
 }
 
-template<floating_point T>
-bool operator==(const BasicPosition<T> & a,
-                const BasicPosition<T> & b) {
-    constexpr double epsilon = std::numeric_limits<double>::epsilon();
-    return std::abs(a.x - b.x) <= epsilon &&
-    std::abs(a.y - b.y) <= epsilon;
+template<>
+constexpr bool operator==(const BasicPosition<double> & a, const BasicPosition<double> & b) {
+  constexpr double epsilon = std::numeric_limits<double>::epsilon();
+  return std::abs(a.x - b.x) <= epsilon &&
+         std::abs(a.y - b.y) <= epsilon;
 }
 ```
 </details>

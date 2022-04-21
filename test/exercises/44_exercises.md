@@ -7,6 +7,40 @@
 
 ## Exercise 440
 
+Rewrite the following code to use the concepts in the file Position.hpp instead
+
+```cpp
+template<typename T>
+constexpr bool operator==(const BasicPosition<T> & a, const BasicPosition<T> & b) {
+  return a.x == b.x && a.y == b.y;
+}
+
+template<>
+constexpr bool operator==(const BasicPosition<double> & a, const BasicPosition<double> & b) {
+  constexpr double epsilon = std::numeric_limits<double>::epsilon();
+  return std::abs(a.x - b.x) <= epsilon &&
+         std::abs(a.y - b.y) <= epsilon;
+}
+```
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+template<number T>
+bool operator==(const BasicPosition<T> & a, const BasicPosition<T> & b) {
+    return a.x == b.x && a.y == b.y;
+}
+
+template<floating_point T>
+bool operator==(const BasicPosition<T> & a, const BasicPosition<T> & b) {
+    constexpr double epsilon = std::numeric_limits<double>::epsilon();
+    return std::abs(a.x - b.x) <= epsilon &&
+           std::abs(a.y - b.y) <= epsilon;
+}
+```
+</details>
+
 ## [Exercise 441][1]
 ### Reason about conjunction
 
