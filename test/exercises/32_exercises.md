@@ -8,6 +8,8 @@
 
 ## Exercise 320 
 
+Re-name all the functions called in GameState::step to step so that they are all overloads.
+
 ## [Exercise 321][1]
 ### Which overload will be called?
 
