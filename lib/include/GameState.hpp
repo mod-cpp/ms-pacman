@@ -38,7 +38,7 @@ struct GameState {
       return;
 
     // TODO: hitboxes based collision
-    if (ghost.positionInGrid() != msPacMan.positionInGrid())
+    if (!isSamePosition(ghost.positionInGrid(), msPacMan.positionInGrid()))
       return;
 
     if (ghost.isFrightened()) {

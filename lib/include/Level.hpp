@@ -77,7 +77,7 @@ struct Level {
       for (auto && other_position : portals) {
         if (!other_position)
           break;
-        if (portal_position == other_position)
+        if (isSamePosition(portal_position.value(), other_position.value()))
           continue;
         Portal & other_portal = getPortal(other_position.value());
         if (portal.id != other_portal.id)

@@ -13,6 +13,20 @@
 
 ## Exercise 330
 
+Rewrite these functions into operator== 
+
+```cpp
+constexpr bool isSamePosition(const GridPosition & a, const GridPosition & b) {
+    return a.x == b.x && a.y == b.y;
+}
+
+constexpr bool isSamePosition(const Position & a, const Position & b) {
+    constexpr double epsilon = std::numeric_limits<double>::epsilon();
+    return std::abs(a.x - b.x) <= epsilon &&
+    std::abs(a.y - b.y) <= epsilon;
+}
+```
+
 ## [Exercise 331][1]
 ### operator== as a free function
 

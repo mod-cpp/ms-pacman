@@ -4,10 +4,10 @@
 template<typename T>
 static void ghostInitTest(const T & ghost, double x, double y) {
   const ms_pacman::Position pos{ x, y };
-  REQUIRE(ghost.position() == pos);
+  REQUIRE(isSamePosition(ghost.position(), pos));
 
   const ms_pacman::GridPosition gridPos = ms_pacman::positionToGridPosition(pos);
-  REQUIRE(ghost.positionInGrid() == gridPos);
+  REQUIRE(isSamePosition(ghost.positionInGrid(), gridPos));
 
   REQUIRE_FALSE(ghost.isEyes());
   REQUIRE_FALSE(ghost.isFrightened());

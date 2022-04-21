@@ -40,7 +40,7 @@ void MsPacMan::update(std::chrono::milliseconds time_delta, Direction input_dire
 
   const auto old = pos;
   updateMazePosition(time_delta, board);
-  const bool paused = pos == old;
+  const bool paused = isSamePosition(pos, old);
   updateAnimationPosition(time_delta, paused);
 }
 

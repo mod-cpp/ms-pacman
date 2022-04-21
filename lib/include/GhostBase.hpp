@@ -164,7 +164,7 @@ public:
    */
   void updateDirection(const DefaultBoard & board) {
     const auto current_grid_position = positionInGrid();
-    if (current_grid_position == last_grid_position)
+    if (isSamePosition(current_grid_position, last_grid_position))
       return;
 
     struct Move {

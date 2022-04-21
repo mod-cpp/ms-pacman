@@ -113,7 +113,7 @@ void GameState::stepFruit(std::chrono::milliseconds delta, GenericFruit & fruit)
   const auto fruitpos = positionToGridPosition(Fruits::position(fruit));
 
   // TODO: hitboxes based collision
-  if (Fruits::isVisible(fruit) && pos == fruitpos) {
+  if (Fruits::isVisible(fruit) && isSamePosition(pos, fruitpos)) {
     score.points += Fruits::eat(fruit);
     score.eatenFruits.emplace_back(fruit);
   }

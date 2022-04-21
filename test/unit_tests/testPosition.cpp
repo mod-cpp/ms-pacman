@@ -34,13 +34,13 @@ TEST_CASE("GridPosition converts to Position", "[positions]") {
 TEST_CASE("Positions compare equal", "[positions]") {
   ms_pacman::Position pos1{ 10.0, 20.0 };
   ms_pacman::Position pos2{ 10.0, 20.0 };
-  REQUIRE(pos1 == pos2);
+  REQUIRE(isSamePosition(pos1, pos2));
 
   ms_pacman::Position pos3{ 9.9, 19.9 };
-  REQUIRE_FALSE(pos1 == pos3);
+  REQUIRE_FALSE(isSamePosition(pos1, pos3));
 
   pos3.x += 0.1;
   pos3.y += 0.1;
 
-  REQUIRE(pos1 == pos3);
+  REQUIRE(isSamePosition(pos1, pos3));
 }

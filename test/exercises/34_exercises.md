@@ -9,6 +9,26 @@
 
 ## Exercise 340
 
+<details>
+   <summary>Solution</summary>
+
+```cpp
+template<number T>
+bool operator==(const BasicPosition<T> & a,
+                const BasicPosition<T> & b) {
+    return a.x == b.x && a.y == b.y;
+}
+
+template<floating_point T>
+bool operator==(const BasicPosition<T> & a,
+                const BasicPosition<T> & b) {
+    constexpr double epsilon = std::numeric_limits<double>::epsilon();
+    return std::abs(a.x - b.x) <= epsilon &&
+    std::abs(a.y - b.y) <= epsilon;
+}
+```
+</details>
+
 ## [Exercise 341][1]
 ### Implement streaming operator as insert into the set
 
