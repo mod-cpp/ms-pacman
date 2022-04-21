@@ -48,11 +48,11 @@ inline double positionDistance(const T & a, const T & b) {
   return std::sqrt((first * first) + (second * second));
 }
 
-constexpr bool isSamePosition(const GridPosition & a, const GridPosition & b) {
+inline bool isSamePosition(const GridPosition & a, const GridPosition & b) {
   return a.x == b.x && a.y == b.y;
 }
 
-constexpr bool isSamePosition(const Position & a, const Position & b) {
+inline bool isSamePosition(const Position & a, const Position & b) {
   constexpr double epsilon = std::numeric_limits<double>::epsilon();
   return std::abs(a.x - b.x) <= epsilon &&
          std::abs(a.y - b.y) <= epsilon;
