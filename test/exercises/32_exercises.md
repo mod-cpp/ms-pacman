@@ -10,6 +10,17 @@
 
 Re-name all the functions called in GameState::step to step so that they are all overloads.
 
+```cpp
+void GameState::step(std::chrono::milliseconds delta) {
+  if (!stepMsPacMan(delta, msPacMan))
+    return;
+
+  stepGhosts(delta, ghosts);
+  stepPellets(board);
+  stepFruit(delta, currentFruit);
+}
+```
+
 ## [Exercise 321][1]
 ### Which overload will be called?
 
