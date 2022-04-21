@@ -11,6 +11,50 @@
 
 ## Exercise 370
 
+Use a structured binding to "unpack" the animation parameter and extract out the posistion into a 
+variable called pos. What should we do with the other member?
+
+```cpp
+constexpr GridPosition animationFrame(const MsPacManAnimation & animation, Direction direction) {
+  switch (direction) {
+    case Direction::LEFT:
+      return left_animation[animation.position];
+    case Direction::RIGHT:
+      return right_animation[animation.position];
+    case Direction::UP:
+      return up_animation[animation.position];
+    case Direction::DOWN:
+      return down_animation[animation.position];
+    case Direction::NONE:
+    default:
+      return Atlas::pacman_left_narrow;
+  }
+}
+```
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+constexpr GridPosition animationFrame(const MsPacManAnimation & animation, Direction direction) {
+  auto [pos, _] = animation;
+  switch (direction) {
+    case Direction::LEFT:
+      return left_animation[pos];
+    case Direction::RIGHT:
+      return right_animation[pos];
+    case Direction::UP:
+      return up_animation[pos];
+    case Direction::DOWN:
+      return down_animation[pos];
+    case Direction::NONE:
+    default:
+      return Atlas::pacman_left_narrow;
+  }
+}
+```
+</details>
+
 ## [Exercise 371][1]
 ### structured binding of a C array
 
