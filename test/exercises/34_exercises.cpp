@@ -2,6 +2,8 @@
 
 // To enable a test remove [.] from the tags on the test
 
+#include <numeric>
+
 // 34. Class templates, function templates, non-type parameters
 namespace exercises_34 {
 
