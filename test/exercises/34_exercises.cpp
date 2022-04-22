@@ -62,7 +62,7 @@ TEST_CASE("Exercise 342 : Implement a function template", "[.][34]") {
   CHECK(accumulate(string_vec, { "" }) == "21324354");
 }
 
-static auto acc(auto vec, auto init) {
+static auto acc(const auto & vec, const auto & init) {
   unused(vec);
   // Exercise 343
   // Hint: https://en.cppreference.com/w/cpp/algorithm/accumulate

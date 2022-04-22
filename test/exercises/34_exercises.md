@@ -84,7 +84,7 @@ Considering exercise 342 and 343 - how are they different? Will they match the s
    <summary>Solution</summary>
 
 ```cpp
-static auto acc(auto vec, auto init) {
+static auto acc(const auto & vec, const auto & init) {
   return std::accumulate(vec.begin(), vec.end(), init);
 }
 ```
