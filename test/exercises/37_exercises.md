@@ -37,7 +37,7 @@ constexpr GridPosition animationFrame(const MsPacManAnimation & animation, Direc
 
 ```cpp
 constexpr GridPosition animationFrame(const MsPacManAnimation & animation, Direction direction) {
-  auto [pos, _] = animation;
+  const auto & [pos, _] = animation;
   switch (direction) {
     case Direction::LEFT:
       return left_animation[pos];
