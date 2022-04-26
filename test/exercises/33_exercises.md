@@ -237,12 +237,13 @@ TEST_CASE("Exercise 336 : operator<=> as a custom member function", "[33]") {
   struct Point {
     int x = 0;
     int y = 0;
-    std::strong_ordering operator<=>(const Point& other) const {
-      if (auto C = x <=> other.x; C != 0)
-        return C;
-      return y <=> other.y;
-    }
-    bool operator==(const Point& other) const = default;
+   std::strong_ordering operator<=>(const Point & other) const {
+   std::strong_ordering ordering = (x <=> other.x);
+     if ( ordering != std::strong_ordering::equal )
+       return ordering;
+     return y <=> other.y;
+   }
+   bool operator==(const Point & other) const = default;
   };
 
   Point p;
