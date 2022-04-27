@@ -7,11 +7,10 @@
 * [Exercise 372](#exercise-372)
 * [Exercise 373](#exercise-373)
 * [Exercise 374](#exercise-374)
-* [Exercise 375](#exercise-375)
 
 ## Exercise 370
 
-Use a structured binding to "unpack" the animation parameter and extract out the posistion into a 
+Use a structured binding to "unpack" the animation parameter and extract out the posistion into a
 variable called pos. What should we do with the other member?
 
 ```cpp
@@ -56,19 +55,6 @@ constexpr GridPosition animationFrame(const MsPacManAnimation & animation, Direc
 </details>
 
 ## [Exercise 371][1]
-### structured binding of a C array
-
-* cppreference : [Structured Binding Declaration][2]
-
-<details>
-   <summary>Solution</summary>
-
-```cpp
-  auto [x, y, z] = chars;
-```
-</details>
-
-## [Exercise 372][1]
 ### structured binding of a std::array
 
 * cppreference : [Structured Binding Declaration][2]
@@ -81,7 +67,7 @@ constexpr GridPosition animationFrame(const MsPacManAnimation & animation, Direc
 ```
 </details>
 
-## [Exercise 373][1]
+## [Exercise 372][1]
 ### structured binding of a struct
 
 * cppreference : [Structured Binding Declaration][2]
@@ -94,7 +80,7 @@ constexpr GridPosition animationFrame(const MsPacManAnimation & animation, Direc
 ```
 </details>
 
-## [Exercise 374][1]
+## [Exercise 373][1]
 ### structured binding of a std::tuple
 
 * cppreference : [Structured Binding Declaration][2]
@@ -107,7 +93,7 @@ constexpr GridPosition animationFrame(const MsPacManAnimation & animation, Direc
 ```
 </details>
 
-## [Exercise 375][1]
+## [Exercise 374][1]
 ### structured binding of a std::map
 
 * cppreference : [Structured Binding Declaration][2]

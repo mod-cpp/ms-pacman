@@ -11,36 +11,7 @@ namespace exercises_37 {
 
 // Comment out define below
 #define ENABLE_TEST_371
-TEST_CASE("Exercise 371 : structured binding of a C array", "[.][37]") {
-  // EXAMPLE
-  {
-    int ints[] = { 12, 23, 34, 45 }; // NOLINT
-
-    auto [a, b, c, d] = ints;
-
-    static_assert(std::is_same_v<decltype(a), int>);
-    CHECK(a == 12);
-    CHECK(b == 23);
-    CHECK(c == 34);
-    CHECK(d == 45);
-  }
-
-#ifndef ENABLE_TEST_371
-  char chars[] = { 'h', 'e', 'y' }; // NOLINT
-
-  // Use structured binding to get the characters in chars and put then in x,y,z
-
-  // Use the checks below to test it
-  static_assert(std::is_same_v<decltype(x), char>);
-  CHECK(x == 'h');
-  CHECK(y == 'e');
-  CHECK(z == 'y');
-#endif
-}
-
-// Comment out define below
-#define ENABLE_TEST_372
-TEST_CASE("Exercise 372 : structured binding of a std::array", "[.][37]") {
+TEST_CASE("Exercise 371 : structured binding of a std::array", "[.][37]") {
   // EXAMPLE
   {
     std::array ints = { 12, 23, 34, 45 };
@@ -54,7 +25,7 @@ TEST_CASE("Exercise 372 : structured binding of a std::array", "[.][37]") {
     CHECK(d == 45);
   }
 
-#ifndef ENABLE_TEST_372
+#ifndef ENABLE_TEST_371
   std::array chars = { 'h', 'e', 'y' };
 
   // Use structured binding to get the characters in chars and put then in x,y,z
@@ -68,8 +39,8 @@ TEST_CASE("Exercise 372 : structured binding of a std::array", "[.][37]") {
 }
 
 // Comment out define below
-#define ENABLE_TEST_373
-TEST_CASE("Exercise 373 : structured binding of a struct", "[.][37]") {
+#define ENABLE_TEST_372
+TEST_CASE("Exercise 372 : structured binding of a struct", "[.][37]") {
   struct Point {
     int x = 0;
     int y = 0;
@@ -86,7 +57,7 @@ TEST_CASE("Exercise 373 : structured binding of a struct", "[.][37]") {
     CHECK(y == 24);
   }
 
-#ifndef ENABLE_TEST_373
+#ifndef ENABLE_TEST_372
   Point q = { 12, 21 };
 
   // Use structured binding to get the ints in q and put then in xx and yy
@@ -99,8 +70,8 @@ TEST_CASE("Exercise 373 : structured binding of a struct", "[.][37]") {
 }
 
 // Comment out define below
-#define ENABLE_TEST_374
-TEST_CASE("Exercise 374 : structured binding of a std::tuple", "[.][37]") {
+#define ENABLE_TEST_373
+TEST_CASE("Exercise 373 : structured binding of a std::tuple", "[.][37]") {
   // EXAMPLE
   {
     std::tuple p = std::make_tuple(42, 24);
@@ -112,7 +83,7 @@ TEST_CASE("Exercise 374 : structured binding of a std::tuple", "[.][37]") {
     CHECK(y == 24);
   }
 
-#ifndef ENABLE_TEST_374
+#ifndef ENABLE_TEST_373
   std::tuple q = std::make_tuple(21, 12);
 
   // Use structured binding to get the ints in q and put then in xx and yy
@@ -125,8 +96,8 @@ TEST_CASE("Exercise 374 : structured binding of a std::tuple", "[.][37]") {
 }
 
 // Comment out define below
-#define ENABLE_TEST_375
-TEST_CASE("Exercise 375 : structured binding of a std::map", "[.][37]") {
+#define ENABLE_TEST_374
+TEST_CASE("Exercise 374 : structured binding of a std::map", "[.][37]") {
   std::map<std::string, int> map{
     { "Corentin", 1345 },
     { "Patricia", 2124 },
@@ -148,7 +119,7 @@ TEST_CASE("Exercise 375 : structured binding of a std::map", "[.][37]") {
     CHECK(high_score.first == "Patricia");
   }
 
-#ifndef ENABLE_TEST_375
+#ifndef ENABLE_TEST_374
   // Use the loop and a low_score std::pair to find the lowest score
   for (const auto & [name, score] : map) {
     static_assert(std::is_same_v<decltype(name), const std::string>);
