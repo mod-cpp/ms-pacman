@@ -14,17 +14,17 @@ struct player {
   int score = 0;
 };
 
-using ParsedInput = std::vector<std::tuple<std::string, int>>;
+using PlayerScore = std::tuple<std::string, int>;
+using Scores = std::vector<PlayerScore>;
 
 class HighScore final {
 public:
   explicit HighScore(std::string save_filename);
   ~HighScore();
   int top() const;
-  ParsedInput parse(const std::string& input) const;
-  void populate(const std::vector<std::tuple<std::string, int>>& list);
+  Scores parse(const std::string& file_content) const;
+  void populate(const std::vector<PlayerScore>& list);
   void insert(const std::string&, int);
-
   size_t num_players() const;
 
   void initialize(HighScoreFile file);

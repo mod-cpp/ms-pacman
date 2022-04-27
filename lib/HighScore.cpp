@@ -10,15 +10,16 @@
 #include <sstream>
 #include <utility>
 
-static std::tuple<std::string, int> split_line(std::string_view line) {
-  auto index = line.find(',');
-  std::string_view name = line.substr(index + 1);
-  int score{};
-  std::from_chars(name.data(), name.data() + name.size(), score);
-  return { std::string(line.substr(0, index)), score };
-}
-
 namespace ms_pacman {
+
+static std::tuple<std::string, int> split_line(const std::string & line) {
+  auto index = line.find(',');
+  std::string player_name = line.substr(0, index);
+  std::string score_str = line.substr(index + 1);
+  int score{};
+  std::from_chars(score_str.data(), score_str.data() + score_str.size(), score);
+  return { player_name, score };
+}
 
 HighScore::HighScore(std::string save_filename) : filename(std::move(save_filename)) {
   initialize(HighScoreFile(filename));
@@ -36,7 +37,7 @@ int HighScore::top() const {
   return player.score;
 }
 
-void HighScore::populate(const std::vector<std::tuple<std::string, int>>& list) {
+void HighScore::populate(const std::vector<PlayerScore>& list) {
   for (auto && [name, score] : list)
     high_scores.emplace(name, player{ name, score });
 }
@@ -45,14 +46,15 @@ void HighScore::insert(const std::string& name, int score) {
   high_scores.insert_or_assign(name, player{ name, score });
 }
 
-ParsedInput HighScore::parse(const std::string& input) const {
-  std::vector<std::tuple<std::string, int>> parsed_input;
-  size_t num_lines = 0;
-  auto stream = std::stringstream(input);
-  for (std::string line; std::getline(stream, line); num_lines++) {
-    parsed_input.push_back(split_line(line));
+Scores HighScore::parse(const std::string& file_content) const {
+  std::vector<PlayerScore> scores;
+  auto stream = std::stringstream(file_content);
+  std::string line;
+  while (std::getline(stream, line)) {
+    auto [name, score] = split_line(line);
+    scores.emplace_back(name, score);
   }
-  return parsed_input;
+  return scores;
 }
 
 size_t HighScore::num_players() const {
