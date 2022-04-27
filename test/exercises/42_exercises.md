@@ -9,6 +9,18 @@
 
 ## Exercise 420
 
+```cpp
+
+```
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+
+```
+</details>
+
 ## [Exercise 421][1]
 ### Make whole word uppercase
 
