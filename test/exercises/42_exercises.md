@@ -17,7 +17,6 @@
 
 ```cpp
 std::string to_upper(std::string_view word) {
-  unused(word);
   std::string ret;
   ret.resize(word.size());
   std::transform(word.begin(), word.end(), ret.begin(), ::toupper);
