@@ -79,13 +79,16 @@ void GameState::stepGhosts(const std::chrono::milliseconds & delta, Ghosts & gho
     step_ghost(clyde);
   }, ghost_tuple);
 
+  checkCollision(ghost_tuple);
+}
+
+void GameState::checkCollision(Ghosts & ghost_tuple) {
   std::apply([this](Blinky &blinky, Pinky &pinky, Inky& inky, Clyde & clyde) {
     checkCollision(blinky);
     checkCollision(pinky);
     checkCollision(inky);
     checkCollision(clyde);
   }, ghost_tuple);
-
 }
 
 void GameState::stepPellets(DefaultBoard & grid) {

@@ -51,6 +51,7 @@ struct GameState {
 
   bool stepMsPacMan(std::chrono::milliseconds & delta, MsPacMan & ms_pac_man);
   void stepGhosts(const std::chrono::milliseconds & delta, Ghosts & ghost_tuple);
+  void checkCollision(Ghosts & ghost_tuple);
   void stepPellets(DefaultBoard & grid);
   void stepFruit(std::chrono::milliseconds delta, GenericFruit & fruit);
   void handleDeathAnimation(std::chrono::milliseconds delta);
