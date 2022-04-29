@@ -2,6 +2,7 @@
 
 #include "HighScoreFile.hpp"
 
+#include <span>
 #include <unordered_map>
 
 namespace ms_pacman {
@@ -23,7 +24,7 @@ public:
   ~HighScore();
   int top() const;
   Scores parse(const std::string& file_content) const;
-  void populate(const std::vector<PlayerScore>& list);
+  void populate(const std::span<PlayerScore>& list);
   void insert(const std::string&, int);
   size_t num_players() const;
 

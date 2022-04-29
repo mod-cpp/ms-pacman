@@ -55,7 +55,7 @@ TEST_CASE("Populate Using HighScore File", "[highscore]") {
   REQUIRE(!input.empty());
   auto parsed = highScore.parse(input);
   REQUIRE(parsed.size() == 3);
-  highScore.populate(std::move(parsed));
+  highScore.populate(parsed);
   REQUIRE(highScore.top() == 2124);
   REQUIRE(highScore.num_players() == 3);
 }

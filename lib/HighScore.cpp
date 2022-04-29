@@ -37,8 +37,8 @@ int HighScore::top() const {
   return player.score;
 }
 
-void HighScore::populate(const std::vector<PlayerScore>& list) {
-  for (auto && [name, score] : list)
+void HighScore::populate(const std::span<PlayerScore>& list) {
+  for (const auto & [name, score] : list)
     high_scores.emplace(name, player{ name, score });
 }
 
