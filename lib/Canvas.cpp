@@ -140,10 +140,12 @@ void Canvas::render(const DefaultBoard & board) {
 }
 
 void Canvas::render(const GenericFruit & fruit, std::span<const GenericFruit> eatenFruits) {
-  Sprite sprite = getSprite(Fruits::sprite(fruit));
+  Sprite level_fruit_sprite = getSprite(Fruits::sprite(fruit));
+
+  // Render the current fruit in the maze
   if (Fruits::isVisible(fruit)) {
     const auto & pos = Fruits::position(fruit);
-    render(sprite, pos);
+    render(level_fruit_sprite, pos);
   }
 
   auto render_fruit = [this](int position, Sprite fruit_sprite) {
@@ -155,15 +157,18 @@ void Canvas::render(const GenericFruit & fruit, std::span<const GenericFruit> ea
     window.draw(fruit_sprite);
   };
 
-  int position = 0;
+  int render_position = 0;
+
+  // Render the already eaten fruits in the list in the panel
   for (const auto & eatenFruit : eatenFruits) {
     GridPosition current_sprite = std::visit([](auto && fruit) { return fruit.sprite; }, eatenFruit);
     Sprite eaten_sprite = getSprite(current_sprite);
-    render_fruit(position, eaten_sprite);
-    position++;
+    render_fruit(render_position, eaten_sprite);
+    render_position++;
   }
 
-  render_fruit(position, sprite);
+  // Render the current fruit at the end of the list in the panel
+  render_fruit(render_position, level_fruit_sprite);
 }
 
 void Canvas::render(const Score & score) {
