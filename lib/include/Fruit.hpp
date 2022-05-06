@@ -34,20 +34,18 @@ public:
   bool visible() const { return is_visible; }
 
 private:
-  bool is_visible = false;
-  int index = 0;
-  std::chrono::milliseconds time_visible{ 0 };
-  static constexpr auto limit = std::chrono::seconds(9);
-
-  void show() {
-    is_visible = true;
-  }
+  void show() { is_visible = true; }
 
   void hide() {
     index++;
     time_visible = std::chrono::seconds{ 0 };
     is_visible = false;
   }
+
+  bool is_visible = false;
+  int index = 0;
+  std::chrono::milliseconds time_visible{ 0 };
+  static constexpr auto limit = std::chrono::seconds(9);
 };
 
 struct Cherry : public Fruit<Cherry> {
