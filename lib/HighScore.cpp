@@ -21,7 +21,8 @@ static std::tuple<std::string, int> split_line(const std::string & line) {
   return { player_name, score };
 }
 
-HighScore::HighScore(std::string save_filename) : filename(std::move(save_filename)) {
+HighScore::HighScore(std::string save_filename)
+  : filename(std::move(save_filename)) {
   initialize(HighScoreFile(filename));
 }
 
@@ -37,16 +38,16 @@ int HighScore::top() const {
   return player.score;
 }
 
-void HighScore::populate(const std::span<PlayerScore>& list) {
+void HighScore::populate(const std::span<PlayerScore> & list) {
   for (const auto & [name, score] : list)
     high_scores.emplace(name, player{ name, score });
 }
 
-void HighScore::insert(const std::string& name, int score) {
+void HighScore::insert(const std::string & name, int score) {
   high_scores.insert_or_assign(name, player{ name, score });
 }
 
-Scores HighScore::parse(const std::string& file_content) const {
+Scores HighScore::parse(const std::string & file_content) const {
   std::vector<PlayerScore> scores;
   auto stream = std::stringstream(file_content);
   std::string line;
@@ -88,4 +89,4 @@ HighScore::~HighScore() {
   save();
 }
 
-}
+} // namespace ms_pacman

@@ -17,7 +17,7 @@ static int countPellets(ms_pacman::array2d<int, 31, 28> array) {
 }
 
 TEST_CASE("Check num pellets") {
-  for (ms_pacman::Level level: ms_pacman::levels) {
+  for (ms_pacman::Level level : ms_pacman::levels) {
     int counted = countPellets(level.maze_data);
     REQUIRE(level.getNumPellets() == counted);
   }

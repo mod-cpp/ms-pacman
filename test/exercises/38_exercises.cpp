@@ -6,11 +6,11 @@
 namespace exercises_38 {
 
 // Note use of comma operator
-constexpr void unused(auto ...X) {
+constexpr void unused(auto... X) {
   (..., (void)X);
 }
 
-constexpr bool any_of(auto ...item) {
+constexpr bool any_of(auto... item) {
   unused(item...);
   return false;
 }
@@ -23,7 +23,7 @@ TEST_CASE("Exercise 381 : Implement any_of", "[.][38]") {
   REQUIRE(true == any_of(true, true, true));
 }
 
-constexpr bool all_of(auto ...item) {
+constexpr bool all_of(auto... item) {
   unused(item...);
   return false;
 }

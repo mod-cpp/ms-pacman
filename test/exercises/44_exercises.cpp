@@ -37,10 +37,10 @@ template<typename T>
 concept is_shape = true;
 
 template<typename T>
-concept is_circle = is_shape<T> && T::shape == shape::circle;
+concept is_circle = (is_shape<T> && T::shape == shape::circle);
 
 template<typename T>
-concept is_red = is_shape<T> && T::color == color::red;
+concept is_red = (is_shape<T> && T::color == color::red);
 
 template<typename T>
 concept is_red_circle = is_circle<T> && is_red<T>;

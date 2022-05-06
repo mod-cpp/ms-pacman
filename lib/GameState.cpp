@@ -72,18 +72,20 @@ void GameState::stepGhosts(const std::chrono::milliseconds & delta, Ghosts & gho
     ghost.setTarget(board, msPacMan, std::get<Blinky>(ghost_tuple).positionInGrid());
   };
 
-  std::apply([&step_ghost](Blinky &blinky, Pinky &pinky, Inky& inky, Clyde & clyde) {
+  auto step_all_ghosts = [&step_ghost](Blinky & blinky, Pinky & pinky, Inky & inky, Clyde & clyde) {
     step_ghost(blinky);
     step_ghost(pinky);
     step_ghost(inky);
     step_ghost(clyde);
-  }, ghost_tuple);
+  };
+
+  std::apply(step_all_ghosts, ghost_tuple);
 
   checkCollision(ghost_tuple);
 }
 
 void GameState::checkCollision(Ghosts & ghost_tuple) {
-  auto callable = [this](Blinky &blinky, Pinky &pinky, Inky& inky, Clyde & clyde) {
+  auto callable = [this](Blinky & blinky, Pinky & pinky, Inky & inky, Clyde & clyde) {
     checkCollision(blinky);
     checkCollision(pinky);
     checkCollision(inky);
@@ -104,8 +106,8 @@ void GameState::stepPellets(DefaultBoard & grid) {
                             [&](const SuperPellet &) {
                               score.eatenPellets++;
                               score.points += POWER_PELLET_POINTS;
-                              std::apply([](auto &... ghost) { (ghost.frighten(), ...); },
-                                         ghosts);
+                              auto frighten_ghosts = [](auto &... ghost) { (ghost.frighten(), ...); };
+                              std::apply(frighten_ghosts, ghosts);
                               return true;
                             },
                             [](const auto &) {
@@ -140,12 +142,8 @@ void GameState::handleDeathAnimation(std::chrono::milliseconds delta) {
 }
 
 void GameState::reset() {
-  std::apply(
-    [](auto &... ghost) {
-      (ghost.reset(), ...);
-    },
-    ghosts);
-
+  auto reset_ghosts = [](auto &... ghost) { (ghost.reset(), ...); };
+  std::apply(reset_ghosts, ghosts);
   msPacMan.reset();
   timeSinceDeath = std::chrono::milliseconds(0);
 }

@@ -68,4 +68,4 @@ TEST_CASE("Exercise 423 : Split view into tokens based on whitespace", "[.][42]"
   }
 }
 
-}
+} // namespace exercises_42

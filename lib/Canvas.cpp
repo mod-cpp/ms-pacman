@@ -110,11 +110,8 @@ void Canvas::renderReady() {
 }
 
 void Canvas::render(const Ghosts & ghosts) {
-  std::apply(
-    [this](const auto &... ghost) {
-      (render(ghost), ...);
-    },
-    ghosts);
+  auto render_ghosts = [this](const auto &... ghost) { (render(ghost), ...); };
+  std::apply(render_ghosts, ghosts);
 }
 
 void Canvas::render(const DefaultBoard & board) {
@@ -141,8 +138,6 @@ void Canvas::render(const DefaultBoard & board) {
     }
   }
 }
-
-
 
 void Canvas::render(const GenericFruit & fruit, std::span<const GenericFruit> eatenFruits) {
   Sprite sprite = getSprite(Fruits::sprite(fruit));

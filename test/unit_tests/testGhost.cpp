@@ -24,7 +24,7 @@ TEST_CASE("Ghosts start in the correct position", "[ghosts]") {
   ghostInitTest(pinky, 11.5, 14);
 
   ms_pacman::Clyde clyde;
-  ghostInitTest(clyde, 15.5, 14 );
+  ghostInitTest(clyde, 15.5, 14);
 }
 
 template<typename T>

@@ -36,8 +36,8 @@ static Rect bounding_box(const Rect & one, const Rect & two) {
   unused(two);
   int x = 0;
   int y = 0;
-//  int right = 0;
-//  int bottom = 0;
+  //  int right = 0;
+  //  int bottom = 0;
   size_t width = 0;
   size_t height = 0;
   return { { x, y }, { width, height } };

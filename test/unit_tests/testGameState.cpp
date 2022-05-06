@@ -1,7 +1,7 @@
 #include "AtlasFruits.hpp"
 #include "GameState.hpp"
-#include <tuple>
 #include <catch2/catch.hpp>
+#include <tuple>
 
 TEST_CASE("Check initial state of GameState") {
   ms_pacman::GameState gameState;

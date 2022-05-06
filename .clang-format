@@ -7,13 +7,15 @@ AlwaysBreakAfterReturnType: None
 BreakBeforeBraces: Custom
 BreakConstructorInitializers: BeforeColon
 BreakInheritanceList: BeforeColon
-ColumnLimit: '0'
+ColumnLimit: 0
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
-PenaltyReturnTypeOnItsOwnLine: '10000'
+PenaltyReturnTypeOnItsOwnLine: 10000
 PointerAlignment: Middle
 FixNamespaceComments: true
 NamespaceIndentation: None
 AllowShortCaseLabelsOnASingleLine: true
-AllowShortLambdasOnASingleLine: Inline
+AllowShortLambdasOnASingleLine: All
+MaxEmptyLinesToKeep: 1
 #LambdaBodyIndentation: Signature
+BreakBeforeConceptDeclarations: true
 ...
