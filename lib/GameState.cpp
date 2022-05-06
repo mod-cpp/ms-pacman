@@ -50,7 +50,7 @@ void GameState::step(std::chrono::milliseconds delta) {
 
   stepGhosts(delta, ghosts);
   stepPellets(board);
-  stepFruit(delta, currentFruit);
+  stepFruit(delta, currentFruit());
 }
 
 bool GameState::stepMsPacMan(std::chrono::milliseconds & delta, MsPacMan & ms_pac_man) {

@@ -43,7 +43,7 @@ void Canvas::render(const GameState & gameState) {
   render(gameState.ghosts);
   render(gameState.score);
   renderHighScore(gameState.highScore.top());
-  render(gameState.currentFruit, gameState.score.eatenFruits);
+  render(gameState.fruits[gameState.current_fruit], gameState.score.eatenFruits);
   render(gameState.msPacMan);
 
   if (gameState.score.lives == DEFAULT_LIVES && gameState.msPacMan.currentDirection() == Direction::NONE) {
@@ -157,7 +157,7 @@ void Canvas::render(const GenericFruit & fruit, std::span<const GenericFruit> ea
 
   int position = 0;
   for (const auto & eatenFruit : eatenFruits) {
-    GridPosition current_sprite = std::visit([](auto && fruit) { return fruit.sprite(); }, eatenFruit);
+    GridPosition current_sprite = std::visit([](auto && fruit) { return fruit.sprite; }, eatenFruit);
     Sprite eaten_sprite = getSprite(current_sprite);
     render_fruit(position, eaten_sprite);
     position++;

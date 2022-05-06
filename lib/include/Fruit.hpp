@@ -7,19 +7,7 @@
 
 namespace ms_pacman {
 
-enum class FruitType {
-  Cherry,
-  Strawberry,
-  Orange,
-  Pretzel,
-  Apple,
-  Pear,
-  Banana
-};
-
-struct GameState;
-
-template<FruitType Type>
+template<typename Type>
 class Fruit {
 public:
   void update(std::chrono::milliseconds time_delta, int eatenPellets) {
@@ -35,46 +23,10 @@ public:
     }
   }
 
-  // TODO: for C++20 use consteval
-  constexpr GridPosition sprite() const {
-    constexpr auto ret = []() constexpr {
-      switch (Type) {
-        case FruitType::Cherry: return Atlas::fruit_cherry;
-        case FruitType::Strawberry: return Atlas::fruit_strawberry;
-        case FruitType::Orange: return Atlas::fruit_orange;
-        case FruitType::Pretzel: return Atlas::fruit_pretzel;
-        case FruitType::Apple: return Atlas::fruit_apple;
-        case FruitType::Pear: return Atlas::fruit_pear;
-        case FruitType::Banana: return Atlas::fruit_banana;
-      }
-    }
-    ();
-    return ret;
-  }
-
-  constexpr Position position() const {
-    // under the pen
-    return { 13.5, 17 };
-  }
+  constexpr Position position() const { return Atlas::fruit_start; }
 
   bool isVisible() const {
     return visible;
-  }
-
-  // TODO: for C++20 use consteval
-  constexpr int value() const {
-    constexpr auto ret = []() {
-      switch (Type) {
-        case FruitType::Cherry: return 100;
-        case FruitType::Strawberry: return 200;
-        case FruitType::Orange: return 500;
-        case FruitType::Pretzel: return 700;
-        case FruitType::Apple: return 1000;
-        case FruitType::Pear: return 2000;
-        case FruitType::Banana: return 5000;
-      }
-    }();
-    return ret;
   }
 
   int eat() {
@@ -83,7 +35,7 @@ public:
     }
 
     hide();
-    return value();
+    return Type::value;
   }
 
 private:
@@ -98,14 +50,42 @@ private:
   }
 };
 
-using GenericFruit = std::variant<
-  Fruit<FruitType::Cherry>,
-  Fruit<FruitType::Strawberry>,
-  Fruit<FruitType::Orange>,
-  Fruit<FruitType::Pretzel>,
-  Fruit<FruitType::Apple>,
-  Fruit<FruitType::Pear>,
-  Fruit<FruitType::Banana>>;
+struct Cherry : public Fruit<Cherry> {
+  static constexpr GridPosition sprite = Atlas::fruit_cherry;
+  static constexpr int value = 100;
+};
+
+struct Strawberry : public Fruit<Strawberry> {
+  static constexpr GridPosition sprite = Atlas::fruit_strawberry;
+  static constexpr int value = 200;
+};
+
+struct Orange : public Fruit<Orange> {
+  static constexpr GridPosition sprite = Atlas::fruit_orange;
+  static constexpr int value = 500;
+};
+
+struct Pretzel : public Fruit<Pretzel> {
+  static constexpr GridPosition sprite = Atlas::fruit_pretzel;
+  static constexpr int value = 700;
+};
+
+struct Apple : public Fruit<Apple> {
+  static constexpr GridPosition sprite = Atlas::fruit_apple;
+  static constexpr int value = 1000;
+};
+
+struct Pear : public Fruit<Pear> {
+  static constexpr GridPosition sprite = Atlas::fruit_pear;
+  static constexpr int value = 2000;
+};
+
+struct Banana : public Fruit<Banana> {
+  static constexpr GridPosition sprite = Atlas::fruit_banana;
+  static constexpr int value = 5000;
+};
+
+using GenericFruit = std::variant<Cherry, Strawberry, Orange, Pretzel, Apple, Pear, Banana>;
 
 namespace Fruits {
 constexpr void update(GenericFruit & currentFruit, std::chrono::milliseconds time_delta, int eatenPellets) {
@@ -113,11 +93,11 @@ constexpr void update(GenericFruit & currentFruit, std::chrono::milliseconds tim
 }
 
 constexpr GridPosition sprite(const GenericFruit & currentFruit) {
-  return std::visit([](auto && fruit) { return fruit.sprite(); }, currentFruit);
+  return std::visit([](auto && fruit) { return fruit.sprite; }, currentFruit);
 }
 
 constexpr int value(const GenericFruit & currentFruit) {
-  return std::visit([](auto && fruit) { return fruit.value(); }, currentFruit);
+  return std::visit([](auto && fruit) { return fruit.value; }, currentFruit);
 }
 
 constexpr Position position(const GenericFruit & currentFruit) {

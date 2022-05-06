@@ -15,6 +15,7 @@ namespace ms_pacman {
 constexpr int GHOST_POINTS = 200;
 
 using Ghosts = std::tuple<Blinky, Pinky, Inky, Clyde>;
+using FruitCollection = std::vector<GenericFruit>;
 
 struct GameState {
   ~GameState();
@@ -23,7 +24,8 @@ struct GameState {
   Ghosts ghosts;
   MsPacMan msPacMan;
   InputState inputState;
-  GenericFruit currentFruit;
+  FruitCollection fruits = { Cherry{}, Strawberry{}, Orange{}, Pretzel{}, Apple{}, Pear{}, Banana{} };
+  size_t current_fruit = 0;
   size_t levelNum = 0;
   Level level = getLevel(levelNum);
   DefaultBoard board;
@@ -64,6 +66,7 @@ struct GameState {
   void restartGame();
   bool isGameOver() const;
   void setGameOver();
+  GenericFruit & currentFruit() { return fruits[current_fruit]; }
 };
 
 } // namespace ms_pacman
