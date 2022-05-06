@@ -43,7 +43,7 @@ void Canvas::render(const GameState & gameState) {
   render(gameState.ghosts);
   render(gameState.score);
   renderHighScore(gameState.highScore.top());
-  render(gameState.fruits[gameState.current_fruit], gameState.score.eatenFruits);
+  render(gameState.fruits[gameState.fruitIndex()], gameState.score.eatenFruits);
   render(gameState.msPacMan);
 
   if (gameState.score.lives == DEFAULT_LIVES && gameState.msPacMan.currentDirection() == Direction::NONE) {

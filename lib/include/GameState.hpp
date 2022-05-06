@@ -25,7 +25,6 @@ struct GameState {
   MsPacMan msPacMan;
   InputState inputState;
   FruitCollection fruits = { Cherry{}, Strawberry{}, Orange{}, Pretzel{}, Apple{}, Pear{}, Banana{} };
-  size_t current_fruit = 0;
   size_t levelNum = 0;
   Level level = getLevel(levelNum);
   DefaultBoard board;
@@ -66,7 +65,8 @@ struct GameState {
   void restartGame();
   bool isGameOver() const;
   void setGameOver();
-  GenericFruit & currentFruit() { return fruits[current_fruit]; }
+  size_t fruitIndex() const { return levelNum % fruits.size(); }
+  GenericFruit & currentFruit() { return fruits[fruitIndex()]; }
 };
 
 } // namespace ms_pacman
