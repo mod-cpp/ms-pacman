@@ -47,7 +47,8 @@ public:
         case FruitType::Pear: return Atlas::fruit_pear;
         case FruitType::Banana: return Atlas::fruit_banana;
       }
-    }();
+    }
+    ();
     return ret;
   }
 

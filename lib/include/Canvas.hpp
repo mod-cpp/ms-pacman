@@ -17,14 +17,14 @@ using Sprite = sf::Sprite;
 template<typename T>
 concept has_position =
   requires(const T & const_object) {
-  { const_object.position() } -> std::same_as<Position>;
-};
+    { const_object.position() } -> std::same_as<Position>;
+  };
 
 template<typename T>
 concept is_sprite =
   requires(const T & const_object) {
-  { const_object.currentSprite() };
-};
+    { const_object.currentSprite() };
+  };
 
 template<typename T>
 concept positioned_sprite = has_position<T> && is_sprite<T>;

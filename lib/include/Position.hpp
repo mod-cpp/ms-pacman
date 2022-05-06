@@ -2,15 +2,15 @@
 
 #include <cassert>
 #include <cmath>
-#include <limits>
 #include <concepts>
+#include <limits>
 
 namespace ms_pacman {
 
-template <typename T >
+template<typename T>
 concept integral = std::is_integral_v<T>;
 
-template <typename T >
+template<typename T>
 concept floating_point = std::is_floating_point_v<T>;
 
 template<typename T>

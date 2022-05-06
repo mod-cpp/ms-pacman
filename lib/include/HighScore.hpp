@@ -23,9 +23,9 @@ public:
   explicit HighScore(std::string save_filename);
   ~HighScore();
   int top() const;
-  Scores parse(const std::string& file_content) const;
-  void populate(const std::span<PlayerScore>& list);
-  void insert(const std::string&, int);
+  Scores parse(const std::string & file_content) const;
+  void populate(const std::span<PlayerScore> & list);
+  void insert(const std::string &, int);
   size_t num_players() const;
 
   void initialize(HighScoreFile file);
@@ -39,4 +39,4 @@ private:
   std::string filename;
 };
 
-}
+} // namespace ms_pacman
