@@ -9,19 +9,36 @@
 
 ## Exercise 420
 
-```cpp
+### Implement next() in LineViewStream.hpp
 
+Compare the performance with LineStream.hpp by running the benchmark in
+line_stream_benchmark.cpp.
+
+```cpp
+std::optional<std::string_view> next() {
+    
+}
 ```
 
 <details>
    <summary>Solution</summary>
 
 ```cpp
+  std::optional<std::string_view> next() {
+    std::size_t pos = view.find('\n');
+    if (pos == std::string::npos)
+      return {};
 
+    auto line = view.substr(0, pos);
+    view.remove_prefix(pos + 1);
+    return { line };
+  }
 ```
+
 </details>
 
 ## [Exercise 421][1]
+
 ### Make whole word uppercase
 
 <details>
@@ -35,9 +52,11 @@ std::string to_upper(std::string_view word) {
   return ret;
 }
 ```
+
 </details>
 
 ## [Exercise 422][1]
+
 ### Trim leading and trailing white space
 
 <details>
@@ -51,9 +70,11 @@ std::string trim(std::string_view view) {
   return { start_it, static_cast<size_t>(dist) };
 }
 ```
+
 </details>
 
 ## [Exercise 423][1]
+
 ### Split view into tokens based on whitespace
 
 <details>
@@ -77,6 +98,7 @@ std::vector<std::string> split(std::string_view view) {
   return tokens;
 }
 ```
+
 </details>
 
 [1]: 42_exercises.cpp
