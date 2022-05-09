@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <fmt/printf.h>
 #include <memory>
+#include <optional>
 #include <sstream>
 #include <utility>
 
@@ -47,12 +48,22 @@ void HighScore::insert(const std::string & name, int score) {
   high_scores.insert_or_assign(name, player{ name, score });
 }
 
+static auto getstream(const std::string & file_content) {
+  return std::stringstream(file_content);
+}
+
+static std::optional<std::string> getline(std::stringstream & stream) {
+  std::string line;
+  if (std::getline(stream, line))
+    return { line };
+  return {};
+}
+
 Scores HighScore::parse(const std::string & file_content) const {
   std::vector<PlayerScore> scores;
-  auto stream = std::stringstream(file_content);
-  std::string line;
-  while (std::getline(stream, line)) {
-    auto [name, score] = split_line(line);
+  auto stream = getstream(file_content);
+  while (auto line = getline(stream)) {
+    auto [name, score] = split_line(line.value());
     scores.emplace_back(name, score);
   }
   return scores;
