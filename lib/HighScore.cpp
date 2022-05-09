@@ -1,26 +1,15 @@
 #include "HighScore.hpp"
 #include "HighScoreFile.hpp"
+#include "LineStream.hpp"
 #include "User.hpp"
 
 #include <algorithm>
-#include <charconv>
 #include <cstdlib>
 #include <fmt/printf.h>
 #include <memory>
-#include <optional>
-#include <sstream>
 #include <utility>
 
 namespace ms_pacman {
-
-static std::tuple<std::string, int> split_line(const std::string & line) {
-  auto index = line.find(',');
-  std::string player_name = line.substr(0, index);
-  std::string score_str = line.substr(index + 1);
-  int score{};
-  std::from_chars(score_str.data(), score_str.data() + score_str.size(), score);
-  return { player_name, score };
-}
 
 HighScore::HighScore(std::string save_filename)
   : filename(std::move(save_filename)) {
@@ -48,22 +37,11 @@ void HighScore::insert(const std::string & name, int score) {
   high_scores.insert_or_assign(name, player{ name, score });
 }
 
-static auto getstream(const std::string & file_content) {
-  return std::stringstream(file_content);
-}
-
-static std::optional<std::string> getline(std::stringstream & stream) {
-  std::string line;
-  if (std::getline(stream, line))
-    return { line };
-  return {};
-}
-
 Scores HighScore::parse(const std::string & file_content) const {
   std::vector<PlayerScore> scores;
-  auto stream = getstream(file_content);
-  while (auto line = getline(stream)) {
-    auto [name, score] = split_line(line.value());
+  auto stream = LineStream(file_content);
+  while (auto line = stream.next()) {
+    auto [name, score] = LineStream::split(line.value());
     scores.emplace_back(name, score);
   }
   return scores;
