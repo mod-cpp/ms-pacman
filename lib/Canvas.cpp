@@ -161,8 +161,8 @@ void Canvas::render(const GenericFruit & fruit, std::span<const GenericFruit> ea
 
   // Render the already eaten fruits in the list in the panel
   for (const auto & eatenFruit : eatenFruits) {
-    GridPosition current_sprite = std::visit([](auto && fruit) { return fruit.sprite; }, eatenFruit);
-    Sprite eaten_sprite = getSprite(current_sprite);
+    GridPosition sprite_position = Fruits::sprite(eatenFruit);
+    Sprite eaten_sprite = getSprite(sprite_position);
     render_fruit(render_position, eaten_sprite);
     render_position++;
   }
