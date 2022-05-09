@@ -57,7 +57,14 @@ std::string to_upper(std::string_view word) {
 
 ## [Exercise 422][1]
 
-### Trim leading and trailing white space
+### Trim leading and trailing white space in StringView.hpp
+
+```cpp
+std::string trim(std::string_view /*view*/) {
+  // Exercise 422 : Trim leading and trailing white space
+  return {};
+}
+```
 
 <details>
    <summary>Solution</summary>
@@ -66,8 +73,8 @@ std::string to_upper(std::string_view word) {
 std::string trim(std::string_view view) {
   auto start_it = std::find_if_not(view.begin(), view.end(), ::isspace);
   auto end_it = std::find_if_not(view.rbegin(), view.rend(), ::isspace);
-  auto dist = std::distance(start_it, end_it.base());
-  return { start_it, static_cast<size_t>(dist) };
+  std::string_view trimmed{ start_it, end_it.base() };
+  return std::string{ trimmed };
 }
 ```
 

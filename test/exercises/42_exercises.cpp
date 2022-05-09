@@ -2,6 +2,10 @@
 
 // To enable a test remove [.] from the tags on the test
 
+#include "StringView.hpp"
+
+using namespace ms_pacman;
+
 // 42. std::string_view and std::span
 namespace exercises_42 {
 
@@ -26,18 +30,12 @@ TEST_CASE("Exercise 421 : Make whole word uppercase", "[.][42]") {
   CHECK("IMPOSSIBLE" == to_upper({ haystack.data() + pos, needle.length() }));
 }
 
-std::string trim(std::string_view view) {
-  unused(view);
-  // Trim leading and trailing white space
-  return {};
-}
-
 TEST_CASE("Exercise 422 : Trim leading and trailing white space", "[.][42]") {
-  CHECK("six" == trim("six"));
-  CHECK("things" == trim(" things"));
-  CHECK("before" == trim("before "));
-  CHECK("impossible" == trim(" impossible "));
-  CHECK("impossible things" == trim(" impossible things "));
+  CHECK("six" == StringView::trim("six"));
+  CHECK("things" == StringView::trim(" things"));
+  CHECK("before" == StringView::trim("before "));
+  CHECK("impossible" == StringView::trim(" impossible "));
+  CHECK("impossible things" == StringView::trim(" impossible things "));
 }
 
 std::vector<std::string> split(std::string_view view) {
