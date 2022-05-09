@@ -19,13 +19,13 @@ public:
     return {};
   }
 
-  static std::tuple<std::string, int> split(const std::string_view & line) {
+  static std::tuple<std::string, int> split(const std::string & line) {
     auto index = line.find(',');
-    std::string_view player_name = line.substr(0, index);
-    std::string_view score_str = line.substr(index + 1);
+    std::string player_name = line.substr(0, index);
+    std::string score_str = line.substr(index + 1);
     int score{};
     std::from_chars(score_str.data(), score_str.data() + score_str.size(), score);
-    return { std::string(player_name), score };
+    return { player_name, score };
   }
 
 private:
