@@ -1,6 +1,7 @@
 #include "HighScore.hpp"
 #include "HighScoreFile.hpp"
 #include "LineStream.hpp"
+#include "String.hpp"
 #include "User.hpp"
 
 #include <algorithm>
@@ -41,7 +42,7 @@ Scores HighScore::parse(const std::string & file_content) const {
   std::vector<PlayerScore> scores;
   auto stream = LineStream(file_content);
   while (auto line = stream.next()) {
-    auto [name, score] = LineStream::split(line.value());
+    auto [name, score] = String::split(line.value());
     scores.emplace_back(name, score);
   }
   return scores;
