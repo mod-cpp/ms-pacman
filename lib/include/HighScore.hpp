@@ -2,6 +2,7 @@
 
 #include "HighScoreFile.hpp"
 
+#include <optional>
 #include <span>
 #include <unordered_map>
 
