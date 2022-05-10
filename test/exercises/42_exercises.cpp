@@ -13,21 +13,14 @@ constexpr void unused(auto X) {
   (void)X;
 }
 
-std::string to_upper(std::string_view word) {
-  unused(word);
-  std::string ret;
-  // Make whole word uppercase
-  return ret;
-}
-
 TEST_CASE("Exercise 421 : Make whole word uppercase", "[.][42]") {
-  CHECK("SIX" == to_upper("six"));
-  CHECK("THINGS" == to_upper("things"));
-  CHECK("BEFORE" == to_upper("before"));
+  CHECK("SIX" == StringView::to_upper("six"));
+  CHECK("THINGS" == StringView::to_upper("things"));
+  CHECK("BEFORE" == StringView::to_upper("before"));
   std::string haystack = "Why, sometimes I’ve believed as many as six impossible things before breakfast.";
   const std::string needle = "impossible";
   auto pos = haystack.find(needle);
-  CHECK("IMPOSSIBLE" == to_upper({ haystack.data() + pos, needle.length() }));
+  CHECK("IMPOSSIBLE" == StringView::to_upper({ haystack.data() + pos, needle.length() }));
 }
 
 TEST_CASE("Exercise 422 : Trim leading and trailing white space", "[.][42]") {
