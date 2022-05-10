@@ -38,11 +38,18 @@ void HighScore::insert(const std::string & name, int score) {
   high_scores.insert_or_assign(name, player{ name, score });
 }
 
+static std::tuple<std::string, int> get_player_score(const std::string & line) {
+  std::vector<std::string> parts = StringView::split(line, ',');
+  auto player_name = StringView::to_upper(StringView::trim(parts[0]));
+  auto player_score = StringView::to_int(parts[1]);
+  return { player_name, player_score };
+}
+
 Scores HighScore::parse(const std::string & file_content) const {
   std::vector<PlayerScore> scores;
   auto stream = LineStream(file_content);
   while (auto line = stream.next()) {
-    auto [name, score] = String::get_player_score(line.value());
+    auto [name, score] = get_player_score(line.value());
     scores.emplace_back(name, score);
   }
   return scores;
