@@ -59,6 +59,8 @@ std::string to_upper(std::string_view word) {
 
 ### Trim leading and trailing white space in StringView.hpp
 
+* [std::string_view][2]
+
 ```cpp
 std::string trim(std::string_view /*view*/) {
   // Exercise 422 : Trim leading and trailing white space
@@ -124,3 +126,4 @@ std::vector<std::string> split(std::string_view view) {
 </details>
 
 [1]: 42_exercises.cpp
+[2]: https://en.cppreference.com/w/cpp/string/basic_string_view/basic_string_view
