@@ -67,13 +67,28 @@ std::string trim(std::string_view /*view*/) {
 ```
 
 <details>
-   <summary>Solution</summary>
+   <summary>Solution C++ 20</summary>
 
 ```cpp
 std::string trim(std::string_view view) {
   auto start_it = std::find_if_not(view.begin(), view.end(), ::isspace);
   auto end_it = std::find_if_not(view.rbegin(), view.rend(), ::isspace);
   std::string_view trimmed{ start_it, end_it.base() };
+  return std::string{ trimmed };
+}
+```
+
+</details>
+
+<details>
+   <summary>Solution C++ 17</summary>
+
+```cpp
+std::string trim(std::string_view view) {
+  auto start_it = std::find_if_not(view.begin(), view.end(), ::isspace);
+  auto end_it = std::find_if_not(view.rbegin(), view.rend(), ::isspace);
+  auto dist = std::distance(start_it, end_it.base());
+  std::string_view trimmed{ start_it, static_cast<size_t>(dist) };
   return std::string{ trimmed };
 }
 ```
