@@ -111,6 +111,12 @@ TEST_CASE("Integration: Populate Using HighScore File", "[.][42]") {
   REQUIRE(!input.empty());
   auto parsed = highScore.parse(input);
   REQUIRE(parsed.size() == 3);
+  CHECK(std::get<0>(parsed[0]) == "CORENTIN");
+  CHECK(std::get<1>(parsed[0]) == 1345);
+  CHECK(std::get<0>(parsed[1]) == "PATRICIA");
+  CHECK(std::get<1>(parsed[1]) == 2124);
+  CHECK(std::get<0>(parsed[2]) == "ÓLAFUR");
+  CHECK(std::get<1>(parsed[2]) == 1337);
   highScore.populate(parsed);
   REQUIRE(highScore.top() == 2124);
   REQUIRE(highScore.num_players() == 3);
