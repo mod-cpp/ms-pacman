@@ -83,7 +83,7 @@ std::string trim(std::string_view view) {
 </details>
 
 <details>
-   <summary>Solution C++ 17</summary>
+   <summary>Solution C++ 17 (not Windows MSVC)</summary>
 
 ```cpp
 std::string trim(std::string_view view) {
