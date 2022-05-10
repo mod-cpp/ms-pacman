@@ -1,8 +1,8 @@
 #include "HighScore.hpp"
 #include "HighScoreFile.hpp"
 #include "LineStream.hpp"
-#include "User.hpp"
 #include "StringView.hpp"
+#include "User.hpp"
 
 #include <cstdlib>
 #include <fmt/printf.h>

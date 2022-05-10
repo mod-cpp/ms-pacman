@@ -3,9 +3,9 @@
 
 // To enable a test remove [.] from the tags on the test
 
-#include "StringView.hpp"
-#include "HighScoreFile.hpp"
 #include "HighScore.hpp"
+#include "HighScoreFile.hpp"
+#include "StringView.hpp"
 
 #include <fstream>
 #include <iostream>
