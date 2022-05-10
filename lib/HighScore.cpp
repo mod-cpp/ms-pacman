@@ -16,16 +16,16 @@ HighScore::HighScore(std::string save_filename)
   initialize(HighScoreFile(filename));
 }
 
-int HighScore::top() const {
+std::optional<player> HighScore::top() const {
   if (high_scores.empty())
-    return 0;
+    return {};
   auto it = std::max_element(high_scores.begin(),
                              high_scores.end(),
                              [](const auto & player_one, const auto & player_two) {
                                return player_one.second.score < player_two.second.score;
                              });
   auto [name, player] = *it;
-  return player.score;
+  return player;
 }
 
 void HighScore::populate(const std::span<PlayerScore> & list) {

@@ -118,7 +118,9 @@ TEST_CASE("Integration: Populate Using HighScore File", "[.][42]") {
   CHECK(std::get<0>(parsed[2]) == "ÓLAFUR");
   CHECK(std::get<1>(parsed[2]) == 1337);
   highScore.populate(parsed);
-  REQUIRE(highScore.top() == 2124);
+  const std::optional<player> & top = highScore.top();
+  REQUIRE(top.has_value());
+  REQUIRE(top->score == 2124);
   REQUIRE(highScore.num_players() == 3);
 }
 

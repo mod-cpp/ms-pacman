@@ -28,9 +28,10 @@ struct HighScoreListener : Catch::TestEventListenerBase {
 };
 CATCH_REGISTER_LISTENER(HighScoreListener)
 
-TEST_CASE("Empty HighScore has 0 top score", "[highscore]") {
+TEST_CASE("Empty HighScore has no top score", "[highscore]") {
   ms_pacman::HighScore highScore{ "empty_highscore.txt" };
-  REQUIRE(highScore.top() == 0);
+  const auto & top = highScore.top();
+  REQUIRE(!top.has_value());
 }
 
 TEST_CASE("Load HighScore File", "[highscore]") {

@@ -193,8 +193,8 @@ void Canvas::renderScore(int score) {
   window.draw(text);
 }
 
-void Canvas::renderHighScore(int highScore) {
-  if (highScore == 0)
+void Canvas::renderHighScore(std::optional<player> highScore) {
+  if (!highScore)
     return;
 
   const int x = (LEFT_MARGIN + TARGET_MAZE_WIDTH + LEFT_MARGIN);
@@ -203,7 +203,7 @@ void Canvas::renderHighScore(int highScore) {
   sf::Text text;
   text.setPosition(x, y);
   text.setFont(game_font);
-  text.setString(fmt::format("HIGH SCORE\n{}", highScore));
+  text.setString(fmt::format("HIGH SCORE\n{}\n{}", highScore->score, highScore->name));
   text.setCharacterSize(30);
   text.setFillColor(sf::Color::White);
   window.draw(text);
