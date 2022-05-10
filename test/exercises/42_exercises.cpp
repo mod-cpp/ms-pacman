@@ -9,10 +9,6 @@ using namespace ms_pacman;
 // 42. std::string_view and std::span
 namespace exercises_42 {
 
-constexpr void unused(auto X) {
-  (void)X;
-}
-
 TEST_CASE("Exercise 421 : Make whole word uppercase", "[.][42]") {
   CHECK("SIX" == StringView::to_upper("six"));
   CHECK("THINGS" == StringView::to_upper("things"));
@@ -31,17 +27,10 @@ TEST_CASE("Exercise 422 : Trim leading and trailing white space", "[.][42]") {
   CHECK("impossible things" == StringView::trim(" impossible things "));
 }
 
-std::vector<std::string> split(std::string_view view) {
-  unused(view);
-  std::vector<std::string> tokens;
-  // Split view into tokens based on whitespace
-  return tokens;
-}
-
 TEST_CASE("Exercise 423 : Split view into tokens based on whitespace", "[.][42]") {
   std::string haystack = "Why, sometimes I’ve believed as many as six impossible things before breakfast.";
   const std::string delimiter = " ";
-  std::vector<std::string> tokens = split(haystack);
+  std::vector<std::string> tokens = StringView::split(haystack);
   REQUIRE(tokens.size() == 12);
   if (tokens.size() == 12) {
     CHECK(tokens[0] == "Why,");

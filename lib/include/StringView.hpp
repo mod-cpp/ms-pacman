@@ -17,4 +17,10 @@ std::string trim(std::string_view /*view*/) {
   return {};
 }
 
+std::vector<std::string> split(std::string_view /*view*/) {
+  std::vector<std::string> tokens;
+  // Split view into tokens based on whitespace
+  return tokens;
+}
+
 } // namespace ms_pacman::StringView
