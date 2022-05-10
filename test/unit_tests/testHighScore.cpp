@@ -56,7 +56,6 @@ TEST_CASE("Populate Using HighScore File", "[highscore]") {
   auto parsed = highScore.parse(input);
   REQUIRE(parsed.size() == 3);
   highScore.populate(parsed);
-  REQUIRE(highScore.top() == 2124);
   REQUIRE(highScore.num_players() == 3);
 }
 

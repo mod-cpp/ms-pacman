@@ -42,7 +42,7 @@ Scores HighScore::parse(const std::string & file_content) const {
   std::vector<PlayerScore> scores;
   auto stream = LineStream(file_content);
   while (auto line = stream.next()) {
-    auto [name, score] = String::split(line.value());
+    auto [name, score] = String::get_player_score(line.value());
     scores.emplace_back(name, score);
   }
   return scores;

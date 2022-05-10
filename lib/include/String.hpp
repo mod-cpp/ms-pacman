@@ -1,18 +1,17 @@
 #pragma once
 
-#include <charconv>
 #include <string>
 #include <tuple>
+#include <cassert>
+#include "StringView.hpp"
 
 namespace ms_pacman::String {
 
-static std::tuple<std::string, int> split(const std::string & line) {
-  auto index = line.find(',');
-  std::string player_name = line.substr(0, index);
-  std::string score_str = line.substr(index + 1);
-  int score{};
-  std::from_chars(score_str.data(), score_str.data() + score_str.size(), score);
-  return { player_name, score };
+static std::tuple<std::string, int> get_player_score(const std::string & line) {
+  std::vector<std::string> parts = StringView::split(line, ',');
+  auto player_name = StringView::to_upper(StringView::trim(parts[0]));
+  auto player_score = StringView::to_int(parts[1]);
+  return { player_name, player_score };
 }
 
 } // namespace ms_pacman::String

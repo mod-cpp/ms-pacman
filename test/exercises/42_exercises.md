@@ -109,5 +109,52 @@ inline std::vector<std::string> split(std::string_view view) {
 
 </details>
 
+## [Exercise 424][1]
+
+### Split view into tokens based on delimiter
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+inline std::vector<std::string> split(std::string_view view, char delimiter) {
+  std::vector<std::string> tokens;
+
+  auto start = view.begin();
+  const auto stop = view.end();
+
+  auto is_comma = [delimiter](char c) { return c == delimiter; };
+
+  while (start < stop) {
+    auto start_word = std::find_if_not(start, stop, is_comma);
+    auto end_word = std::find_if(start_word, stop, is_comma);
+    auto dist = std::distance(start_word, end_word);
+    tokens.emplace_back(start_word, dist);
+    start = end_word;
+  }
+
+  return tokens;
+}
+```
+
+</details>
+
+## [Exercise 425][1]
+
+### Get int from string
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+inline int to_int(std::string_view word) {
+  int value{};
+  std::from_chars(word.data(), word.data() + word.size(), value);
+  return value;
+}
+```
+
+</details>
+
 [1]: 42_exercises.cpp
 [2]: https://en.cppreference.com/w/cpp/string/basic_string_view/basic_string_view
