@@ -45,7 +45,7 @@ std::optional<std::string_view> next() {
    <summary>Solution</summary>
 
 ```cpp
-std::string to_upper(std::string_view word) {
+inline std::string to_upper(std::string_view word) {
   std::string ret;
   ret.resize(word.size());
   std::transform(word.begin(), word.end(), ret.begin(), ::toupper);
@@ -62,7 +62,7 @@ std::string to_upper(std::string_view word) {
 * [std::string_view][2]
 
 ```cpp
-std::string trim(std::string_view /*view*/) {
+inline std::string trim(std::string_view /*view*/) {
   // Exercise 422 : Trim leading and trailing white space
   return {};
 }
@@ -72,7 +72,7 @@ std::string trim(std::string_view /*view*/) {
    <summary>Solution</summary>
 
 ```cpp
-std::string trim(std::string_view view) {
+inline std::string trim(std::string_view view) {
   auto start_it = std::find_if_not(view.begin(), view.end(), ::isspace);
   auto end_it = std::find_if_not(view.rbegin(), view.rend(), ::isspace);
   return std::string{ start_it, end_it.base() };
@@ -89,7 +89,7 @@ std::string trim(std::string_view view) {
    <summary>Solution</summary>
 
 ```cpp
-std::vector<std::string> split(std::string_view view) {
+inline std::vector<std::string> split(std::string_view view) {
   std::vector<std::string> tokens;
 
   auto start = view.begin();
