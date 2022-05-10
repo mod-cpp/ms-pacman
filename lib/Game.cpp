@@ -52,24 +52,36 @@ void Game::processEvents(InputState & inputState) {
   if (!event)
     return;
 
-  if (event.value().type == sf::Event::Closed) {
-    inputState.close = true;
-    return;
-  }
+  auto key_code = event.value().key.code;
+  auto key_type = event.value().type;
 
-  if (!(event.value().type == sf::Event::KeyPressed ||
-        event.value().type == sf::Event::KeyReleased))
-    return;
-
-  auto isKeyPressed = [&](sf::Keyboard::Key k) {
-    bool pressed = event.value().type == sf::Event::KeyPressed;
-    return k == event.value().key.code && pressed;
+  auto isKeyPressed = [&key_code, &key_type](sf::Keyboard::Key key) {
+    return (key_type == sf::Event::KeyPressed) && (key_code == key);
   };
 
-  inputState.down = isKeyPressed(sf::Keyboard::Key::Down);
-  inputState.up = isKeyPressed(sf::Keyboard::Key::Up);
-  inputState.left = isKeyPressed(sf::Keyboard::Key::Left);
-  inputState.right = isKeyPressed(sf::Keyboard::Key::Right);
+  switch (key_type) {
+    case sf::Event::Closed:
+      inputState.close = true;
+      break;
+    case sf::Event::KeyReleased:
+    case sf::Event::KeyPressed:
+      switch (key_code) {
+        case sf::Keyboard::Left:
+        case sf::Keyboard::Right:
+        case sf::Keyboard::Up:
+        case sf::Keyboard::Down:
+          inputState.down = isKeyPressed(sf::Keyboard::Key::Down);
+          inputState.up = isKeyPressed(sf::Keyboard::Key::Up);
+          inputState.left = isKeyPressed(sf::Keyboard::Key::Left);
+          inputState.right = isKeyPressed(sf::Keyboard::Key::Right);
+          break;
+        default:
+          cheats.add_cheat(key_code);
+          cheats.use_cheat();
+      }
+      break;
+    default: break;
+  }
 }
 
 } // namespace ms_pacman
