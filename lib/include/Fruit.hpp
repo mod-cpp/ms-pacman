@@ -1,7 +1,9 @@
 #pragma once
 
 #include "AtlasFruits.hpp"
+#include "DeltaTimer.hpp"
 #include "Position.hpp"
+
 #include <chrono>
 #include <variant>
 
@@ -12,10 +14,10 @@ class Fruit {
 public:
   void update(std::chrono::milliseconds time_delta, int eatenPellets) {
     if (visible()) {
-      time_visible += time_delta;
+      timer.inc(time_delta);
     }
 
-    if (time_visible > limit) {
+    if (timer.timed_out()) {
       hide();
     } else if (Type::shouldShow(eatenPellets, index)) {
       show();
@@ -39,14 +41,13 @@ private:
 
   void hide() {
     index++;
-    time_visible = std::chrono::seconds{ 0 };
+    timer.reset();
     is_visible = false;
   }
 
   bool is_visible = false;
   int index = 0;
-  std::chrono::milliseconds time_visible{ 0 };
-  static constexpr auto limit = std::chrono::seconds(9);
+  DeltaTimer timer{ std::chrono::seconds(9) };
 };
 
 struct Cherry : public Fruit<Cherry> {
