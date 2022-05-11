@@ -15,7 +15,7 @@ struct CheatCode : std::array<Code, 3> {
   static constexpr auto length = 3;
 };
 
-constexpr CheatCode SUPER_SPEED = { Code::F, Code::O, Code::X };
+constexpr CheatCode SUPER_SPEED = {{ Code::F, Code::O, Code::X }};
 
 class Cheats {
 public:
@@ -42,7 +42,7 @@ public:
 
 private:
   CheatCode create_cheat_code() {
-    return keys.size() == 3 ? CheatCode{ keys[0], keys[1], keys[2] } : CheatCode{};
+    return keys.size() == 3 ? CheatCode{{ keys[0], keys[1], keys[2] }} : CheatCode{};
   }
   
   std::deque<Code> keys;
