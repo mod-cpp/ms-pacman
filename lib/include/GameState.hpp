@@ -36,7 +36,6 @@ struct GameState {
     if (isMsPacManDying() || ghost.isEyes())
       return;
 
-    // TODO: hitboxes based collision
     if (!isSamePosition(ghost.positionInGrid(), msPacMan.positionInGrid()))
       return;
 

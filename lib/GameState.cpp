@@ -117,7 +117,6 @@ void GameState::stepFruit(std::chrono::milliseconds delta, GenericFruit & fruit)
   const auto pos = msPacMan.positionInGrid();
   const auto fruitpos = positionToGridPosition(Fruits::position(fruit));
 
-  // TODO: hitboxes based collision
   if (Fruits::isVisible(fruit) && isSamePosition(pos, fruitpos)) {
     score.add(fruit);
   }
