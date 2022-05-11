@@ -55,7 +55,6 @@ void Game::processEvents(InputState & inputState) {
   auto cheat = inputHandler.process(inputState, event.value());
 
   if (cheat) {
-    // TODO: Process cheat
     switch (cheat.value()) {
       case Cheat::SuperSpeed: break;
     }
