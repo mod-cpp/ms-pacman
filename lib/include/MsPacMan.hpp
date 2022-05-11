@@ -39,10 +39,7 @@ private:
   Atlas::MsPacManAnimation pacManAnimation;
   bool dead = false;
   double cheat_speed = 1.0;
-  double scale_speed = 1.0;
-  DeltaTimer timer{ std::chrono::seconds(5) };
 
-  bool hasSuperSpeed() const { return scale_speed > 1.0; }
   void updateAnimationPosition(std::chrono::milliseconds time_delta, bool paused);
   void updateMazePosition(std::chrono::milliseconds time_delta, const DefaultBoard & board);
 };
