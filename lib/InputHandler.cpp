@@ -27,7 +27,8 @@ std::optional<Cheat> InputHandler::process(InputState & inputState, const sf::Ev
           inputState.right = isKeyPressed(sf::Keyboard::Key::Right);
           break;
         default:
-          return cheats.add_cheat(key_code);
+          if (key_type == sf::Event::KeyPressed)
+            return cheats.add_cheat(key_code);
       }
       break;
     default: break;
