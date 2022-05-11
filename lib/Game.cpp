@@ -56,7 +56,9 @@ void Game::processEvents(InputState & inputState) {
 
   if (cheat) {
     switch (cheat.value()) {
-      case Cheat::SuperSpeed: break;
+      case Cheat::SuperSpeed:
+        gameState.msPacMan.superSpeed();
+        break;
     }
   }
 }

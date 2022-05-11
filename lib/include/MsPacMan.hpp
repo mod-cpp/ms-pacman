@@ -29,12 +29,15 @@ public:
 
   void eat(const SuperPellet & superPellet);
 
+  void superSpeed() { scale_speed = 2.0; }
+
 private:
   Direction direction = Direction::NONE;
   Direction desired_direction = Direction::NONE;
   Position pos = initialPacManPosition();
   Atlas::MsPacManAnimation pacManAnimation;
   bool dead = false;
+  double scale_speed = 1.0;
 
   void updateAnimationPosition(std::chrono::milliseconds time_delta, bool paused);
   void updateMazePosition(std::chrono::milliseconds time_delta, const DefaultBoard & board);

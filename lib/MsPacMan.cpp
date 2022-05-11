@@ -27,6 +27,7 @@ void MsPacMan::reset() {
   direction = Direction::NONE;
   desired_direction = Direction::NONE;
   pos = initialPacManPosition();
+  scale_speed = 1.0;
 }
 
 void MsPacMan::update(std::chrono::milliseconds time_delta, Direction input_direction, const DefaultBoard & board) {
@@ -58,7 +59,7 @@ void MsPacMan::updateMazePosition(std::chrono::milliseconds time_delta, const De
     return;
   }
 
-  const double position_delta = 0.004 * double(time_delta.count());
+  const double position_delta = scale_speed * 0.004 * double(time_delta.count());
   const auto pacman_size = 1;
 
   auto moveToPosition = [position_delta](Position point, Direction move_direction) {
