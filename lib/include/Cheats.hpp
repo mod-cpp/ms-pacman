@@ -11,22 +11,40 @@ enum class Cheat {
 
 using Code = sf::Keyboard::Key;
 
+struct CheatCode : std::array<Code, 3> {
+  static constexpr auto length = 3;
+};
+
+constexpr CheatCode SUPER_SPEED = { Code::F, Code::O, Code::X };
+
 class Cheats {
 public:
+  
   std::optional<Cheat> add_cheat(Code key) {
+    std::optional<Cheat> cheat;
+
     keys.push_back(key);
-    if (keys.size() == 3) {
-      if (keys[0] == Code::F && keys[1] == Code::O && keys[2] == Code::X) {
+
+    if (keys.size() == CheatCode::length) {
+      auto cheat_code = create_cheat_code();
+
+      if (cheat_code == SUPER_SPEED)
+        cheat = Cheat::SuperSpeed;
+
+      if (cheat)
         keys.clear();
-        return Cheat::SuperSpeed;
-      } else {
+      else
         keys.pop_front();
-      }
     }
-    return {};
+
+    return cheat;
   }
 
 private:
+  CheatCode create_cheat_code() {
+    return keys.size() == 3 ? CheatCode{ keys[0], keys[1], keys[2] } : CheatCode{};
+  }
+  
   std::deque<Code> keys;
 };
 
