@@ -2,11 +2,12 @@
 
 # Extra : Exercise-X2
 
-## 
+## Make a cheat code (C-A-T) that gives you 9 more lives
 
 <details>
-   <summary>Hint 1: </summary>
+   <summary>Hint 1: What to look at for inspiration</summary>
 
+Look at how the SUPER_SPEED cheat works
 </details>
 
 <details>
