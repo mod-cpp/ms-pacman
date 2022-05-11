@@ -34,6 +34,8 @@ public:
       if (cheat_code == SUPER_SPEED)
         cheat = Cheat::SuperSpeed;
 
+      // TODO Exercise-X2 : Make a cheat code that gives you infinite lives
+
       if (cheat)
         keys.clear();
       else

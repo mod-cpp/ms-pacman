@@ -26,6 +26,6 @@
 
 ## Extra
 
-* Exercise : Ms-Pac-Man should go faster when she eats a super pellet
-* Exercise : Make a cheat code that gives you infinite lives
-* Exercise : Make fruits move
+* Exercise-X1 : Ms-Pac-Man should go faster when she eats a super pellet
+* Exercise-X2 : Make a cheat code that gives you infinite lives
+* Exercise-X3 : Make fruits move

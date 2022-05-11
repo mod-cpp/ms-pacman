@@ -30,6 +30,7 @@ public:
     return 0;
   }
 
+  // TODO Exercise-X3 : Make fruits move
   constexpr Position position() const { return Atlas::fruit_start; }
   bool visible() const { return is_visible; }
 
