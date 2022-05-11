@@ -4,6 +4,7 @@
 #include "Board.hpp"
 #include "Direction.hpp"
 #include "Position.hpp"
+#include "DeltaTimer.hpp"
 
 #include <chrono>
 
@@ -29,7 +30,7 @@ public:
 
   void eat(const SuperPellet & superPellet);
 
-  void superSpeed() { scale_speed = 2.0; }
+  void superSpeed() { cheat_speed = 2.0; }
 
 private:
   Direction direction = Direction::NONE;
@@ -37,8 +38,11 @@ private:
   Position pos = initialPacManPosition();
   Atlas::MsPacManAnimation pacManAnimation;
   bool dead = false;
+  double cheat_speed = 1.0;
   double scale_speed = 1.0;
+  DeltaTimer timer{ std::chrono::seconds(5) };
 
+  bool hasSuperSpeed() const { return scale_speed > 1.0; }
   void updateAnimationPosition(std::chrono::milliseconds time_delta, bool paused);
   void updateMazePosition(std::chrono::milliseconds time_delta, const DefaultBoard & board);
 };

@@ -27,10 +27,21 @@ void MsPacMan::reset() {
   direction = Direction::NONE;
   desired_direction = Direction::NONE;
   pos = initialPacManPosition();
+  cheat_speed = 1.0;
   scale_speed = 1.0;
+  timer.reset();
 }
 
 void MsPacMan::update(std::chrono::milliseconds time_delta, Direction input_direction, const DefaultBoard & board) {
+
+  if (hasSuperSpeed()) {
+    timer.inc(time_delta);
+    if (timer.timed_out()) {
+      scale_speed = 1.0;
+      timer.reset();
+    }
+  }
+
   if (dead) {
     updateAnimationPosition(time_delta, false);
     return;
@@ -59,7 +70,7 @@ void MsPacMan::updateMazePosition(std::chrono::milliseconds time_delta, const De
     return;
   }
 
-  const double position_delta = scale_speed * 0.004 * double(time_delta.count());
+  const double position_delta = cheat_speed * scale_speed * 0.004 * double(time_delta.count());
   const auto pacman_size = 1;
 
   auto moveToPosition = [position_delta](Position point, Direction move_direction) {
@@ -115,6 +126,7 @@ void MsPacMan::updateMazePosition(std::chrono::milliseconds time_delta, const De
 
 void MsPacMan::eat(const SuperPellet &) {
   // TODO Exercise-X1 : Ms-Pac-Man should go faster when she eats a super pellet
+  scale_speed = 2.0;
 }
 
 } // namespace ms_pacman
