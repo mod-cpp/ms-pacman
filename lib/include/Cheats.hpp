@@ -5,10 +5,13 @@
 
 namespace ms_pacman {
 
+enum class Cheat {
+  SuperSpeed
+};
+
 class Cheats {
 public:
-  void add_cheat(sf::Keyboard::Key /*key*/) {}
-  void use_cheat() {}
+  std::optional<Cheat> add_cheat(sf::Keyboard::Key /*key*/) { return {}; }
 
 private:
   std::vector<sf::Keyboard::Key> keys;

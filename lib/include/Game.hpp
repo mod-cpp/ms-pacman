@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Canvas.hpp"
-#include "Cheats.hpp"
 #include "GameState.hpp"
+#include "InputHandler.hpp"
 #include "InputState.hpp"
 
 namespace ms_pacman {
@@ -14,7 +14,7 @@ public:
 private:
   Canvas canvas;
   GameState gameState;
-  Cheats cheats;
+  InputHandler inputHandler;
 
   void loadLevel();
   void processEvents(InputState & key);
