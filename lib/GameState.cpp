@@ -2,9 +2,6 @@
 
 namespace ms_pacman {
 
-constexpr int NORMAL_PELLET_POINTS = 10;
-constexpr int POWER_PELLET_POINTS = 50;
-
 GameState::~GameState() {
   highScore.saveScore(score.points);
 }
@@ -35,12 +32,10 @@ void GameState::increaseLevel() {
 
 void GameState::loadLevel() {
   if (levelNum == 0) {
-    score.lives = DEFAULT_LIVES;
-    score.points = 0;
-    score.eatenFruits.clear();
+    score.game_reset();
   }
   level = getLevel(levelNum);
-  score.eatenPellets = 0;
+  score.pellet_reset();
   reset();
 }
 
@@ -98,14 +93,13 @@ void GameState::stepPellets(DefaultBoard & grid) {
   const auto pos = msPacMan.positionInGrid();
   const auto & cell = cellAtPosition(grid, pos);
   bool eaten = std::visit(overloaded{
-                            [&](const Pellet &) {
-                              score.eatenPellets++;
-                              score.points += NORMAL_PELLET_POINTS;
+                            [&](const Pellet &pellet) {
+                              score.add(pellet);
                               return true;
                             },
-                            [&](const SuperPellet &) {
-                              score.eatenPellets++;
-                              score.points += POWER_PELLET_POINTS;
+                            [&](const SuperPellet &superPellet) {
+                              msPacMan.eat(superPellet);
+                              score.add(superPellet);
                               auto frighten_ghosts = [](auto &... ghost) { (ghost.frighten(), ...); };
                               std::apply(frighten_ghosts, ghosts);
                               return true;
@@ -125,8 +119,7 @@ void GameState::stepFruit(std::chrono::milliseconds delta, GenericFruit & fruit)
 
   // TODO: hitboxes based collision
   if (Fruits::isVisible(fruit) && isSamePosition(pos, fruitpos)) {
-    score.points += Fruits::eat(fruit);
-    score.eatenFruits.emplace_back(fruit);
+    score.add(fruit);
   }
 
   std::visit([&](auto && fruit) { fruit.update(delta, score.eatenPellets); }, fruit);

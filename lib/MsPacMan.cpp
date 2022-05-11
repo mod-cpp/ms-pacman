@@ -112,4 +112,8 @@ void MsPacMan::updateMazePosition(std::chrono::milliseconds time_delta, const De
   }
 }
 
+void MsPacMan::eat(const SuperPellet &) {
+  // TODO Exercise-X1 : Ms-Pac-Man should go faster when she eats a super pellet
+}
+
 } // namespace ms_pacman

@@ -27,6 +27,8 @@ public:
     return direction;
   }
 
+  void eat(const SuperPellet & superPellet);
+
 private:
   Direction direction = Direction::NONE;
   Direction desired_direction = Direction::NONE;

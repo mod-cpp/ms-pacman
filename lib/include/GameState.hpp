@@ -12,8 +12,6 @@
 
 namespace ms_pacman {
 
-constexpr int GHOST_POINTS = 200;
-
 using Ghosts = std::tuple<Blinky, Pinky, Inky, Clyde>;
 using FruitCollection = std::vector<GenericFruit>;
 
@@ -43,8 +41,7 @@ struct GameState {
       return;
 
     if (ghost.isFrightened()) {
-      ghost.die();
-      score.points += GHOST_POINTS;
+      score.add(ghost);
     } else {
       killMsPacMan();
     }
