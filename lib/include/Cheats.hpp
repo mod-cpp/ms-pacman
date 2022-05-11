@@ -1,7 +1,10 @@
 #pragma once
 
 #include <SFML/Window/Keyboard.hpp>
+
+#include <array>
 #include <deque>
+#include <optional>
 
 namespace ms_pacman {
 
