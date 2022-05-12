@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AtlasFruits.hpp"
+#include "Board.hpp"
 #include "DeltaTimer.hpp"
 #include "Position.hpp"
 
@@ -12,7 +13,7 @@ namespace ms_pacman {
 template<typename Type>
 class Fruit {
 public:
-  void update(std::chrono::milliseconds time_delta, int eatenPellets) {
+  void update(std::chrono::milliseconds time_delta, const DefaultBoard & /*board*/, int eatenPellets) {
     if (visible()) {
       timer.inc(time_delta);
     }
@@ -110,8 +111,8 @@ struct Banana : public Fruit<Banana> {
 using GenericFruit = std::variant<Cherry, Strawberry, Orange, Pretzel, Apple, Pear, Banana>;
 
 namespace Fruits {
-constexpr void update(GenericFruit & currentFruit, std::chrono::milliseconds time_delta, int eatenPellets) {
-  std::visit([&](auto && fruit) { fruit.update(time_delta, eatenPellets); }, currentFruit);
+constexpr void update(GenericFruit & currentFruit, std::chrono::milliseconds time_delta, const DefaultBoard & board, int eatenPellets) {
+  std::visit([&](auto && fruit) { fruit.update(time_delta, board, eatenPellets); }, currentFruit);
 }
 
 constexpr GridPosition sprite(const GenericFruit & currentFruit) {

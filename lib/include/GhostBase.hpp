@@ -3,20 +3,20 @@
 #include "AtlasGhosts.hpp"
 #include "Board.hpp"
 #include "GhostState.hpp"
-#include "MsPacMan.hpp"
+#include "NPC.hpp"
+
 #include <numeric>
 
 namespace ms_pacman {
 
 template<typename Ghost>
-class GhostBase {
+class GhostBase : public NPC {
 public:
   GhostBase(const Atlas::Ghost spriteSet, const Position position, const Position scatterTarget)
-    : pos(position),
-      spriteSet(spriteSet),
-      target(scatterTarget) {}
+    : NPC(position, scatterTarget),
+      spriteSet(spriteSet) {}
 
-  constexpr double speed() const {
+  double speed() const override {
     if (state == GhostState::Eyes)
       return 2;
     if (state == GhostState::Frightened)
@@ -24,16 +24,12 @@ public:
     return 0.75;
   }
 
+  bool isWalkable(const DefaultBoard & board, GridPosition current_position, GridPosition target_position) const override {
+    return isWalkableForGhost(board, current_position, target_position, isEyes());
+  }
+
   constexpr bool isInPen(const DefaultBoard & board) const {
     return ms_pacman::isInPen(board, positionInGrid());
-  }
-
-  Position position() const {
-    return pos;
-  }
-
-  GridPosition positionInGrid() const {
-    return positionToGridPosition(pos);
   }
 
   bool isFrightened() const {
@@ -109,107 +105,6 @@ public:
     }
   }
 
-  void updatePosition(std::chrono::milliseconds time_delta, const DefaultBoard & board) {
-    updateDirection(board);
-
-    double position_delta = (0.004 * double(time_delta.count())) * speed();
-
-    const auto old_position = pos;
-    const GridPosition old_grid_position = positionToGridPosition(old_position);
-
-    switch (direction) {
-      case Direction::NONE:
-        break;
-      case Direction::LEFT:
-        pos.x -= position_delta;
-        pos.y = round(pos.y);
-        break;
-      case Direction::RIGHT:
-        pos.x += position_delta;
-        pos.y = round(pos.y);
-        break;
-      case Direction::UP:
-        pos.x = round(pos.x);
-        pos.y -= position_delta;
-        break;
-      case Direction::DOWN:
-        pos.x = round(pos.x);
-        pos.y += position_delta;
-        break;
-    }
-
-    if (shouldTeleport(board, positionInGrid(), direction)) {
-      pos = gridPositionToPosition(teleport(board, positionInGrid()));
-    } else if (!isWalkableForGhost(board, old_grid_position, positionInGrid(), isEyes())) {
-      pos = old_position;
-      direction = oppositeDirection(direction);
-    }
-  }
-
-  /*
-   *  Each time a ghost finds itself at an intersection,
-   *  it picks a target position - the specific target depends on the state
-   *  of the ghost and the specific ghost.
-   *
-   *  For each 4 cells around the current ghost position the straight-line distance
-   *  to the target is calculated (this ignores all obstacles, including walls)
-   *
-   *  The ghost then selects among these 4 cells the one with the shortest euclidean distance to the target.
-   *  If a cell is a wall or would cause a ghost to move in the opposite direction, the distance to the target
-   *  from that cell is considered infinite (due to the shape of the maze, there is always one direction
-   *  a ghost can take).
-   *
-   *  In the scatter state, each ghost tries to reach an unreachable position outside of the map.
-   *  This makes ghosts run in circle around the island at each of the 4 map corner.
-   */
-  void updateDirection(const DefaultBoard & board) {
-    const auto current_grid_position = positionInGrid();
-    if (isSamePosition(current_grid_position, last_grid_position))
-      return;
-
-    struct Move {
-      Direction direction = Direction::NONE;
-      Position position;
-      double distance_to_target = std::numeric_limits<double>::infinity();
-    };
-
-    const auto [x, y] = gridPositionToPosition(current_grid_position);
-    std::array<Move, 4> possible_moves = {
-      Move{ Direction::UP, { x, y - 1 } },
-      Move{ Direction::LEFT, { x - 1, y } },
-      Move{ Direction::DOWN, { x, y + 1 } },
-      Move{ Direction::RIGHT, { x + 1, y } }
-    };
-
-    for (auto & move : possible_moves) {
-      if (shouldTeleport(board, current_grid_position, move.direction))
-        move.position = gridPositionToPosition(teleport(board, current_grid_position));
-
-      const bool invalid_position = (move.position.x < 0 || move.position.y < 0);
-      if (invalid_position)
-        continue;
-
-      const bool opposite_direction = (move.direction == oppositeDirection(direction));
-      if (opposite_direction)
-        continue;
-
-      const GridPosition grid_position = { size_t(move.position.x), size_t(move.position.y) };
-      const bool can_walk = isWalkableForGhost(board, current_grid_position, grid_position, isEyes());
-      if (!can_walk)
-        continue;
-
-      move.distance_to_target = std::hypot(move.position.x - target.x, move.position.y - target.y);
-    }
-
-    const auto optimal_move = std::min_element(possible_moves.begin(), possible_moves.end(), [](const auto & a, const auto & b) {
-      return a.distance_to_target < b.distance_to_target;
-    });
-
-    const auto & move = *optimal_move;
-    direction = move.direction;
-    last_grid_position = current_grid_position;
-  }
-
   void die() {
     if (state == GhostState::Eyes)
       return;
@@ -238,15 +133,11 @@ public:
 
 protected:
   GhostState state = GhostState::Chase;
-  Position pos;
   Atlas::Ghost spriteSet;
-  Direction direction = Direction::NONE;
   double timeForAnimation = 0;
   std::size_t animationIndex = 0;
   std::chrono::milliseconds timeFrighten = {};
   std::chrono::milliseconds timeChase = {};
-  GridPosition last_grid_position = { 0, 0 };
-  Position target;
 };
 
 } // namespace ms_pacman
