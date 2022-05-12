@@ -27,6 +27,6 @@
 ## Extra
 
 * [Exercise-X1 : Ms-Pac-Man should go faster when she eats a super pellet](X1_exercises.md)
-* [Exercise-X2 : Make a cheat code (C-A-T) that gives you 9 more lives](X2_exercises.md)
+* [Exercise-X2 : Make a cheat code (C-A-T) that gives you 9 lives](X2_exercises.md)
 * [Exercise-X3 : Make fruits move](X3_exercises.md)
 * [Exercise-X4 : Bug: Two super pellets in quick succession](X4_exercises.md)

@@ -2,7 +2,7 @@
 
 # Extra : Exercise-X2
 
-## Make a cheat code (C-A-T) that gives you 9 more lives
+## Make a cheat code (C-A-T) that gives you 9 lives
 
 <details>
    <summary>Hint 1: What to look at for inspiration</summary>
@@ -43,7 +43,7 @@ constexpr CheatCode NINE_LIVES = {{ Code::C, Code::A, Code::T }};
 
 ```cpp
       case Cheat::NineLives:
-        gameState.score.lives += 9;
+        gameState.score.lives = 9;
         break;
 ```
 </details>
