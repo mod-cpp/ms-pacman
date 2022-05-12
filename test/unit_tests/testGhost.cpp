@@ -23,8 +23,8 @@ TEST_CASE("Ghosts start in the correct position", "[ghosts]") {
   ms_pacman::Pinky pinky;
   ghostInitTest(pinky, 11.5, 14);
 
-  ms_pacman::Clyde clyde;
-  ghostInitTest(clyde, 15.5, 14);
+  ms_pacman::Sue sue;
+  ghostInitTest(sue, 15.5, 14);
 }
 
 template<typename T>
@@ -46,8 +46,8 @@ TEST_CASE("Ghosts are frighten", "[ghosts]") {
   ms_pacman::Pinky pinky;
   ghostFrightenTest(pinky);
 
-  ms_pacman::Clyde clyde;
-  ghostFrightenTest(clyde);
+  ms_pacman::Sue sue;
+  ghostFrightenTest(sue);
 }
 
 template<typename T>
@@ -69,6 +69,6 @@ TEST_CASE("Ghosts can die", "[ghosts]") {
   ms_pacman::Pinky pinky;
   ghostDeadTest(pinky);
 
-  ms_pacman::Clyde clyde;
-  ghostDeadTest(clyde);
+  ms_pacman::Sue sue;
+  ghostDeadTest(sue);
 }

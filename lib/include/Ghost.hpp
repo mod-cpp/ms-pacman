@@ -141,12 +141,12 @@ struct Blinky : public GhostBase<Blinky> {
 };
 
 // Curiously Recurring Template Pattern CRTP
-struct Clyde : public GhostBase<Clyde> {
+struct Sue : public GhostBase<Sue> {
 
-  Clyde()
-    : GhostBase<Clyde>(initialSpriteSet, initialPosition, scatterTarget) {}
+  Sue()
+    : GhostBase<Sue>(initialSpriteSet, initialPosition, scatterTarget) {}
 
-  static constexpr Atlas::Ghost initialSpriteSet = Atlas::Ghost::clyde;
+  static constexpr Atlas::Ghost initialSpriteSet = Atlas::Ghost::sue;
   static constexpr Position initialPosition = Position{ 15.5, 14 };
   static constexpr Position scatterTarget = Position{ 0, 30 };
 

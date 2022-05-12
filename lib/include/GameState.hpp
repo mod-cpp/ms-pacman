@@ -12,7 +12,7 @@
 
 namespace ms_pacman {
 
-using Ghosts = std::tuple<Blinky, Pinky, Inky, Clyde>;
+using Ghosts = std::tuple<Blinky, Pinky, Inky, Sue>;
 using FruitCollection = std::vector<GenericFruit>;
 
 struct GameState {

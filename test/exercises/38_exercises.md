@@ -43,18 +43,18 @@ void GameState::stepGhosts(const std::chrono::milliseconds & delta, Ghosts & gho
     ghost.setTarget(board, msPacMan, std::get<Blinky>(ghost_tuple).positionInGrid());
   };
 
-  std::apply([&step_ghost](Blinky &blinky, Pinky &pinky, Inky& inky, Clyde & clyde) {
+  std::apply([&step_ghost](Blinky &blinky, Pinky &pinky, Inky& inky, Clyde & sue) {
     step_ghost(blinky);
     step_ghost(pinky);
     step_ghost(inky);
-    step_ghost(clyde);
+    step_ghost(sue);
   }, ghost_tuple);
 
-  std::apply([this](Blinky &blinky, Pinky &pinky, Inky& inky, Clyde & clyde) {
+  std::apply([this](Blinky &blinky, Pinky &pinky, Inky& inky, Clyde & sue) {
     checkCollision(blinky);
     checkCollision(pinky);
     checkCollision(inky);
-    checkCollision(clyde);
+    checkCollision(sue);
   }, ghost_tuple);
 }
 ```

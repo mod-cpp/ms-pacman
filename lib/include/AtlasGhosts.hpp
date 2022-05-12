@@ -12,7 +12,7 @@ enum class Ghost : unsigned int {
   blinky = 2,
   pinky = 3,
   inky = 4,
-  clyde = 5,
+  sue = 5,
 };
 
 constexpr GridPosition ghost_blue_frightened = { 4, 1 };
@@ -36,7 +36,7 @@ constexpr GridPosition eyeSprite(Direction direction) {
 }
 
 constexpr GridPosition ghostSprite(Ghost ghost, Direction direction, bool alternative) {
-  assert(ghost >= Ghost::blinky && ghost <= Ghost::clyde && "Invalid Ghost");
+  assert(ghost >= Ghost::blinky && ghost <= Ghost::sue && "Invalid Ghost");
   auto y = static_cast<size_t>(ghost);
   size_t x = 0;
   switch (direction) {
