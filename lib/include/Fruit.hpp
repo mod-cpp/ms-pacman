@@ -62,48 +62,48 @@ struct Cherry : public Fruit<Cherry> {
 struct Strawberry : public Fruit<Strawberry> {
   static constexpr GridPosition sprite = Atlas::fruit_strawberry;
   static constexpr int value = 200;
-  static constexpr bool shouldShow(int eatenPellets, int) {
-    return eatenPellets >= 70;
+  static constexpr bool shouldShow(int eatenPellets, int index) {
+    return (index == 0 && eatenPellets >= 70);
   }
 };
 
 struct Orange : public Fruit<Orange> {
   static constexpr GridPosition sprite = Atlas::fruit_orange;
   static constexpr int value = 500;
-  static constexpr bool shouldShow(int eatenPellets, int) {
-    return eatenPellets >= 70;
+  static constexpr bool shouldShow(int eatenPellets, int index) {
+    return (index == 0 && eatenPellets >= 70);
   }
 };
 
 struct Pretzel : public Fruit<Pretzel> {
   static constexpr GridPosition sprite = Atlas::fruit_pretzel;
   static constexpr int value = 700;
-  static constexpr bool shouldShow(int eatenPellets, int) {
-    return eatenPellets >= 70;
+  static constexpr bool shouldShow(int eatenPellets, int index) {
+    return (index == 0 && eatenPellets >= 70);
   }
 };
 
 struct Apple : public Fruit<Apple> {
   static constexpr GridPosition sprite = Atlas::fruit_apple;
   static constexpr int value = 1000;
-  static constexpr bool shouldShow(int eatenPellets, int) {
-    return eatenPellets >= 70;
+  static constexpr bool shouldShow(int eatenPellets, int index) {
+    return (index == 0 && eatenPellets >= 70);
   }
 };
 
 struct Pear : public Fruit<Pear> {
   static constexpr GridPosition sprite = Atlas::fruit_pear;
   static constexpr int value = 2000;
-  static constexpr bool shouldShow(int eatenPellets, int) {
-    return eatenPellets >= 70;
+  static constexpr bool shouldShow(int eatenPellets, int index) {
+    return (index == 0 && eatenPellets >= 70);
   }
 };
 
 struct Banana : public Fruit<Banana> {
   static constexpr GridPosition sprite = Atlas::fruit_banana;
   static constexpr int value = 5000;
-  static constexpr bool shouldShow(int eatenPellets, int) {
-    return eatenPellets >= 70;
+  static constexpr bool shouldShow(int eatenPellets, int index) {
+    return (index == 0 && eatenPellets >= 70);
   }
 };
 
