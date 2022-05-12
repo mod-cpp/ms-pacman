@@ -45,7 +45,7 @@ private:
   static constexpr uint16_t MAZE_SCALE_UP = 2;
   static constexpr uint16_t TARGET_MAZE_WIDTH = 448 * MAZE_SCALE_UP;
   static constexpr uint16_t TARGET_MAZE_HEIGHT = 496 * MAZE_SCALE_UP;
-  static constexpr uint16_t SCORE_WIDTH = 200 * 2;
+  static constexpr uint16_t SCORE_WIDTH = 700;
   static constexpr uint16_t SPRITE_WIDTH = 32;
   static constexpr uint16_t SPRITE_HEIGHT = 32;
 
