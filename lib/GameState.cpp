@@ -121,7 +121,7 @@ void GameState::stepFruit(std::chrono::milliseconds delta, GenericFruit & fruit)
     score.add(fruit);
   }
 
-  std::visit([&](auto && fruit) { fruit.update(delta, score.eatenPellets); }, fruit);
+  std::visit([&](auto && fruit) { fruit.update(delta, board, score.eatenPellets); }, fruit);
 }
 
 void GameState::handleDeathAnimation(std::chrono::milliseconds delta) {
