@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GhostBase.hpp"
+#include "MsPacMan.hpp"
 
 namespace ms_pacman {
 
