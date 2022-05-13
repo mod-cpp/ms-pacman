@@ -9,12 +9,20 @@ public:
   NPC(const Position position, const Position scatterTarget)
     : pos(position),
       target(scatterTarget) {}
+  NPC(const Position targetPos, bool stop)
+    : pos(targetPos),
+      target(targetPos),
+      stop_at_target(stop) {}
   virtual ~NPC() = default;
 
   virtual double speed() const = 0;
   virtual bool isWalkable(const DefaultBoard & board, GridPosition current_position, GridPosition target_position) const = 0;
 
   void updatePosition(std::chrono::milliseconds time_delta, const DefaultBoard & board) {
+
+    if (stop_at_target && isSamePosition(positionInGrid(), targetInGrid()))
+      return;
+
     updateDirection(board);
 
     double position_delta = (0.004 * double(time_delta.count())) * speed();
@@ -119,15 +127,28 @@ public:
     return pos;
   }
 
+  void setPosition(Position p) {
+    pos = p;
+  }
+
   GridPosition positionInGrid() const {
     return positionToGridPosition(pos);
   }
 
+  Position targetPosition() const {
+    return target;
+  }
+
+  GridPosition targetInGrid() const {
+    return positionToGridPosition(target);
+  }
+
 protected:
-  Position pos;
+  Position pos{};
   Direction direction = Direction::NONE;
   GridPosition last_grid_position = { 0, 0 };
-  Position target;
+  Position target{};
+  bool stop_at_target = false;
 };
 
 } // namespace ms_pacman
