@@ -125,10 +125,10 @@ void GameState::stepFruit(std::chrono::milliseconds delta, GenericFruit & fruit)
 }
 
 void GameState::handleDeathAnimation(std::chrono::milliseconds delta) {
-  timeSinceDeath += delta;
-  if (score.lives == 0 && timeSinceDeath.count() > 4000) {
+  timerSinceDeath.inc(delta);
+  if (score.lives == 0 && timerSinceDeath.above(std::chrono::milliseconds(4000))) {
     setGameOver();
-  } else if (score.lives != 0 && timeSinceDeath.count() > 1000) {
+  } else if (score.lives != 0 && timerSinceDeath.above(std::chrono::milliseconds(1000))) {
     reset();
   }
 }
@@ -137,18 +137,19 @@ void GameState::reset() {
   auto reset_ghosts = [](auto &... ghost) { (ghost.reset(), ...); };
   std::apply(reset_ghosts, ghosts);
   msPacMan.reset();
-  timeSinceDeath = std::chrono::milliseconds(0);
+  timerSinceDeath.reset();
   Fruits::setStartPosition(currentFruit(), Atlas::fruit_target_pos);
 }
 
 void GameState::killMsPacMan() {
   msPacMan.die();
   score.lives--;
-  timeSinceDeath = std::chrono::milliseconds(1);
+  timerSinceDeath.reset();
+  timerSinceDeath.inc(std::chrono::milliseconds(1));
 }
 
 bool GameState::isMsPacManDying() const {
-  return timeSinceDeath.count() != 0;
+  return timerSinceDeath.above(std::chrono::milliseconds(0));
 }
 
 void GameState::loadBoard(std::tuple<DefaultBoard, Portals> loaded) {

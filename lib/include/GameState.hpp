@@ -31,7 +31,7 @@ struct GameState {
   bool game_over = false;
   Score score;
   HighScore highScore{ "highscore.txt" };
-  std::chrono::milliseconds timeSinceDeath{};
+  DeltaTimer timerSinceDeath{ std::chrono::seconds(0) };
 
   template<typename Ghost>
   void checkCollision(Ghost & ghost) {
