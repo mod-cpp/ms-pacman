@@ -2,6 +2,7 @@
 
 #include "AtlasGhosts.hpp"
 #include "Board.hpp"
+#include "DeltaTimer.hpp"
 #include "GhostState.hpp"
 #include "NPC.hpp"
 
@@ -66,8 +67,8 @@ public:
     }
 
     if (state == GhostState::Scatter || state == GhostState::Chase) {
-      timeChase += time_delta;
-      const auto newState = defaultStateAtDuration(std::chrono::duration_cast<std::chrono::seconds>(timeChase));
+      timerChase.inc(time_delta);
+      const auto newState = defaultStateAtDuration(std::chrono::duration_cast<std::chrono::seconds>(timerChase.get()));
       if (newState != state) {
         direction = oppositeDirection(direction);
         state = newState;
@@ -112,14 +113,14 @@ public:
     direction = oppositeDirection(direction);
     state = GhostState::Eyes;
     timerFrighten.reset();
-    timeChase = {};
+    timerChase.reset();
   }
 
   void reset() {
     pos = Ghost::initialPosition;
     state = GhostState::Scatter;
     timerFrighten.reset();
-    timeChase = {};
+    timerChase.reset();
   }
 
   void frighten() {
@@ -137,7 +138,7 @@ protected:
   double timeForAnimation = 0;
   std::size_t animationIndex = 0;
   DeltaTimer timerFrighten{ std::chrono::seconds(6) };
-  std::chrono::milliseconds timeChase = {};
+  DeltaTimer timerChase{ std::chrono::seconds(0) };
 };
 
 } // namespace ms_pacman

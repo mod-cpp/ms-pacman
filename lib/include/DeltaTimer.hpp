@@ -12,6 +12,7 @@ public:
   bool timed_out() const { return timer > limit; }
   bool above(std::chrono::milliseconds lower) const { return timer > lower; }
   void reset() { timer = std::chrono::seconds{ 0 }; }
+  std::chrono::milliseconds get() const { return timer; }
 
 private:
   std::chrono::milliseconds timer{ 0 };
