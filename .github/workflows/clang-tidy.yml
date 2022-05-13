@@ -31,7 +31,7 @@ jobs:
           /home/runner/.cache/vcpkg
           ${{ env.vcpkg_project_root }}/vcpkg_installed
           ${{ env.vcpkg_project_root }}/_deps
-        key: clang-tidy-cache-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
+        key: clang-tidy-13-cache-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}
 
     - name: Install LLVM-13 dependencies
       run: |
