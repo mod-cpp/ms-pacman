@@ -4,6 +4,7 @@
 #include "Position.hpp"
 #include <array>
 #include <cstdint>
+#include <optional>
 #include <variant>
 #include <vector>
 
@@ -33,6 +34,7 @@ using BoardCell = std::variant<Wall, Walkable, Pen, PenDoor, Pellet, SuperPellet
 template<std::size_t Columns, std::size_t Rows>
 using Board = std::array<std::array<BoardCell, Columns>, Rows>;
 using DefaultBoard = Board<COLUMNS, ROWS>;
+using Portals = std::array<std::optional<GridPosition>, 4>;
 
 constexpr static BoardCell cellAtPosition(const DefaultBoard & board, GridPosition point) {
   if (point.x >= COLUMNS || point.y >= ROWS)
