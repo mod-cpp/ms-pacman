@@ -8,8 +8,6 @@ TEST_CASE("Fruit default initialization", "[fruits]") {
   REQUIRE(fruit.value == 100);
   REQUIRE(fruit.sprite.x == 0);
   REQUIRE(fruit.sprite.y == 6);
-  REQUIRE(fruit.position().x == Approx(13.5));
-  REQUIRE(fruit.position().y == Approx(17));
 }
 
 TEST_CASE("Fruit Visibility", "[fruits]") {
