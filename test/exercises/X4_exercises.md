@@ -18,35 +18,3 @@ When Ms-Pac-Man eats a second super pellet before the ghosts become normal, the 
 
 ```
 </details>
-
-<details>
-   <summary>Hint 3: </summary>
-
-```cpp
-
-```
-</details>
-
-<details>
-   <summary>Hint 4: </summary>
-
-```cpp
-
-```
-</details>
-
-<details>
-   <summary>Hint 5: </summary>
-
-```cpp
-
-```
-</details>
-
-<details>
-   <summary>Hint 6: </summary>
-
-```cpp
-
-```
-</details>
