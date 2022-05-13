@@ -12,6 +12,6 @@ constexpr GridPosition fruit_apple = { 4, 6 };
 constexpr GridPosition fruit_pear = { 5, 6 };
 constexpr GridPosition fruit_banana = { 6, 6 };
 
-constexpr Position fruit_start = { 13.5, 17 };
+constexpr Position fruit_start = { 13, 17 };
 
 } // namespace ms_pacman::Atlas
