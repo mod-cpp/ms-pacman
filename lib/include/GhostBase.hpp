@@ -47,7 +47,7 @@ public:
       case GhostState::Eyes:
         return Atlas::eyeSprite(direction);
       case GhostState::Frightened:
-        if (timeFrighten.count() < 3500)
+        if (timerFrighten.above(std::chrono::milliseconds(3500)))
           return Atlas::initialFrightened(animationIndex);
         else
           return Atlas::endingFrightened(animationIndex);
@@ -60,8 +60,8 @@ public:
     }
 
     if (state == GhostState::Frightened) {
-      timeFrighten += time_delta;
-      if (timeFrighten.count() > 6000)
+      timerFrighten.inc(time_delta);
+      if (timerFrighten.timed_out())
         state = GhostState::Scatter;
     }
 
@@ -111,14 +111,14 @@ public:
 
     direction = oppositeDirection(direction);
     state = GhostState::Eyes;
-    timeFrighten = {};
+    timerFrighten.reset();
     timeChase = {};
   }
 
   void reset() {
     pos = Ghost::initialPosition;
     state = GhostState::Scatter;
-    timeFrighten = {};
+    timerFrighten.reset();
     timeChase = {};
   }
 
@@ -128,7 +128,7 @@ public:
 
     direction = oppositeDirection(direction);
     state = GhostState::Frightened;
-    timeFrighten = {};
+    timerFrighten.reset();
   }
 
 protected:
@@ -136,7 +136,7 @@ protected:
   Atlas::Ghost spriteSet;
   double timeForAnimation = 0;
   std::size_t animationIndex = 0;
-  std::chrono::milliseconds timeFrighten = {};
+  DeltaTimer timerFrighten{ std::chrono::seconds(6) };
   std::chrono::milliseconds timeChase = {};
 };
 

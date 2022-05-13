@@ -10,6 +10,7 @@ public:
     : limit(limit) {}
   void inc(std::chrono::milliseconds delta) { timer += delta; }
   bool timed_out() const { return timer > limit; }
+  bool above(std::chrono::milliseconds lower) const { return timer > lower; }
   void reset() { timer = std::chrono::seconds{ 0 }; }
 
 private:
