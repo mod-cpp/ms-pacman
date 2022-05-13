@@ -26,6 +26,8 @@ struct GameState {
   size_t levelNum = 0;
   Level level = getLevel(levelNum);
   DefaultBoard board;
+  Portals portals;
+  GridPosition fruitPortal;
   bool game_over = false;
   Score score;
   HighScore highScore{ "highscore.txt" };
@@ -63,6 +65,8 @@ struct GameState {
   void setGameOver();
   size_t fruitIndex() const { return levelNum % fruits.size(); }
   GenericFruit & currentFruit() { return fruits[fruitIndex()]; }
+  void loadBoard(std::tuple<DefaultBoard, Portals> board);
+  void choseFruitPortal();
 };
 
 } // namespace ms_pacman

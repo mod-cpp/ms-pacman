@@ -43,7 +43,7 @@ void Game::run() {
 void Game::loadLevel() {
   const Level & level = gameState.level;
   canvas.loadMaze(level.background);
-  gameState.board = level.create_board();
+  gameState.loadBoard(level.create_board());
 }
 
 void Game::processEvents(InputState & inputState) {

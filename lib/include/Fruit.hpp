@@ -34,8 +34,12 @@ public:
   }
 
   // TODO Exercise-X3 : Make fruits move
-  constexpr Position position() const { return Atlas::fruit_start; }
+  constexpr Position position() const { return Atlas::fruit_target_pos; }
   bool visible() const { return is_visible; }
+
+  void setStartPosition(Position position) {
+    start_position = position;
+  }
 
 private:
   void show() { is_visible = true; }
@@ -49,6 +53,7 @@ private:
   bool is_visible = false;
   int index = 0;
   DeltaTimer timer{ std::chrono::seconds(9) };
+  Position start_position{};
 };
 
 struct Cherry : public Fruit<Cherry> {
@@ -134,6 +139,11 @@ constexpr bool isVisible(const GenericFruit & currentFruit) {
 constexpr int eat(GenericFruit & currentFruit) {
   return std::visit([](auto && fruit) { return fruit.eat(); }, currentFruit);
 }
+
+constexpr void setStartPosition(GenericFruit & currentFruit, Position position) {
+  std::visit([&](auto && fruit) { fruit.setStartPosition(position); }, currentFruit);
+}
+
 } // namespace Fruits
 
 } // namespace ms_pacman

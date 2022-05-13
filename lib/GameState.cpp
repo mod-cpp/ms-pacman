@@ -138,6 +138,7 @@ void GameState::reset() {
   std::apply(reset_ghosts, ghosts);
   msPacMan.reset();
   timeSinceDeath = std::chrono::milliseconds(0);
+  Fruits::setStartPosition(currentFruit(), Atlas::fruit_target_pos);
 }
 
 void GameState::killMsPacMan() {
@@ -148,6 +149,20 @@ void GameState::killMsPacMan() {
 
 bool GameState::isMsPacManDying() const {
   return timeSinceDeath.count() != 0;
+}
+
+void GameState::loadBoard(std::tuple<DefaultBoard, Portals> loaded) {
+  auto [loaded_board, loaded_portal] = loaded;
+  board = loaded_board;
+  portals = loaded_portal;
+  choseFruitPortal();
+}
+
+void GameState::choseFruitPortal() {
+  for (const auto & p : portals)
+    if (p)
+      fruitPortal = p.value();
+  Fruits::setStartPosition(currentFruit(), Atlas::fruit_target_pos);
 }
 
 } // namespace ms_pacman

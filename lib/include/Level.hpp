@@ -27,9 +27,9 @@ struct Level {
     PORTAL2 = 7
   };
 
-  constexpr auto create_board() const {
-    Board<COLUMNS, ROWS> board;
-    std::array<std::optional<GridPosition>, 4> portals;
+  constexpr std::tuple<DefaultBoard, Portals> create_board() const {
+    DefaultBoard board;
+    Portals portals;
     std::size_t idx = 0;
 
     for (std::size_t x = 0; x < COLUMNS; x++) {
@@ -85,7 +85,7 @@ struct Level {
         portal.target_position = *other_position;
       }
     }
-    return board;
+    return { board, portals };
   }
 
   static constexpr int count_pellets(auto maze_data) {
