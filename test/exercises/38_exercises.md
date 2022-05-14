@@ -6,33 +6,7 @@
 * [Exercise 381](#exercise-381)
 * [Exercise 382](#exercise-382)
 
-## [Exercise 380][1]
-### Implement any_of
-
-<details>
-   <summary>Solution</summary>
-
-```cpp
-constexpr bool any_of(auto ...item) {
-  return (item || ...);
-}
-```
-</details>
-
-## [Exercise 381][1]
-### Implement all_of
-
-<details>
-   <summary>Solution</summary>
-
-```cpp
-constexpr bool all_of(auto ...item) {
-  return (item && ...);
-}
-```
-</details>
-
-## Exercise 382
+## Exercise 380
 
 There is a lot of code repetition in GameState::stepGhosts
 
@@ -81,6 +55,32 @@ void GameState::stepGhosts(const std::chrono::milliseconds & delta, Ghosts & gho
   std::apply([this](auto... & ghost) {
     (checkCollision(ghost), ...);
   }, ghost_tuple);
+}
+```
+</details>
+
+## [Exercise 381][1]
+### Implement any_of
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+constexpr bool any_of(auto ...item) {
+  return (item || ...);
+}
+```
+</details>
+
+## [Exercise 382][1]
+### Implement all_of
+
+<details>
+   <summary>Solution</summary>
+
+```cpp
+constexpr bool all_of(auto ...item) {
+  return (item && ...);
 }
 ```
 </details>
