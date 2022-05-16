@@ -153,9 +153,7 @@ bool GameState::isMsPacManDying() const {
 }
 
 void GameState::loadBoard(std::tuple<DefaultBoard, Portals> loaded) {
-  auto [loaded_board, loaded_portal] = loaded;
-  board = loaded_board;
-  portals = loaded_portal;
+  std::tie(board, portals) = loaded;
   choseFruitPortal();
 }
 
