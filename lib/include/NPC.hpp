@@ -6,10 +6,10 @@ namespace ms_pacman {
 
 class NPC {
 public:
-  NPC(const Position position, const Position scatterTarget)
+  NPC(Position position, Position scatterTarget)
     : pos(position),
       target(scatterTarget) {}
-  NPC(const Position targetPos, bool stop)
+  NPC(Position targetPos, bool stop)
     : pos(targetPos),
       target(targetPos),
       stop_at_target(stop) {}
