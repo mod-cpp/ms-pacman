@@ -47,8 +47,8 @@ std::optional<std::string_view> next() {
 ```cpp
 inline std::string to_upper(std::string_view word) {
   std::string ret;
-  ret.resize(word.size());
-  std::transform(word.begin(), word.end(), ret.begin(), ::toupper);
+  ret.reserve(word.size());
+  std::transform(word.begin(), word.end(), std::back_inserter(ret), ::toupper);
   return ret;
 }
 ```
