@@ -29,7 +29,7 @@ public:
     keys.push_back(key);
 
     if (keys.size() == CheatCode::length) {
-      auto cheat_code = create_cheat_code();
+      auto cheat_code = CheatCode{ { keys[0], keys[1], keys[2] } };
 
       if (cheat_code == SUPER_SPEED)
         cheat = Cheat::SuperSpeed;
@@ -46,10 +46,6 @@ public:
   }
 
 private:
-  CheatCode create_cheat_code() {
-    return keys.size() == 3 ? CheatCode{{ keys[0], keys[1], keys[2] }} : CheatCode{};
-  }
-  
   std::deque<Code> keys;
 };
 
