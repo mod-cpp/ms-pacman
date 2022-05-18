@@ -7,6 +7,12 @@ endif ()
 
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "*.cpp" "*.hpp")
 
+if (ENABLE_RANGES)
+    list(REMOVE_ITEM ${sources} NPC_23.cpp)
+else ()
+    list(REMOVE_ITEM ${sources} NPC_20.cpp)
+endif ()
+
 add_library(lib_ms_pacman ${sources})
 
 target_include_directories(lib_ms_pacman PUBLIC include)

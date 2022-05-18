@@ -19,11 +19,11 @@ jobs:
       fail-fast: false
       matrix:
         configurations:
-#          - name: Ubuntu 20.04
-#            os: ubuntu-20.04
-#            config-preset: linux-clang
-#            build-preset: linux-clang-build
-#            test-preset: linux-clang-test
+          - name: Ubuntu 20.04
+            os: ubuntu-20.04
+            config-preset: linux-clang
+            build-preset: linux-clang-build
+            test-preset: linux-clang-test
           - name: Ubuntu 20.04
             os: ubuntu-20.04
             config-preset: linux-gcc
@@ -39,11 +39,11 @@ jobs:
             config-preset: x86-windows
             build-preset: x86-windows-build
             test-preset: x86-windows-test
-#          - name: MacOS 11
-#            os: macos-11
-#            config-preset: osx
-#            build-preset: osx-build
-#            test-preset: osx-test
+          - name: MacOS 11
+            os: macos-11
+            config-preset: osx
+            build-preset: osx-build
+            test-preset: osx-test
         cmake-build-type: [Debug, Release]
 
     steps:
