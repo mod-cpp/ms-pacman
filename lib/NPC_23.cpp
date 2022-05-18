@@ -53,17 +53,17 @@ void NPC::updateDirection(const DefaultBoard & board) {
     return transformed;
   };
 
-  auto view = possible_moves
-              | std::views::transform(set_teleport)
-              | std::views::filter(has_valid_position)
-              | std::views::filter(has_valid_direction)
-              | std::views::filter(is_allowed_move)
-              | std::views::transform(set_distance_to_target);
+  auto valid_moves = possible_moves                            //
+                     | std::views::transform(set_teleport)     //
+                     | std::views::filter(has_valid_position)  //
+                     | std::views::filter(has_valid_direction) //
+                     | std::views::filter(is_allowed_move)     //
+                     | std::views::transform(set_distance_to_target);
 
-  if (std::ranges::empty(view))
+  if (std::ranges::empty(valid_moves))
     return;
 
-  const auto optimal_move = std::ranges::min_element(view, {}, &Move::distance_to_target);
+  const auto optimal_move = std::ranges::min_element(valid_moves, {}, &Move::distance_to_target);
 
   const auto & move = *optimal_move;
   direction = move.direction;
