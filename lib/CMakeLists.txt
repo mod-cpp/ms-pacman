@@ -8,9 +8,11 @@ endif ()
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "*.cpp" "*.hpp")
 
 if (ENABLE_RANGES)
-    list(REMOVE_ITEM ${sources} NPC_23.cpp)
+    message(STATUS "${CMAKE_PROJECT_NAME}: Use ranges (NPC_23.cpp)")
+    list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/NPC_20.cpp)
 else ()
-    list(REMOVE_ITEM ${sources} NPC_20.cpp)
+    message(STATUS "${CMAKE_PROJECT_NAME}: Don't use ranges (NPC_20.cpp)")
+    list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/NPC_23.cpp)
 endif ()
 
 add_library(lib_ms_pacman ${sources})
