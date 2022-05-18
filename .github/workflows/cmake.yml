@@ -29,7 +29,7 @@ jobs:
             config-preset: linux-gcc
             build-preset: linux-gcc-build
             test-preset: linux-gcc-test
-          - name: Ubuntu 20.04 GCC-11
+          - name: Ubuntu 20.04
             os: ubuntu-20.04
             config-preset: linux-gcc-11
             build-preset: linux-gcc-build-11
