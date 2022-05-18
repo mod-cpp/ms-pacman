@@ -29,6 +29,11 @@ jobs:
             config-preset: linux-gcc
             build-preset: linux-gcc-build
             test-preset: linux-gcc-test
+          - name: Ubuntu 20.04 GCC-11
+            os: ubuntu-20.04
+            config-preset: linux-gcc-11
+            build-preset: linux-gcc-build-11
+            test-preset: linux-gcc-test-11
           - name: Windows 2022
             os: windows-2022
             config-preset: x64-windows
@@ -71,9 +76,13 @@ jobs:
 
     - name: Install Linux dependencies
       if: matrix.configurations.os == 'ubuntu-20.04'
+      run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev clang-12 make ninja-build cmake
+
+    - name: Install Addtitional Linux dependencies
+      if: matrix.configurations.config-preset == 'linux-gcc-11'
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-        sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev clang-12 g++-11 make ninja-build cmake
+        sudo apt-get update && sudo apt-get install -y g++-11
 
     - name: Configure CMake
       shell: bash
