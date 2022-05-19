@@ -6,6 +6,7 @@
     "dependencies": [
         "sfml",
         "fmt",
+        "range-v3",
         { "name": "catch2", "version>=": "2.13.8" }
     ],
     "overrides": [
