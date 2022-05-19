@@ -39,7 +39,7 @@ void NPC::updateDirection(const DefaultBoard & board) {
   };
 
   auto has_valid_direction = [&](const auto & move) {
-    return !(move.direction == oppositeDirection(direction));
+    return move.direction != oppositeDirection(direction);
   };
 
   auto is_allowed_move = [&](const auto & move) {
