@@ -1,0 +1,20 @@
+option(ENABLE_RANGES "Enable ranges" FALSE)
+
+if (WIN32)
+    set(ENABLE_RANGES YES)
+    set(RANGES_CXX 23)
+endif ()
+
+if (CMAKE_COMPILER_IS_GNUCXX)
+    message(STATUS "${CMAKE_PROJECT_NAME}: GCC version is ${CMAKE_CXX_COMPILER_VERSION}")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 10.1)
+        set(ENABLE_RANGES YES)
+        set(RANGES_CXX 20)
+    endif ()
+endif ()
+
+if (ENABLE_RANGES)
+    message(STATUS "${CMAKE_PROJECT_NAME}: Enabling use of ranges")
+else ()
+    message(STATUS "${CMAKE_PROJECT_NAME}: Disabling use of ranges")
+endif ()
