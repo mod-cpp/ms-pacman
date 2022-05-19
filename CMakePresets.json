@@ -86,6 +86,23 @@
             }
         },
         {
+            "name": "linux-gcc-11",
+            "description": "Compile On Linux (GCC 11)",
+            "inherits": "base",
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_COMPILER": "g++-11"
+            },
+            "vendor": {
+                "microsoft.com/VisualStudioSettings/CMake/1.0": {
+                    "hostOS": [
+                        "Linux"
+                    ]
+                }
+            }
+        },
+        {
             "name": "linux-clang",
             "description": "Compile On Linux (Clang)",
             "inherits": "base",
@@ -147,6 +164,11 @@
             "inherits": "core-build"
         },
         {
+            "name": "linux-gcc-build-11",
+            "configurePreset": "linux-gcc-11",
+            "inherits": "core-build"
+        },
+        {
             "name": "linux-clang-build",
             "configurePreset": "linux-clang",
             "inherits": "core-build"
@@ -187,6 +209,15 @@
             "name": "linux-gcc-test",
             "description": "Run tests on Linux (GCC 10)",
             "configurePreset": "linux-gcc",
+            "displayName": "linux-test",
+            "inherits": [
+                "core-tests"
+            ]
+        },
+        {
+            "name": "linux-gcc-test-11",
+            "description": "Run tests on Linux (GCC 11)",
+            "configurePreset": "linux-gcc-11",
             "displayName": "linux-test",
             "inherits": [
                 "core-tests"
