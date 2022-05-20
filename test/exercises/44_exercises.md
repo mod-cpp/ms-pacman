@@ -48,7 +48,9 @@ bool operator==(const BasicPosition<T> & a, const BasicPosition<T> & b) {
 
 <details>
    <summary>Hint: Picture of the relationships</summary>
-![Hint](44_conjunction.png)
+
+<img alt="Hint" src="images/44_conjunction.png" title="Hint"/>
+
 </details>
 
 <details>
