@@ -47,6 +47,11 @@ bool operator==(const BasicPosition<T> & a, const BasicPosition<T> & b) {
 * cppreference : [Conjunctions][2]
 
 <details>
+   <summary>Hint: Picture of the relationships</summary>
+![Hint](44_conjunction.png)
+</details>
+
+<details>
    <summary>Solution</summary>
 
 ```cpp
