@@ -15,8 +15,8 @@
 
 ## Day 4
 
-* [41. C++ 20: Ranges](41_exercises.md)
-* [42. std::string_view and std::span](42_exercises.md)
+* [41. std::string_view and std::span](41_exercises.md)
+* [42. C++ 20: Ranges](42_exercises.md)
 * [43. constexpr and consteval](43_exercises.md)
 * [44. Concepts](44_exercises.md)
 * [45. Special member functions, including Rule of Five/Zero](45_exercises.md)
