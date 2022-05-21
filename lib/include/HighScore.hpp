@@ -5,6 +5,7 @@
 #include <optional>
 #include <span>
 #include <unordered_map>
+#include <vector>
 
 namespace ms_pacman {
 
