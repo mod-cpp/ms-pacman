@@ -2,9 +2,9 @@
 
 #include "AtlasMsPacMan.hpp"
 #include "Board.hpp"
+#include "DeltaTimer.hpp"
 #include "Direction.hpp"
 #include "Position.hpp"
-#include "DeltaTimer.hpp"
 
 #include <chrono>
 

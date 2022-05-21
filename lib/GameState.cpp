@@ -93,11 +93,11 @@ void GameState::stepPellets(DefaultBoard & grid) {
   const auto pos = msPacMan.positionInGrid();
   const auto & cell = cellAtPosition(grid, pos);
   bool eaten = std::visit(overloaded{
-                            [&](const Pellet &pellet) {
+                            [&](const Pellet & pellet) {
                               score.add(pellet);
                               return true;
                             },
-                            [&](const SuperPellet &superPellet) {
+                            [&](const SuperPellet & superPellet) {
                               msPacMan.eat(superPellet);
                               score.add(superPellet);
                               auto frighten_ghosts = [](auto &... ghost) { (ghost.frighten(), ...); };

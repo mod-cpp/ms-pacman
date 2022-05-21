@@ -18,11 +18,10 @@ struct CheatCode : std::array<Code, 3> {
   static constexpr auto length = 3;
 };
 
-constexpr CheatCode SUPER_SPEED = {{ Code::F, Code::O, Code::X }};
+constexpr CheatCode SUPER_SPEED = { { Code::F, Code::O, Code::X } };
 
 class Cheats {
 public:
-  
   std::optional<Cheat> add_cheat(Code key) {
     std::optional<Cheat> cheat;
 
