@@ -71,7 +71,7 @@ private:
 
   void renderScore(int score);
   void renderHighScore(std::optional<player> score);
-  void renderLives(int lives);
+  void renderLives(uint16_t lives);
 
   template<typename Object>
   void render(Object sprite, Position pos) {
@@ -86,6 +86,22 @@ private:
   static sf::Font loadFont(std::string_view path);
 
   Sprite getSprite(GridPosition rect) const;
+
+  static consteval uint16_t panelLeft() {
+    return LEFT_MARGIN + TARGET_MAZE_WIDTH + LEFT_MARGIN;
+  }
+
+  static consteval float spritePaddedWidth() {
+    return SPRITE_WIDTH * 1.5f;
+  }
+
+  static constexpr BasicPosition<float>
+  calculatePanelSpritePosition(BasicPosition<uint16_t> grid_pos) {
+    float x = panelLeft();
+    float y = grid_pos.y;
+    float sprite_position = float(grid_pos.x) * spritePaddedWidth();
+    return { x + sprite_position, y };
+  }
 
   sf::RenderWindow window;
   sf::View view;

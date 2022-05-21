@@ -148,27 +148,25 @@ void Canvas::render(const GenericFruit & fruit, std::span<const GenericFruit> ea
     render(level_fruit_sprite, pos);
   }
 
-  auto render_fruit = [this](int position, Sprite fruit_sprite) {
-    const auto x = static_cast<size_t>(LEFT_MARGIN + TARGET_MAZE_WIDTH + LEFT_MARGIN);
-    const auto y = static_cast<size_t>((TARGET_MAZE_HEIGHT / 3.0) * 2);
-    const auto sprite_position = float(position) * SPRITE_WIDTH * 1.5f;
-    const sf::Vector2f pos{ x + sprite_position, y };
-    fruit_sprite.setPosition(pos.x, pos.y);
+  auto render_fruit = [this](uint16_t horizontal_position, Sprite fruit_sprite) {
+    auto vertical_position = static_cast<uint16_t>((TARGET_MAZE_HEIGHT / 3.0) * 2);
+    auto panel_pos = calculatePanelSpritePosition({ horizontal_position, vertical_position });
+    fruit_sprite.setPosition(panel_pos.x, panel_pos.y);
     window.draw(fruit_sprite);
   };
 
-  int render_position = 0;
+  uint16_t horizontal_position = 0;
 
   // Render the already eaten fruits in the list in the panel
   for (const auto & eatenFruit : eatenFruits) {
     GridPosition sprite_position = Fruits::sprite(eatenFruit);
     Sprite eaten_sprite = getSprite(sprite_position);
-    render_fruit(render_position, eaten_sprite);
-    render_position++;
+    render_fruit(horizontal_position, eaten_sprite);
+    horizontal_position++;
   }
 
   // Render the current fruit at the end of the list in the panel
-  render_fruit(render_position, level_fruit_sprite);
+  render_fruit(horizontal_position, level_fruit_sprite);
 }
 
 void Canvas::render(const Score & score) {
@@ -181,8 +179,8 @@ void Canvas::render(const Score & score) {
 }
 
 void Canvas::renderScore(int score) {
-  const int x = (LEFT_MARGIN + TARGET_MAZE_WIDTH + LEFT_MARGIN);
-  const int y = (TOP_MARGIN * 2);
+  const auto x = panelLeft();
+  const auto y = (TOP_MARGIN * 2);
 
   sf::Text text;
   text.setPosition(x, y);
@@ -197,8 +195,8 @@ void Canvas::renderHighScore(std::optional<player> highScore) {
   if (!highScore)
     return;
 
-  const int x = (LEFT_MARGIN + TARGET_MAZE_WIDTH + LEFT_MARGIN);
-  const int y = (TOP_MARGIN * 2) + 150;
+  const auto x = panelLeft();
+  const auto y = (TOP_MARGIN * 2) + 150;
 
   sf::Text text;
   text.setPosition(x, y);
@@ -209,16 +207,12 @@ void Canvas::renderHighScore(std::optional<player> highScore) {
   window.draw(text);
 }
 
-void Canvas::renderLives(int lives) {
+void Canvas::renderLives(uint16_t lives) {
   constexpr GridPosition liveSprite = Atlas::pacman_left_narrow;
-  const size_t x = (LEFT_MARGIN + TARGET_MAZE_WIDTH + LEFT_MARGIN);
-  const size_t y = TARGET_MAZE_HEIGHT;
-
   Sprite pacmanSprite = getSprite(liveSprite);
-  for (auto i = 0; i < lives - 1; i++) {
-    auto life_position = float(i) * SPRITE_WIDTH * 1.5f;
-    sf::Vector2f pos{ x + life_position, y };
-    pacmanSprite.setPosition(pos.x, pos.y);
+  for (uint16_t horizontal_position = 0; horizontal_position < lives - 1; horizontal_position++) {
+    auto panel_pos = calculatePanelSpritePosition({ horizontal_position, TARGET_MAZE_HEIGHT });
+    pacmanSprite.setPosition(panel_pos.x, panel_pos.y);
     window.draw(pacmanSprite);
   }
 }
