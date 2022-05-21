@@ -1,43 +1,25 @@
 #include "HighScoreFile.hpp"
 
-#include <cassert>
-#include <cstdio>
 #include <filesystem>
 #include <system_error>
-#include <tuple>
-
-HighScoreFile::HighScoreFile(std::string name)
-  : filename(std::move(name)),
-    file(std::fopen(filename.c_str(), "r")) {
-}
-
-HighScoreFile::~HighScoreFile() {
-  if (file)
-    std::fclose(file);
-}
-
-HighScoreFile::HighScoreFile(HighScoreFile && other) noexcept {
-  using std::swap;
-  swap(file, other.file);
-  assert(other.file == nullptr);
-}
 
 std::string HighScoreFile::read_all() {
   std::string input;
   input.reserve(get_size());
 
   auto done = [&](auto c) {
-    return std::ferror(file) || (c == EOF);
+    return std::ferror(file.get()) || (c == EOF);
   };
+
   auto next = [&]() {
-    return std::fgetc(file);
+    return std::fgetc(file.get());
   };
 
   for (int c = next(); !done(c); c = next()) {
     input.push_back(static_cast<char>(c));
   }
 
-  if (!std::ferror(file) && std::feof(file)) {
+  if (!std::ferror(file.get()) && std::feof(file.get())) {
     return input;
   }
 
