@@ -33,7 +33,7 @@ constexpr EatingAnimations death_animation{ pacman_left_narrow, pacman_up_narrow
 </details>
 
 ## [Exercise 351][1]
-### using alias int_set
+### Create a type alias "int_set"
 
 * cppreference : [Type alias, alias template][3]
 

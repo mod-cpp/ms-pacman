@@ -36,8 +36,6 @@ void GameState::stepGhosts(const std::chrono::milliseconds & delta, Ghosts & gho
 Can you use a fold expression to reduce the amount of repetition?
 Which fold expression?
 
-Simplify the code
-
 <details>
    <summary>Solution</summary>
 

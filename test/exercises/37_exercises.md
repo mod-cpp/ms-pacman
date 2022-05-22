@@ -10,7 +10,7 @@
 
 ## Exercise 370
 
-Use a structured binding to "unpack" the animation parameter and extract out the posistion into a
+Use a structured binding to "unpack" the animation parameter and extract out the position into a
 variable called pos. What should we do with the other member?
 
 ```cpp

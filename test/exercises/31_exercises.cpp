@@ -10,7 +10,7 @@ TEST_CASE("Exercise 31x : Make sure running exercise tests work", "[31]") {
 }
 
 // HINT: To enable a test remove [.] from the tags on the test
-TEST_CASE("Exercise 311 : Enable a test and make it green", "[.][31]") {
+TEST_CASE("Exercise 311 : Enable the test and make it green", "[.][31]") {
   REQUIRE(true == false);
 }
 
