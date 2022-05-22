@@ -7,7 +7,7 @@
 
 ## Exercise 440
 
-Rewrite the following code to use the concepts in the file Position.hpp instead
+Rewrite the operator equals to use the concepts instead.
 
 ```cpp
 template<typename T>

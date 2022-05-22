@@ -39,7 +39,7 @@ std::optional<std::string_view> next() {
 
 ## [Exercise 411][1]
 
-### Make whole word uppercase
+### Make whole std::string_view uppercase
 
 <details>
    <summary>Solution</summary>
@@ -57,7 +57,7 @@ inline std::string to_upper(std::string_view word) {
 
 ## [Exercise 412][1]
 
-### Trim leading and trailing white space in StringView.hpp
+### Trim leading and trailing white space from std::string_view
 
 * [std::string_view][2]
 
@@ -83,7 +83,7 @@ inline std::string trim(std::string_view view) {
 
 ## [Exercise 413][1]
 
-### Split view into tokens based on whitespace
+### Split std::string_view into tokens based on whitespace
 
 <details>
    <summary>Solution</summary>

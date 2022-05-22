@@ -6,7 +6,7 @@
 
 ## [Exercise 420][1]
 
-### Trim leading and trailing white space in StringView.hpp
+### Trim leading and trailing white space from std::string_view
 
 * [std::string_view][2]
 
@@ -32,3 +32,4 @@ inline std::string trim(std::string_view view) {
 </details>
 
 [1]: 42_exercises.cpp
+[2]: https://en.cppreference.com/w/cpp/string/basic_string_view/basic_string_view
