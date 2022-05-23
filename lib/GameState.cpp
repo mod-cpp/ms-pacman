@@ -76,17 +76,14 @@ void GameState::stepGhosts(const std::chrono::milliseconds & delta, Ghosts & gho
 
   std::apply(step_all_ghosts, ghost_tuple);
 
-  checkCollision(ghost_tuple);
-}
-
-void GameState::checkCollision(Ghosts & ghost_tuple) {
-  auto callable = [this](Blinky & blinky, Pinky & pinky, Inky & inky, Sue & sue) {
+  auto check_collision_all_ghosts = [this](Blinky & blinky, Pinky & pinky, Inky & inky, Sue & sue) {
     checkCollision(blinky);
     checkCollision(pinky);
     checkCollision(inky);
     checkCollision(sue);
   };
-  std::apply(callable, ghost_tuple);
+
+  std::apply(check_collision_all_ghosts, ghost_tuple);
 }
 
 void GameState::stepPellets(DefaultBoard & grid) {
