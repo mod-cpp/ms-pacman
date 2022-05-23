@@ -1,6 +1,5 @@
 #include "Level.hpp"
 #include <catch2/catch.hpp>
-#include <iostream>
 
 static int countPellets(ms_pacman::array2d<int, 31, 28> array) {
   int pellets = 0;
