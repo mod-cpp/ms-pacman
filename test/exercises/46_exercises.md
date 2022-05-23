@@ -6,6 +6,9 @@
 * [Exercise 461](#exercise-461)
 
 ## Exercise 460
+### Refactor HighScoreFile.hpp
+
+* Use fstream instead, as shown on the slide
 
 ## [Exercise 461][1]
 ### Implement bounding_box
