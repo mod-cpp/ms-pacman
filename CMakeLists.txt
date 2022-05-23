@@ -4,6 +4,10 @@ include(cmake/vcpkg.cmake)
 
 project(ms-pacman LANGUAGES CXX)
 
+include(cmake/Sanitizers.cmake)
+set(ENABLE_SANITIZER_ADDRESS YES)
+enable_sanitizers()
+
 include(cmake/ranges.cmake)
 
 if (ENABLE_RANGES)
