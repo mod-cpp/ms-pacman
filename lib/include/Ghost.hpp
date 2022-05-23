@@ -163,7 +163,7 @@ struct Sue : public GhostBase<Sue> {
       return;
     }
 
-    // Clyde always target its scatter target, unless pacman is further than 8 tiles away
+    // Sue always target its scatter target, unless pacman is further than 8 tiles away
     target = scatterTarget;
     if (state == GhostState::Scatter) {
       return;
