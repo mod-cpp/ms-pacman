@@ -34,14 +34,14 @@ TEST_CASE("Exercise 412 : Trim leading and trailing white space", "[.][41]") {
 }
 
 TEST_CASE("Exercise 413 : Split view into tokens based on whitespace", "[.][41]") {
-  std::string haystack = "Why, sometimes I’ve believed as many as six impossible things before breakfast.";
+  std::string haystack = "Why, sometimes I've believed as many as six impossible things before breakfast.";
   const std::string delimiter = " ";
   std::vector<std::string> tokens = StringView::split(haystack);
   REQUIRE(tokens.size() == 12);
   if (tokens.size() == 12) {
     CHECK(tokens[0] == "Why,");
     CHECK(tokens[1] == "sometimes");
-    CHECK(tokens[2] == "I’ve");
+    CHECK(tokens[2] == "I've");
     CHECK(tokens[3] == "believed");
     CHECK(tokens[4] == "as");
     CHECK(tokens[5] == "many");
@@ -55,14 +55,14 @@ TEST_CASE("Exercise 413 : Split view into tokens based on whitespace", "[.][41]"
 }
 
 TEST_CASE("Exercise 414 : Split view into tokens based on delimiter", "[.][41]") {
-  std::string haystack = "Why,sometimes,I’ve,believed,as,many,as,six,impossible,things,before,breakfast.";
+  std::string haystack = "Why,sometimes,I've,believed,as,many,as,six,impossible,things,before,breakfast.";
   const std::string delimiter = " ";
   std::vector<std::string> tokens = StringView::split(haystack, ',');
   REQUIRE(tokens.size() == 12);
   if (tokens.size() == 12) {
     CHECK(tokens[0] == "Why");
     CHECK(tokens[1] == "sometimes");
-    CHECK(tokens[2] == "I’ve");
+    CHECK(tokens[2] == "I've");
     CHECK(tokens[3] == "believed");
     CHECK(tokens[4] == "as");
     CHECK(tokens[5] == "many");
