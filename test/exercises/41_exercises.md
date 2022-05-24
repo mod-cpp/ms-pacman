@@ -62,6 +62,17 @@ inline std::string to_upper(std::string_view word) {
 }
 ```
 
+Windows
+
+```cpp
+inline std::string to_upper(std::string_view word) {
+  std::string ret;
+  ret.reserve(word.size());
+  std::transform(word.begin(), word.end(), std::back_inserter(ret), [](int c) -> char { return static_cast<char>(::toupper(c)); });
+  return ret;
+}
+```
+
 </details>
 
 ## [Exercise 412][1]
