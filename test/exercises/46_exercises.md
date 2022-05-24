@@ -14,6 +14,9 @@
    <summary>Solution</summary>
 
 ```cpp
+#include <fstream>
+#include <sstream>
+
 class HighScoreFile final {
 public:
  explicit HighScoreFile(std::string name)
