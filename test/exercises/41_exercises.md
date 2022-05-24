@@ -11,6 +11,15 @@
 
 ### Implement next() in LineViewStream.hpp
 
+Uncomment this line in the benchmark test/benchmarks/line_stream_benchmark.cpp
+
+```cpp
+    // REQUIRE(lines == 1950);
+```
+
+Implement the next function in LineViewStream.hpp trying not to make copies of 
+the string except in the return statement.
+
 Compare the performance with LineStream.hpp by running the benchmark in
 line_stream_benchmark.cpp.
 
