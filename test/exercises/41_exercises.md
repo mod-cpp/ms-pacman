@@ -118,8 +118,7 @@ inline std::vector<std::string> split(std::string_view view) {
   while (start < stop) {
     auto start_word = std::find_if_not(start, stop, ::isspace);
     auto end_word = std::find_if(start_word, stop, ::isspace);
-    auto dist = std::distance(start_word, end_word);
-    tokens.emplace_back(start_word, dist);
+    tokens.emplace_back(start_word, end_word);
     start = end_word;
   }
 
