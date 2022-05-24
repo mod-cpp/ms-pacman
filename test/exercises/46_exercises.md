@@ -10,6 +10,34 @@
 
 * Use fstream instead, as shown on the slide
 
+<details>
+   <summary>Solution</summary>
+
+```cpp
+class HighScoreFile final {
+public:
+ explicit HighScoreFile(std::string name)
+     : filename(std::move(name)),
+       file(filename.c_str()) {
+   };
+
+
+ std::string read_all() {
+   std::stringstream buffer;
+   buffer << file.rdbuf();
+   return buffer.str();
+ }
+
+ bool is_valid() const { return file.is_open(); }
+
+private:
+ std::string filename;
+ std::basic_fstream<char> file;
+};
+```
+
+</details>
+
 ## [Exercise 461][1]
 ### Implement bounding_box
 
