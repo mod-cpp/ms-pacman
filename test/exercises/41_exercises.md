@@ -147,8 +147,7 @@ inline std::vector<std::string> split(std::string_view view, char delimiter) {
   while (start < stop) {
     auto start_word = std::find_if_not(start, stop, is_comma);
     auto end_word = std::find_if(start_word, stop, is_comma);
-    auto dist = std::distance(start_word, end_word);
-    tokens.emplace_back(start_word, dist);
+    tokens.emplace_back(start_word, end_word);
     start = end_word;
   }
 
