@@ -6,6 +6,8 @@
 * [Exercise 411](#exercise-411)
 * [Exercise 412](#exercise-412)
 * [Exercise 413](#exercise-413)
+* [Exercise 414](#exercise-414)
+* [Exercise 415](#exercise-415)
 
 ## Exercise 410
 
