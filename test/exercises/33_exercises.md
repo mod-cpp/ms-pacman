@@ -43,6 +43,8 @@ inline bool isSamePosition(const Position & a, const Position & b) {
 <details>
    <summary>Solution</summary>
 
+* [std::abs][6] will be constexpr in C++23
+
 ```cpp
 constexpr bool operator==(const GridPosition & a, const GridPosition & b) {
   return a.x == b.x && a.y == b.y;
@@ -52,7 +54,7 @@ inline bool isSamePosition(const GridPosition & a, const GridPosition & b) {
   return a == b;
 }
 
-constexpr bool operator==(const Position & a, const Position & b) {
+inline bool operator==(const Position & a, const Position & b) {
   constexpr double epsilon = std::numeric_limits<double>::epsilon();
   return std::abs(a.x - b.x) <= epsilon &&
          std::abs(a.y - b.y) <= epsilon;
@@ -291,3 +293,4 @@ TEST_CASE("Exercise 337 : operator() as a custom member function", "[33]") {
 [3]: https://en.cppreference.com/w/cpp/language/operators#Function_call_operator
 [4]: https://en.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison
 [5]: https://en.cppreference.com/w/cpp/language/operator_comparison#Two-way_comparison
+[6]: https://en.cppreference.com/w/cpp/numeric/math/abs
