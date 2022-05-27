@@ -101,7 +101,7 @@ TEST_CASE("Exercise 374 : structured binding of a std::map", "[.][37]") {
   std::map<std::string, int> map{
     { "Corentin", 1345 },
     { "Patricia", 2124 },
-    { "Ólafur", 1337 }
+    { "Olafur", 1337 }
   };
 
   // EXAMPLE
@@ -129,7 +129,7 @@ TEST_CASE("Exercise 374 : structured binding of a std::map", "[.][37]") {
 
   // Use the checks below to test it
   CHECK(low_score.second == 1337);
-  CHECK(low_score.first == "Ólafur");
+  CHECK(low_score.first == "Olafur");
 #endif
 }
 

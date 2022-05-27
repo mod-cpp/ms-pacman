@@ -93,7 +93,7 @@ struct HighScoreListener : Catch::TestEventListenerBase {
     std::basic_ofstream<char> outputStream = std::ofstream("highscore.txt");
     outputStream << "Corentin,1345\n";
     outputStream << "Patricia,2124\n";
-    outputStream << "Ólafur,1337\n";
+    outputStream << "Olafur,1337\n";
   }
 
   void testCaseEnded(Catch::TestCaseStats const &) override {
@@ -115,7 +115,7 @@ TEST_CASE("Integration: Populate Using HighScore File", "[.][41]") {
   CHECK(std::get<1>(parsed[0]) == 1345);
   CHECK(std::get<0>(parsed[1]) == "PATRICIA");
   CHECK(std::get<1>(parsed[1]) == 2124);
-  CHECK(std::get<0>(parsed[2]) == "ÓLAFUR");
+  CHECK(std::get<0>(parsed[2]) == "OLAFUR");
   CHECK(std::get<1>(parsed[2]) == 1337);
   highScore.populate(parsed);
   const std::optional<player> & top = highScore.top();

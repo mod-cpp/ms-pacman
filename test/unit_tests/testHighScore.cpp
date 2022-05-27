@@ -17,7 +17,7 @@ struct HighScoreListener : Catch::TestEventListenerBase {
     std::basic_ofstream<char> outputStream = std::ofstream("highscore.txt");
     outputStream << "Corentin,1345\n";
     outputStream << "Patricia,2124\n";
-    outputStream << "Ólafur,1337\n";
+    outputStream << "Olafur,1337\n";
   }
 
   void testCaseEnded(Catch::TestCaseStats const &) override {
