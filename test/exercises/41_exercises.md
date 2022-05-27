@@ -50,6 +50,27 @@ std::optional<std::string_view> next() {
 
 ### Make whole std::string_view uppercase
 
+* [std::toupper][3]
+* [std::transform][4]
+
+```cpp
+inline std::string to_upper(std::string_view word) {
+  // Exercise 411: Make whole word uppercase
+  return std::string{ word };
+}
+```
+
+<details>
+   <summary>Hint</summary>
+
+```cpp
+  auto toupper = [](unsigned char c) {
+    return static_cast<char>(std::toupper(c));
+  };
+```
+
+</details>
+
 <details>
    <summary>Solution</summary>
 
@@ -57,18 +78,10 @@ std::optional<std::string_view> next() {
 inline std::string to_upper(std::string_view word) {
   std::string ret;
   ret.reserve(word.size());
-  std::transform(word.begin(), word.end(), std::back_inserter(ret), ::toupper);
-  return ret;
-}
-```
-
-Windows
-
-```cpp
-inline std::string to_upper(std::string_view word) {
-  std::string ret;
-  ret.reserve(word.size());
-  std::transform(word.begin(), word.end(), std::back_inserter(ret), [](int c) -> char { return static_cast<char>(::toupper(c)); });
+  auto toupper = [](unsigned char c) {
+    return static_cast<char>(std::toupper(c));
+  };
+  std::transform(word.begin(), word.end(), ret.begin(), toupper);
   return ret;
 }
 ```
@@ -176,3 +189,5 @@ inline int to_int(std::string_view word) {
 
 [1]: 41_exercises.cpp
 [2]: https://en.cppreference.com/w/cpp/string/basic_string_view/basic_string_view
+[3]: https://en.cppreference.com/w/cpp/string/byte/toupper
+[4]: https://en.cppreference.com/w/cpp/algorithm/transform
