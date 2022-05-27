@@ -118,6 +118,13 @@ inline std::string trim(std::string_view view) {
 
 ### Split std::string_view into tokens based on whitespace
 
+```cpp
+inline std::vector<std::string> split(std::string_view view) {
+  // Exercise 413 : Split view into tokens based on whitespace
+  return { std::string{ view } };
+}
+```
+
 <details>
    <summary>Solution</summary>
 
