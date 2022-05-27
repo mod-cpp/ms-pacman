@@ -194,6 +194,14 @@ inline std::vector<std::string> split(std::string_view view, char delimiter) {
 
 ### Get int from string
 
+```cpp
+inline int to_int(std::string_view /*word*/) {
+  int value{};
+  // Exercise 415 : Get int from string
+  return value;
+}
+```
+
 <details>
    <summary>Solution</summary>
 
