@@ -77,7 +77,7 @@ inline std::string to_upper(std::string_view word) {
 ```cpp
 inline std::string to_upper(std::string_view word) {
   std::string ret;
-  ret.reserve(word.size());
+  ret.resize(word.size());
   auto toupper = [](unsigned char c) {
     return static_cast<char>(std::toupper(c));
   };
