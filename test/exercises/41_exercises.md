@@ -97,9 +97,9 @@ inline std::string to_upper(std::string_view word) {
 * [std::string_view][2]
 
 ```cpp
-inline std::string trim(std::string_view /*view*/) {
+inline std::string trim(std::string_view view) {
   // Exercise 412 : Trim leading and trailing white space
-  return {};
+  return std::string{ view };
 }
 ```
 
