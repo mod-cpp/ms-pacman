@@ -27,7 +27,7 @@ constexpr bool operator==(const BasicPosition<double> & a, const BasicPosition<d
    <summary>Solution</summary>
 
 ```cpp
-template<number T>
+template<integral T>
 bool operator==(const BasicPosition<T> & a, const BasicPosition<T> & b) {
     return a.x == b.x && a.y == b.y;
 }
@@ -37,6 +37,14 @@ bool operator==(const BasicPosition<T> & a, const BasicPosition<T> & b) {
     constexpr double epsilon = std::numeric_limits<double>::epsilon();
     return std::abs(a.x - b.x) <= epsilon &&
            std::abs(a.y - b.y) <= epsilon;
+}
+
+inline bool isSamePosition(const GridPosition & a, const GridPosition & b) {
+  return a == b;
+}
+
+inline bool isSamePosition(const Position & a, const Position & b) {
+  return a == b;
 }
 ```
 </details>
