@@ -52,17 +52,17 @@ cd build/linux-clang/test
 
 </details>
 
-Uncomment this line in the benchmark [line_stream_benchmark.cpp](../benchmarks/line_stream_benchmark.cpp)
+Uncomment this line in the benchmark [line_stream_benchmark.cpp][5]
 
 ```cpp
     // REQUIRE(lines == 1950);
 ```
 
-Implement the next function in [LineViewStream.hpp](../../lib/include/LineViewStream.hpp) trying not to make copies of 
-the string except in the return statement.
+Implement the next function in [LineViewStream.hpp][6] trying not to make copies 
+of the string except in the return statement.
 
-Compare the performance with [LineStream.hpp](../../lib/include/LineStream.hpp) by running the benchmark in
-[line_stream_benchmark.cpp](../benchmarks/line_stream_benchmark.cpp).
+Compare the performance with [LineStream.hpp][7] by running the benchmark in
+[line_stream_benchmark.cpp][5].
 
 ```cpp
 std::optional<std::string_view> next() {
@@ -258,3 +258,6 @@ inline int to_int(std::string_view word) {
 [2]: https://en.cppreference.com/w/cpp/string/basic_string_view/basic_string_view
 [3]: https://en.cppreference.com/w/cpp/string/byte/toupper
 [4]: https://en.cppreference.com/w/cpp/algorithm/transform
+[5]: ../benchmarks/line_stream_benchmark.cpp
+[6]: ../../lib/include/LineViewStream.hpp
+[7]: ../../lib/include/LineStream.hpp
