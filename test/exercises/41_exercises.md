@@ -13,10 +13,28 @@
 
 ### Implement next() in LineViewStream.hpp
 
-Run the benchmark
+Run the benchmark:
 
 <details>
-   <summary>CMakeProfile: linux-gcc</summary>
+   <summary>CMakePreset: <b>x64-windows</b></summary>
+
+```bash
+cd .\build\x64-windows\test\Debug\
+.\ms_pacman_benchmarks.exe
+```
+
+</details>
+<details>
+   <summary>CMakePreset: <b>x86-windows</b></summary>
+
+```bash
+cd .\build\x86-windows\test\Debug\
+.\ms_pacman_benchmarks.exe
+```
+
+</details>
+<details>
+   <summary>CMakePreset: <b>linux-gcc</b></summary>
 
 ```bash
 cd build/linux-gcc/test
@@ -24,9 +42,8 @@ cd build/linux-gcc/test
 ```
 
 </details>
-
 <details>
-   <summary>CMakeProfile: linux-clang</summary>
+   <summary>CMakePreset: <b>linux-clang</b></summary>
 
 ```bash
 cd build/linux-clang/test
@@ -35,7 +52,7 @@ cd build/linux-clang/test
 
 </details>
 
-Uncomment this line in the benchmark test/benchmarks/line_stream_benchmark.cpp
+Uncomment this line in the benchmark [line_stream_benchmark.cpp](../benchmarks/line_stream_benchmark.cpp)
 
 ```cpp
     // REQUIRE(lines == 1950);
