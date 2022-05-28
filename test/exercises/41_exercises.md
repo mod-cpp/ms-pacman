@@ -58,11 +58,11 @@ Uncomment this line in the benchmark [line_stream_benchmark.cpp](../benchmarks/l
     // REQUIRE(lines == 1950);
 ```
 
-Implement the next function in LineViewStream.hpp trying not to make copies of 
+Implement the next function in [LineViewStream.hpp](../../lib/include/LineViewStream.hpp) trying not to make copies of 
 the string except in the return statement.
 
-Compare the performance with LineStream.hpp by running the benchmark in
-line_stream_benchmark.cpp.
+Compare the performance with [LineStream.hpp](../../lib/include/LineStream.hpp) by running the benchmark in
+[line_stream_benchmark.cpp](../benchmarks/line_stream_benchmark.cpp).
 
 ```cpp
 std::optional<std::string_view> next() {
