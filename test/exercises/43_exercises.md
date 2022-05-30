@@ -11,7 +11,7 @@
 * Browse the code in the [repo][2]
 
 ## [Exercise 431][1]
-### Implement a consteval function that calculates the volume of a cube
+### Implement a consteval function that calculates the volume of a box
 
 <details>
    <summary>Solution</summary>
