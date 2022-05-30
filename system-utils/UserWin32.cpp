@@ -1,4 +1,4 @@
-#include "windows.h"
+#include <windows.h>
 #include <string>
 
 namespace ms_pacman {
