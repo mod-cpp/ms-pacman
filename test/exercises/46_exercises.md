@@ -49,12 +49,29 @@ private:
    
 How could you make sure that return value optimization is performed (there may be multiple ways to do this)?
 
-
-
 <details>
    <summary>Solution</summary>
 
+Adding a constructor and deleting both the copy constructor and the move constructor.
+
 ```cpp
+struct Rect {
+  Rect(Point point, Size size)
+    : point(point),
+      size(size) {}
+  Rect(const Rect&) = delete;
+  Rect(Rect&&)      = delete;
+  size_t width() const { return size.width; }
+  size_t height() const { return size.height; }
+  int x() const { return point.x; }
+  int y() const { return point.y; }
+  int right() const { return point.x + int(size.width); }
+  int bottom() const { return point.y + int(size.height); }
+
+  Point point;
+  Size size;
+};
+
 static Rect bounding_box(const Rect & one, const Rect & two) {
   int x = std::min(one.x(), two.x());
   int y = std::min(one.y(), two.y());
