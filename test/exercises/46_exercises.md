@@ -52,7 +52,8 @@ How could you make sure that return value optimization is performed (there may b
 <details>
    <summary>Solution</summary>
 
-Adding a constructor and deleting both the copy constructor and the move constructor.
+Adding a constructor and deleting both the copy constructor and the move constructor let you enforce that RVO is performed.
+You could also look at the generated assembly.
 
 ```cpp
 struct Rect {
