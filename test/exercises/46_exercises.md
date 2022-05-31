@@ -46,14 +46,16 @@ private:
 
 * cppreference : [std::min][2]
 * cppreference : [std::max][3]
-   
-How could you make sure that return value optimization is performed (there may be multiple ways to do this)?
+
+How could you make sure that return value optimization is performed (there may be
+multiple ways to do this)?
 
 <details>
    <summary>Solution</summary>
 
-Adding a constructor and deleting both the copy constructor and the move constructor let you enforce that RVO is performed.
-You could also look at the generated assembly.
+Adding a constructor and deleting both the copy constructor and the move constructor
+let you enforce that RVO is performed, as shown below in the struct Rect. You could
+also look at the generated assembly.
 
 ```cpp
 struct Rect {
