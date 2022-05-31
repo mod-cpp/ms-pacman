@@ -46,6 +46,10 @@ private:
 
 * cppreference : [std::min][2]
 * cppreference : [std::max][3]
+   
+How could you make sure that return value optimization is performed (there may be multiple ways to do this)?
+
+
 
 <details>
    <summary>Solution</summary>
