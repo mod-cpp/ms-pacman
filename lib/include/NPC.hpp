@@ -3,6 +3,7 @@
 #include "Board.hpp"
 
 #include <chrono>
+#include <algorithm>
 
 namespace ms_pacman {
 
