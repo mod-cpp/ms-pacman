@@ -16,6 +16,16 @@
 Run the benchmark:
 
 <details>
+   <summary>CMakePreset: <b>osx</b></summary>
+
+```bash
+cd cd build/osx/test/
+./ms_pacman_benchmarks
+```
+
+</details>
+
+<details>
    <summary>CMakePreset: <b>x64-windows</b></summary>
 
 ```bash
