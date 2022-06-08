@@ -42,7 +42,7 @@ constexpr static BoardCell cellAtPosition(const DefaultBoard & board, GridPositi
   return board[point.y][point.x];
 }
 
-constexpr bool isWalkableForPacMan(const DefaultBoard & board, GridPosition point) {
+constexpr bool isWalkableForMsPacMan(const DefaultBoard & board, GridPosition point) {
   BoardCell cell = cellAtPosition(board, point);
   return std::visit(overloaded{
                       [](const Wall &) { return false; },

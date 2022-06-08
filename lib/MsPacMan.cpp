@@ -79,7 +79,7 @@ void MsPacMan::updateMazePosition(std::chrono::milliseconds time_delta, const De
   };
 
   auto canGo = [&moveToPosition, &board, this](Direction move_direction) {
-    return isWalkableForPacMan(board, moveToPosition(pos, move_direction));
+    return isWalkableForMsPacMan(board, moveToPosition(pos, move_direction));
   };
 
   if (desired_direction != direction && canGo(desired_direction)) {
