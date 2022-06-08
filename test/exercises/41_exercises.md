@@ -128,11 +128,11 @@ inline std::string to_upper(std::string_view word) {
 ```cpp
 inline std::string to_upper(std::string_view word) {
   std::string ret;
-  ret.resize(word.size());
+  ret.reserve(word.size());
   auto toupper = [](unsigned char c) {
     return static_cast<char>(std::toupper(c));
   };
-  std::transform(word.begin(), word.end(), ret.begin(), toupper);
+  std::transform(word.begin(), word.end(), std::back_inserter(ret), toupper);
   return ret;
 }
 ```
