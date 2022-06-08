@@ -224,11 +224,11 @@ inline std::vector<std::string> split(std::string_view view, char delimiter) {
   auto start = view.begin();
   const auto stop = view.end();
 
-  auto is_comma = [delimiter](char c) { return c == delimiter; };
+  auto is_delimiter = [delimiter](char c) { return c == delimiter; };
 
   while (start < stop) {
-    auto start_word = std::find_if_not(start, stop, is_comma);
-    auto end_word = std::find_if(start_word, stop, is_comma);
+    auto start_word = std::find_if_not(start, stop, is_delimiter);
+    auto end_word = std::find_if(start_word, stop, is_delimiter);
     tokens.emplace_back(start_word, end_word);
     start = end_word;
   }
