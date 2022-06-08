@@ -7,7 +7,7 @@
 
 ## Exercise 360
 
-Rewrite teleport to use std::visit and overloaded instead.
+Rewrite teleport in [Board.hpp][4] to use std::visit and overloaded instead.
 
 ```cpp
 constexpr GridPosition teleport(const DefaultBoard & board, GridPosition position) {
@@ -60,3 +60,4 @@ static int sides(const shape & count_shape) {
 [1]: 36_exercises.cpp
 [2]: https://en.cppreference.com/w/cpp/utility/variant/visit
 [3]: https://en.cppreference.com/w/cpp/utility/variant
+[4]: ../../lib/include/Board.hpp
