@@ -30,6 +30,10 @@ sudo apt-get install ninja-build pkg-config curl zip unzip tar cmake build-essen
 sudo dnf install ninja-build SFML-devel libXi-devel libX11-devel libXrandr-devel mesa-libGL-devel systemd-devel
 ```
 
+#### Arch Linux
+
+If there are opengl driver errors, try running in software mode
+
 #### FreeBSD 12 or newer
 
 * Install the build tools
