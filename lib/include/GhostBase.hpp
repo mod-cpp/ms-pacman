@@ -6,6 +6,7 @@
 #include "GhostState.hpp"
 #include "NPC.hpp"
 
+#include <algorithm>
 #include <numeric>
 
 namespace ms_pacman {
