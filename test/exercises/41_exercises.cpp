@@ -15,16 +15,6 @@ using namespace ms_pacman;
 // 41. std::string_view and std::span
 namespace exercises_41 {
 
-TEST_CASE("Exercise 411 : Make whole word uppercase", "[.][41]") {
-  CHECK("SIX" == StringView::to_upper("six"));
-  CHECK("THINGS" == StringView::to_upper("things"));
-  CHECK("BEFORE" == StringView::to_upper("before"));
-  std::string haystack = "Why, sometimes I’ve believed as many as six impossible things before breakfast.";
-  const std::string needle = "impossible";
-  auto pos = haystack.find(needle);
-  CHECK("IMPOSSIBLE" == StringView::to_upper({ haystack.data() + pos, needle.length() }));
-}
-
 TEST_CASE("Exercise 412 : Trim leading and trailing white space", "[.][41]") {
   CHECK("six" == StringView::trim("six"));
   CHECK("things" == StringView::trim(" things"));

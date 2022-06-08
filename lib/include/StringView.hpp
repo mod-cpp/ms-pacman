@@ -7,11 +7,6 @@
 
 namespace ms_pacman::StringView {
 
-inline std::string to_upper(std::string_view word) {
-  // Exercise 411: Make whole word uppercase
-  return std::string{ word };
-}
-
 inline std::string trim(std::string_view view) {
   // Exercise 412 : Trim leading and trailing white space
   return std::string{ view };

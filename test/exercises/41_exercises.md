@@ -99,45 +99,7 @@ std::optional<std::string_view> next() {
 
 ## [Exercise 411][1]
 
-### Make whole std::string_view uppercase
-
-* [std::toupper][3]
-* [std::transform][4]
-
-```cpp
-inline std::string to_upper(std::string_view word) {
-  // Exercise 411: Make whole word uppercase
-  return std::string{ word };
-}
-```
-
-<details>
-   <summary>Hint</summary>
-
-```cpp
-  auto toupper = [](unsigned char c) {
-    return static_cast<char>(std::toupper(c));
-  };
-```
-
-</details>
-
-<details>
-   <summary>Solution</summary>
-
-```cpp
-inline std::string to_upper(std::string_view word) {
-  std::string ret;
-  ret.reserve(word.size());
-  auto toupper = [](unsigned char c) {
-    return static_cast<char>(std::toupper(c));
-  };
-  std::transform(word.begin(), word.end(), std::back_inserter(ret), toupper);
-  return ret;
-}
-```
-
-</details>
+###
 
 ## [Exercise 412][1]
 
