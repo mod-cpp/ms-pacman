@@ -26,7 +26,7 @@ constexpr GridPosition teleport(const DefaultBoard & board, GridPosition positio
 constexpr GridPosition teleport(const DefaultBoard & board, GridPosition position) {
   BoardCell cell = cellAtPosition(board, position);
   return std::visit(overloaded{
-                              [&](const Portal & p) { return p.target_position; },
+                              [](const Portal & p) { return p.target_position; },
                               [&position](const auto &) { return position;}
                               }, cell);
 }
