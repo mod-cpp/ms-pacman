@@ -8,7 +8,8 @@
 
 ## Exercise 320 
 
-Re-name all the functions called in GameState::step to step so that they are all overloads.
+Re-name all the functions called in GameState::step in [GameState.cpp][2] to step so
+that they are all overloads.
 
 ```cpp
 void GameState::step(std::chrono::milliseconds delta) {
@@ -57,3 +58,4 @@ TEST_CASE("Exercise 322 : Make a new overload to make the 'doThing' call below u
 </details>
 
 [1]: 32_exercises.cpp
+[2]: ../../lib/GameState.cpp
