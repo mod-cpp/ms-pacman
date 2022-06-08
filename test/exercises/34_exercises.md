@@ -41,6 +41,8 @@ constexpr bool operator==(const BasicPosition<double> & a, const BasicPosition<d
 ```
 </details>
 
+Extra time: replace all calls to isSamePosition with == and !=
+
 ## [Exercise 341][1]
 ### Implement streaming operator as insert into the set
 
