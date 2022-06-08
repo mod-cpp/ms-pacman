@@ -41,6 +41,8 @@ If there are opengl driver errors, try running in software mode
 sudo pkg install catch cmake libfmt ninja sfml
 ```
 
+**After installing the build tools, you may have to reboot your IDE and/or your Linux session if you encounter any errors such as Ninja not being found by VScode**.
+
 #### Windows:
 
 * Follow the instructions to install cmake (3.22) from https://cmake.org/download/
