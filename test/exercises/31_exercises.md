@@ -14,7 +14,7 @@
 #### All Platforms
 
 * Follow the instructions to install VSCode from https://code.visualstudio.com/
-* If you already have it installed, make sure it is up to date
+* If you already have it installed, make sure it is up-to-date
 
 #### Ubuntu 20.04 or newer
 
@@ -41,7 +41,8 @@ If there are opengl driver errors, try running in software mode
 sudo pkg install catch cmake libfmt ninja sfml
 ```
 
-**After installing the build tools, you may have to reboot your IDE and/or your Linux session if you encounter any errors such as Ninja not being found by VScode**.
+**After installing the build tools, you may have to reboot your IDE and/or your Linux
+session if you encounter any errors such as Ninja not being found by VScode**.
 
 #### Windows:
 
