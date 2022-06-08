@@ -28,13 +28,13 @@ constexpr bool operator==(const BasicPosition<double> & a, const BasicPosition<d
 
 ```cpp
 template<integral T>
-bool operator==(const BasicPosition<T> & a, const BasicPosition<T> & b) {
+constexpr bool operator==(const BasicPosition<T> & a, const BasicPosition<T> & b) {
     return a.x == b.x && a.y == b.y;
 }
 
 template<floating_point T>
 bool operator==(const BasicPosition<T> & a, const BasicPosition<T> & b) {
-    constexpr double epsilon = std::numeric_limits<double>::epsilon();
+    constexpr double epsilon = std::numeric_limits<T>::epsilon();
     return std::abs(a.x - b.x) <= epsilon &&
            std::abs(a.y - b.y) <= epsilon;
 }
