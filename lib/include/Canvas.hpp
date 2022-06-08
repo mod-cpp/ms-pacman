@@ -29,6 +29,12 @@ concept is_sprite =
 template<typename T>
 concept positioned_sprite = has_position<T> && is_sprite<T>;
 
+template<typename T>
+concept has_set_position =
+  requires(T & object, float f) {
+  { object.setPosition(f, f) };
+};
+
 class Canvas {
 public:
   Canvas();
@@ -73,7 +79,7 @@ private:
   void renderHighScore(std::optional<player> score);
   void renderLives(uint16_t lives);
 
-  template<typename Object>
+  template<has_set_position Object>
   void render(Object sprite, Position pos) {
     pos.x = LEFT_MARGIN + (pos.x * SPRITE_WIDTH);
     pos.y = TOP_MARGIN + (pos.y * SPRITE_HEIGHT);
