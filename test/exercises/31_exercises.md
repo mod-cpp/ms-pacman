@@ -20,7 +20,7 @@
 
 * Install the build tools
 ```bash
-sudo apt-get install ninja-build pkg-config curl zip unzip tar cmake build-essential libx11-dev libxrandr-dev libxi-dev libudev-dev libgl1-mesa-dev
+sudo apt-get install ninja-build pkg-config curl zip unzip tar cmake build-essential libx11-dev libxrandr-dev libxi-dev libudev-dev libgl1-mesa-dev clang-12 g++-10
 ```
 
 #### Fedora 33 or newer
