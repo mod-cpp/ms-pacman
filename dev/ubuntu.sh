@@ -39,11 +39,6 @@ sudo apt-get update
 sudo apt-get install kitware-archive-keyring
 sudo apt-get install cmake
 
-# Get g++-10 on Ubuntu 18.04
-# sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-# sudo apt-get update
-# sudo apt install g++-10
-
 # Install Clang last since it isn't strictly needed
 sudo apt install -y clang-12
 

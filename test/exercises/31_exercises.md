@@ -206,6 +206,19 @@ session if you encounter any errors such as Ninja not being found by VSCode.
 </details>
 
 <details>
+   <summary>Ubuntu 18.04</summary>
+
+Get g++-10 on Ubuntu 18.04
+
+```bash
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get update
+sudo apt install g++-10
+```
+
+</details>
+
+<details>
    <summary>Ubuntu 22.04 on WSL</summary>
 
 There seems to be a bug in gzip under WSL:
