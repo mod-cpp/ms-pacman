@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-#  bash <(curl -s https://raw.githubusercontent.com/mod-cpp/pacman/main/dev/ubuntu.sh)
+#  bash <(curl -s https://raw.githubusercontent.com/mod-cpp/ms-pacman/main/dev/ubuntu.sh)
 
 # install VSCode according to https://code.visualstudio.com/docs/setup/linux
 sudo apt-get install -y wget gpg

@@ -1,4 +1,4 @@
-#  iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/mod-cpp/pacman/main/dev/windows_winget.ps1'))
+#  iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/mod-cpp/ms-pacman/main/dev/windows_winget.ps1'))
 
 winget install -e --id Git.Git
 # Based on gist by @robotdad : https://gist.github.com/robotdad/83041ccfe1bea895ffa0739192771732

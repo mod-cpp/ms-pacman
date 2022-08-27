@@ -1,4 +1,4 @@
-#  iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/mod-cpp/pacman/main/dev/windows.ps1'))
+#  iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/mod-cpp/ms-pacman/main/dev/windows.ps1'))
 
 # Install or update Choco
 $ChocoMissing = $false

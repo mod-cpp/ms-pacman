@@ -22,7 +22,7 @@
 PowerShell run as Admin
 
 ```bash
-iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/mod-cpp/pacman/main/dev/windows.ps1'))
+iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/mod-cpp/ms-pacman/main/dev/windows.ps1'))
 ```
 
 </details>
@@ -32,7 +32,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercon
 PowerShell run as Admin
 
 ```bash
-iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/mod-cpp/pacman/main/dev/windows_winget.ps1'))
+iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/mod-cpp/ms-pacman/main/dev/windows_winget.ps1'))
 ```
 
 </details>
@@ -40,7 +40,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercon
    <summary>Ubuntu: <b>apt</b></summary>
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/mod-cpp/pacman/main/dev/ubuntu.sh)
+bash <(curl -s https://raw.githubusercontent.com/mod-cpp/ms-pacman/main/dev/ubuntu.sh)
 ```
 
 </details>
