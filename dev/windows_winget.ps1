@@ -6,4 +6,4 @@ winget install Microsoft.VisualStudio.2022.Community --silent --override "--wait
 winget install -e --id Kitware.CMake
 winget install -e --id Microsoft.VisualStudioCode
 
-Write-Host -Foreground green "PacMan development environment install done"
+Write-Host -Foreground green "MsPacMan development environment install done"

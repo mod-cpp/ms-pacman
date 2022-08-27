@@ -20,4 +20,4 @@ choco install -y visualstudio2022-workload-nativedesktop
 choco install -y cmake.install --installargs 'ADD_CMAKE_TO_PATH=System'
 choco install -y vscode
 
-Write-Host -Foreground green "PacMan development environment install done"
+Write-Host -Foreground green "MsPacMan development environment install done"
