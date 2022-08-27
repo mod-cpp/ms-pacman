@@ -173,6 +173,16 @@ cmake --build --preset linux-gcc-build --config Debug # build
 ctest --preset linux-gcc-test -C Debug # run tests
 ```
 
+Example for Windows using the preset `x64-windows`:
+
+```bash
+git clone https://github.com/mod-cpp/ms-pacman.git
+cd ms-pacman
+cmake --preset x64-windows -DCMAKE_BUILD_TYPE=Debug # configure
+cmake --build --preset x64-windows-build --config Debug # build
+ctest --preset x64-windows-test -C Debug # run tests
+```
+
 </details>
 
 <details>
