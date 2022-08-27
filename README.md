@@ -4,5 +4,5 @@
 # Mod(C++) Intermediate
 
 * [Course Description and Booking](https://turtlesec.no/blog/mod-cpp-intermediate/)
-* [Build and run](test/exercises/31_exercises.md)
+* [Set up development environment](test/exercises/31_exercises.md#set-up-development-environment)
 * [Exercises](test/exercises/README.md)
