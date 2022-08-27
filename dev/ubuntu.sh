@@ -14,10 +14,9 @@ sudo apt install -y apt-transport-https
 sudo apt update
 sudo apt install -y code
 
-# PacMan deps
+# MsPacMan deps
 sudo apt install -y \
 build-essential \
-clang-12 \
 cmake \
 g++-10 \
 git \
@@ -31,3 +30,8 @@ pkg-config \
 tar \
 unzip \
 zip
+
+# Install Clang last since it isn't strictly needed
+sudo apt install -y clang-12
+
+echo "MsPacMan development environment install done"
