@@ -206,6 +206,14 @@ session if you encounter any errors such as Ninja not being found by VSCode.
 </details>
 
 <details>
+   <summary>Ubuntu 22.04 on WSL</summary>
+
+There seems to be a bug in gzip under WSL:
+https://askubuntu.com/questions/1417255/trying-to-unzip-a-tgz-in-wsl-but-get-elf-not-found-error
+
+</details>
+
+<details>
    <summary>Arch Linux</summary>
 
 If there are opengl driver errors, try running in software mode
