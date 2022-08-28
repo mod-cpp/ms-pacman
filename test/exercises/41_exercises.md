@@ -98,7 +98,7 @@ std::optional<std::string_view> next() {
 
 ## [Exercise 412][1]
 
-### Trim leading and trailing white space from std::string_view
+### Trim leading and trailing white space from std::string_view in [StringView.hpp][8]
 
 * [std::string_view][2]
 
@@ -124,7 +124,7 @@ inline std::string trim(std::string_view view) {
 
 ## [Exercise 413][1]
 
-### Split std::string_view into tokens based on whitespace
+### Split std::string_view into tokens based on whitespace in [StringView.hpp][8]
 
 ```cpp
 inline std::vector<std::string> split(std::string_view view) {
@@ -158,7 +158,7 @@ inline std::vector<std::string> split(std::string_view view) {
 
 ## [Exercise 414][1]
 
-### Split view into tokens based on delimiter
+### Split view into tokens based on delimiter in [StringView.hpp][8]
 
 ```cpp
 inline std::vector<std::string> split(std::string_view view, char delimiter) {
@@ -198,7 +198,7 @@ inline std::vector<std::string> split(std::string_view view, char delimiter) {
 
 ## [Exercise 415][1]
 
-### Get int from string
+### Get int from string in [StringView.hpp][8]
 
 ```cpp
 inline int to_int(std::string_view /*word*/) {
@@ -228,3 +228,4 @@ inline int to_int(std::string_view word) {
 [5]: ../benchmarks/line_stream_benchmark.cpp
 [6]: ../../lib/include/LineViewStream.hpp
 [7]: ../../lib/include/LineStream.hpp
+[8]: ../../lib/include/StringView.hpp
