@@ -97,10 +97,6 @@ std::optional<std::string_view> next() {
 
 </details>
 
-## [Exercise 411][1]
-
-###
-
 ## [Exercise 412][1]
 
 ### Trim leading and trailing white space from std::string_view
