@@ -8,10 +8,10 @@
 
 ## Exercise 380
 
-There is a lot of code repetition in GameState::stepGhosts
+There is a lot of code repetition in [GameState::step][2]
 
 ```cpp
-void GameState::stepGhosts(const std::chrono::milliseconds & delta, Ghosts & ghost_tuple) {
+void GameState::step(const std::chrono::milliseconds & delta, Ghosts & ghost_tuple) {
   auto step_ghost = [&](auto & ghost) {
     ghost.update(delta, board);
     ghost.setTarget(board, msPacMan, std::get<Blinky>(ghost_tuple).positionInGrid());
@@ -44,7 +44,7 @@ Which fold expression?
    <summary>Solution</summary>
 
 ```cpp
-void GameState::stepGhosts(const std::chrono::milliseconds & delta, Ghosts & ghost_tuple) {
+void GameState::step(const std::chrono::milliseconds & delta, Ghosts & ghost_tuple) {
   auto step_ghost = [&](auto & ghost) {
     ghost.update(delta, board);
     ghost.setTarget(board, msPacMan, std::get<Blinky>(ghost_tuple).positionInGrid());
@@ -92,3 +92,4 @@ constexpr bool all_of(auto ...item) {
 </details>
 
 [1]: 38_exercises.cpp
+[2]: ../../lib/GameState.cpp
