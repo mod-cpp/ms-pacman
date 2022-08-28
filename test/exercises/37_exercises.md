@@ -10,8 +10,10 @@
 
 ## Exercise 370
 
-Use a structured binding to "unpack" the animation parameter and extract out the position into a
-variable called pos. What should we do with the other member?
+In [AtlasMsPacMan.hpp][11], use a structured binding to "unpack" the MsPacManAnimation parameter and extract out the
+position into a variable called pos.
+
+What should we do with the other member?
 
 ```cpp
 constexpr GridPosition animationFrame(const MsPacManAnimation & animation, Direction direction) {
@@ -131,3 +133,4 @@ constexpr GridPosition animationFrame(const MsPacManAnimation & animation, Direc
 [8]: https://en.cppreference.com/w/cpp/types/is_same
 [9]: https://en.cppreference.com/w/cpp/language/decltype
 [10]: https://en.cppreference.com/w/cpp/language/static_assert
+[11]: ../../lib/include/AtlasMsPacMan.hpp
