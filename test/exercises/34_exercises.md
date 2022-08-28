@@ -33,7 +33,7 @@ constexpr bool operator==(const BasicPosition<T> & a, const BasicPosition<T> & b
 }
 
 template<>
-constexpr bool operator==(const BasicPosition<double> & a, const BasicPosition<double> & b) {
+inline bool operator==(const BasicPosition<double> & a, const BasicPosition<double> & b) {
   constexpr double epsilon = std::numeric_limits<double>::epsilon();
   return std::abs(a.x - b.x) <= epsilon &&
          std::abs(a.y - b.y) <= epsilon;
