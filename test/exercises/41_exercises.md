@@ -3,7 +3,6 @@
 # 41. std::string_view and std::span
 
 * [Exercise 410](#exercise-410)
-* [Exercise 411](#exercise-411)
 * [Exercise 412](#exercise-412)
 * [Exercise 413](#exercise-413)
 * [Exercise 414](#exercise-414)
