@@ -8,7 +8,7 @@
 
 ## Exercise 350
 
-Make an alias called EatingAnimations for std::array<GridPosition, 4> in the code below.
+Make an alias called EatingAnimations for std::array<GridPosition, 4> in [AtlasMsPacMan.hpp][4] and use it in this code.
 
 ```cpp
 constexpr std::array<GridPosition, 4> down_animation{ pacman_down_wide, pacman_down_narrow, pacman_down_closed, pacman_down_narrow };
@@ -63,3 +63,4 @@ using array2d = std::array<std::array<T, Width>, Height>;
 [1]: 35_exercises.cpp
 [2]: https://en.cppreference.com/w/cpp/container/array
 [3]: https://en.cppreference.com/w/cpp/language/type_alias
+[4]: ../../lib/include/AtlasMsPacMan.hpp
