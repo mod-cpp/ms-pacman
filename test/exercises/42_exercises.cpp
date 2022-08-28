@@ -9,7 +9,7 @@ using namespace ms_pacman;
 // 42. C++ 20: Ranges
 namespace exercises_42 {
 
-TEST_CASE("Exercise 421 : Trim leading and trailing white space", "[.][42]") {
+TEST_CASE("Exercise 420 : Trim leading and trailing white space", "[.][42]") {
   CHECK("six" == StringView::trim("six"));
   CHECK("things" == StringView::trim(" things"));
   CHECK("before" == StringView::trim("before "));
