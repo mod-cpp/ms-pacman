@@ -286,3 +286,5 @@ TEST_CASE("Exercise 312 : Make both asserts run (distinguish between REQUIRE and
 [1]: 31_exercises.cpp
 [2]: https://github.com/catchorg/Catch2/blob/v2.x/docs/assertions.md
 [3]: https://github.com/catchorg/Catch2/blob/v2.x/docs/test-cases-and-sections.md#special-tags
+[4]: https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line
+[5]: https://code.visualstudio.com/download
