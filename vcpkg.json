@@ -6,6 +6,9 @@
     "dependencies": [
         "sfml",
         "fmt",
-        { "name": "catch2", "version>=": "2.13.8" }
+        "catch2"
+    ],
+    "overrides": [
+        { "name": "catch2", "version": "2.13.9" }
     ]
 }
