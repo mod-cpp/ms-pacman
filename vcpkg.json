@@ -2,13 +2,11 @@
     "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
     "name": "ms-pacman",
     "version": "1.0",
-    "builtin-baseline": "af2287382b1991dbdcb7e5112d236f3323b9dd7a",
+    "builtin-baseline": "f14984af3738e69f197bf0e647a8dca12de92996",
     "dependencies": [
         "sfml",
         "fmt",
-        { "name": "catch2", "version>=": "2.13.8" }
-    ],
-    "overrides": [
-        { "name": "fmt", "version": "8.1.1" }
+        "catch2",
+        "fmt"
     ]
 }
