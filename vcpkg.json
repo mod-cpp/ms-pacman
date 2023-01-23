@@ -6,7 +6,7 @@
     "dependencies": [
         "sfml",
         "fmt",
-        "catch2",
+        { "name": "catch2", "version>=": "2.13.8" },
         "fmt"
     ]
 }
