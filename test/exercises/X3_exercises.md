@@ -6,12 +6,19 @@
 
 <details>
    <summary>Hint 1: How to get NPC behavior</summary>
-Make Fruit inherit from NPC.
+
+Make Fruit inherit from NPC in [Fruit.hpp][1]
+
+```cpp
+class Fruit : public NPC
+```
+
 </details>
 
 <details>
    <summary>Hint 2: Implement the inheritance</summary>
 
+In [Fruit.hpp][1]
 ```cpp
   Fruit() : NPC(Atlas::fruit_target_pos, true) {}
 
@@ -46,6 +53,7 @@ constexpr bool isWalkableForFruit(const DefaultBoard & board, GridPosition point
 <details>
    <summary>Hint 4: Add call to update position</summary>
 
+In [Fruit.hpp][1]
 ```cpp
   void update(std::chrono::milliseconds time_delta, const DefaultBoard & board, int eatenPellets) {
     // ...
@@ -60,6 +68,7 @@ constexpr bool isWalkableForFruit(const DefaultBoard & board, GridPosition point
 <details>
    <summary>Hint 5: Store the initial start position</summary>
 
+In [Fruit.hpp][1]
 ```cpp
   void setStartPosition(Position position) {
     start_position = position;
@@ -71,6 +80,7 @@ constexpr bool isWalkableForFruit(const DefaultBoard & board, GridPosition point
 <details>
    <summary>Hint 6: Update the initial start position</summary>
 
+In [GameState.cpp][2]
 ```cpp
 void GameState::reset() {
   // ...
@@ -87,6 +97,7 @@ void GameState::choseFruitPortal() {
 <details>
    <summary>Hint 7: Update start position for second fruit round</summary>
 
+In [Fruit.hpp][1]
 ```cpp
   void hide() {
     // ...
@@ -94,3 +105,6 @@ void GameState::choseFruitPortal() {
   }
 ```
 </details>
+
+[1]: ../../lib/include/Fruit.hpp
+[2]: ../../lib/GameState.cpp
