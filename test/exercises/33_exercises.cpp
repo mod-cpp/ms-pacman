@@ -7,7 +7,7 @@
 // 33. Operators
 namespace exercises_33 {
 
-struct Point {
+struct GlobalPoint {
   int x = 0;
   int y = 0;
 };
@@ -15,13 +15,13 @@ struct Point {
 // Comment out define below
 #define ENABLE_TEST_331
 TEST_CASE("Exercise 331 : operator== as a free function", "[.][33]") {
-  Point p;
+  GlobalPoint p;
   CHECK(p.x == 0);
 #ifndef ENABLE_TEST_331
   CHECK(p == p);
 #endif
 
-  Point other{ 1, 1 };
+  GlobalPoint other{ 1, 1 };
   CHECK(other.x == 1);
 #ifndef ENABLE_TEST_331
   CHECK(p != other);
@@ -73,13 +73,13 @@ TEST_CASE("Exercise 333 : operator== as a custom member function", "[.][33]") {
 // Comment out define below
 #define ENABLE_TEST_334
 TEST_CASE("Exercise 334 : operator<=> as a free function", "[.][33]") {
-  Point p;
+  GlobalPoint p;
   CHECK(p.x == 0);
 #ifndef ENABLE_TEST_334
   CHECK(p == p);
 #endif
 
-  Point other{ 1, 1 };
+  GlobalPoint other{ 1, 1 };
   CHECK(other.x == 1);
 #ifndef ENABLE_TEST_334
   CHECK(p != other);
@@ -133,14 +133,14 @@ TEST_CASE("Exercise 336 : operator<=> as a custom member function", "[.][33]") {
 
 TEST_CASE("Exercise 337 : operator() as a custom member function", "[.][33]") {
   struct OrigoVisitor {
-    constexpr auto operator()(const Point &) const { return false; }
+    constexpr auto operator()(const GlobalPoint &) const { return false; }
   };
 
   OrigoVisitor visit;
-  Point p;
+  GlobalPoint p;
   CHECK(visit(p));
 
-  Point other{ 1, 1 };
+  GlobalPoint other{ 1, 1 };
   CHECK(!visit(other));
 }
 

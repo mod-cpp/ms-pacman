@@ -81,7 +81,7 @@ inline bool isSamePosition(const Position & a, const Position & b) {
    <summary>Solution</summary>
 
 ```cpp
-bool operator==( const Point& lhs, const Point& rhs ) {
+bool operator==( const GlobalPoint& lhs, const GlobalPoint& rhs ) {
   return lhs.x == rhs.x && lhs.y == rhs.y;
 }
 
@@ -118,8 +118,8 @@ TEST_CASE("Exercise 332 : operator== as a defaulted member function", "[33]") {
   struct Point {
     int x = 0;
     int y = 0;
-    bool operator==(const Point & other) const = default;
-  };
+    bool operator==(const Point & rhs) const = default;
+};
 
   Point p;
   CHECK(p.x == 0);
@@ -151,8 +151,8 @@ TEST_CASE("Exercise 333 : operator== as a custom member function", "[33]") {
   struct Point {
     int x = 0;
     int y = 0;
-    bool operator==(const Point & other) const {
-      return x == other.x && y == other.y;
+    bool operator==(const Point & rhs) const {
+      return x == rhs.x && y == rhs.y;
     }
   };
 
@@ -185,7 +185,7 @@ bool operator==( const Point& lhs, const Point& rhs ) {
   return lhs.x == rhs.x && lhs.y == rhs.y;
 }
 
-std::strong_ordering operator<=>( const Point& lhs, const Point& rhs ) {
+std::strong_ordering operator<=>( const GlobalPoint& lhs, const GlobalPoint& rhs ) {
   if (auto C = lhs.x <=> rhs.x; C != 0)
     return C;
   return lhs.y <=> rhs.y;
@@ -242,13 +242,13 @@ TEST_CASE("Exercise 336 : operator<=> as a custom member function", "[33]") {
   struct Point {
     int x = 0;
     int y = 0;
-   std::strong_ordering operator<=>(const Point & other) const {
-   std::strong_ordering ordering = (x <=> other.x);
-     if ( ordering != std::strong_ordering::equal )
-       return ordering;
-     return y <=> other.y;
-   }
-   bool operator==(const Point & other) const = default;
+    std::strong_ordering operator<=>(const Point & other) const {
+      std::strong_ordering ordering = (x <=> other.x);
+      if (ordering != std::strong_ordering::equal)
+        return ordering;
+      return y <=> other.y;
+    }
+    bool operator==(const Point & other) const = default;
   };
 
   Point p;
@@ -278,7 +278,7 @@ TEST_CASE("Exercise 336 : operator<=> as a custom member function", "[33]") {
 ```cpp
 TEST_CASE("Exercise 337 : operator() as a custom member function", "[33]") {
   struct OrigoVisitor {
-    constexpr auto operator()(const Point & p) const { return p.x == 0 && p.y == 0; }
+    constexpr auto operator()(const GlobalPoint & p) const { return p.x == 0 && p.y == 0; }
   };
 
   OrigoVisitor visit;
