@@ -34,7 +34,7 @@ TEST_CASE("Empty HighScore has no top score", "[highscore]") {
   REQUIRE(!top.has_value());
 }
 
-TEST_CASE("Load HighScore File", "[highscore]") {
+TEST_CASE("Load HighScore File", "[.][highscore]") {
   HighScoreFile file("highscore.txt");
   auto input = file.read_all();
   REQUIRE(!input.empty());
