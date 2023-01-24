@@ -49,7 +49,7 @@ TEST_CASE("Check HighScore File", "[highscore]") {
   REQUIRE(parsed.size() == 3);
 }
 
-TEST_CASE("Populate Using HighScore File", "[highscore]") {
+TEST_CASE("Populate Using HighScore File", "[.][highscore]") {
   ms_pacman::HighScore highScore{ "highscore.txt" };
   HighScoreFile file("highscore.txt");
   auto input = file.read_all();
