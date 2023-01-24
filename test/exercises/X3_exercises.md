@@ -29,24 +29,36 @@ In [Fruit.hpp][1]
   bool isWalkable(const DefaultBoard & board, GridPosition /*current_position*/, GridPosition target_position) const override {
     return isWalkableForFruit(board, target_position);
   }
+
+  constexpr bool isWalkableForFruit(const DefaultBoard & board, GridPosition point) const {
+    return false;
+  }
 ```
+
+Remove the existing `position` function in [Fruit.hpp][1] that is hiding the one in [NPC.hpp][3]
+
+```cpp
+// constexpr Position position() const { return Atlas::fruit_target_pos; }
+```
+
 </details>
 
 <details>
    <summary>Hint 3: Movement rules</summary>
 
+In [Fruit.hpp][1]
 ```cpp
-constexpr bool isWalkableForFruit(const DefaultBoard & board, GridPosition point) {
-  BoardCell cell = cellAtPosition(board, point);
-  return std::visit(overloaded{
-                      [](const Wall &) { return false; },
-                      [](const Pen &) { return false; },
-                      [](const PenDoor &) { return false; },
-                      [](const auto &) {
-                        return true;
-                      } },
-                    cell);
-}
+  constexpr bool isWalkableForFruit(const DefaultBoard & board, GridPosition point) const {
+    BoardCell cell = cellAtPosition(board, point);
+    return std::visit(overloaded{
+                        [](const Wall &) { return false; },
+                        [](const Pen &) { return false; },
+                        [](const PenDoor &) { return false; },
+                        [](const auto &) {
+                          return true;
+                        } },
+                      cell);
+  }
 ```
 </details>
 
@@ -108,3 +120,4 @@ In [Fruit.hpp][1]
 
 [1]: ../../lib/include/Fruit.hpp
 [2]: ../../lib/GameState.cpp
+[3]: ../../lib/include/NPC.hpp
