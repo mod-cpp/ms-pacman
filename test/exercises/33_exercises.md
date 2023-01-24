@@ -16,8 +16,8 @@
 
 #### Refactor isSamePosition into operator==
 
-Use these functions as a basis for writing two operator==, one for Position and one for 
-GridPosition. Show that this works by using these in the implementation of isSamePosition.
+Use these functions in [Position.hpp][2] as a basis for writing two `operator==`, one for `Position` and one for
+`GridPosition`. Show that this works by using these in the implementation of `isSamePosition`.
 
 ```cpp
 inline bool isSamePosition(const GridPosition & a, const GridPosition & b) {
@@ -297,3 +297,4 @@ TEST_CASE("Exercise 337 : operator() as a custom member function", "[33]") {
 [4]: https://en.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison
 [5]: https://en.cppreference.com/w/cpp/language/operator_comparison#Two-way_comparison
 [6]: https://en.cppreference.com/w/cpp/numeric/math/abs
+[7]: ../../lib/include/Position.hpp
