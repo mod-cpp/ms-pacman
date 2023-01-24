@@ -22,7 +22,7 @@
 * [45. Special member functions, including Rule of Five/Zero](45_exercises.md)
 * [46. Pragmatic introduction to move semantics and return value optimizations](46_exercises.md)
 * [47. Safety](47_exercises.md)
-* [48. Conclusion](48_exercises.md)
+* 48. Conclusion
 
 ## Extra
 
