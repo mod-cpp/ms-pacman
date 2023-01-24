@@ -12,6 +12,9 @@
 * [Exercise 337](#exercise-337)
 
 ## Exercise 330
+### Refactor Position.hpp
+
+#### Refactor isSamePosition into operator==
 
 Use these functions as a basis for writing two operator==, one for Position and one for 
 GridPosition. Show that this works by using these in the implementation of isSamePosition.
@@ -40,6 +43,8 @@ inline bool isSamePosition(const Position & a, const Position & b) {
 }
 ```
 
+*Extra time*: replace all calls throughout the codebase to isSamePosition with == and !=
+
 <details>
    <summary>Solution</summary>
 
@@ -65,8 +70,6 @@ inline bool isSamePosition(const Position & a, const Position & b) {
 }
 ```
 </details>
-
-Extra time: replace all calls to isSamePosition with == and !=
 
 ## [Exercise 331][1]
 ### operator== as a free function
