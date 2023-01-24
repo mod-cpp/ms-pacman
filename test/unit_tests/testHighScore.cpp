@@ -60,7 +60,7 @@ TEST_CASE("Populate Using HighScore File", "[highscore]") {
   REQUIRE(highScore.num_players() == 3);
 }
 
-TEST_CASE("Transfer ownership of HighScore File", "[highscore]") {
+TEST_CASE("Transfer ownership of HighScore File", "[.][highscore]") {
   ms_pacman::HighScore highScore{ "highscore.txt" };
   HighScoreFile file("highscore.txt");
   REQUIRE(file.is_valid());
