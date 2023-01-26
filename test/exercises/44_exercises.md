@@ -7,7 +7,7 @@
 
 ## Exercise 440
 
-Rewrite the operator equals to use the concepts instead.
+Rewrite the operator equals in [Position.hpp][3] to use the concepts instead.
 
 ```cpp
 template<typename T>
@@ -51,6 +51,39 @@ inline bool isSamePosition(const Position & a, const Position & b) {
 
 ## [Exercise 441][1]
 ### Reason about conjunction
+
+In the CHECKs replace the ReturnValue::Wrong with the value returned by the process function you think will be called.
+
+```cpp
+  {
+    auto red_circle = circle<color::red>{};
+    CHECK(process(red_circle) == ReturnValue::Wrong);
+  }
+  {
+    auto green_circle = circle<color::green>{};
+    CHECK(process(green_circle) == ReturnValue::Wrong);
+  }
+  {
+    auto blue_circle = circle<color::blue>{};
+    CHECK(process(blue_circle) == ReturnValue::Wrong);
+  }
+  {
+    auto red_square = square<color::red>{};
+    CHECK(process(red_square) == ReturnValue::Wrong);
+  }
+  {
+    auto purple_square = square<color::purple>{};
+    CHECK(process(purple_square) == ReturnValue::Wrong);
+  }
+  {
+    auto red_triangle = triangle<color::red>{};
+    CHECK(process(red_triangle) == ReturnValue::Wrong);
+  }
+  {
+    auto blue_triangle = triangle<color::blue>{};
+    CHECK(process(blue_triangle) == ReturnValue::Wrong);
+  }
+```
 
 * cppreference : [Conjunctions][2]
 
@@ -100,3 +133,4 @@ TEST_CASE("Exercise 441 : Reason about conjunction", "[44]") {
 
 [1]: 44_exercises.cpp
 [2]: https://en.cppreference.com/w/cpp/language/constraints#Conjunctions
+[3]: ../../lib/include/Position.hpp
