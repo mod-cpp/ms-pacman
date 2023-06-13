@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: turtlesec-no/get-ninja@1.0.0
+    - uses: turtlesec-no/get-ninja@1.1.0
 
     - name: Create vcpkg build folder
       env:
