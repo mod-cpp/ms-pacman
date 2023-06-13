@@ -84,6 +84,7 @@ jobs:
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
         sudo apt-get update && sudo apt-get install -y g++-11
 
+    # Running configure twice as a workaround for https://github.com/microsoft/vcpkg/issues/31962
     - name: Configure CMake
       shell: bash
       run: |
