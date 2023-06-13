@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: turtlesec-no/get-ninja@1.0.0
+    - uses: actions/checkout@v3
+    - uses: turtlesec-no/get-ninja@1.1.0
 
     - name: Create vcpkg build folder
       env:
@@ -22,7 +22,7 @@ jobs:
         mkdir -p ${{ env.vcpkg_project_root }}/_deps
 
     - name: Cache vcpkg
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       env:
         vcpkg_project_root: ${{runner.workspace}}/ms-pacman/build
         cache-name: vcpkg-modules

@@ -142,8 +142,7 @@ code .
   the recommended extensions for C++?" - click Install.
 * Click on "No Configure Preset Selected" on the bottom status bar
 * In the dropdown that appears select
-    * either `x64-windows` (64 bit) or `x86-windows` (32
-      bit).
+    * `x64-windows` on Windows
     * `linux-gcc` on Linux
     * `macos` on MacOS
 * Build by clicking on "Build" button on the bottom status bar.

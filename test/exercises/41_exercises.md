@@ -34,15 +34,6 @@ cd .\build\x64-windows\test\Debug\
 
 </details>
 <details>
-   <summary>CMakePreset: <b>x86-windows</b></summary>
-
-```bash
-cd .\build\x86-windows\test\Debug\
-.\ms_pacman_benchmarks.exe
-```
-
-</details>
-<details>
    <summary>CMakePreset: <b>linux-gcc</b></summary>
 
 ```bash
