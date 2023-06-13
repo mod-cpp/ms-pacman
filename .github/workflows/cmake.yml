@@ -54,11 +54,6 @@ jobs:
             config-preset: x64-windows
             build-preset: x64-windows-build
             test-preset: x64-windows-test
-          - name: Windows 2022
-            os: windows-2022
-            config-preset: x86-windows
-            build-preset: x86-windows-build
-            test-preset: x86-windows-test
           - name: MacOS 11
             os: macos-11
             config-preset: osx
