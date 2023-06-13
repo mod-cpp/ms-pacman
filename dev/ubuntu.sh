@@ -31,6 +31,9 @@ tar \
 unzip \
 zip
 
+sudo apt install -y autoconf libtool
+sudo apt install -y mesa-common-dev libglu1-mesa-dev libfreetype6-dev libopenal-dev libsndfile1-dev
+
 # Install up-to-date CMake (https://apt.kitware.com/)
 CODE_NAME=`lsb_release -cs`
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null

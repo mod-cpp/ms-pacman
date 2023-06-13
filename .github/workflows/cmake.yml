@@ -76,9 +76,9 @@ jobs:
 
     - name: Install Linux dependencies
       if: matrix.configurations.os == 'ubuntu-20.04'
-      run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev clang-12 make ninja-build cmake
+      run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev clang-12 make ninja-build cmake autoconf libtool mesa-common-dev libglu1-mesa-dev libfreetype6-dev libopenal-dev libsndfile1-dev
 
-    - name: Install Addtitional Linux dependencies
+    - name: Install Additional Linux dependencies
       if: matrix.configurations.config-preset == 'linux-gcc-11'
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
