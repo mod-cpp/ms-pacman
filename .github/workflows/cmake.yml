@@ -64,6 +64,11 @@ jobs:
             config-preset: osx
             build-preset: osx-build
             test-preset: osx-test
+          - name: MacOS 12
+            os: macos-12
+            config-preset: osx
+            build-preset: osx-build
+            test-preset: osx-test
         cmake-build-type: [Debug, Release]
 
     steps:
