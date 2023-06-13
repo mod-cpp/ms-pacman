@@ -1,5 +1,7 @@
 #include "NPC.hpp"
 
+#include <algorithm>
+
 namespace ms_pacman {
 
 void NPC::updateDirection(const DefaultBoard & board) {
