@@ -51,9 +51,9 @@ jobs:
             test-preset: linux-gcc-test-11
           - name: Windows 2019
             os: windows-2019
-            config-preset: x64-windows
-            build-preset: x64-windows-build
-            test-preset: x64-windows-test
+            config-preset: x64-windows-2019
+            build-preset: x64-windows-2019-build
+            test-preset: x64-windows-2019-test
           - name: Windows 2022
             os: windows-2022
             config-preset: x64-windows
