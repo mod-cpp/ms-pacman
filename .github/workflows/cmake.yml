@@ -83,7 +83,7 @@ jobs:
         mkdir -p ${{ env.vcpkg_project_root }}/_deps
 
     - name: Cache vcpkg
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       env:
         vcpkg_project_root: ${{runner.workspace}}/ms-pacman/build/${{ matrix.configurations.config-preset }}
         cache-name: vcpkg-modules
