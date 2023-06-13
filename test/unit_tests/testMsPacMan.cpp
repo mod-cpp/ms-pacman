@@ -1,5 +1,5 @@
 #include "MsPacMan.hpp"
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 TEST_CASE("Pacman has the correct initial position") {
   ms_pacman::MsPacMan pacMan;

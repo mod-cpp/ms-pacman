@@ -1,14 +1,14 @@
 #include "Position.hpp"
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 TEST_CASE("Position are properly initialized", "[positions]") {
   ms_pacman::Position pos;
-  REQUIRE(pos.x == Approx(0.0));
-  REQUIRE(pos.y == Approx(0.0));
+  REQUIRE(pos.x == Catch::Approx(0.0));
+  REQUIRE(pos.y == Catch::Approx(0.0));
 
   ms_pacman::Position pos2{ 10.0, 20.0 };
-  REQUIRE(pos2.x == Approx(10.0));
-  REQUIRE(pos2.y == Approx(20.0));
+  REQUIRE(pos2.x == Catch::Approx(10.0));
+  REQUIRE(pos2.y == Catch::Approx(20.0));
 }
 
 TEST_CASE("GridPosition are properly initialized", "[positions]") {
@@ -27,8 +27,8 @@ TEST_CASE("Position converts to GridPosition", "[positions]") {
 TEST_CASE("GridPosition converts to Position", "[positions]") {
   ms_pacman::GridPosition gridPos{ 10, 20 };
   const auto pos = ms_pacman::gridPositionToPosition(gridPos);
-  REQUIRE(pos.x == Approx(10.0));
-  REQUIRE(pos.y == Approx(20.0));
+  REQUIRE(pos.x == Catch::Approx(10.0));
+  REQUIRE(pos.y == Catch::Approx(20.0));
 }
 
 TEST_CASE("Positions compare equal", "[positions]") {
