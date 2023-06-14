@@ -34,26 +34,46 @@ jobs:
             config-preset: linux-gcc-11
             build-preset: linux-gcc-build-11
             test-preset: linux-gcc-test-11
+          - name: Ubuntu 22.04
+            os: ubuntu-22.04
+            config-preset: linux-clang
+            build-preset: linux-clang-build
+            test-preset: linux-clang-test
+          - name: Ubuntu 22.04
+            os: ubuntu-22.04
+            config-preset: linux-gcc
+            build-preset: linux-gcc-build
+            test-preset: linux-gcc-test
+          - name: Ubuntu 22.04
+            os: ubuntu-22.04
+            config-preset: linux-gcc-11
+            build-preset: linux-gcc-build-11
+            test-preset: linux-gcc-test-11
+          - name: Windows 2019
+            os: windows-2019
+            config-preset: x64-windows-2019
+            build-preset: x64-windows-2019-build
+            test-preset: x64-windows-2019-test
           - name: Windows 2022
             os: windows-2022
             config-preset: x64-windows
             build-preset: x64-windows-build
             test-preset: x64-windows-test
-          - name: Windows 2022
-            os: windows-2022
-            config-preset: x86-windows
-            build-preset: x86-windows-build
-            test-preset: x86-windows-test
           - name: MacOS 11
             os: macos-11
+            config-preset: osx
+            build-preset: osx-build
+            test-preset: osx-test
+          - name: MacOS 12
+            os: macos-12
             config-preset: osx
             build-preset: osx-build
             test-preset: osx-test
         cmake-build-type: [Debug, Release]
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: turtlesec-no/get-ninja@1.0.0
+    - uses: actions/checkout@v3
+    - uses: turtlesec-no/get-ninja@1.1.0
 
     - name: Create vcpkg build folder
       env:
@@ -63,7 +83,7 @@ jobs:
         mkdir -p ${{ env.vcpkg_project_root }}/_deps
 
     - name: Cache vcpkg
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       env:
         vcpkg_project_root: ${{runner.workspace}}/ms-pacman/build/${{ matrix.configurations.config-preset }}
         cache-name: vcpkg-modules
@@ -75,7 +95,7 @@ jobs:
         key: ${{ matrix.configurations.os }}-${{ matrix.configurations.config-preset }}-${{ matrix.cmake-build-type }}-${{ hashFiles('vcpkg.json') }}-${{ hashFiles('cmake/vcpkg.cmake') }}-ranges
 
     - name: Install Linux dependencies
-      if: matrix.configurations.os == 'ubuntu-20.04'
+      if: startsWith( matrix.configurations.os, 'ubuntu-' )
       run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev clang-12 make ninja-build cmake autoconf libtool mesa-common-dev libglu1-mesa-dev libfreetype6-dev libopenal-dev libsndfile1-dev
 
     - name: Install Additional Linux dependencies
