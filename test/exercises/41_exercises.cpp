@@ -1,5 +1,4 @@
-#define CATCH_CONFIG_EXTERNAL_INTERFACES
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 // To enable a test remove [.] from the tags on the test
 
@@ -74,9 +73,9 @@ TEST_CASE("Exercise 415 : Get int from string", "[.][41]") {
 }
 
 // Catch 2 setup and teardown
-struct HighScoreListener : Catch::TestEventListenerBase {
+struct HighScoreListener : Catch::EventListenerBase {
 
-  using TestEventListenerBase::TestEventListenerBase; // inherit constructor
+  using EventListenerBase::EventListenerBase; // inherit constructor
 
   void testCaseStarting(Catch::TestCaseInfo const &) override {
     // Perform some setup before a test case is run

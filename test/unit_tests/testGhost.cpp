@@ -1,5 +1,5 @@
 #include "Ghost.hpp"
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 template<typename T>
 static void ghostInitTest(const T & ghost, double x, double y) {

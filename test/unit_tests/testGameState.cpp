@@ -1,6 +1,6 @@
 #include "AtlasFruits.hpp"
 #include "GameState.hpp"
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 #include <tuple>
 
 TEST_CASE("Check initial state of GameState") {

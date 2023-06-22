@@ -1,5 +1,4 @@
-#define CATCH_CONFIG_EXTERNAL_INTERFACES
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 #include "HighScore.hpp"
 #include "HighScoreFile.hpp"
@@ -8,9 +7,9 @@
 #include <fstream>
 #include <iostream>
 
-struct HighScoreListener : Catch::TestEventListenerBase {
+struct HighScoreListener : Catch::EventListenerBase {
 
-  using TestEventListenerBase::TestEventListenerBase; // inherit constructor
+  using EventListenerBase::EventListenerBase; // inherit constructor
 
   void testCaseStarting(Catch::TestCaseInfo const &) override {
     // Perform some setup before a test case is run
