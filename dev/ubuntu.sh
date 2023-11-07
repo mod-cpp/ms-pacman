@@ -43,6 +43,7 @@ sudo apt-get install kitware-archive-keyring
 sudo apt-get install cmake
 
 # Install Clang last since it isn't strictly needed
+sudo apt install -y clang
 sudo apt install -y clang-12
 
 echo "MsPacMan development environment install done"
