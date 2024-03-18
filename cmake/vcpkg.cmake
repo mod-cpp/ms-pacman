@@ -2,7 +2,7 @@ include(FetchContent)
 FetchContent_Declare(
         vcpkg
         GIT_REPOSITORY https://github.com/microsoft/vcpkg
-        GIT_TAG 501db0f17ef6df184fcdbfbe0f87cde2313b6ab1 # 2023.04.15
+        GIT_TAG fba75d09065fcc76a25dcf386b1d00d33f5175af # 2024.02.14
 )
 
 if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
