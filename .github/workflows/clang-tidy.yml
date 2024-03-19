@@ -49,6 +49,10 @@ jobs:
       working-directory: build
       run: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
 
+    - name: Show vcpkg logs
+      if: always()
+      run: cat /home/runner/work/ms-pacman/ms-pacman/build/*/vcpkg-manifest-install.log
+
     - name: Run clang-tidy-13
       working-directory: build
       run: run-clang-tidy-13
