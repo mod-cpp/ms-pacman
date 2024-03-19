@@ -54,6 +54,8 @@ then
   sudo apt install -y code
 fi
 
+info "Install MsPacMan dependencies"
+
 # MsPacMan deps
 sudo apt install -y \
 build-essential \
