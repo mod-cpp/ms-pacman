@@ -72,7 +72,7 @@ jobs:
         cmake-build-type: [Debug, Release]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: turtlesec-no/get-ninja@1.1.0
 
     # Workaround for https://github.com/actions/runner-images/issues/8659
@@ -88,7 +88,7 @@ jobs:
         mkdir -p ${{ env.vcpkg_project_root }}/_deps
 
     - name: Cache vcpkg
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       env:
         vcpkg_project_root: ${{runner.workspace}}/ms-pacman/build/${{ matrix.configurations.config-preset }}
         cache-name: vcpkg-modules
