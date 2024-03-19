@@ -81,6 +81,7 @@ git \
 libgl1-mesa-dev \
 libudev-dev \
 libx11-dev \
+libxcursor-dev \
 libxi-dev \
 libxrandr-dev \
 ninja-build \
