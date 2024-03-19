@@ -77,7 +77,7 @@ sudo apt install -y autoconf libtool
 sudo apt install -y mesa-common-dev libglu1-mesa-dev libfreetype6-dev libopenal-dev libsndfile1-dev
 
 info "Install GDB for debugging"
-sudo apt install gdb
+sudo apt install -y gdb
 
 info "Install CMake from Kitware"
 # Install up-to-date CMake (https://apt.kitware.com/)
