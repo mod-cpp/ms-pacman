@@ -101,7 +101,7 @@ jobs:
 
     - name: Install Linux dependencies
       if: startsWith( matrix.configurations.os, 'ubuntu-' )
-      run: sudo apt-get update && sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev clang-12 make ninja-build cmake autoconf libtool mesa-common-dev libglu1-mesa-dev libfreetype6-dev libopenal-dev libsndfile1-dev
+      run: sudo apt-get update && sudo apt-get install -y libx11-dev libxcursor-dev libxi-dev libxrandr-dev libgl1-mesa-dev libudev-dev clang-12 make ninja-build cmake autoconf libtool mesa-common-dev libglu1-mesa-dev libfreetype6-dev libopenal-dev libsndfile1-dev
 
     - name: Install Additional Linux dependencies
       if: matrix.configurations.config-preset == 'linux-gcc-11'
