@@ -51,7 +51,10 @@ jobs:
 
     - name: Show vcpkg logs
       if: always()
-      run: cat /home/runner/work/ms-pacman/ms-pacman/build/vcpkg-manifest-install.log
+      shell: bash
+      run: |
+        cat /home/runner/work/ms-pacman/ms-pacman/build/vcpkg-manifest-install.log
+        cat /home/runner/work/ms-pacman/ms-pacman/build/_deps/vcpkg-src/buildtrees/sfml/install-x64-linux-dbg-out.log
 
     - name: Run clang-tidy-13
       working-directory: build
