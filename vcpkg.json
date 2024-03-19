@@ -6,7 +6,6 @@
     "dependencies": [
         "sfml",
         "fmt",
-        "catch2",
-        "fmt"
+        "catch2"
     ]
 }
