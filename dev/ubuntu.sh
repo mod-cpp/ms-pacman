@@ -22,6 +22,31 @@ instruction() {
   echo -e "\x1B[33m$1\x1B[0m"
 }
 
+confirm() {
+    # call with a prompt string or use a default
+    read -r -p "${1:-Are you sure? [y/N]} " response
+    case "$response" in
+        [yY][eE][sS]|[yY])
+            true
+            ;;
+        *)
+            false
+            ;;
+    esac
+}
+
+installVSCode() {
+    # install VSCode according to https://code.visualstudio.com/docs/setup/linux
+    sudo apt-get install -y wget gpg
+    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+    sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+    sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+    rm -f packages.microsoft.gpg
+    sudo apt install -y apt-transport-https
+    sudo apt update
+    sudo apt install -y code
+}
+
 if grep -qi microsoft /proc/version; then
   info "[WSL] Windows Subsystem for Linux detected"
   RUNNING_ON_WSL=1
@@ -42,16 +67,7 @@ fi
 
 if test $RUNNING_ON_WSL -eq 0
 then
-  info "[Native-Ubuntu] Install VSCode from Microsoft"
-  # install VSCode according to https://code.visualstudio.com/docs/setup/linux
-  sudo apt-get install -y wget gpg
-  wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-  sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
-  sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-  rm -f packages.microsoft.gpg
-  sudo apt install -y apt-transport-https
-  sudo apt update
-  sudo apt install -y code
+  confirm "[Native-Ubuntu] Install VSCode from Microsoft? [y/N]" && installVSCode
 fi
 
 info "Install MsPacMan dependencies"
