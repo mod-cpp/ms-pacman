@@ -43,7 +43,7 @@ jobs:
     - name: Install Build dependencies
       run: |
         sudo apt update -y
-        sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev make ninja-build cmake
+        sudo apt-get install -y libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libudev-dev libxcursor-dev make ninja-build cmake
 
     - name: Configure CMake
       working-directory: build
