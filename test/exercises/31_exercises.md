@@ -85,7 +85,7 @@ brew install cmake ninja pkg-config
    <summary>Ubuntu 22.04 or newer</summary>
 
 ```bash
-sudo apt install -y build-essential clang-12 cmake g++-10 git libgl1-mesa-dev libudev-dev libx11-dev libxi-dev libxrandr-dev ninja-build pkg-config tar unzip zip
+sudo apt install -y build-essential clang-12 cmake g++-10 git libgl1-mesa-dev libudev-dev libx11-dev libxcursor-dev libxi-dev libxrandr-dev ninja-build pkg-config tar unzip zip
 ```
 
 #### Install Visual Studio Code
