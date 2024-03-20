@@ -73,7 +73,7 @@ bash <(curl -s https://raw.githubusercontent.com/mod-cpp/ms-pacman/main/dev/ubun
 * Install the build tools
 
 ```bash
-brew install cmake ninja
+brew install cmake ninja pkg-config
 ```
 
 * [Install VS Code][5]
