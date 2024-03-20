@@ -84,8 +84,50 @@ brew install cmake ninja pkg-config
 <details>
    <summary>Ubuntu 22.04 or newer</summary>
 
+Update:
+
 ```bash
-sudo apt install -y build-essential clang-12 cmake g++-10 git libgl1-mesa-dev libudev-dev libx11-dev libxcursor-dev libxi-dev libxrandr-dev ninja-build pkg-config tar unzip zip
+sudo apt update
+sudo apt -y upgrade
+```
+
+General tools:
+
+```bash
+sudo apt install -y curl git tar unzip zip
+```
+
+Dev tools:
+
+```bash
+sudo apt install -y autoconf build-essential cmake gdb libtool make ninja-build pkg-config
+```
+
+CMake: For older Ubuntu versions (like 20.04) you probably need to run the [up_to_date_cmake.sh](../../dev/up_to_date_cmake.sh) script:
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/mod-cpp/ms-pacman/main/dev/up_to_date_cmake.sh)
+```
+
+Check CMake version, should be higher than cmake_minimum_required in [CMakeLists.txt](../../CMakeLists.txt)
+
+```
+cmake --version
+cmake version 3.28.3
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+```
+
+Dev dependencies:
+
+```bash
+sudo apt install -y libfreetype6-dev libgl1-mesa-dev libglu1-mesa-dev libopenal-dev libsndfile1-dev libudev-dev libx11-dev libxcursor-dev libxi-dev libxrandr-dev mesa-common-dev
+```
+
+Compilers
+
+```bash
+sudo apt install -y clang-12 g++-10
 ```
 
 #### Install Visual Studio Code
@@ -198,9 +240,9 @@ ctest --preset x64-windows-test -C Debug # run tests
 * If you need to get back to this dialog, open Settings and go to: Build, Execution, Deployment > CMake
 * On the bottom of the CLion window you will see a tab called CMake
 * To reload CMake fully, click on it and click on the cog wheel and select "Reset Cache and Reload Project"
-* To run ms_pacman press the green play button at the top right of the window
+* To run `ms_pacman` press the green play button at the top right of the window
 * To run in debug press the bug button to its right
-* To run the tests click on the dropdown to its left and select "All CTest" and then either the run or the debug button.
+* To run the tests click on the dropdown to its left and select `All CTest` and then either the run or the debug button.
 
 </details>
 
@@ -287,3 +329,4 @@ TEST_CASE("Exercise 312 : Make both asserts run (distinguish between REQUIRE and
 [3]: https://github.com/catchorg/Catch2/blob/v2.x/docs/test-cases-and-sections.md#special-tags
 [4]: https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line
 [5]: https://code.visualstudio.com/download
+[6]: https://code.visualstudio.com/docs/setup/linux
