@@ -39,8 +39,15 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercon
 <details>
    <summary>Ubuntu: <b>apt</b></summary>
 
+In case you are missing curl
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/mod-cpp/ms-pacman/main/dev/ubuntu.sh)
+sudo apt install curl
+```
+
+The run the [this script](../../dev/ubuntu.sh), either from the checked out repo or from GitHub:
+
+```bash
+DEBIAN_FRONTEND=noninteractive bash <(curl -s https://raw.githubusercontent.com/mod-cpp/ms-pacman/main/dev/ubuntu.sh)
 ```
 
 </details>
